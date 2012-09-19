@@ -11,6 +11,8 @@ Buddypress installation required!!
 Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. 
 If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
 
+<a href="http://www.atallos.com" title="Atallos Cloud">www.atallos.com</a>
+
 = Features =
 * Add Birthdate field.
 * Add Email field (HTML5).
