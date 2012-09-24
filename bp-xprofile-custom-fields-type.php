@@ -1,7 +1,7 @@
 <?php
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
-    Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker.
+    Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
     Version: 1.0
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
@@ -22,7 +22,8 @@ function bxcft_load_textdomain() {
 add_action ( 'bp_init', 'bxcft_load_textdomain', 2 );
 
 function bxcft_add_new_xprofile_field_type($field_types){
-   $new_field_types = array('birthdate', 'email', 'web', 'datepicker');
+   $new_field_types = array('birthdate', 'email', 'web', 'datepicker',
+       'select_custom_post_type', 'multiselect_custom_post_type');
    $field_types = array_merge($field_types, $new_field_types);
    return $field_types;
 }
@@ -30,6 +31,38 @@ add_filter( 'xprofile_field_types', 'bxcft_add_new_xprofile_field_type' );
 
 function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
    switch ( $field->type ) {
+       case 'select_custom_post_type':
+           $childs = $field->get_children();
+           if (isset($childs) && count($childs) > 0) {
+               // Get the name of custom post type.
+               $custom_post_type = $childs[0]->name;
+               // Get the posts of custom post type.
+               $loop = new WP_Query(array('post_type' => $custom_post_type));
+           }
+           $select_custom_post_type = BP_XProfile_ProfileData::get_value_byid( $field->id );
+           $html .= '<select name="field_'.$field->id.'" id="field_'.$field->id.'">';
+           foreach ($loop->posts as $post) {
+                $html .= '<option value="'.$post->ID.'">'.$post->post_title.'</option>';
+           }
+           $html .= '</select>';
+           break;
+           
+       case "multiselect_custom_post_type":
+           $childs = $field->get_children();
+           if (isset($childs) && count($childs) > 0) {
+               // Get the name of custom post type.
+               $custom_post_type = $childs[0]->name;
+               // Get the posts of custom post type.
+               $loop = new WP_Query(array('post_type' => $custom_post_type));
+           }
+           $select_custom_post_type = BP_XProfile_ProfileData::get_value_byid( $field->id );
+           $html .= '<select name="field_'.$field->id.'" id="field_'.$field->id.'" multiple="multiple">';
+           foreach ($loop->posts as $post) {
+                $html .= '<option value="'.$post->ID.'">'.$post->post_title.'</option>';
+           }
+           $html .= '</select>';
+           break;
+       
        case "datepicker":
            $datepicker = BP_XProfile_ProfileData::get_value_byid( $field->id );
            $html .= '<input type="date" name="field_'.$field->id.'" id'.$field->id.'" class="input" value="" />';
@@ -268,6 +301,59 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
        </div>
        <?php
        }
+       elseif ( bp_get_the_profile_field_type() == 'select_custom_post_type' ) {
+           $custom_post_type_selected = BP_XProfile_ProfileData::get_value_byid( $field->id );
+           if ( isset( $_POST['field_' . $field->id] ) && $_POST['field_' . $field->id] != $option_value ) {
+                if ( !empty( $_POST['field_' . $field->id] ) ) {
+                    $custom_post_type_selected = $_POST['field_' . $field->id];
+                }
+           }
+           // Get field's data.
+           $field_data = new BP_XProfile_Field($field->id);
+           // Get the childs of field
+           $childs = $field_data->get_children();
+           if (isset($childs) && count($childs) > 0) {
+               // Get the name of custom post type.
+               $custom_post_type = $childs[0]->name;
+               // Get the posts of custom post type.
+               $loop = new WP_Query(array('post_type' => $custom_post_type));
+       ?>
+       <label class="label-form" for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?> *<?php endif; ?></label>
+       <select name="<?php bp_the_profile_field_input_name(); ?>" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="select">
+           <option value=""><?php _e('Select...', 'bxcft'); ?></option>
+       <?php foreach ($loop->posts as $post): ?>
+           <option value="<?php echo $post->ID; ?>" <?php if ($custom_post_type_selected == $post->ID): ?>selected="selected"<?php endif; ?>><?php echo $post->post_title; ?></option>
+       <?php endforeach; ?>
+       </select>
+       <?php
+           }
+       }
+       elseif ( bp_get_the_profile_field_type() == 'multiselect_custom_post_type' ) {
+           $custom_post_type_selected = maybe_unserialize(BP_XProfile_ProfileData::get_value_byid( $field->id ));
+           if ( isset( $_POST['field_' . $field->id] ) && $_POST['field_' . $field->id] != $option_value ) {
+                if ( !empty( $_POST['field_' . $field->id] ) ) {
+                    $custom_post_type_selected = $_POST['field_' . $field->id];
+                }
+           }
+           // Get field's data.
+           $field_data = new BP_XProfile_Field($field->id);
+           // Get the childs of field
+           $childs = $field_data->get_children();
+           if (isset($childs) && count($childs) > 0) {
+               // Get the name of custom post type.
+               $custom_post_type = $childs[0]->name;
+               // Get the posts of custom post type.
+               $loop = new WP_Query(array('post_type' => $custom_post_type));
+       ?>
+       <label class="label-form" for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?> *<?php endif; ?></label>
+       <select name="<?php bp_the_profile_field_input_name(); ?>[]" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="select" multiple="multiple">
+       <?php foreach ($loop->posts as $post): ?>
+           <option value="<?php echo $post->ID; ?>" <?php if (in_array($post->ID, $custom_post_type_selected)): ?>selected="selected"<?php endif; ?>><?php echo $post->post_title; ?></option>
+       <?php endforeach; ?>
+       </select>
+       <?php
+           }
+       }
 
        $output = ob_get_contents();
    ob_end_clean();
@@ -283,19 +369,64 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
 }
 add_action( 'bp_custom_profile_edit_fields', 'bxcft_edit_render_new_xprofile_field' );
 
-function bxcft_get_fecha_nacimiento_value( $value='', $type='', $id='') {
+function bxcft_get_field_value( $value='', $type='', $id='') {
 
     if ($type == 'birthdate' || $type == 'datepicker') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        list($fecha, $hora) = explode(" ", $value);
-        list($ano, $mes, $dia) = explode("-", $fecha);
-        return "<p>".$dia."/".$mes."/".$ano."</p>";
+        return '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
+    }
+    elseif ($type == 'select_custom_post_type') {
+        $value = str_replace("<p>", "", $value);
+        $value = str_replace("</p>", "", $value);
+        // Get field's data.
+        $field = new BP_XProfile_Field($id);
+        // Get children.
+        $childs = $field->get_children();
+        if (isset($childs) && count($childs) > 0) {
+            // Get the name of custom post type.
+            $custom_post_type = $childs[0]->name;
+        }
+        $post = get_post($value);
+        if ($post->post_type == $custom_post_type) {
+            return '<p>'.$post->post_title.'</p>';
+        } else {
+            // Custom post type is not the same.
+            return '<p>--</p>';
+        }
+    }
+    elseif ($type == 'multiselect_custom_post_type') {
+        $value = str_replace("<p>", "", $value);
+        $value = str_replace("</p>", "", $value);
+        // Get field's data.
+        $field = new BP_XProfile_Field($id);
+        // Get children.
+        $childs = $field->get_children();
+        if (isset($childs) && count($childs) > 0) {
+            // Get the name of custom post type.
+            $custom_post_type = $childs[0]->name;
+        }
+        $values = explode(",", $value);
+        $cad = '';
+        foreach ($values as $v) {
+            $post = get_post($v);
+            if ($post->post_type == $custom_post_type) {
+                if ($cad == '')
+                    $cad .= '<ul class="list_custom_post_type">';
+                $cad .= '<li>'.$post->post_title.'</li>';
+            }
+        }
+        if ($cad != '') {
+            $cad .= '</ul>';
+            return '<p>'.$cad.'</p>';
+        } else {
+            return '<p>--</p>';
+        }
     }
     
     return $value;
 }
-add_filter( 'bp_get_the_profile_field_value', 'bxcft_get_fecha_nacimiento_value', 15, 3);
+add_filter( 'bp_get_the_profile_field_value', 'bxcft_get_field_value', 15, 3);
 
 function bxcft_add_js($hook) {    
     if ('users_page_bp-profile-setup' != $hook)
@@ -306,14 +437,111 @@ function bxcft_add_js($hook) {
         'birthdate' => __('Birthdate', 'bxcft'),
         'email' => __('Email', 'bxcft'),
         'web' => __('Website', 'bxcft'),
-        'datepicker' => __('Datepicker', 'bxcft')
+        'datepicker' => __('Datepicker', 'bxcft'),
+        'select_custom_post_type' => __('Custom Post Type Selector', 'bxcft'),
+        'multiselect_custom_post_type' => __('Custom Post Type Multiselector', 'bxcft')
     );
     wp_localize_script('bxcft-js', 'params', $params);
 }
 add_action( 'admin_enqueue_scripts', 'bxcft_add_js');
 
+function bxcft_save_custom_option($field) {
+    global $bp, $wpdb;
+    
+    if ( 'select_custom_post_type' == $field->type ) {
+        $post_option  = !empty( $_POST['select_custom_post_type_option']) ? $_POST['select_custom_post_type_option'] : '';
+        if ( '' != $post_option ) {
+            if ( !empty( $field->id ) ) {
+				$field_id = $field->id;
+			} else {
+				$field_id = $wpdb->insert_id;
+			}
+            if ( !$wpdb->query( $wpdb->prepare( "INSERT INTO {$bp->profile->table_name_fields} (group_id, parent_id, type, name, description, is_required, option_order, is_default_option) VALUES (%d, %d, 'custom_post_type_option', %s, '', 0, %d, %d)", $field->group_id, $field_id, $post_option, 1, 1 ) ) ) {
+                return false;
+            }
+        }
+    }
+    elseif ( 'multiselect_custom_post_type' == $field->type) {
+        $post_option  = !empty( $_POST['multiselect_custom_post_type_option']) ? $_POST['multiselect_custom_post_type_option'] : '';
+        if ( '' != $post_option ) {
+            if ( !empty( $field->id ) ) {
+				$field_id = $field->id;
+			} else {
+				$field_id = $wpdb->insert_id;
+			}
+            if ( !$wpdb->query( $wpdb->prepare( "INSERT INTO {$bp->profile->table_name_fields} (group_id, parent_id, type, name, description, is_required, option_order, is_default_option) VALUES (%d, %d, 'multi_custom_post_type_option', %s, '', 0, %d, %d)", $field->group_id, $field_id, $post_option, 1, 1 ) ) ) {
+                return false;
+            }
+        }
+    }
+}
+add_action( 'xprofile_field_after_save', 'bxcft_save_custom_option');
+
+function bxcft_delete_field_custom($field) {
+    if ($field->type = 'select_custom_post_type' || $field_type == 'multiselect_custom_post_type') {
+        $field->delete_children();
+    }
+}
+add_action( 'xprofile_fields_deleted_field', 'bxcft_delete_field_custom');
+
 function bxcft_selected_field($field) {
+    $childs = $field->get_children();
+    if (isset($childs) && count($childs) > 0 && $field->type == 'select_custom_post_type') {
+        $selected_option = $childs[0]->name;
+    } else {
+        $selected_option = null;
+    }
+    
+    if (!empty($_POST['select_custom_post_type_option'])) {
+        $selected_option = $_POST['select_custom_post_type_option'];
+    }
 ?>
+<div style="display: none; margin-left: 15px;" class="options-box" id="select_custom_post_type">
+<h4><?php _e('Please, select custom post type', 'bxcft'); ?></h4>
+<p>
+    <?php _e('Custom Post Type:', 'bxcft'); ?>
+    <select name="select_custom_post_type_option" id="select_custom_post_type_option">
+<?php
+    $args = array(
+        'public'   => true,
+        '_builtin' => false
+    ); 
+    $custom_post_types = get_post_types($args);
+    foreach ($custom_post_types as $post_type) :
+?>
+        <option value="<?php echo $post_type; ?>" <?php if ($selected_option == $post_type): ?>selected="selected"<?php endif; ?>>
+            <?php echo $post_type; ?>
+        </option>
+<?php endforeach; ?>
+    </select>
+</p>
+</div>
+<?php
+    if (isset($childs) && count($childs) > 0 && $field->type == 'multiselect_custom_post_type') {
+        $selected_option = $childs[0]->name;
+    } else {
+        $selected_option = null;
+    }
+    
+    if (!empty($_POST['multiselect_custom_post_type_option'])) {
+        $selected_option = $_POST['multiselect_custom_post_type_option'];
+    }
+?>
+<div style="display: none; margin-left: 15px;" class="options-box" id="multiselect_custom_post_type">
+<h4><?php _e('Please, select custom post type', 'bxcft'); ?></h4>
+<p>
+    <?php _e('Custom Post Type:', 'bxcft'); ?>
+    <select name="multiselect_custom_post_type_option" id="multiselect_custom_post_type_option">
+<?php
+    foreach ($custom_post_types as $post_type) :
+?>
+        <option value="<?php echo $post_type; ?>" <?php if ($selected_option == $post_type): ?>selected="selected"<?php endif; ?>>
+            <?php echo $post_type; ?>
+        </option>
+<?php endforeach; ?>
+    </select>
+</p>
+</div>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         bxcft.select('<?php echo $field->type; ?>');

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bp-friends-suggest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-19 17:50+0100\n"
-"PO-Revision-Date: 2012-09-19 17:50+0100\n"
+"POT-Creation-Date: 2012-09-24 11:03+0100\n"
+"PO-Revision-Date: 2012-09-24 11:04+0100\n"
 "Last-Translator: miguel <donmik@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -12,98 +12,120 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Generator: Poedit 1.5.3\n"
-"X-Poedit-SearchPath-0: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/"
-"wp-content/plugins/bp-xprofile-custom-fields-type\n"
+"X-Poedit-SearchPath-0: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-"
+"custom-fields-type\n"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:40
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:259
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:73
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:292
 msgid "http://yourwebsite.com"
 msgstr "http://tusitioweb.es"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:45
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:251
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:78
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:284
 msgid "example@mail.com"
 msgstr "ejemplo@mail.es"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:104
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:214
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:137
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:247
 msgid "January"
 msgstr "Enero"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:105
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:215
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:138
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:248
 msgid "February"
 msgstr "Febrero"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:106
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:216
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:139
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:249
 msgid "March"
 msgstr "Marzo"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:107
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:217
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:140
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:250
 msgid "April"
 msgstr "Abril"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:108
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:218
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:141
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:251
 msgid "May"
 msgstr "Mayo"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:109
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:219
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:142
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:252
 msgid "June"
 msgstr "Junio"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:110
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:220
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:143
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:253
 msgid "July"
 msgstr "Julio"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:111
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:221
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:144
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:254
 msgid "August"
 msgstr "Agosto"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:112
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:222
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:145
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:255
 msgid "September"
 msgstr "Septiembre"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:113
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:223
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:146
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:256
 msgid "October"
 msgstr "Octubre"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:114
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:224
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:147
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:257
 msgid "November"
 msgstr "Noviembre"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:115
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:225
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:148
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:258
 msgid "December"
 msgstr "Diciembre"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:133
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:166
 msgid "Field type unrecognized"
 msgstr "Tipo de campo no reconocido"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:306
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:323
+msgid "Select..."
+msgstr "Seleccionar…"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:437
 msgid "Birthdate"
 msgstr "Fecha de nacimiento"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:307
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:438
 msgid "Email"
 msgstr "Email"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:308
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:439
 msgid "Website"
 msgstr "Sitio web"
 
-#: /Volumes/Almacen/proyectos/php/devinosporgalicia.es/wp-content/plugins/bp-xprofile-custom-fields-type/bp-xprofile-fields-type.php:309
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:440
 msgid "Datepicker"
 msgstr "Selector de fecha HTML5"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:441
+msgid "Custom Post Type Selector"
+msgstr "Selector de tipo de post personalizado"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:442
+msgid "Custom Post Type Multiselector"
+msgstr "Selector múltiple de tipo de post personalizado"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:500
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:531
+msgid "Please, select custom post type"
+msgstr "Por favor, seleccione un tipo de post personalizado"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:502
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:533
+msgid "Custom Post Type:"
+msgstr "Tipo de post personalizado:"
 
 #~ msgid "Friends Suggest Widget"
 #~ msgstr "Widget Sugerencias Amigos"
