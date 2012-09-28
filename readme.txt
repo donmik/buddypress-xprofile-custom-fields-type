@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -30,6 +30,10 @@ If you need more fields type, you are free to add them yourself or request us at
 2. Activate the plugin
 
 == Changelog ==
+
+= 1.1.1 =
+* Solved a bug with buddypress 1.5.7 when adding js file.
+* Solved a js error when adding a new field.
 
 = 1.1.0 =
 * Added Custom post type selector.

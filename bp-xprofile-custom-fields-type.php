@@ -429,7 +429,7 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
 add_filter( 'bp_get_the_profile_field_value', 'bxcft_get_field_value', 15, 3);
 
 function bxcft_add_js($hook) {    
-    if ('users_page_bp-profile-setup' != $hook)
+    if ('users_page_bp-profile-setup' != $hook && 'buddypress_page_bp-profile-setup' != $hook)
        return;
 
     wp_enqueue_script( 'bxcft-js', plugins_url('assets/js/addfields.js', __FILE__), array( 'jquery' ), '1.0' );
@@ -542,11 +542,13 @@ function bxcft_selected_field($field) {
     </select>
 </p>
 </div>
+<?php if (!is_null($field->type)) : ?>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         bxcft.select('<?php echo $field->type; ?>');
     });    
 </script>
 <?php
+    endif;
 }
 add_action('xprofile_field_additional_options', 'bxcft_selected_field');
