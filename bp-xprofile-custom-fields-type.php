@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.1.1
+    Version: 1.2
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -156,7 +156,7 @@ function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
            // Año.
            $html .= '<select name="field_'.$field->id.'_year" id="field_'.$field->id.'_year">';
            $html .= '<option value=""' . selected( $year, '', false ) . '>----</option>';
-           for ( $i = date('Y')-17; $i > 1901; $i-- ) {
+           for ( $i = date('Y')-1; $i > 1901; $i-- ) {
                $html .= '<option value="' . $i .'"' . selected( $year, $i, false ) . '>' . $i . '</option>';
            }
            $html .= '</select>';
@@ -265,11 +265,14 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                    }
                ?>
                </select>
+               <?php
+               $birthdate_start_year = date('Y')-1;
+               ?>               
 
                <select name="<?php bp_the_profile_field_input_name() ?>_year" id="<?php bp_the_profile_field_input_name(); ?>_year" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?>>
                <option value=""<?=selected( $year, '', false )?>>----</option>
                <?php
-                   for ( $i = date('Y')-17; $i > 1901; $i-- ) {
+                   for ( $i = $birthdate_start_year; $i > 1901; $i-- ) {
                        echo '<option value="' . $i .'"' . selected( $year, $i, false ) . '>' . $i . '</option>';
                    }
                ?>
@@ -376,6 +379,20 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
         $value = str_replace("</p>", "", $value);
         return '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
     }
+    elseif ($type == 'email') {
+        if (strpos($value, 'mailto') === false) {
+            $value = str_replace("<p>", "", $value);
+            $value = str_replace("</p>", "", $value);
+            return '<p><a href="mailto:'.$value.'">'.$value.'</a></p>';
+        }
+    }
+    elseif ($type == 'web') {
+        if (strpos($value, 'href=') === false) {
+            $value = str_replace("<p>", "", $value);
+            $value = str_replace("</p>", "", $value);
+            return '<p><a href="'.$value.'">'.$value.'</a></p>';      
+        }
+    }
     elseif ($type == 'select_custom_post_type') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
@@ -427,6 +444,64 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
     return $value;
 }
 add_filter( 'bp_get_the_profile_field_value', 'bxcft_get_field_value', 15, 3);
+
+/**
+ * Replacing the buddypress filter link profile is it has the filter.
+ * If user deactivated the filter, we don't add another filter.
+ */
+function bxcft_remove_xprofile_links() {
+    if (has_filter('bp_get_the_profile_field_value', 'xprofile_filter_link_profile_data')) {
+        remove_filter( 'bp_get_the_profile_field_value', 'xprofile_filter_link_profile_data', 9, 2 );
+        add_filter( 'bp_get_the_profile_field_value', 'bxcft_xprofile_filter_link_profile_data', 9, 2);
+    }
+}
+add_action( 'bp_init', 'bxcft_remove_xprofile_links', 9999 );
+
+/**
+ * Function replacing the original buddypress filter.
+ * @param type $field_value
+ * @param type $field_type
+ * @return string
+ */
+function bxcft_xprofile_filter_link_profile_data( $field_value, $field_type = 'textbox' ) {
+	if ( 'datebox' == $field_type || 'email' == $field_type || 'birthdate' == $field_type ||
+            'datepicker' == $field_type || 'web' == $field_type || 'select_custom_post_type' == $field_type ||
+            'multiselect_custom_post_type' == $field_type)
+		return $field_value;
+
+	if ( !strpos( $field_value, ',' ) && ( count( explode( ' ', $field_value ) ) > 5 ) )
+		return $field_value;
+
+	$values = explode( ',', $field_value );
+
+	if ( !empty( $values ) ) {
+		foreach ( (array) $values as $value ) {
+			$value = trim( $value );
+
+			// If the value is a URL, skip it and just make it clickable.
+			if ( preg_match( '@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@', $value ) ) {
+				$new_values[] = make_clickable( $value );
+
+			// Is not clickable
+			} else {
+
+				// More than 5 spaces
+				if ( count( explode( ' ', $value ) ) > 5 ) {
+					$new_values[] = $value;
+
+				// Less than 5 spaces
+				} else {
+					$search_url   = add_query_arg( array( 's' => urlencode( $value ) ), bp_get_members_directory_permalink() );
+					$new_values[] = '<a href="' . $search_url . '" rel="nofollow">' . $value . '</a>';
+				}
+			}
+		}
+
+		$values = implode( ', ', $new_values );
+	}
+
+	return $values;
+}
 
 function bxcft_add_js($hook) {    
     if ('users_page_bp-profile-setup' != $hook && 'buddypress_page_bp-profile-setup' != $hook)

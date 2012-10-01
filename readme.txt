@@ -31,6 +31,11 @@ If you need more fields type, you are free to add them yourself or request us at
 
 == Changelog ==
 
+= 1.2 =
+* Changed start year of birthdate to one year before now, for people who are not major.
+* Solved issue with buddypress searck links.
+* Solved issue with birthdate.
+
 = 1.1.1 =
 * Solved a bug with buddypress 1.5.7 when adding js file.
 * Solved a js error when adding a new field.
