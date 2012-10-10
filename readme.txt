@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.4
-Stable tag: 1.2
+Stable tag: 1.3
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -30,6 +30,10 @@ If you need more fields type, you are free to add them yourself or request us at
 2. Activate the plugin
 
 == Changelog ==
+
+= 1.3 =
+* Solved bugs when deleting custom post type and multi custom post type.
+* Added option to show age instead of birthdate.
 
 = 1.2 =
 * Changed start year of birthdate to one year before now, for people who are not major.

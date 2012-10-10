@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.2
+    Version: 1.3
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -374,7 +374,24 @@ add_action( 'bp_custom_profile_edit_fields', 'bxcft_edit_render_new_xprofile_fie
 
 function bxcft_get_field_value( $value='', $type='', $id='') {
 
-    if ($type == 'birthdate' || $type == 'datepicker') {
+    if ($type == 'birthdate') {
+        $value = str_replace("<p>", "", $value);
+        $value = str_replace("</p>", "", $value);
+        $field = new BP_XProfile_Field($id);
+        // Get children.
+        $childs = $field->get_children();
+        $show_age = false;
+        if (isset($childs) && count($childs) > 0) {
+            // Get the name of custom post type.
+            if ($childs[0]->name == 'show_age') 
+                $show_age = true;
+        }
+        if ($show_age) {
+            return '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
+        }
+        return '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
+    }
+    elseif ($type == 'datepicker') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
         return '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
@@ -549,11 +566,26 @@ function bxcft_save_custom_option($field) {
             }
         }
     }
+    elseif ( 'birthdate' == $field->type) {
+        $post_option  = !empty( $_POST['birthdate_option']) ? $_POST['birthdate_option'] : '';
+        if ( '' != $post_option ) {
+            if ( !empty( $field->id ) ) {
+				$field_id = $field->id;
+			} else {
+				$field_id = $wpdb->insert_id;
+			}
+            if ( !$wpdb->query( $wpdb->prepare( "INSERT INTO {$bp->profile->table_name_fields} (group_id, parent_id, type, name, description, is_required, option_order, is_default_option) VALUES (%d, %d, 'birthdate_option', %s, '', 0, %d, %d)", $field->group_id, $field_id, $post_option, 1, 1 ) ) ) {
+                return false;
+            }
+        }
+    }
+        
 }
 add_action( 'xprofile_field_after_save', 'bxcft_save_custom_option');
 
 function bxcft_delete_field_custom($field) {
-    if ($field->type = 'select_custom_post_type' || $field_type == 'multiselect_custom_post_type') {
+    if ($field->type == 'select_custom_post_type' || $field->type == 'multiselect_custom_post_type'
+             || $field->type == 'birthdate') {
         $field->delete_children();
     }
 }
@@ -615,6 +647,25 @@ function bxcft_selected_field($field) {
         </option>
 <?php endforeach; ?>
     </select>
+</p>
+</div>     
+<?php
+    if (isset($childs) && count($childs) > 0 && $field->type == 'birthdate') {
+        $selected_option = $childs[0]->name;
+    } else {
+        $selected_option = null;
+    }
+    
+    if (!empty($_POST['birthdate_option'])) {
+        $selected_option = $_POST['birthdate_option'];
+    }
+?>
+<div style="display: none; margin-left: 15px;" class="options-box" id="birthdate">
+<h4><?php _e('Show age (hide birthdate)', 'bxcft'); ?></h4>
+<p>
+    <?php _e('Check this if you want to show age instead of birthdate:', 'bxcft'); ?>
+    <input type="checkbox" name="birthdate_option" value="show_age" id="birthdate_option"
+           <?php if ($selected_option == 'show_age') : ?>checked="checked"<?php endif; ?>/>
 </p>
 </div>
 <?php if (!is_null($field->type)) : ?>

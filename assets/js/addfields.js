@@ -13,6 +13,14 @@
 					if(jQ('div#poststuff select#fieldtype option[value="birthdate"]').html() === null){
 						var birthdateOption = '<option value="birthdate">'+params.birthdate+'</option>';
 						jQ("div#poststuff select#fieldtype").append(birthdateOption);
+                        // Add onchange event.
+                        jQ('div#poststuff select#fieldtype').change(function() {
+                            if (jQ(this).val() == 'birthdate') {
+                                jQ('div#birthdate').show();
+                            } else {
+                                jQ('div#birthdate').hide();
+                            }
+                        });
 					}					
 
 				}		
@@ -60,7 +68,7 @@
                             } else {
                                 jQ('div#select_custom_post_type').hide();
                             }
-                        })
+                        });
 					}					
 
 				}
@@ -94,6 +102,9 @@
             }
             else if (type == 'multiselect_custom_post_type') {
                 jQ('#multiselect_custom_post_type').show();                
+            }
+            else if (type == 'birthdate') {
+                jQ('#birthdate').show();    
             }
         }
         
