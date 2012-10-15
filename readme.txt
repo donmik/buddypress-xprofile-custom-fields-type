@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.4
-Stable tag: 1.3
+Stable tag: 1.4
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -12,6 +12,7 @@ Add more custom fields type to extended profiles in Buddypress: Birthdate, Email
 
 Buddypress installation required!!
 Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker, Custom post type. 
+Works with <a href="http://buddypress.org/community/groups/bp-profile-search/" title="BP Profile Search">BP Profile Search plugin</a> searching birthdate and age range.
 If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
 
 <a href="http://www.atallos.com" title="Atallos Cloud">www.atallos.com</a>
@@ -23,6 +24,7 @@ If you need more fields type, you are free to add them yourself or request us at
 * Add Datepicker field (HTML5).
 * Add Custom post type selector.
 * Add Custom post type multiselector.
+* Works with BP Profile Search plugin.
 
 == Installation ==
 
@@ -30,6 +32,9 @@ If you need more fields type, you are free to add them yourself or request us at
 2. Activate the plugin
 
 == Changelog ==
+
+= 1.4 =
+* Now works with BP Profile Search plugin.
 
 = 1.3 =
 * Solved bugs when deleting custom post type and multi custom post type.
