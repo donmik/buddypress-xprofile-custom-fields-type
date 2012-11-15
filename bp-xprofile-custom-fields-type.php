@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.4.1
+    Version: 1.4.2
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -691,7 +691,7 @@ function bxcft_profile_field_type($type) {
         global $bps_options;
         $id = bp_get_the_profile_field_id ();
 
-        if ( ((is_admin() && $_SERVER['REQUEST_URI'] == '/wp-admin/admin.php?page=bp-profile-search') 
+        if ( ((is_admin() && strpos($_SERVER['REQUEST_URI'], 'page=bp-profile-search'))
                 || (isset($bps_options) && $bps_options['agerange'] == $id 
                         && isset($_POST['bp_profile_search']) && $_POST['bp_profile_search']))
                 && $type == 'birthdate') {
@@ -701,4 +701,4 @@ function bxcft_profile_field_type($type) {
     
     return $type;
 }
-add_filter('bp_the_profile_field_type', 'bxcft_profile_field_type');
+add_filter('bp_the_profile_field_type', 'bxcft_profile_field_type', 1);
