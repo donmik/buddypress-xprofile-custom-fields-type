@@ -7,10 +7,10 @@
 		
 		init : function(){
 							
-				//add birthdate field type on Add/Edit Xprofile field admin screen
 			   if(jQ("div#poststuff select#fieldtype").html() !== null){
-
-					if(jQ('div#poststuff select#fieldtype option[value="birthdate"]').html() === null){
+    
+                    //add birthdate field type on Add/Edit Xprofile field admin screen
+					if(jQ('div#poststuff select#fieldtype option[value="birthdate"]').html() === undefined){
 						var birthdateOption = '<option value="birthdate">'+params.birthdate+'</option>';
 						jQ("div#poststuff select#fieldtype").append(birthdateOption);
                         // Add onchange event.
@@ -22,45 +22,29 @@
                             }
                         });
 					}					
-
-				}		
                 
-				//add email field type on Add/Edit Xprofile field admin screen
-			   if(jQ("div#poststuff select#fieldtype").html() !== null){
-
-					if(jQ('div#poststuff select#fieldtype option[value="email"]').html() === null){
+                    //add email field type on Add/Edit Xprofile field admin screen
+					if(jQ('div#poststuff select#fieldtype option[value="email"]').html() === undefined){
 						var emailOption = '<option value="email">'+params.email+'</option>';
 						jQ("div#poststuff select#fieldtype").append(emailOption);
 					}					
-
-				}	
                 
-				//add web field type on Add/Edit Xprofile field admin screen
-			   if(jQ("div#poststuff select#fieldtype").html() !== null){
-
-					if(jQ('div#poststuff select#fieldtype option[value="web"]').html() === null){
+                    //add web field type on Add/Edit Xprofile field admin screen
+					if(jQ('div#poststuff select#fieldtype option[value="web"]').html() === undefined){
 						var webOption = '<option value="web">'+params.web+'</option>';
 						jQ("div#poststuff select#fieldtype").append(webOption);
 					}					
-
-				}	
                 
-				//add datepicker field type on Add/Edit Xprofile field admin screen
-			   if(jQ("div#poststuff select#fieldtype").html() !== null){
-
-					if(jQ('div#poststuff select#fieldtype option[value="datepicker"]').html() === null){
-						var webOption = '<option value="datepicker">'+params.datepicker+'</option>';
-						jQ("div#poststuff select#fieldtype").append(webOption);
+                    //add datepicker field type on Add/Edit Xprofile field admin screen
+					if(jQ('div#poststuff select#fieldtype option[value="datepicker"]').html() === undefined){
+						var datepickerOption = '<option value="datepicker">'+params.datepicker+'</option>';
+						jQ("div#poststuff select#fieldtype").append(datepickerOption);
 					}					
-
-				}
                 
-				//add selector custom post type field type on Add/Edit Xprofile field admin screen
-			   if(jQ("div#poststuff select#fieldtype").html() !== null){
-
-					if(jQ('div#poststuff select#fieldtype option[value="select_custom_post_type"]').html() === null){
-						var webOption = '<option value="select_custom_post_type">'+params.select_custom_post_type+'</option>';
-						jQ("div#poststuff select#fieldtype").append(webOption);
+                    //add selector custom post type field type on Add/Edit Xprofile field admin screen
+					if(jQ('div#poststuff select#fieldtype option[value="select_custom_post_type"]').html() === undefined){
+						var customposttypeOption = '<option value="select_custom_post_type">'+params.select_custom_post_type+'</option>';
+						jQ("div#poststuff select#fieldtype").append(customposttypeOption);
                         // Add onchange event.
                         jQ('div#poststuff select#fieldtype').change(function() {
                             if (jQ(this).val() == 'select_custom_post_type') {
@@ -70,15 +54,11 @@
                             }
                         });
 					}					
-
-				}
                 
-				//add multiselector custom post type field type on Add/Edit Xprofile field admin screen
-			   if(jQ("div#poststuff select#fieldtype").html() !== null){
-
-					if(jQ('div#poststuff select#fieldtype option[value="multiselect_custom_post_type"]').html() === null){
-						var webOption = '<option value="multiselect_custom_post_type">'+params.multiselect_custom_post_type+'</option>';
-						jQ("div#poststuff select#fieldtype").append(webOption);
+                    //add multiselector custom post type field type on Add/Edit Xprofile field admin screen
+					if(jQ('div#poststuff select#fieldtype option[value="multiselect_custom_post_type"]').html() === undefined){
+						var multicustomposttypeOption = '<option value="multiselect_custom_post_type">'+params.multiselect_custom_post_type+'</option>';
+						jQ("div#poststuff select#fieldtype").append(multicustomposttypeOption);
                         // Add onchange event.
                         jQ('div#poststuff select#fieldtype').change(function() {
                             if (jQ(this).val() == 'multiselect_custom_post_type') {
@@ -88,9 +68,7 @@
                             }
                         })
 					}					
-
 				}
-
 			},
         
         select : function(type) {
