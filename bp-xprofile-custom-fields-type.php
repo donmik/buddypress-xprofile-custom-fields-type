@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.4.3
+    Version: 1.4.4
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -461,6 +461,96 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
     return $value;
 }
 add_filter( 'bp_get_the_profile_field_value', 'bxcft_get_field_value', 15, 3);
+
+/**
+ * Filter for those who use xprofile_get_field_data instead of get_field_value.
+ * @param type $value
+ * @param type $field_id
+ * @param type $user_id
+ * @return string
+ */
+function bxcft_get_field_data($value, $field_id) {
+    $field = new BP_XProfile_Field($field_id);
+    if ($field->type == 'birthdate') {
+        // Get children.
+        $childs = $field->get_children();
+        $show_age = false;
+        if (isset($childs) && count($childs) > 0) {
+            if ($childs[0]->name == 'show_age') 
+                $show_age = true;
+        }
+        if ($show_age) {
+            return '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
+        }
+        return '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
+    }
+    elseif ($field->type == 'datepicker') {
+        $value = str_replace("<p>", "", $value);
+        $value = str_replace("</p>", "", $value);
+        return '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
+    }
+    elseif ($field->type == 'email') {
+        if (strpos($value, 'mailto') === false) {
+            $value = str_replace("<p>", "", $value);
+            $value = str_replace("</p>", "", $value);
+            return '<p><a href="mailto:'.$value.'">'.$value.'</a></p>';
+        }
+    }
+    elseif ($field->type == 'web') {
+        if (strpos($value, 'href=') === false) {
+            $value = str_replace("<p>", "", $value);
+            $value = str_replace("</p>", "", $value);
+            return '<p><a href="'.$value.'">'.$value.'</a></p>';      
+        }
+    }
+    elseif ($field->type == 'select_custom_post_type') {
+        $value = str_replace("<p>", "", $value);
+        $value = str_replace("</p>", "", $value);
+        // Get children.
+        $childs = $field->get_children();
+        if (isset($childs) && count($childs) > 0) {
+            // Get the name of custom post type.
+            $custom_post_type = $childs[0]->name;
+        }
+        $post = get_post($value);
+        if ($post->post_type == $custom_post_type) {
+            return '<p>'.$post->post_title.'</p>';
+        } else {
+            // Custom post type is not the same.
+            return '<p>--</p>';
+        }
+    }
+    elseif ($field->type == 'multiselect_custom_post_type') {
+        $value = str_replace("<p>", "", $value);
+        $value = str_replace("</p>", "", $value);
+        // Get children.
+        $childs = $field->get_children();
+        $values = explode(",", $value);
+        $cad = '';
+        if (isset($childs) && is_array($childs) && count($childs) > 0) {
+            // Get the name of custom post type.
+            $custom_post_type = $childs[0]->name;
+            
+            foreach ($values as $v) {
+                $post = get_post($v);
+                if ($post->post_type == $custom_post_type) {
+                    if ($cad == '')
+                        $cad .= '<ul class="list_custom_post_type">';
+                    $cad .= '<li>'.$post->post_title.'</li>';
+                }
+            }
+        }
+        if ($cad != '') {
+            $cad .= '</ul>';
+            return '<p>'.$cad.'</p>';
+        } else {
+            return '<p>--</p>';
+        }
+    }
+    
+    return $value;
+}
+add_filter( 'xprofile_get_field_data', 'bxcft_get_field_data', 15, 2);
 
 /**
  * Replacing the buddypress filter link profile is it has the filter.
