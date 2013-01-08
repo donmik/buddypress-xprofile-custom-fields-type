@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -32,6 +32,9 @@ If you need more fields type, you are free to add them yourself or request us at
 2. Activate the plugin
 
 == Changelog ==
+
+= 1.4.5 =
+* Solved bug with Wordpress 3.4
 
 = 1.4.4 =
 * Solved bug when using bp_get_profile_field_data in buddypress. Added new filter bxcft_get_field_data.

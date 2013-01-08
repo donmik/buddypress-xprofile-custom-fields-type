@@ -10,7 +10,8 @@
 			   if(jQ("div#poststuff select#fieldtype").html() !== null){
     
                     //add birthdate field type on Add/Edit Xprofile field admin screen
-					if(jQ('div#poststuff select#fieldtype option[value="birthdate"]').html() === undefined){
+					if(jQ('div#poststuff select#fieldtype option[value="birthdate"]').html() === undefined
+                || jQ('div#poststuff select#fieldtype option[value="birthdate"]').html() == null){
 						var birthdateOption = '<option value="birthdate">'+params.birthdate+'</option>';
 						jQ("div#poststuff select#fieldtype").append(birthdateOption);
                         // Add onchange event.
@@ -24,25 +25,29 @@
 					}					
                 
                     //add email field type on Add/Edit Xprofile field admin screen
-					if(jQ('div#poststuff select#fieldtype option[value="email"]').html() === undefined){
+					if(jQ('div#poststuff select#fieldtype option[value="email"]').html() === undefined
+                || jQ('div#poststuff select#fieldtype option[value="email"]').html() == null){
 						var emailOption = '<option value="email">'+params.email+'</option>';
 						jQ("div#poststuff select#fieldtype").append(emailOption);
 					}					
                 
                     //add web field type on Add/Edit Xprofile field admin screen
-					if(jQ('div#poststuff select#fieldtype option[value="web"]').html() === undefined){
+					if(jQ('div#poststuff select#fieldtype option[value="web"]').html() === undefined
+                || jQ('div#poststuff select#fieldtype option[value="web"]').html() == null){
 						var webOption = '<option value="web">'+params.web+'</option>';
 						jQ("div#poststuff select#fieldtype").append(webOption);
 					}					
                 
                     //add datepicker field type on Add/Edit Xprofile field admin screen
-					if(jQ('div#poststuff select#fieldtype option[value="datepicker"]').html() === undefined){
+					if(jQ('div#poststuff select#fieldtype option[value="datepicker"]').html() === undefined
+                || jQ('div#poststuff select#fieldtype option[value="datepicker"]').html() == null){
 						var datepickerOption = '<option value="datepicker">'+params.datepicker+'</option>';
 						jQ("div#poststuff select#fieldtype").append(datepickerOption);
 					}					
                 
                     //add selector custom post type field type on Add/Edit Xprofile field admin screen
-					if(jQ('div#poststuff select#fieldtype option[value="select_custom_post_type"]').html() === undefined){
+					if(jQ('div#poststuff select#fieldtype option[value="select_custom_post_type"]').html() === undefined
+                || jQ('div#poststuff select#fieldtype option[value="select_custom_post_type"]').html() == null){
 						var customposttypeOption = '<option value="select_custom_post_type">'+params.select_custom_post_type+'</option>';
 						jQ("div#poststuff select#fieldtype").append(customposttypeOption);
                         // Add onchange event.
@@ -56,7 +61,8 @@
 					}					
                 
                     //add multiselector custom post type field type on Add/Edit Xprofile field admin screen
-					if(jQ('div#poststuff select#fieldtype option[value="multiselect_custom_post_type"]').html() === undefined){
+					if(jQ('div#poststuff select#fieldtype option[value="multiselect_custom_post_type"]').html() === undefined
+                || jQ('div#poststuff select#fieldtype option[value="multiselect_custom_post_type"]').html() == null){
 						var multicustomposttypeOption = '<option value="multiselect_custom_post_type">'+params.multiselect_custom_post_type+'</option>';
 						jQ("div#poststuff select#fieldtype").append(multicustomposttypeOption);
                         // Add onchange event.
