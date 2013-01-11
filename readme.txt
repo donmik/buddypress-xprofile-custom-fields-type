@@ -30,8 +30,15 @@ If you need more fields type, you are free to add them yourself or request us at
 
 1. Upload the plugin to your 'wp-content/plugins' directory
 2. Activate the plugin
+3. Go to Users > Profile Fields
+4. Create or Edit a field (default buddypress field Name don't allow changing type, it will not work here).
+5. In Field Type select, you can see new field's type.
+6. Enjoy!
 
 == Changelog ==
+
+= 1.4.6 =
+* Updated Installation instructions.
 
 = 1.4.5 =
 * Solved bug with Wordpress 3.4
