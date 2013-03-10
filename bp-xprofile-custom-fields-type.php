@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.4.9.2
+    Version: 1.4.9.3
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -122,7 +122,7 @@ function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
                }
            }
 
-           // Día.
+           // Day.
            $html .= '<select name="field_'.$field->id.'_day" id="field_'.$field->id.'_day">';
            $html .= '<option value=""' . selected( $day, '', false ) . '>--</option>';
            for ( $i = 1; $i < 32; ++$i ) {
@@ -130,7 +130,7 @@ function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
            }
            $html .= '</select>';
 
-           // Mes.
+           // Month.
            $html .= '<select name="field_'.$field->id.'_month" id="field_'.$field->id.'_month">';
            $eng_months = array( 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' );
            $months = array(
@@ -153,7 +153,7 @@ function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
            }
            $html .= '</select>';
 
-           // Año.
+           // Year.
            $html .= '<select name="field_'.$field->id.'_year" id="field_'.$field->id.'_year">';
            $html .= '<option value=""' . selected( $year, '', false ) . '>----</option>';
            for ( $i = date('Y')-1; $i > 1901; $i-- ) {
@@ -228,7 +228,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
            }
        ?>
            <div class="datebox">
-               <label class="label-form" for="<?php bp_the_profile_field_input_name(); ?>_day"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?> *<?php endif; ?></label>
+               <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name(); ?>_day"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) { echo __('*', 'bxcft'); } ?></label>
 
                <select name="<?php bp_the_profile_field_input_name(); ?>_day" id="<?php bp_the_profile_field_input_name(); ?>_day" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true"<?php endif; ?>>
                    <option value=""<?=selected( $day, '', false )?>>--</option>
@@ -283,7 +283,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
        elseif ( bp_get_the_profile_field_type() == 'email' ) {
        ?>
         <div class="input-email">
-            <label class="label-form" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?> *<?php endif; ?></label>
+            <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) { echo __('*', 'bxcft'); } ?></label>
             <input type="email" name="<?php bp_the_profile_field_input_name() ?>" id="<?php bp_the_profile_field_input_name() ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="input" value="<?php bp_the_profile_field_edit_value() ?>" placeholder="<?php _e('example@mail.com', 'bxcft'); ?>" />
        </div>
        <?php
@@ -291,7 +291,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
        elseif ( bp_get_the_profile_field_type() == 'web' ) {
        ?>
         <div class="input-web">
-            <label class="label-form" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?> *<?php endif; ?></label>
+            <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) { echo __('*', 'bxcft'); } ?></label>
             <input type="url" name="<?php bp_the_profile_field_input_name() ?>" id="<?php bp_the_profile_field_input_name() ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="input" value="<?php bp_the_profile_field_edit_value() ?>" placeholder="<?php _e('http://yourwebsite.com', 'bxcft'); ?>" />
        </div>
        <?php
@@ -299,7 +299,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
        elseif ( bp_get_the_profile_field_type() == 'datepicker' ) {
        ?>
         <div class="input-web">
-            <label class="label-form" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?> *<?php endif; ?></label>
+            <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) { echo __('*', 'bxcft'); } ?></label>
             <input type="date" name="<?php bp_the_profile_field_input_name() ?>" id="<?php bp_the_profile_field_input_name() ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="input" value="<?php bp_the_profile_field_edit_value() ?>" />
        </div>
        <?php
@@ -321,7 +321,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                // Get the posts of custom post type.
                $loop = new WP_Query(array('posts_per_page' => -1, 'post_type' => $custom_post_type, 'order_by' => 'title', 'order' => ASC ));
        ?>
-       <label class="label-form" for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?> *<?php endif; ?></label>
+       <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) { echo __('*', 'bxcft'); } ?></label>
        <select name="<?php bp_the_profile_field_input_name(); ?>" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="select">
            <option value=""><?php _e('Select...', 'bxcft'); ?></option>
        <?php foreach ($loop->posts as $post): ?>
@@ -348,7 +348,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                // Get the posts of custom post type.
                $loop = new WP_Query(array('posts_per_page' => -1, 'post_type' => $custom_post_type, 'order_by' => 'title', 'order' => ASC ));
        ?>
-       <label class="label-form" for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?> *<?php endif; ?></label>
+       <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) { echo __('*', 'bxcft'); } ?></label>
        <select name="<?php bp_the_profile_field_input_name(); ?>[]" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="select" multiple="multiple">
        <?php foreach ($loop->posts as $post): ?>
            <option value="<?php echo $post->ID; ?>" <?php if (in_array($post->ID, $custom_post_type_selected)): ?>selected="selected"<?php endif; ?>><?php echo $post->post_title; ?></option>

@@ -1,0 +1,217 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bp-friends-suggest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-10 19:24+0100\n"
+"PO-Revision-Date: 2013-03-06 11:58+0400\n"
+"Last-Translator: RJ <romik.jan@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.5.3\n"
+"Language: ru_RU\n"
+"X-Poedit-SearchPath-0: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-"
+"custom-fields-type\n"
+
+#: bp-xprofile-custom-fields-type.php:40
+#: bp-xprofile-custom-fields-type.php:259
+#: bp-xprofile-custom-fields-type.php:73
+#: bp-xprofile-custom-fields-type.php:292
+#: bp-xprofile-custom-fields-type.php:295
+msgid "http://yourwebsite.com"
+msgstr "http://вашвебсайт.ру"
+
+#: bp-xprofile-custom-fields-type.php:45
+#: bp-xprofile-custom-fields-type.php:251
+#: bp-xprofile-custom-fields-type.php:78
+#: bp-xprofile-custom-fields-type.php:284
+#: bp-xprofile-custom-fields-type.php:287
+msgid "example@mail.com"
+msgstr "ваш_ящик@example.ru"
+
+#: bp-xprofile-custom-fields-type.php:104
+#: bp-xprofile-custom-fields-type.php:214
+#: bp-xprofile-custom-fields-type.php:137
+#: bp-xprofile-custom-fields-type.php:247
+msgid "January"
+msgstr "Январь"
+
+#: bp-xprofile-custom-fields-type.php:105
+#: bp-xprofile-custom-fields-type.php:215
+#: bp-xprofile-custom-fields-type.php:138
+#: bp-xprofile-custom-fields-type.php:248
+msgid "February"
+msgstr "Февраль"
+
+#: bp-xprofile-custom-fields-type.php:106
+#: bp-xprofile-custom-fields-type.php:216
+#: bp-xprofile-custom-fields-type.php:139
+#: bp-xprofile-custom-fields-type.php:249
+msgid "March"
+msgstr "Март"
+
+#: bp-xprofile-custom-fields-type.php:107
+#: bp-xprofile-custom-fields-type.php:217
+#: bp-xprofile-custom-fields-type.php:140
+#: bp-xprofile-custom-fields-type.php:250
+msgid "April"
+msgstr "Апрель"
+
+#: bp-xprofile-custom-fields-type.php:108
+#: bp-xprofile-custom-fields-type.php:218
+#: bp-xprofile-custom-fields-type.php:141
+#: bp-xprofile-custom-fields-type.php:251
+msgid "May"
+msgstr "Май"
+
+#: bp-xprofile-custom-fields-type.php:109
+#: bp-xprofile-custom-fields-type.php:219
+#: bp-xprofile-custom-fields-type.php:142
+#: bp-xprofile-custom-fields-type.php:252
+msgid "June"
+msgstr "Июнь"
+
+#: bp-xprofile-custom-fields-type.php:110
+#: bp-xprofile-custom-fields-type.php:220
+#: bp-xprofile-custom-fields-type.php:143
+#: bp-xprofile-custom-fields-type.php:253
+msgid "July"
+msgstr "Июль"
+
+#: bp-xprofile-custom-fields-type.php:111
+#: bp-xprofile-custom-fields-type.php:221
+#: bp-xprofile-custom-fields-type.php:144
+#: bp-xprofile-custom-fields-type.php:254
+msgid "August"
+msgstr "Август"
+
+#: bp-xprofile-custom-fields-type.php:112
+#: bp-xprofile-custom-fields-type.php:222
+#: bp-xprofile-custom-fields-type.php:145
+#: bp-xprofile-custom-fields-type.php:255
+msgid "September"
+msgstr "Сентябрь"
+
+#: bp-xprofile-custom-fields-type.php:113
+#: bp-xprofile-custom-fields-type.php:223
+#: bp-xprofile-custom-fields-type.php:146
+#: bp-xprofile-custom-fields-type.php:256
+msgid "October"
+msgstr "Октябрь"
+
+#: bp-xprofile-custom-fields-type.php:114
+#: bp-xprofile-custom-fields-type.php:224
+#: bp-xprofile-custom-fields-type.php:147
+#: bp-xprofile-custom-fields-type.php:257
+msgid "November"
+msgstr "Ноябрь"
+
+#: bp-xprofile-custom-fields-type.php:115
+#: bp-xprofile-custom-fields-type.php:225
+#: bp-xprofile-custom-fields-type.php:148
+#: bp-xprofile-custom-fields-type.php:258
+msgid "December"
+msgstr "Декабрь"
+
+#: bp-xprofile-custom-fields-type.php:133
+#: bp-xprofile-custom-fields-type.php:166
+msgid "Field type unrecognized"
+msgstr "Тип поля не распознан"
+
+#: bp-xprofile-custom-fields-type.php:306
+#: bp-xprofile-custom-fields-type.php:437
+#: bp-xprofile-custom-fields-type.php:512
+#: bp-xprofile-custom-fields-type.php:529
+msgid "Birthdate"
+msgstr "День рождения"
+
+#: bp-xprofile-custom-fields-type.php:307
+#: bp-xprofile-custom-fields-type.php:438
+#: bp-xprofile-custom-fields-type.php:513
+#: bp-xprofile-custom-fields-type.php:530
+msgid "Email"
+msgstr "Email"
+
+#: bp-xprofile-custom-fields-type.php:308
+#: bp-xprofile-custom-fields-type.php:439
+#: bp-xprofile-custom-fields-type.php:514
+#: bp-xprofile-custom-fields-type.php:531
+msgid "Website"
+msgstr "Вебсайт"
+
+#: bp-xprofile-custom-fields-type.php:309
+#: bp-xprofile-custom-fields-type.php:440
+#: bp-xprofile-custom-fields-type.php:515
+#: bp-xprofile-custom-fields-type.php:532
+msgid "Datepicker"
+msgstr "Выбор даты"
+
+#: bp-xprofile-custom-fields-type.php:323
+#: bp-xprofile-custom-fields-type.php:326
+msgid "Select..."
+msgstr "Select..."
+
+#: bp-xprofile-custom-fields-type.php:441
+#: bp-xprofile-custom-fields-type.php:516
+#: bp-xprofile-custom-fields-type.php:533
+msgid "Custom Post Type Selector"
+msgstr "Custom Post Type - Селектор"
+
+#: bp-xprofile-custom-fields-type.php:442
+#: bp-xprofile-custom-fields-type.php:517
+#: bp-xprofile-custom-fields-type.php:534
+msgid "Custom Post Type Multiselector"
+msgstr "Custom Post Type - Мультиселектор"
+
+#: bp-xprofile-custom-fields-type.php:500
+#: bp-xprofile-custom-fields-type.php:531
+#: bp-xprofile-custom-fields-type.php:575
+#: bp-xprofile-custom-fields-type.php:606
+#: bp-xprofile-custom-fields-type.php:607
+#: bp-xprofile-custom-fields-type.php:638
+msgid "Please, select custom post type"
+msgstr "Выберите тип поля"
+
+#: bp-xprofile-custom-fields-type.php:502
+#: bp-xprofile-custom-fields-type.php:533
+#: bp-xprofile-custom-fields-type.php:577
+#: bp-xprofile-custom-fields-type.php:608
+#: bp-xprofile-custom-fields-type.php:609
+#: bp-xprofile-custom-fields-type.php:640
+msgid "Custom Post Type:"
+msgstr "Собственный тип поля:"
+
+#: bp-xprofile-custom-fields-type.php:664
+msgid "Show age (hide birthdate)"
+msgstr "Показать возраст (спрятать дату рождения)"
+
+#: bp-xprofile-custom-fields-type.php:666
+msgid "Check this if you want to show age instead of birthdate:"
+msgstr "Отметьте, если нужно показывать возраст вместо даты рождения:"
+
+#: bp-xprofile-custom-fields-type.php:231
+#: bp-xprofile-custom-fields-type.php:286
+#: bp-xprofile-custom-fields-type.php:294
+#: bp-xprofile-custom-fields-type.php:302
+#: bp-xprofile-custom-fields-type.php:324
+#: bp-xprofile-custom-fields-type.php:351
+msgid "*"
+msgstr "(обязательно)"
+
+#~ msgid "Friends Suggest Widget"
+#~ msgstr "Widget Sugerencias Amigos"
+
+#~ msgid "Friend Suggestions"
+#~ msgstr "Sugerencias de Amigos"
+
+#~ msgid "Title"
+#~ msgstr "Título"
+
+#~ msgid "Max Number of suggestions:"
+#~ msgstr "Número máx. de sugerencias:"
+
+#~ msgid "We don't have enough details to sugggest a friend yet"
+#~ msgstr "No tenemos suficiente información para sugerir amigos todavía."
