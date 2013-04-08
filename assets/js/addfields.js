@@ -74,6 +74,27 @@
                             }
                         })
 					}					
+                
+                    //add checkbox acceptance field type on Add/Edit Xprofile field admin screen
+					if(jQ('div#poststuff select#fieldtype option[value="checkbox_acceptance"]').html() === undefined
+                || jQ('div#poststuff select#fieldtype option[value="checkbox_acceptance"]').html() == null){
+						var checkboxAcceptanceOption = '<option value="checkbox_acceptance">'+params.checkbox_acceptance+'</option>';
+						jQ("div#poststuff select#fieldtype").append(checkboxAcceptanceOption);
+				}
+                
+                    //add image field type on Add/Edit Xprofile field admin screen
+					if(jQ('div#poststuff select#fieldtype option[value="image"]').html() === undefined
+                || jQ('div#poststuff select#fieldtype option[value="image"]').html() == null){
+						var imageOption = '<option value="image">'+params.image+'</option>';
+						jQ("div#poststuff select#fieldtype").append(imageOption);
+					}					
+                
+                    //add file field type on Add/Edit Xprofile field admin screen
+					if(jQ('div#poststuff select#fieldtype option[value="file"]').html() === undefined
+                || jQ('div#poststuff select#fieldtype option[value="file"]').html() == null){
+						var fileOption = '<option value="file">'+params.file+'</option>';
+						jQ("div#poststuff select#fieldtype").append(fileOption);
+					}					
 				}
 			},
         

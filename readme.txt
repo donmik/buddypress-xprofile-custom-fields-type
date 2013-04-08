@@ -4,14 +4,15 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.4.9.3
+Stable tag: 1.5
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
 == Description ==
 
 Buddypress installation required!!
-Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker, Custom post type. 
+Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker, Custom post type, Multi custom post type, checkbox acceptance, image field and type field. 
+We add now a new visibility setting 'Nobody' to create fields hidden to all members of buddypress.
 Works with <a href="http://buddypress.org/community/groups/bp-profile-search/" title="BP Profile Search">BP Profile Search plugin</a> searching birthdate and age range.
 If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
 
@@ -24,6 +25,10 @@ If you need more fields type, you are free to add them yourself or request us at
 * Add Datepicker field (HTML5).
 * Add Custom post type selector.
 * Add Custom post type multiselector.
+* Add Checkbox acceptance.
+* Add Image Field (jpg, jpeg, gif, png).
+* Add File field (doc, docx, pdf).
+* Add new visibility setting "Nobody". Hide the field to all members.
 * Works with BP Profile Search plugin.
 
 == Installation ==
@@ -36,6 +41,12 @@ If you need more fields type, you are free to add them yourself or request us at
 6. Enjoy!
 
 == Changelog ==
+
+= 1.5 =
+* Added checkbox acceptance for terms and conditions.
+* Added image field (jpg, jpeg, png, gif). Created a filter 'images_ext_allowed' you can use to accept more images types. User can delete the image.
+* Added file field (doc, docx, pdf). Created a filter 'files_ext_allowed' you can use to accept more files types. User can delete the file.
+* Added new visibility 'Nobody' which hide field to all members.
 
 = 1.4.9.3 =
 * Added Russian translation thanks to Romik Jan.

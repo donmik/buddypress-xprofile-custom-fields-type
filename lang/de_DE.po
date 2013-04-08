@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: v1.4.7\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/buddypress-xprofile-custom-"
 "fields-type\n"
-"POT-Creation-Date: 2013-03-10 17:53+0100\n"
-"PO-Revision-Date: 2013-03-10 17:53+0100\n"
+"POT-Creation-Date: 2013-04-08 23:27+0100\n"
+"PO-Revision-Date: 2013-04-08 23:32+0100\n"
 "Last-Translator: miguel <donmik@gmail.com>\n"
 "Language-Team: Thorsten Wollenhöfer <thorsten.wollenhoefer@gmail.com>\n"
 "Language: de_DE\n"
@@ -19,133 +19,198 @@ msgstr ""
 "X-Poedit-SearchPath-0: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-"
 "custom-fields-type/trunk\n"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:73
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:295
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:90
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:312
 msgid "http://yourwebsite.com"
 msgstr "http://yourwebsite.com"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:78
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:287
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:95
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:304
 msgid "example@mail.com"
 msgstr "example@mail.com"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:137
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:247
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:154
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:264
 msgid "January"
 msgstr "Januar"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:138
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:248
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:155
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:265
 msgid "February"
 msgstr "Februar"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:139
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:249
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:156
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:266
 msgid "March"
 msgstr "M&auml;rz"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:140
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:250
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:157
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:267
 msgid "April"
 msgstr "April"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:141
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:251
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:158
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:268
 msgid "May"
 msgstr "Mai"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:142
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:252
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:159
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:269
 msgid "June"
 msgstr "Juni"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:143
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:253
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:160
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:270
 msgid "July"
 msgstr "Juli"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:144
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:254
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:161
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:271
 msgid "August"
 msgstr "August"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:145
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:255
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:162
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:272
 msgid "September"
 msgstr "September"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:146
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:256
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:163
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:273
 msgid "October"
 msgstr "Oktober"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:147
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:257
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:164
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:274
 msgid "November"
 msgstr "November"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:148
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:258
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:165
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:275
 msgid "December"
 msgstr "Dezember"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:166
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:183
 msgid "Field type unrecognized"
 msgstr "Feldtyp nicht erkannt"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:231
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:286
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:294
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:302
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:324
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:351
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:248
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:303
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:311
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:319
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:341
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:368
 msgid "*"
 msgstr "*"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:326
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:343
 msgid "Select..."
 msgstr "W&auml;hlen Sie..."
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:619
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:376
+#, fuzzy
+msgid "There is no custom post type selected."
+msgstr "Bitte w&auml;hlen Sie einen benutzerdefinierten Post Typ"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:396
+msgid "Check this to delete this image"
+msgstr "Aktivieren Sie diese Option, um dieses Bild zu löschen"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:411
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:535
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:637
+msgid "Download file"
+msgstr "Datei herunterladen"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:414
+msgid "Check this to delete this file"
+msgstr "Aktivieren Sie diese Option, um diese Datei zu löschen"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:527
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:629
+msgid "yes"
+msgstr "ja"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:527
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:629
+msgid "no"
+msgstr "nein"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:696
 msgid "Birthdate"
 msgstr "Geburtstag"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:620
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:697
 msgid "Email"
 msgstr "Email"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:621
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:698
 msgid "Website"
 msgstr "Website"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:622
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:699
 msgid "Datepicker"
 msgstr "Datumsauswahl 2"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:623
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:700
 msgid "Custom Post Type Selector"
 msgstr "Benutzerdefinierter Post Typ Selector"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:624
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:701
 msgid "Custom Post Type Multiselector"
 msgstr "Benutzerdefinierter Post Tyo Multiselector"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:697
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:728
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:702
+msgid "Checkbox acceptance"
+msgstr "Checkbox akzeptieren"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:703
+msgid "Image"
+msgstr "Bild"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:704
+msgid "File"
+msgstr "Datei"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:777
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:808
 msgid "Please, select custom post type"
 msgstr "Bitte w&auml;hlen Sie einen benutzerdefinierten Post Typ"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:699
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:730
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:779
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:810
 msgid "Custom Post Type:"
 msgstr "Benutzerdefinierter Post Typ:"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:754
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:834
 msgid "Show age (hide birthdate)"
 msgstr "Zeige das Alter (verstecke den Geburtstag)"
 
-#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:756
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:836
 msgid "Check this if you want to show age instead of birthdate:"
 msgstr ""
 "Bitte markieren, wenn Sie das Alter in Jahren anstelle des Geburtsdatums "
 "anzeigen m&ouml;chten:"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:858
+msgid "Nobody"
+msgstr "Niemand"
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:973
+msgid ""
+"Please make sure you fill in all required fields in this profile field group "
+"before saving."
+msgstr ""
+"Bitte stellen Sie sicher, dass Sie alle erforderlichen Felder in diesem "
+"Profil Feldgruppe füllen vor dem Speichern."
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:1062
+msgid ""
+"There was a problem updating some of your profile information, please try "
+"again."
+msgstr ""
+"Es war ein Problem beim Aktualisieren einige Ihrer Profilinformationen, "
+"please try again."
+
+#: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:1064
+msgid "Changes saved."
+msgstr "Änderungen gespeichert."
