@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/buddypress-xprofile-custom-"
 "fields-type\n"
-"POT-Creation-Date: 2013-03-10 17:02:25+00:00\n"
+"POT-Creation-Date: 2013-04-08 21:42:09+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,131 +13,191 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: bp-xprofile-custom-fields-type.php:73
-#: bp-xprofile-custom-fields-type.php:295
+#: bp-xprofile-custom-fields-type.php:90
+#: bp-xprofile-custom-fields-type.php:312
 msgid "http://yourwebsite.com"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:78
-#: bp-xprofile-custom-fields-type.php:287
+#: bp-xprofile-custom-fields-type.php:95
+#: bp-xprofile-custom-fields-type.php:304
 msgid "example@mail.com"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:137
-#: bp-xprofile-custom-fields-type.php:247
+#: bp-xprofile-custom-fields-type.php:154
+#: bp-xprofile-custom-fields-type.php:264
 msgid "January"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:138
-#: bp-xprofile-custom-fields-type.php:248
+#: bp-xprofile-custom-fields-type.php:155
+#: bp-xprofile-custom-fields-type.php:265
 msgid "February"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:139
-#: bp-xprofile-custom-fields-type.php:249
+#: bp-xprofile-custom-fields-type.php:156
+#: bp-xprofile-custom-fields-type.php:266
 msgid "March"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:140
-#: bp-xprofile-custom-fields-type.php:250
+#: bp-xprofile-custom-fields-type.php:157
+#: bp-xprofile-custom-fields-type.php:267
 msgid "April"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:141
-#: bp-xprofile-custom-fields-type.php:251
+#: bp-xprofile-custom-fields-type.php:158
+#: bp-xprofile-custom-fields-type.php:268
 msgid "May"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:142
-#: bp-xprofile-custom-fields-type.php:252
+#: bp-xprofile-custom-fields-type.php:159
+#: bp-xprofile-custom-fields-type.php:269
 msgid "June"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:143
-#: bp-xprofile-custom-fields-type.php:253
+#: bp-xprofile-custom-fields-type.php:160
+#: bp-xprofile-custom-fields-type.php:270
 msgid "July"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:144
-#: bp-xprofile-custom-fields-type.php:254
+#: bp-xprofile-custom-fields-type.php:161
+#: bp-xprofile-custom-fields-type.php:271
 msgid "August"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:145
-#: bp-xprofile-custom-fields-type.php:255
+#: bp-xprofile-custom-fields-type.php:162
+#: bp-xprofile-custom-fields-type.php:272
 msgid "September"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:146
-#: bp-xprofile-custom-fields-type.php:256
+#: bp-xprofile-custom-fields-type.php:163
+#: bp-xprofile-custom-fields-type.php:273
 msgid "October"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:147
-#: bp-xprofile-custom-fields-type.php:257
+#: bp-xprofile-custom-fields-type.php:164
+#: bp-xprofile-custom-fields-type.php:274
 msgid "November"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:148
-#: bp-xprofile-custom-fields-type.php:258
+#: bp-xprofile-custom-fields-type.php:165
+#: bp-xprofile-custom-fields-type.php:275
 msgid "December"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:166
+#: bp-xprofile-custom-fields-type.php:183
 msgid "Field type unrecognized"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:231
-#: bp-xprofile-custom-fields-type.php:286
-#: bp-xprofile-custom-fields-type.php:294
-#: bp-xprofile-custom-fields-type.php:302
-#: bp-xprofile-custom-fields-type.php:324
-#: bp-xprofile-custom-fields-type.php:351
+#: bp-xprofile-custom-fields-type.php:248
+#: bp-xprofile-custom-fields-type.php:303
+#: bp-xprofile-custom-fields-type.php:311
+#: bp-xprofile-custom-fields-type.php:319
+#: bp-xprofile-custom-fields-type.php:341
+#: bp-xprofile-custom-fields-type.php:368
 msgid "*"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:326
+#: bp-xprofile-custom-fields-type.php:343
 msgid "Select..."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:619
+#: bp-xprofile-custom-fields-type.php:376
+msgid "There is no custom post type selected."
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:396
+msgid "Check this to delete this image"
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:411
+#: bp-xprofile-custom-fields-type.php:535
+#: bp-xprofile-custom-fields-type.php:637
+msgid "Download file"
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:414
+msgid "Check this to delete this file"
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:527
+#: bp-xprofile-custom-fields-type.php:629
+msgid "yes"
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:527
+#: bp-xprofile-custom-fields-type.php:629
+msgid "no"
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:696
 msgid "Birthdate"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:620
+#: bp-xprofile-custom-fields-type.php:697
 msgid "Email"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:621
+#: bp-xprofile-custom-fields-type.php:698
 msgid "Website"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:622
+#: bp-xprofile-custom-fields-type.php:699
 msgid "Datepicker"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:623
+#: bp-xprofile-custom-fields-type.php:700
 msgid "Custom Post Type Selector"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:624
+#: bp-xprofile-custom-fields-type.php:701
 msgid "Custom Post Type Multiselector"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:697
-#: bp-xprofile-custom-fields-type.php:728
+#: bp-xprofile-custom-fields-type.php:702
+msgid "Checkbox acceptance"
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:703
+msgid "Image"
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:704
+msgid "File"
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:777
+#: bp-xprofile-custom-fields-type.php:808
 msgid "Please, select custom post type"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:699
-#: bp-xprofile-custom-fields-type.php:730
+#: bp-xprofile-custom-fields-type.php:779
+#: bp-xprofile-custom-fields-type.php:810
 msgid "Custom Post Type:"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:754
+#: bp-xprofile-custom-fields-type.php:834
 msgid "Show age (hide birthdate)"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:756
+#: bp-xprofile-custom-fields-type.php:836
 msgid "Check this if you want to show age instead of birthdate:"
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:858
+msgid "Nobody"
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:973
+msgid ""
+"Please make sure you fill in all required fields in this profile field group "
+"before saving."
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:1062
+msgid ""
+"There was a problem updating some of your profile information, please try "
+"again."
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:1064
+msgid "Changes saved."
 msgstr ""
