@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.5
+    Version: 1.5.1
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -87,7 +87,7 @@ function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
        
        case "web":
            $web = BP_XProfile_ProfileData::get_value_byid( $field->id );
-           $html .= '<input type="url" name="field_'.$field->id.'" id="'.$field->id.'" class="input" placeholder="'.__('http://yourwebsite.com', 'bxcft').'" value="" />';
+           $html .= '<input type="url" name="field_'.$field->id.'" id="'.$field->id.'" class="input" placeholder="'.__('yourwebsite.com', 'bxcft').'" value="" />';
            break;
        
        case "email":
@@ -199,6 +199,8 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
    if(empty ($echo)){
        $echo = true;
    }
+
+   $uploads = wp_upload_dir();
 
    ob_start();
        if ( bp_get_the_profile_field_type() == 'birthdate' ) {
@@ -390,7 +392,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                    for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?></label>
             <input type="file" name="<?php bp_the_profile_field_input_name(); ?>" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> />
             <?php if (bp_get_the_profile_field_edit_value() != ''): ?>
-                <img src="<?php echo WP_CONTENT_URL . bp_get_the_profile_field_edit_value(); ?>" alt="<?php bp_the_profile_field_input_name(); ?>" />
+                <img src="<?php echo $uploads['baseurl'] . bp_get_the_profile_field_edit_value(); ?>" alt="<?php bp_the_profile_field_input_name(); ?>" />
                 <label for="<?php bp_the_profile_field_input_name(); ?>_deleteimg">
                     <input type="checkbox" name="<?php bp_the_profile_field_input_name(); ?>_deleteimg" id="<?php bp_the_profile_field_input_name(); ?>_deleteimg" value="1" />
                     <?php _e('Check this to delete this image', 'bxcft'); ?>
@@ -408,7 +410,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                    for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?></label>
             <input type="file" name="<?php bp_the_profile_field_input_name(); ?>" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> />
             <?php if (bp_get_the_profile_field_edit_value() != ''): ?>
-                <a href="<?php echo WP_CONTENT_URL . bp_get_the_profile_field_edit_value(); ?>" title="<?php bp_the_profile_field_input_name(); ?>"><?php _e('Download file', 'bxcft'); ?></a>
+                <a href="<?php echo $uploads['baseurl'] . bp_get_the_profile_field_edit_value(); ?>" title="<?php bp_the_profile_field_input_name(); ?>"><?php _e('Download file', 'bxcft'); ?></a>
                 <label for="<?php bp_the_profile_field_input_name(); ?>_deletefile">
                     <input type="checkbox" name="<?php bp_the_profile_field_input_name(); ?>_deletefile" id="<?php bp_the_profile_field_input_name(); ?>_deletefile" value="1" />
                     <?php _e('Check this to delete this file', 'bxcft'); ?>
@@ -437,6 +439,8 @@ add_action( 'bp_custom_profile_edit_fields', 'bxcft_edit_render_new_xprofile_fie
 
 function bxcft_get_field_value( $value='', $type='', $id='') {
 
+    $uploads = wp_upload_dir();
+    
     if ($type == 'birthdate') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
@@ -528,11 +532,11 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
     } elseif ($type == 'image') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        return '<p><img src="'.WP_CONTENT_URL.$value.'" alt="" /></p>';
+        return '<p><img src="'.$uploads['baseurl'].$value.'" alt="" /></p>';
     } elseif ($type == 'file') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        return '<p><a href="'.WP_CONTENT_URL.$value.'">'.__('Download file', 'bxcft').'</a></p>';
+        return '<p><a href="'.$uploads['baseurl'].$value.'">'.__('Download file', 'bxcft').'</a></p>';
     }
     
     return $value;
@@ -547,6 +551,7 @@ add_filter( 'bp_get_the_profile_field_value', 'bxcft_get_field_value', 15, 3);
  * @return string
  */
 function bxcft_get_field_data($value, $field_id) {
+    $uploads = wp_upload_dir();
     $field = new BP_XProfile_Field($field_id);
     if ($field->type == 'birthdate') {
         // Get children.
@@ -630,11 +635,11 @@ function bxcft_get_field_data($value, $field_id) {
     } elseif ($field->type == 'image') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        return '<p><img src="'.WP_CONTENT_URL.$value.'" alt="" /></p>';
+        return '<p><img src="'.$uploads['baseurl'].$value.'" alt="" /></p>';
     } elseif ($field->type == 'file') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        return '<p><a href="'.WP_CONTENT_URL.$value.'">'.__('Download file', 'bxcft').'</a></p>';
+        return '<p><a href="'.$uploads['baseurl'].$value.'">'.__('Download file', 'bxcft').'</a></p>';
     }
     
     return $value;
@@ -820,7 +825,7 @@ function bxcft_selected_field($field) {
 </p>
 </div>     
 <?php
-    if (isset($childs) && count($childs) > 0 && $field->type == 'birthdate') {
+    if (isset($childs) && $childs && count($childs) > 0 && is_object($childs[0]) && $field->type == 'birthdate') {
         $selected_option = $childs[0]->name;
     } else {
         $selected_option = null;
@@ -995,16 +1000,17 @@ function bxcft_screen_edit_profile(){
                 }
                 
                 // Handles delete checkbox.
+                $uploads = wp_upload_dir();
                 $field = new BP_XProfile_Field($field_id);
                 if ($field->type == 'image' && isset($_POST['field_'.$field_id.'_deleteimg']) && $_POST['field_'.$field_id.'_deleteimg']) {
-                    if (file_exists(WP_CONTENT_DIR . $_POST['field_'.$field_id.'_hiddenimg'])) {
-                        unlink(WP_CONTENT_DIR . $_POST['field_'.$field_id.'_hiddenimg']);
+                    if (file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg'])) {
+                        unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg']);
                     } 
                     $value = array();
                 }
                 if ($field->type == 'file' && isset($_POST['field_'.$field_id.'_deletefile']) && $_POST['field_'.$field_id.'_deletefile']) {
-                    if (file_exists(WP_CONTENT_DIR . $_POST['field_'.$field_id.'_hiddenfile'])) {
-                        unlink(WP_CONTENT_DIR . $_POST['field_'.$field_id.'_hiddenfile']);
+                    if (file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile'])) {
+                        unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']);
                     } 
                     $value = array();
                 }
@@ -1022,14 +1028,14 @@ function bxcft_screen_edit_profile(){
                         
                     $ext = strtolower(substr($_FILES['field_'.$field_id]['name'], strrpos($_FILES['field_'.$field_id]['name'],'.')+1));
                     if (!in_array($ext, $ext_allowed)) {
-                        var_dump($ext);die();
                         $errors = true;
                     } else {
                         require_once( ABSPATH . '/wp-admin/includes/file.php' );
                         add_filter( 'upload_dir', 'bxcft_profile_upload_dir', 10, 1 );
                         $_POST['action'] = 'wp_handle_upload';
                         $uploaded_file = wp_handle_upload( $_FILES['field_'.$field_id] );
-                        $value = str_replace(WP_CONTENT_URL, '', $uploaded_file['url']);
+                        $uploads = wp_upload_dir();
+                        $value = str_replace($uploads['baseurl'], '', $uploaded_file['url']);
                     }
                 } else {
                     if ($field->type == 'image' && (!isset($_POST['field_'.$field_id.'_deleteimg']) || !$_POST['field_'.$field_id.'_deleteimg']) && isset($_POST['field_'.$field_id.'_hiddenimg']) && $_POST['field_'.$field_id.'_hiddenimg'] != '') {

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5
+Stable tag: 1.5.1
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -41,6 +41,10 @@ If you need more fields type, you are free to add them yourself or request us at
 6. Enjoy!
 
 == Changelog ==
+
+= 1.5.1 =
+* Solved an error with WP_CONTENT_URL or WP_CONTENT_DIR when upload dir was customized.
+* Deleted http:// from the placeholder of Website field.
 
 = 1.5 =
 * Added checkbox acceptance for terms and conditions.
