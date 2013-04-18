@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.5.1
+    Version: 1.5.2
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -180,7 +180,8 @@ function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
            break;
 
        default:
-           $html = "<p>".__('Field type unrecognized', 'cc')."</p>";
+           // Field type unrecognized.
+           // $html = "<p>".__('Field type unrecognized', 'bxcft')."</p>";
            break;
    }
 
@@ -448,7 +449,7 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
         // Get children.
         $childs = $field->get_children();
         $show_age = false;
-        if (isset($childs) && count($childs) > 0) {
+        if (isset($childs) && $childs && count($childs) > 0 && is_object($childs[0])) {
             // Get the name of custom post type.
             if ($childs[0]->name == 'show_age') 
                 $show_age = true;
@@ -557,7 +558,7 @@ function bxcft_get_field_data($value, $field_id) {
         // Get children.
         $childs = $field->get_children();
         $show_age = false;
-        if (isset($childs) && count($childs) > 0) {
+        if (isset($childs) && $childs && count($childs) > 0 && is_object($childs[0])) {
             if ($childs[0]->name == 'show_age') 
                 $show_age = true;
         }
