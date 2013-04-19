@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.5.2
+    Version: 1.5.3
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -436,6 +436,13 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
    }
 
 }
+/*
+ * Buddypress v1.7 has better hook bp_custom_profile_edit_fields_pre_visibility which shows fields before visibility settings.
+ * In case this action does not exist we use the other tag bp_custom_profile_edit_fields.
+ */
+if (has_action('bp_custom_profile_edit_fields_pre_visibility'))
+    add_action( 'bp_custom_profile_edit_fields_pre_visibility', 'bxcft_edit_render_new_xprofile_field' );
+else 
 add_action( 'bp_custom_profile_edit_fields', 'bxcft_edit_render_new_xprofile_field' );
 
 function bxcft_get_field_value( $value='', $type='', $id='') {
@@ -1101,7 +1108,7 @@ function bxcft_remove_xprofile_links() {
         add_filter( 'bp_get_the_profile_field_value', 'bxcft_xprofile_filter_link_profile_data', 9, 2);
     }
 }
-add_action( 'bp_init', 'bxcft_remove_xprofile_links', 9999 );
+add_action( 'bp_setup_globals', 'bxcft_remove_xprofile_links', 9999 );
 
 /**
  * Override default action hook in order to support images
