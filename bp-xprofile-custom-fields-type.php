@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.5.3
+    Version: 1.5.4
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -339,7 +339,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                // Get the name of custom post type.
                $custom_post_type = $childs[0]->name;
                // Get the posts of custom post type.
-               $loop = new WP_Query(array('posts_per_page' => -1, 'post_type' => $custom_post_type, 'order_by' => 'title', 'order' => ASC ));
+               $loop = new WP_Query(array('posts_per_page' => -1, 'post_type' => $custom_post_type, 'order_by' => 'title', 'order' => 'ASC' ));
        ?>
        <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) { echo __('*', 'bxcft'); } ?></label>
        <select name="<?php bp_the_profile_field_input_name(); ?>" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="select">
@@ -447,6 +447,8 @@ add_action( 'bp_custom_profile_edit_fields', 'bxcft_edit_render_new_xprofile_fie
 
 function bxcft_get_field_value( $value='', $type='', $id='') {
 
+    $value_to_return = $value;
+    
     $uploads = wp_upload_dir();
     
     if ($type == 'birthdate') {
@@ -462,27 +464,27 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
                 $show_age = true;
         }
         if ($show_age) {
-            return '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
+            $value_to_return = '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
         }
-        return '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
+        $value_to_return = '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
     }
     elseif ($type == 'datepicker') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        return '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
+        $value_to_return = '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
     }
     elseif ($type == 'email') {
         if (strpos($value, 'mailto') === false) {
             $value = str_replace("<p>", "", $value);
             $value = str_replace("</p>", "", $value);
-            return '<p><a href="mailto:'.$value.'">'.$value.'</a></p>';
+            $value_to_return = '<p><a href="mailto:'.$value.'">'.$value.'</a></p>';
         }
     }
     elseif ($type == 'web') {
         if (strpos($value, 'href=') === false) {
             $value = str_replace("<p>", "", $value);
             $value = str_replace("</p>", "", $value);
-            return '<p><a href="'.$value.'">'.$value.'</a></p>';      
+            $value_to_return = '<p><a href="'.$value.'">'.$value.'</a></p>';
         }
     }
     elseif ($type == 'select_custom_post_type') {
@@ -498,10 +500,10 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
         }
         $post = get_post($value);
         if ($post->post_type == $custom_post_type) {
-            return '<p>'.$post->post_title.'</p>';
+            $value_to_return = '<p>'.$post->post_title.'</p>';
         } else {
             // Custom post type is not the same.
-            return '<p>--</p>';
+            $value_to_return = '<p>--</p>';
         }
     }
     elseif ($type == 'multiselect_custom_post_type') {
@@ -529,25 +531,25 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
         }
         if ($cad != '') {
             $cad .= '</ul>';
-            return '<p>'.$cad.'</p>';
+            $value_to_return = '<p>'.$cad.'</p>';
         } else {
-            return '<p>--</p>';
+            $value_to_return = '<p>--</p>';
         }
     } elseif ($type == 'checkbox_acceptance') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        return '<p>'.($value==1)?__('yes', 'bxcft'):__('no', 'bxcft').'</p>';
+        $value_to_return = '<p>'.($value==1)?__('yes', 'bxcft'):__('no', 'bxcft').'</p>';
     } elseif ($type == 'image') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        return '<p><img src="'.$uploads['baseurl'].$value.'" alt="" /></p>';
+        $value_to_return = '<p><img src="'.$uploads['baseurl'].$value.'" alt="" /></p>';
     } elseif ($type == 'file') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        return '<p><a href="'.$uploads['baseurl'].$value.'">'.__('Download file', 'bxcft').'</a></p>';
+        $value_to_return = '<p><a href="'.$uploads['baseurl'].$value.'">'.__('Download file', 'bxcft').'</a></p>';
     }
     
-    return $value;
+    return apply_filters('bxcft_show_field_value', $value, $type, $id, $value_to_return);
 }
 add_filter( 'bp_get_the_profile_field_value', 'bxcft_get_field_value', 15, 3);
 
@@ -559,6 +561,7 @@ add_filter( 'bp_get_the_profile_field_value', 'bxcft_get_field_value', 15, 3);
  * @return string
  */
 function bxcft_get_field_data($value, $field_id) {
+    $value_to_return = $value;
     $uploads = wp_upload_dir();
     $field = new BP_XProfile_Field($field_id);
     if ($field->type == 'birthdate') {
@@ -570,27 +573,27 @@ function bxcft_get_field_data($value, $field_id) {
                 $show_age = true;
         }
         if ($show_age) {
-            return '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
+            $value_to_return = '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
         }
-        return '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
+        $value_to_return = '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
     }
     elseif ($field->type == 'datepicker') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        return '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
+        $value_to_return = '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
     }
     elseif ($field->type == 'email') {
         if (strpos($value, 'mailto') === false) {
             $value = str_replace("<p>", "", $value);
             $value = str_replace("</p>", "", $value);
-            return '<p><a href="mailto:'.$value.'">'.$value.'</a></p>';
+            $value_to_return = '<p><a href="mailto:'.$value.'">'.$value.'</a></p>';
         }
     }
     elseif ($field->type == 'web') {
         if (strpos($value, 'href=') === false) {
             $value = str_replace("<p>", "", $value);
             $value = str_replace("</p>", "", $value);
-            return '<p><a href="'.$value.'">'.$value.'</a></p>';      
+            $value_to_return = '<p><a href="'.$value.'">'.$value.'</a></p>';      
         }
     }
     elseif ($field->type == 'select_custom_post_type') {
@@ -604,10 +607,10 @@ function bxcft_get_field_data($value, $field_id) {
         }
         $post = get_post($value);
         if ($post->post_type == $custom_post_type) {
-            return '<p>'.$post->post_title.'</p>';
+            $value_to_return = '<p>'.$post->post_title.'</p>';
         } else {
             // Custom post type is not the same.
-            return '<p>--</p>';
+            $value_to_return = '<p>--</p>';
         }
     }
     elseif ($field->type == 'multiselect_custom_post_type') {
@@ -632,25 +635,26 @@ function bxcft_get_field_data($value, $field_id) {
         }
         if ($cad != '') {
             $cad .= '</ul>';
-            return '<p>'.$cad.'</p>';
+            $value_to_return = '<p>'.$cad.'</p>';
         } else {
-            return '<p>--</p>';
+            $value_to_return = '<p>--</p>';
         }
     } elseif ($field->type == 'checkbox_acceptance') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        return '<p>'.($value==1)?__('yes', 'bxcft'):__('no', 'bxcft').'</p>';
+        $value_to_return = '<p>'.($value==1)?__('yes', 'bxcft'):__('no', 'bxcft').'</p>';
     } elseif ($field->type == 'image') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        return '<p><img src="'.$uploads['baseurl'].$value.'" alt="" /></p>';
+        $value_to_return = '<p><img src="'.$uploads['baseurl'].$value.'" alt="" /></p>';
     } elseif ($field->type == 'file') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        return '<p><a href="'.$uploads['baseurl'].$value.'">'.__('Download file', 'bxcft').'</a></p>';
+        $value_to_return = '<p><a href="'.$uploads['baseurl'].$value.'">'.__('Download file', 'bxcft').'</a></p>';
     }
     
-    return $value;
+    return apply_filters('bxcft_show_field_value', $value, $field->type, $field_id, $value_to_return);
+    
 }
 add_filter( 'xprofile_get_field_data', 'bxcft_get_field_data', 15, 2);
 
