@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.5
+Stable tag: 1.5.5.1
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -41,6 +41,9 @@ If you need more fields type, you are free to add them yourself or request us at
 6. Enjoy!
 
 == Changelog ==
+
+= 1.5.5.1 =
+* Solved an error with the new filter created in version 1.5.4, change the position value_to_return to first argument.
 
 = 1.5.5 =
 * Solved a problem while checking the hook "bp_custom_profile_edit_fields_pre_visibility". We check now for version of buddypress, if it's prior to 1.7, we load the fields in the other hook "bp_custom_profile_edit_fields". The description will still appear after the visibility settings. You need to change this manually in your templates.

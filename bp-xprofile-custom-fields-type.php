@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.5.5
+    Version: 1.5.5.1
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -554,7 +554,7 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
         $value_to_return = '<p><a href="'.$uploads['baseurl'].$value.'">'.__('Download file', 'bxcft').'</a></p>';
     }
     
-    return apply_filters('bxcft_show_field_value', $value, $type, $id, $value_to_return);
+    return apply_filters('bxcft_show_field_value', $value_to_return, $type, $id, $value);
 }
 add_filter( 'bp_get_the_profile_field_value', 'bxcft_get_field_value', 15, 3);
 
@@ -658,7 +658,7 @@ function bxcft_get_field_data($value, $field_id) {
         $value_to_return = '<p><a href="'.$uploads['baseurl'].$value.'">'.__('Download file', 'bxcft').'</a></p>';
     }
     
-    return apply_filters('bxcft_show_field_value', $value, $field->type, $field_id, $value_to_return);
+    return apply_filters('bxcft_show_field_value', $value_to_return, $field->type, $field_id, $value);
     
 }
 add_filter( 'xprofile_get_field_data', 'bxcft_get_field_data', 15, 2);
