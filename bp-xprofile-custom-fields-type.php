@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.5.5.1
+    Version: 1.5.5.2
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -908,24 +908,27 @@ function bxcft_xprofile_get_hidden_fields_for_user($hidden_fields, $displayed_us
 		// Current user is logged in
 		if ( $displayed_user_id == $current_user_id ) {
 			// If you're viewing your own profile, nothing's private
-			$hidden_fields = array();
 
-		} else if ( bp_is_active( 'friends' ) && friends_check_friendship( $displayed_user_id, $current_user_id ) ) {
+		} elseif ( bp_is_active( 'friends' ) && friends_check_friendship( $displayed_user_id, $current_user_id ) ) {
 			// If the current user and displayed user are friends, so exclude nobody
-            $hidden_levels = array( 'nobody' );
-			$hidden_fields = bp_xprofile_get_fields_by_visibility_levels( $displayed_user_id, $hidden_levels );
+            $hidden_levels[] = 'nobody';
+			$new_hidden_fields = bp_xprofile_get_fields_by_visibility_levels( $displayed_user_id, $hidden_levels );
 
 		} else {
 			// current user is logged-in but not friends, so exclude friends-only
-			$hidden_levels = array( 'friends', 'nobody' );
-			$hidden_fields = bp_xprofile_get_fields_by_visibility_levels( $displayed_user_id, $hidden_levels );
+			$hidden_levels[] = 'nobody';
+            
+			$new_hidden_fields = bp_xprofile_get_fields_by_visibility_levels( $displayed_user_id, $hidden_levels );
 		}
 
 	} else {
 		// Current user is not logged in, so exclude friends-only and loggedin
-		$hidden_levels = array( 'friends', 'loggedin', 'nobody' );
-		$hidden_fields = bp_xprofile_get_fields_by_visibility_levels( $displayed_user_id, $hidden_levels );
+		$hidden_levels[] = 'nobody';
+        
+		$new_hidden_fields = bp_xprofile_get_fields_by_visibility_levels( $displayed_user_id, $hidden_levels );
 	}
+    
+    $hidden_fields = array_merge($hidden_fields, $new_hidden_fields);
     
     return $hidden_fields;
 }
