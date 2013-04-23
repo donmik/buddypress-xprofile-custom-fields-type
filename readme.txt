@@ -44,6 +44,7 @@ If you need more fields type, you are free to add them yourself or request us at
 
 = 1.5.5 =
 * Solved a problem while checking the hook "bp_custom_profile_edit_fields_pre_visibility". We check now for version of buddypress, if it's prior to 1.7, we load the fields in the other hook "bp_custom_profile_edit_fields". The description will still appear after the visibility settings. You need to change this manually in your templates.
+* Updated spanish translation.
 
 = 1.5.4 =
 * Created a new filter to show field value. Now you can add a filter in your functions.php and customize the way the field value will appear to the user.
