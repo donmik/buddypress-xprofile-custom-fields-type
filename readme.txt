@@ -1,16 +1,16 @@
 === Buddypress Xprofile Custom Fields Type ===
-Contributors: atallos
+Contributors: atallos, romik jan, dabesa, Branco Radenovich, @per4mance
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LRLW5AMCJGWQN
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.5.3
+Stable tag: 1.5.5.4
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
 == Description ==
 
-Buddypress installation required!!
+Buddypress installation required!! With Buddypress 1.7, I'm using a new hook "bp_custom_profile_edit_fields_pre_visibility" if you don't have it in your edit profile form or register page, the fields should not appear. Check this if the fields don't appear and you are using Buddypress 1.7.
 Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker, Custom post type, Multi custom post type, checkbox acceptance, image field and type field. 
 We add now a new visibility setting 'Nobody' to create fields hidden to all members of buddypress.
 Works with <a href="http://buddypress.org/community/groups/bp-profile-search/" title="BP Profile Search">BP Profile Search plugin</a> searching birthdate and age range.
@@ -40,7 +40,45 @@ If you need more fields type, you are free to add them yourself or request us at
 5. In Field Type select, you can see new field's type.
 6. Enjoy!
 
+== Frequently Asked Questions ==
+
+= Why my fields are not showing? =
+
+If you are using Buddypress 1.7, you need to check if you have the new hook "bp_custom_profile_edit_fields_pre_visibility". Check in your edit.php (edit profile form) and register page if this line of code: <?php do_action ( 'bp_custom_profile_edit_fields_pre_visibility' ); ?>. If you don't see it, you must add it just before the code of visibility settings.
+
+= Can I modify how the fields value are showned? =
+
+Yes, you can, since version 1.5.4, I have added a filter called "bxcft_show_field_value". You can use it and modify the value of your fields. For example, if you need to show only the day or month of the birthdate you need to add this code below in the functions.php of your theme:
+
+`add_filter( 'bxcft_show_field_value', 'my_show_field', 15, 4);
+function my_show_field($value_to_return, $type, $id, $value) {
+    if ($type == 'birthdate') {
+        $value = str_replace("<p>", "", $value);
+        $value = str_replace("</p>", "", $value);
+        $field = new BP_XProfile_Field($id);
+        // Get children.
+        $childs = $field->get_children();
+        $show_age = false;
+        if (isset($childs) && $childs && count($childs) > 0) {
+            // Get the name of custom post type.
+            if ($childs[0]->name == 'show_age')
+                $show_age = true;
+        }
+        if ($show_age) {
+            return '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
+        }
+        return '<p>'.date_i18n( 'F j' , strtotime($value) ).'</p>';
+    }
+}`
+
+= Where are my images or files uploaded? =
+
+Your files are uploaded in "YOUR_UPLOAD_DIR / profiles / ID_OF_USER" folder.
+
 == Changelog ==
+
+= 1.5.5.4 =
+* Just added a FAQ section in readme to help with frequently asked questions.
 
 = 1.5.5.3 =
 * Solved the notice with array_merge.
