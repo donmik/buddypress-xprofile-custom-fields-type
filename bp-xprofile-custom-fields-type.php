@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.5.5.2
+    Version: 1.5.5.3
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -903,6 +903,7 @@ function bxcft_xprofile_get_hidden_fields_for_user($hidden_fields, $displayed_us
 	}
 
 	// @todo - This is where you'd swap out for current_user_can() checks
+    $new_hidden_fields = array();
 
 	if ( $current_user_id ) {
 		// Current user is logged in
@@ -928,7 +929,8 @@ function bxcft_xprofile_get_hidden_fields_for_user($hidden_fields, $displayed_us
 		$new_hidden_fields = bp_xprofile_get_fields_by_visibility_levels( $displayed_user_id, $hidden_levels );
 	}
     
-    $hidden_fields = array_merge($hidden_fields, $new_hidden_fields);
+    if (is_array($new_hidden_fields))
+        $hidden_fields = array_merge($hidden_fields, $new_hidden_fields);
     
     return $hidden_fields;
 }
