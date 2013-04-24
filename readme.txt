@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.5.4
+Stable tag: 1.5.5.5
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -76,6 +76,9 @@ function my_show_field($value_to_return, $type, $id, $value) {
 Your files are uploaded in "YOUR_UPLOAD_DIR / profiles / ID_OF_USER" folder.
 
 == Changelog ==
+
+= 1.5.5.5 =
+* Solved error when showing age instead of birthdate.
 
 = 1.5.5.4 =
 * Just added a FAQ section in readme to help with frequently asked questions.

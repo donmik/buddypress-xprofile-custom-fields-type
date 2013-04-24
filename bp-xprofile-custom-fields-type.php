@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.5.5.4
+    Version: 1.5.5.5
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -470,8 +470,9 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
         }
         if ($show_age) {
             $value_to_return = '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
+        } else {
+            $value_to_return = '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
         }
-        $value_to_return = '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
     }
     elseif ($type == 'datepicker') {
         $value = str_replace("<p>", "", $value);
@@ -579,8 +580,9 @@ function bxcft_get_field_data($value, $field_id) {
         }
         if ($show_age) {
             $value_to_return = '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
+        } else {
+            $value_to_return = '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
         }
-        $value_to_return = '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
     }
     elseif ($field->type == 'datepicker') {
         $value = str_replace("<p>", "", $value);
