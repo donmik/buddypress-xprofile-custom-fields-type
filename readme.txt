@@ -69,6 +69,7 @@ function my_show_field($value_to_return, $type, $id, $value) {
         }
         return '<p>'.date_i18n( 'F j' , strtotime($value) ).'</p>';
     }
+    return $value_to_return;
 }`
 
 = Where are my images or files uploaded? =
