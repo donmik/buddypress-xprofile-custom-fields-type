@@ -42,7 +42,7 @@ If you need more fields type, you are free to add them yourself or request us at
 
 == Frequently Asked Questions ==
 
-= Why my fields are not showing? =
+= Why my fields are not showing ? =
 
 If you are using Buddypress 1.7, you need to check if you have the new hook "bp_custom_profile_edit_fields_pre_visibility". Check in your edit.php (edit profile form) and register page if this line of code: <?php do_action ( 'bp_custom_profile_edit_fields_pre_visibility' ); ?>. If you don't see it, you must add it just before the code of visibility settings.
 
