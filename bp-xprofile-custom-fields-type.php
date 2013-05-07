@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.5.5.5
+    Version: 1.5.6
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -326,7 +326,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
        }
        elseif ( bp_get_the_profile_field_type() == 'select_custom_post_type' ) {
            $custom_post_type_selected = BP_XProfile_ProfileData::get_value_byid( $field->id );
-           if ( isset( $_POST['field_' . $field->id] ) && $_POST['field_' . $field->id] != $option_value ) {
+           if ( isset( $_POST['field_' . $field->id] ) && $_POST['field_' . $field->id] != '' ) {
                 if ( !empty( $_POST['field_' . $field->id] ) ) {
                     $custom_post_type_selected = $_POST['field_' . $field->id];
                 }
@@ -353,7 +353,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
        }
        elseif ( bp_get_the_profile_field_type() == 'multiselect_custom_post_type' ) {
            $custom_post_type_selected = maybe_unserialize(BP_XProfile_ProfileData::get_value_byid( $field->id ));
-           if ( isset( $_POST['field_' . $field->id] ) && $_POST['field_' . $field->id] != $option_value ) {
+           if ( isset( $_POST['field_' . $field->id] ) && $_POST['field_' . $field->id] != '' ) {
                 if ( !empty( $_POST['field_' . $field->id] ) ) {
                     $custom_post_type_selected = $_POST['field_' . $field->id];
                 }
@@ -939,89 +939,96 @@ function bxcft_xprofile_get_hidden_fields_for_user($hidden_fields, $displayed_us
 add_filter('bp_xprofile_get_hidden_fields_for_user', 'bxcft_xprofile_get_hidden_fields_for_user', 3);
 
 /**
- * Create profile edit handler
+ * Update profile 
  */
-function bxcft_screen_edit_profile(){
+function bxcft_updated_profile($bp_user_id, $posted_field_ids, $errors) {
  
     global $bp;
+    
+    // There are errors
+    if ( empty( $errors ) ) {
 
-	if ( !bp_is_my_profile() && !bp_current_user_can( 'bp_moderate' ) )
-		return false;
+        // Reset the errors var
+        $errors = false;
 
-	// Make sure a group is set.
-	if ( !bp_action_variable( 1 ) )
-		bp_core_redirect( trailingslashit( bp_displayed_user_domain() . $bp->profile->slug . '/edit/group/1' ) );
+        // Now we've checked for required fields, lets save the values.
+        foreach ( (array) $posted_field_ids as $field_id ) {
 
-	// Check the field group exists
-	if ( !bp_is_action_variable( 'group' ) || !xprofile_get_field_group( bp_action_variable( 1 ) ) ) {
-		bp_do_404();
-		return;
-	}
+            // Certain types of fields (checkboxes, multiselects) may come through empty. Save them as an empty array so that they don't get overwritten by the default on the next edit.
+            if ( empty( $_POST['field_' . $field_id] ) )
+                $value = array();
+            else
+                $value = $_POST['field_' . $field_id];
 
-	// No errors
-	$errors = false;
+            // Handles delete checkbox.
+            $uploads = wp_upload_dir();
+            $field = new BP_XProfile_Field($field_id);
+            if ($field->type == 'image' && isset($_POST['field_'.$field_id.'_deleteimg']) && $_POST['field_'.$field_id.'_deleteimg']) {
+                if (file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg'])) {
+                    unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg']);
+                } 
+                $value = array();
+            }
+            if ($field->type == 'file' && isset($_POST['field_'.$field_id.'_deletefile']) && $_POST['field_'.$field_id.'_deletefile']) {
+                if (file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile'])) {
+                    unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']);
+                } 
+                $value = array();
+            }
 
-	// Check to see if any new information has been submitted
-	if ( isset( $_POST['field_ids'] ) ) {
-
-		// Check the nonce
-		check_admin_referer( 'bp_xprofile_edit' );
-
-		// Check we have field ID's
-		if ( empty( $_POST['field_ids'] ) )
-			bp_core_redirect( trailingslashit( bp_displayed_user_domain() . $bp->profile->slug . '/edit/group/' . bp_action_variable( 1 ) ) );
-
-		// Explode the posted field IDs into an array so we know which
-		// fields have been submitted
-		$posted_field_ids = explode( ',', $_POST['field_ids'] );
-		$is_required      = array();
-
-		// Loop through the posted fields formatting any datebox values
-		// then validate the field
-		foreach ( (array) $posted_field_ids as $field_id ) {
-			if ( !isset( $_POST['field_' . $field_id] ) ) {
-
-				if ( !empty( $_POST['field_' . $field_id . '_day'] ) && !empty( $_POST['field_' . $field_id . '_month'] ) && !empty( $_POST['field_' . $field_id . '_year'] ) ) {
-					// Concatenate the values
-					$date_value =   $_POST['field_' . $field_id . '_day'] . ' ' . $_POST['field_' . $field_id . '_month'] . ' ' . $_POST['field_' . $field_id . '_year'];
-
-					// Turn the concatenated value into a timestamp
-					$_POST['field_' . $field_id] = date( 'Y-m-d H:i:s', strtotime( $date_value ) );
-				}
-
-			}
-
-			$is_required[$field_id] = xprofile_check_is_required_field( $field_id );
-			if ( $is_required[$field_id] && empty( $_POST['field_' . $field_id] ) ) {
-				$errors = true;
-			}
-		}
-
-		// There are errors
-		if ( !empty( $errors ) ) {
-			bp_core_add_message( __( 'Please make sure you fill in all required fields in this profile field group before saving.', 'buddypress' ), 'error' );
-
-		// No errors
-		} else {
-
-			// Reset the errors var
-			$errors = false;
-            
-			// Now we've checked for required fields, lets save the values.
-			foreach ( (array) $posted_field_ids as $field_id ) {
-
-				// Certain types of fields (checkboxes, multiselects) may come through empty. Save them as an empty array so that they don't get overwritten by the default on the next edit.
-				if ( empty( $_POST['field_' . $field_id] ) )
-					$value = array();
-				else
-					$value = $_POST['field_' . $field_id];
-                
-                $post_action_found = false;
-                $post_action = '';
-                if (isset($_POST['action'])) {
-                    $post_action_found = true;
-                    $post_action = $_POST['action'];
+            // Handles image field type saving.
+            if (isset($_FILES['field_'.$field_id]) && $_FILES['field_'.$field_id]['size'] > 0) {
+                $field = new BP_XProfile_Field($field_id);
+                if ($field->type == 'image') {
+                    $ext_allowed = array('jpg','jpeg','gif','png');
+                    apply_filters('images_ext_allowed', $ext_allowed);
+                } elseif ($field->type == 'file') {
+                    $ext_allowed = array('doc','docx','pdf');
+                    apply_filters('files_ext_allowed', $ext_allowed);
                 }
+
+                $ext = strtolower(substr($_FILES['field_'.$field_id]['name'], strrpos($_FILES['field_'.$field_id]['name'],'.')+1));
+                if (!in_array($ext, $ext_allowed)) {
+                    $errors = true;
+                } else {
+                    require_once( ABSPATH . '/wp-admin/includes/file.php' );
+                    add_filter( 'upload_dir', 'bxcft_profile_upload_dir', 10, 1 );
+                    $_POST['action'] = 'wp_handle_upload';
+                    $uploaded_file = wp_handle_upload( $_FILES['field_'.$field_id] );
+                    $uploads = wp_upload_dir();
+                    $value = str_replace($uploads['baseurl'], '', $uploaded_file['url']);
+                }
+            } else {
+                if ($field->type == 'image' && (!isset($_POST['field_'.$field_id.'_deleteimg']) || !$_POST['field_'.$field_id.'_deleteimg']) && isset($_POST['field_'.$field_id.'_hiddenimg']) && $_POST['field_'.$field_id.'_hiddenimg'] != '') {
+                    $value = $_POST['field_'.$field_id.'_hiddenimg'];
+                }
+                elseif ($field->type == 'file' && (!isset($_POST['field_'.$field_id.'_deletefile']) || !$_POST['field_'.$field_id.'_deletefile']) && isset($_POST['field_'.$field_id.'_hiddenfile']) && $_POST['field_'.$field_id.'_hiddenfile'] != '') {
+                    $value = $_POST['field_'.$field_id.'_hiddenfile'];
+                }
+            }
+            if ( !xprofile_set_field_data( $field_id, $bp_user_id, $value ) ) {
+                $errors = true;
+            } else {
+                do_action( 'xprofile_profile_field_data_updated', $field_id, $value );
+            }
+        }
+    }
+}
+add_action('xprofile_updated_profile', 'bxcft_updated_profile', 10, 3);
+
+function bxcft_signup_user($user_id, $user_login, $user_password, $user_email, $usermeta)
+{
+    // Set any profile data
+    if ( bp_is_active( 'xprofile' ) ) {
+        if ( !empty( $usermeta['profile_field_ids'] ) ) {
+            $profile_field_ids = explode( ',', $usermeta['profile_field_ids'] );
+
+            foreach( (array) $profile_field_ids as $field_id ) {
+                
+                if (!empty($usermeta["field_{$field_id}"]))
+                    $value = $usermeta["field_{$field_id}"];
+                else
+                    $value = array();
                 
                 // Handles delete checkbox.
                 $uploads = wp_upload_dir();
@@ -1038,7 +1045,7 @@ function bxcft_screen_edit_profile(){
                     } 
                     $value = array();
                 }
-                
+
                 // Handles image field type saving.
                 if (isset($_FILES['field_'.$field_id]) && $_FILES['field_'.$field_id]['size'] > 0) {
                     $field = new BP_XProfile_Field($field_id);
@@ -1049,17 +1056,21 @@ function bxcft_screen_edit_profile(){
                         $ext_allowed = array('doc','docx','pdf');
                         apply_filters('files_ext_allowed', $ext_allowed);
                     }
-                        
+
                     $ext = strtolower(substr($_FILES['field_'.$field_id]['name'], strrpos($_FILES['field_'.$field_id]['name'],'.')+1));
-                    if (!in_array($ext, $ext_allowed)) {
-                        $errors = true;
-                    } else {
+                    if (in_array($ext, $ext_allowed)) {
                         require_once( ABSPATH . '/wp-admin/includes/file.php' );
                         add_filter( 'upload_dir', 'bxcft_profile_upload_dir', 10, 1 );
                         $_POST['action'] = 'wp_handle_upload';
                         $uploaded_file = wp_handle_upload( $_FILES['field_'.$field_id] );
-                        $uploads = wp_upload_dir();
-                        $value = str_replace($uploads['baseurl'], '', $uploaded_file['url']);
+                        $destino = str_replace('0', $user_id, $uploaded_file['file']);
+                        $aux = explode("/", $destino);
+                        if (!file_exists(str_replace('/'.$aux[count($aux)-1], '', $destino))) {
+                            mkdir(str_replace('/'.$aux[count($aux)-1], '', $destino));
+                        }
+                        copy($uploaded_file['file'], $destino);
+                        unlink($uploaded_file['file']);
+                        $value = str_replace($uploads['baseurl'], '', str_replace('0', $user_id, $uploaded_file['url']));
                     }
                 } else {
                     if ($field->type == 'image' && (!isset($_POST['field_'.$field_id.'_deleteimg']) || !$_POST['field_'.$field_id.'_deleteimg']) && isset($_POST['field_'.$field_id.'_hiddenimg']) && $_POST['field_'.$field_id.'_hiddenimg'] != '') {
@@ -1069,42 +1080,17 @@ function bxcft_screen_edit_profile(){
                         $value = $_POST['field_'.$field_id.'_hiddenfile'];
                     }
                 }
-                if ($post_action_found) {
-                    $_POST['action'] = $post_action;
-                } else{
-                    unset($_POST['action']);
-                }
-
-				if ( !xprofile_set_field_data( $field_id, bp_displayed_user_id(), $value, $is_required[$field_id] ) )
-					$errors = true;
-				else
-					do_action( 'xprofile_profile_field_data_updated', $field_id, $value );
-
-				// Save the visibility level
-				$visibility_level = !empty( $_POST['field_' . $field_id . '_visibility'] ) ? $_POST['field_' . $field_id . '_visibility'] : 'public';
-				xprofile_set_field_visibility_level( $field_id, bp_displayed_user_id(), $visibility_level );
-			}
-
-			do_action( 'xprofile_updated_profile', bp_displayed_user_id(), $posted_field_ids, $errors );
-
-			// Set the feedback messages
-			if ( !empty( $errors ) )
-				bp_core_add_message( __( 'There was a problem updating some of your profile information, please try again.', 'buddypress' ), 'error' );
-			else
-				bp_core_add_message( __( 'Changes saved.', 'buddypress' ) );
-
-			// Redirect back to the edit screen to display the updates and message
-			bp_core_redirect( trailingslashit( bp_displayed_user_domain() . $bp->profile->slug . '/edit/group/' . bp_action_variable( 1 ) ) );
-		}
-	}
-
-	do_action( 'xprofile_screen_edit_profile' );
-	bp_core_load_template( apply_filters( 'xprofile_template_edit_profile', 'members/single/home' ) );
- 
+                
+                xprofile_set_field_data( $field_id, $user_id, $value );
+            }
+        }
+    }
 }
+add_action('bp_core_signup_user', 'bxcft_signup_user', 10, 5);
 
-function bxcft_profile_upload_dir( $upload_dir ) {  
-    $user_id = bp_displayed_user_id();
+function bxcft_profile_upload_dir( $upload_dir, $user_id=0 ) {  
+    if ($user_id == 0)
+        $user_id = bp_displayed_user_id();
     $profile_subdir = '/profiles/' . $user_id;
  
     $upload_dir['path'] = $upload_dir['basedir'] . $profile_subdir;
@@ -1125,22 +1111,6 @@ function bxcft_remove_xprofile_links() {
     }
 }
 add_action( 'bp_setup_globals', 'bxcft_remove_xprofile_links', 9999 );
-
-/**
- * Override default action hook in order to support images
- */
-function bxcft_override_xprofile_screen_edit_profile(){
-    $screen_edit_profile_priority = has_filter('bp_screens', 'xprofile_screen_edit_profile');
- 
-    if($screen_edit_profile_priority !== false){
-        //Remove the default profile_edit handler
-        remove_action( 'bp_screens', 'xprofile_screen_edit_profile', $screen_edit_profile_priority );
- 
-        //Install replacement hook
-        add_action( 'bp_screens', 'bxcft_screen_edit_profile', $screen_edit_profile_priority );
-    }
-}
-add_action( 'bp_actions', 'bxcft_override_xprofile_screen_edit_profile', 10 );
 
 /**
  * This function only works if plugin bp-profile search is active.

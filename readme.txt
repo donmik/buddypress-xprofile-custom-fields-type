@@ -78,6 +78,10 @@ Your files are uploaded in "YOUR_UPLOAD_DIR / profiles / ID_OF_USER" folder.
 
 == Changelog ==
 
+= 1.5.6 =
+* Solved errors when uploading images or files in register page.
+* Revised code responsible of uploading files or images in edit profile.
+
 = 1.5.5.5 =
 * Solved error when showing age instead of birthdate.
 
