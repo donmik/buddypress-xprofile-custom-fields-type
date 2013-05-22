@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.5.5
+Stable tag: 1.5.6.1
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -27,7 +27,7 @@ If you need more fields type, you are free to add them yourself or request us at
 * Add Custom post type multiselector.
 * Add Checkbox acceptance.
 * Add Image Field (jpg, jpeg, gif, png).
-* Add File field (doc, docx, pdf).
+* Add File field (doc, docx, pdf).`
 * Add new visibility setting "Nobody". Hide the field to all members.
 * Works with BP Profile Search plugin.
 
@@ -44,7 +44,7 @@ If you need more fields type, you are free to add them yourself or request us at
 
 = Why my fields are not showing ? =
 
-If you are using Buddypress 1.7, you need to check if you have the new hook "bp_custom_profile_edit_fields_pre_visibility". Check in your edit.php (edit profile form) and register page if this line of code: <?php do_action ( 'bp_custom_profile_edit_fields_pre_visibility' ); ?>. If you don't see it, you must add it just before the code of visibility settings.
+If you are using Buddypress 1.7, you need to check if you have the new hook "bp_custom_profile_edit_fields_pre_visibility". Check in your edit.php (edit profile form) and register page if this line of code: `<?php do_action ( 'bp_custom_profile_edit_fields_pre_visibility' ); ?>`. If you don't see it, you must add it just before the code of visibility settings.
 
 = Can I modify how the fields value are showned? =
 
@@ -77,6 +77,9 @@ function my_show_field($value_to_return, $type, $id, $value) {
 Your files are uploaded in "YOUR_UPLOAD_DIR / profiles / ID_OF_USER" folder.
 
 == Changelog ==
+
+= 1.5.6.1 =
+* Changed FAQ.
 
 = 1.5.6 =
 * Solved errors when uploading images or files in register page.
