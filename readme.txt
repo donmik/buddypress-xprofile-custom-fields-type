@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.6.1
+Stable tag: 1.5.6.2
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -44,7 +44,7 @@ If you need more fields type, you are free to add them yourself or request us at
 
 = Why my fields are not showing ? =
 
-If you are using Buddypress 1.7, you need to check if you have the new hook "bp_custom_profile_edit_fields_pre_visibility". Check in your edit.php (edit profile form) and register page if this line of code: `<?php do_action ( 'bp_custom_profile_edit_fields_pre_visibility' ); ?>`. If you don't see it, you must add it just before the code of visibility settings.
+If you are using Buddypress 1.7, you need to check if you have the new hook "bp_custom_profile_edit_fields_pre_visibility". Check in your edit.php (/your-theme/members/single/profile/edit.php, if this page is not in your theme, check in buddypress plugin in bp-themes/bp-default folder) and register page (/your-theme/registration/register.php, if this page is not in your theme, check bp-default theme of buddypress plugin) if this line of code: `<?php do_action ( 'bp_custom_profile_edit_fields_pre_visibility' ); ?>`. If you don't see it, you must add it just before the code of visibility settings.
 
 = Can I modify how the fields value are showned? =
 
@@ -77,6 +77,11 @@ function my_show_field($value_to_return, $type, $id, $value) {
 Your files are uploaded in "YOUR_UPLOAD_DIR / profiles / ID_OF_USER" folder.
 
 == Changelog ==
+
+= 1.5.6.2 =
+* Solved a warning when you use custom post type multiselect and have no choices.
+* Solved a warning with queries changing ASC with 'ASC'.
+* Improving the faq.
 
 = 1.5.6.1 =
 * Changed FAQ.

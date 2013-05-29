@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.5.6.1
+    Version: 1.5.6.2
     Author: Atallos Cloud
     Author URI: http://www.atallos.com/
     Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
@@ -50,7 +50,7 @@ function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
                // Get the name of custom post type.
                $custom_post_type = $childs[0]->name;
                // Get the posts of custom post type.
-               $loop = new WP_Query(array('posts_per_page' => -1, 'post_type' => $custom_post_type, 'order_by' => 'title', 'order' => ASC ));
+               $loop = new WP_Query(array('posts_per_page' => -1, 'post_type' => $custom_post_type, 'order_by' => 'title', 'order' => 'ASC' ));
            }
            $select_custom_post_type = BP_XProfile_ProfileData::get_value_byid( $field->id );
            $html .= '<select name="field_'.$field->id.'" id="field_'.$field->id.'">';
@@ -68,7 +68,7 @@ function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
                // Get the name of custom post type.
                $custom_post_type = $childs[0]->name;
                // Get the posts of custom post type.
-               $loop = new WP_Query(array('posts_per_page' => -1, 'post_type' => $custom_post_type, 'order_by' => 'title', 'order' => ASC ));
+               $loop = new WP_Query(array('posts_per_page' => -1, 'post_type' => $custom_post_type, 'order_by' => 'title', 'order' => 'ASC' ));
            }
            $select_custom_post_type = BP_XProfile_ProfileData::get_value_byid( $field->id );
            $html .= '<select name="field_'.$field->id.'" id="field_'.$field->id.'" multiple="multiple">';
@@ -331,6 +331,9 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                     $custom_post_type_selected = $_POST['field_' . $field->id];
                 }
            }
+           if (is_null($custom_post_type_selected)) {
+               $custom_post_type_selected = array();
+           }
            // Get field's data.
            $field_data = new BP_XProfile_Field($field->id);
            // Get the childs of field
@@ -366,7 +369,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                // Get the name of custom post type.
                $custom_post_type = $childs[0]->name;
                // Get the posts of custom post type.
-               $loop = new WP_Query(array('posts_per_page' => -1, 'post_type' => $custom_post_type, 'order_by' => 'title', 'order' => ASC ));
+               $loop = new WP_Query(array('posts_per_page' => -1, 'post_type' => $custom_post_type, 'order_by' => 'title', 'order' => 'ASC' ));
        ?>
        <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) { echo __('*', 'bxcft'); } ?></label>
        <select name="<?php bp_the_profile_field_input_name(); ?>[]" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="select" multiple="multiple">
