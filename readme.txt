@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.6.2
+Stable tag: 1.5.6.3
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -13,7 +13,7 @@ Add more custom fields type to extended profiles in Buddypress: Birthdate, Email
 Buddypress installation required!! With Buddypress 1.7, I'm using a new hook "bp_custom_profile_edit_fields_pre_visibility" if you don't have it in your edit profile form or register page, the fields should not appear. Check this if the fields don't appear and you are using Buddypress 1.7.
 Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker, Custom post type, Multi custom post type, checkbox acceptance, image field and type field. 
 We add now a new visibility setting 'Nobody' to create fields hidden to all members of buddypress.
-Works with <a href="http://buddypress.org/community/groups/bp-profile-search/" title="BP Profile Search">BP Profile Search plugin</a> searching birthdate and age range.
+Works with <a href="http://wordpress.org/plugins/buddypress-xprofile-custom-fields-type/" title="BP Profile Search">BP Profile Search plugin</a> searching birthdate and age range.
 If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
 
 <a href="http://www.atallos.com" title="Atallos Cloud">www.atallos.com</a>
@@ -77,6 +77,9 @@ function my_show_field($value_to_return, $type, $id, $value) {
 Your files are uploaded in "YOUR_UPLOAD_DIR / profiles / ID_OF_USER" folder.
 
 == Changelog ==
+
+= 1.5.6.3 =
+* Updated the link of BP Profile Search plugin.
 
 = 1.5.6.2 =
 * Solved a warning when you use custom post type multiselect and have no choices.
