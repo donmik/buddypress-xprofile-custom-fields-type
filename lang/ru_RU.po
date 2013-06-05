@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: bp-friends-suggest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-08 23:27+0100\n"
-"PO-Revision-Date: 2013-04-08 23:27+0100\n"
+"PO-Revision-Date: 2013-06-05 17:26+0400\n"
 "Last-Translator: RJ <romik.jan@gmail.com>\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.3\n"
 "X-Poedit-SearchPath-0: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-"
 "custom-fields-type\n"
 
@@ -719,7 +719,7 @@ msgstr "Выбор даты"
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/tags/1.4.9.3/bp-xprofile-custom-fields-type.php:326
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:343
 msgid "Select..."
-msgstr "Select..."
+msgstr "Выбрать..."
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/tags/1.1.0/bp-xprofile-custom-fields-type.php:441
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/tags/1.1.1/bp-xprofile-custom-fields-type.php:441
@@ -893,65 +893,67 @@ msgid "*"
 msgstr "(обязательно)"
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:376
-#, fuzzy
 msgid "There is no custom post type selected."
-msgstr "Выберите тип поля"
+msgstr "Custom Post type не выбран"
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:396
 msgid "Check this to delete this image"
-msgstr ""
+msgstr "Отметьте, чтобы удалить это изображение"
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:411
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:535
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:637
 msgid "Download file"
-msgstr ""
+msgstr "Скачать файл"
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:414
 msgid "Check this to delete this file"
-msgstr ""
+msgstr "Отметьте, чтобы удалить этот файл"
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:527
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:629
 msgid "yes"
-msgstr ""
+msgstr "да"
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:527
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:629
 msgid "no"
-msgstr ""
+msgstr "нет"
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:702
 msgid "Checkbox acceptance"
-msgstr ""
+msgstr "Чекбокс соглашения"
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:703
 msgid "Image"
-msgstr ""
+msgstr "Изображение"
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:704
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:858
 msgid "Nobody"
-msgstr ""
+msgstr "Никто"
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:973
 msgid ""
 "Please make sure you fill in all required fields in this profile field group "
 "before saving."
 msgstr ""
+"Перед сохранением проверьте, что вы заполнили все обязательные поля профиля."
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:1062
 msgid ""
 "There was a problem updating some of your profile information, please try "
 "again."
 msgstr ""
+"При обновлении информации вашего профиля произошла ошибка, попробуйте еще "
+"раз."
 
 #: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-custom-fields-type/trunk/bp-xprofile-custom-fields-type.php:1064
 msgid "Changes saved."
-msgstr ""
+msgstr "Изменения сохранены."
 
 #~ msgid "Friends Suggest Widget"
 #~ msgstr "Widget Sugerencias Amigos"

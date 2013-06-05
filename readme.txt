@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.6.3
+Stable tag: 1.5.6.4
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -77,6 +77,9 @@ function my_show_field($value_to_return, $type, $id, $value) {
 Your files are uploaded in "YOUR_UPLOAD_DIR / profiles / ID_OF_USER" folder.
 
 == Changelog ==
+
+= 1.5.6.4 =
+* Updated russian translation thanks to Romik Jan.
 
 = 1.5.6.3 =
 * Updated the link of BP Profile Search plugin.
