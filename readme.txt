@@ -1,10 +1,10 @@
 === Buddypress Xprofile Custom Fields Type ===
-Contributors: atallos, romik jan, dabesa, Branco Radenovich, @per4mance
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LRLW5AMCJGWQN
+Contributors: donmik, romik jan, dabesa, Branco Radenovich, @per4mance
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmik%40gmail%2ecom&lc=GB&item_name=donmik%20%2d%20Plugin%20Buddypress%20Xprofile%20Custom%20Fields%20Type&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.6.4
+Stable tag: 1.5.6.5
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -14,9 +14,7 @@ Buddypress installation required!! With Buddypress 1.7, I'm using a new hook "bp
 Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker, Custom post type, Multi custom post type, checkbox acceptance, image field and type field. 
 We add now a new visibility setting 'Nobody' to create fields hidden to all members of buddypress.
 Works with <a href="http://wordpress.org/plugins/buddypress-xprofile-custom-fields-type/" title="BP Profile Search">BP Profile Search plugin</a> searching birthdate and age range.
-If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-
-<a href="http://www.atallos.com" title="Atallos Cloud">www.atallos.com</a>
+If you need more fields type, you are free to add them yourself or request us at donmik@gmail.com.
 
 = Features =
 * Add Birthdate field.
@@ -77,6 +75,9 @@ function my_show_field($value_to_return, $type, $id, $value) {
 Your files are uploaded in "YOUR_UPLOAD_DIR / profiles / ID_OF_USER" folder.
 
 == Changelog ==
+
+= 1.5.6.5 =
+* Added a new filter for displaying "Download file" link. Filter named "bxcft_show_download_file_link" and send text link, type of field, id of field, value of field. Thanks to kmb@deam.org for suggesting this.
 
 = 1.5.6.4 =
 * Updated russian translation thanks to Romik Jan.

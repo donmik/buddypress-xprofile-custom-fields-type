@@ -1,11 +1,9 @@
 <?php
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
-    Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at info@atallos.com.
-    Version: 1.5.6.4
-    Author: Atallos Cloud
-    Author URI: http://www.atallos.com/
-    Plugin URI: http://www.atallos.com/portfolio/buddypress-xprofile-custom-fields-type/
+    Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at donmik@gmail.com.
+    Version: 1.5.6.5
+    Author: donmik
 */
 //load text domain
 function bxcft_load_textdomain() {
@@ -414,7 +412,9 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                    for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?></label>
             <input type="file" name="<?php bp_the_profile_field_input_name(); ?>" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> />
             <?php if (bp_get_the_profile_field_edit_value() != ''): ?>
-                <a href="<?php echo $uploads['baseurl'] . bp_get_the_profile_field_edit_value(); ?>" title="<?php bp_the_profile_field_input_name(); ?>"><?php _e('Download file', 'bxcft'); ?></a>
+                <?php   
+                    echo apply_filters('bxcft_show_download_file_link', '<a href="' . $uploads['baseurl'] . bp_get_the_profile_field_edit_value() . '" title="' . bp_get_the_profile_field_input_name() . '">' . __('Download file', 'bxcft') . '</a>', bp_get_the_profile_field_type(), bp_get_the_profile_field_id(), bp_get_the_profile_field_edit_value());
+                ?>
                 <label for="<?php bp_the_profile_field_input_name(); ?>_deletefile">
                     <input type="checkbox" name="<?php bp_the_profile_field_input_name(); ?>_deletefile" id="<?php bp_the_profile_field_input_name(); ?>_deletefile" value="1" />
                     <?php _e('Check this to delete this file', 'bxcft'); ?>
