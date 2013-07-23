@@ -4,17 +4,17 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.6.5
+Stable tag: 1.5.7
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
 == Description ==
 
 Buddypress installation required!! With Buddypress 1.7, I'm using a new hook "bp_custom_profile_edit_fields_pre_visibility" if you don't have it in your edit profile form or register page, the fields should not appear. Check this if the fields don't appear and you are using Buddypress 1.7.
-Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker, Custom post type, Multi custom post type, checkbox acceptance, image field and type field. 
+Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker, Custom post type, Multi custom post type, checkbox acceptance, image, file, colorpicker. 
 We add now a new visibility setting 'Nobody' to create fields hidden to all members of buddypress.
 Works with <a href="http://wordpress.org/plugins/buddypress-xprofile-custom-fields-type/" title="BP Profile Search">BP Profile Search plugin</a> searching birthdate and age range.
-If you need more fields type, you are free to add them yourself or request us at donmik@gmail.com.
+If you need more fields type, you are free to add them yourself or request me at miguel@donmik.com.
 
 = Features =
 * Add Birthdate field.
@@ -25,7 +25,8 @@ If you need more fields type, you are free to add them yourself or request us at
 * Add Custom post type multiselector.
 * Add Checkbox acceptance.
 * Add Image Field (jpg, jpeg, gif, png).
-* Add File field (doc, docx, pdf).`
+* Add File field (doc, docx, pdf).
+* Add Colorpicker field.
 * Add new visibility setting "Nobody". Hide the field to all members.
 * Works with BP Profile Search plugin.
 
@@ -75,6 +76,11 @@ function my_show_field($value_to_return, $type, $id, $value) {
 Your files are uploaded in "YOUR_UPLOAD_DIR / profiles / ID_OF_USER" folder.
 
 == Changelog ==
+
+= 1.5.7 =
+* Added a new field type: Colorpicker.
+* Added Modernizr plugin for testing support in browsers.
+* Added Jscolor plugin fallback for browser with no support for colorpicker html5 field.
 
 = 1.5.6.5 =
 * Added a new filter for displaying "Download file" link. Filter named "bxcft_show_download_file_link" and send text link, type of field, id of field, value of field. Thanks to kmb@deam.org for suggesting this.

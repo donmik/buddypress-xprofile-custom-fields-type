@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at donmik@gmail.com.
-    Version: 1.5.6.5
+    Version: 1.5.7
     Author: donmik
 */
 //load text domain
@@ -22,7 +22,7 @@ add_action ( 'bp_init', 'bxcft_load_textdomain', 2 );
 function bxcft_add_new_xprofile_field_type($field_types){
    $new_field_types = array('birthdate', 'email', 'web', 'datepicker',
        'select_custom_post_type', 'multiselect_custom_post_type', 
-       'checkbox_acceptance', 'image', 'file');
+       'checkbox_acceptance', 'image', 'file', 'color');
    $field_types = array_merge($field_types, $new_field_types);
    return $field_types;
 }
@@ -31,6 +31,10 @@ add_filter( 'xprofile_field_types', 'bxcft_add_new_xprofile_field_type' );
 function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
    $html = '';
    switch ( $field->type ) {
+       case 'color':
+           $html .= '<input type="color" name="field_'.$field->id.'" id="'.$field->id.'" class="input-color" />';
+           break;
+       
        case 'image':
        case 'file':
            $html .= '<input type="file" name="field_'.$field->id.'" id="'.$field->id.'" class="input-file" /> ';
@@ -79,17 +83,14 @@ function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
            break;
        
        case "datepicker":
-           $datepicker = BP_XProfile_ProfileData::get_value_byid( $field->id );
            $html .= '<input type="date" name="field_'.$field->id.'" id="'.$field->id.'" class="input" value="" />';
            break;
        
        case "web":
-           $web = BP_XProfile_ProfileData::get_value_byid( $field->id );
            $html .= '<input type="url" name="field_'.$field->id.'" id="'.$field->id.'" class="input" placeholder="'.__('yourwebsite.com', 'bxcft').'" value="" />';
            break;
        
        case "email":
-           $email = BP_XProfile_ProfileData::get_value_byid( $field->id );
            $html .= '<input type="email" name="field_'.$field->id.'" id="'.$field->id.'" class="input" placeholder="'.__('example@mail.com', 'bxcft').'" value="" />';
            break;
        
@@ -426,6 +427,24 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
             </script>
        <?php
        }
+       elseif (bp_get_the_profile_field_type() == 'color') {
+           $color_selected = bp_get_the_profile_field_edit_value();
+           if (strpos($color_selected, '#') === false) {
+               $color_selected = '#'.$color_selected;
+           }
+       ?>
+       <div class="input-color">
+            <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) { echo __('*', 'bxcft'); } ?></label>
+            <input type="color" name="<?php bp_the_profile_field_input_name() ?>" id="<?php bp_the_profile_field_input_name() ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="input" value="<?php echo $color_selected; ?>" />
+       </div>    
+        <script>
+            if (!Modernizr.inputtypes.color) {
+                // No html5 field colorpicker => Calling jscolor.
+                jQuery('input#<?php bp_the_profile_field_input_name() ?>').addClass('color');
+            }
+        </script>
+       <?php
+       }
 
        $output = ob_get_contents();
    ob_end_clean();
@@ -556,6 +575,13 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
         $value_to_return = '<p><a href="'.$uploads['baseurl'].$value.'">'.__('Download file', 'bxcft').'</a></p>';
+    } elseif ($type == 'color') {
+        $value = str_replace("<p>", "", $value);
+        $value = str_replace("</p>", "", $value);
+        if (strpos($value, '#') === false) {
+            $value = '#'.$value;
+        }
+        $value_to_return = '<p>'.$value.'</p>';
     }
     
     return apply_filters('bxcft_show_field_value', $value_to_return, $type, $id, $value);
@@ -661,6 +687,13 @@ function bxcft_get_field_data($value, $field_id) {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
         $value_to_return = '<p><a href="'.$uploads['baseurl'].$value.'">'.__('Download file', 'bxcft').'</a></p>';
+    } elseif ($field->type == 'color') {
+        $value = str_replace("<p>", "", $value);
+        $value = str_replace("</p>", "", $value);
+        if (strpos($value, '#') === false) {
+            $value = '#'.$value;
+        }
+        $value_to_return = '<p>'.$value.'</p>';
     }
     
     return apply_filters('bxcft_show_field_value', $value_to_return, $field->type, $field_id, $value);
@@ -677,7 +710,8 @@ add_filter( 'xprofile_get_field_data', 'bxcft_get_field_data', 15, 2);
 function bxcft_xprofile_filter_link_profile_data( $field_value, $field_type = 'textbox' ) {
 	if ( 'datebox' == $field_type || 'email' == $field_type || 'birthdate' == $field_type ||
             'datepicker' == $field_type || 'web' == $field_type || 'select_custom_post_type' == $field_type ||
-            'multiselect_custom_post_type' == $field_type || 'image' == $field_type || 'file' == $field_type)
+            'multiselect_custom_post_type' == $field_type || 'image' == $field_type || 'file' == $field_type ||
+            'color' == $field_type)
 		return $field_value;
 
 	if ( !strpos( $field_value, ',' ) && ( count( explode( ' ', $field_value ) ) > 5 ) )
@@ -714,11 +748,16 @@ function bxcft_xprofile_filter_link_profile_data( $field_value, $field_type = 't
 	return $values;
 }
 
+/**
+ * Adding js for admin.
+ * @param type $hook
+ * @return type
+ */
 function bxcft_add_js($hook) {    
     if ('users_page_bp-profile-setup' != $hook && 'buddypress_page_bp-profile-setup' != $hook)
        return;
 
-    wp_enqueue_script( 'bxcft-js', plugins_url('assets/js/addfields.js', __FILE__), array( 'jquery' ), '1.0' );
+    wp_enqueue_script( 'bxcft-js', plugins_url('assets/js/addfields.js', __FILE__), array( 'jquery' ), '1.5.7' );
     $params = array(
         'birthdate' => __('Birthdate', 'bxcft'),
         'email' => __('Email', 'bxcft'),
@@ -728,11 +767,23 @@ function bxcft_add_js($hook) {
         'multiselect_custom_post_type' => __('Custom Post Type Multiselector', 'bxcft'),
         'checkbox_acceptance' => __('Checkbox acceptance', 'bxcft'),
         'image' => __('Image', 'bxcft'),
-        'file' => __('File', 'bxcft')
+        'file' => __('File', 'bxcft'),
+        'color' => __('Color', 'bxcft')
     );
     wp_localize_script('bxcft-js', 'params', $params);
 }
 add_action( 'admin_enqueue_scripts', 'bxcft_add_js');
+
+/**
+ * Adding js for edit form.
+ */
+function bxcft_add_js_public() {
+    // Modernizr to test html5 fields.
+    wp_enqueue_script( 'bxcft-modernizr', plugins_url('assets/js/modernizr.js', __FILE__), array( 'jquery' ), '2.6.2' );
+    // Plugin jscolor fallback colorpicker.
+    wp_enqueue_script( 'bxcft-jscolor', plugins_url('assets/js/jscolor/jscolor.js', __FILE__), array( 'bxcft-modernizr' ), '1.4.1' );
+}
+add_action( 'wp_enqueue_scripts', 'bxcft_add_js_public');
 
 function bxcft_save_custom_option($field) {
     global $bp, $wpdb;
