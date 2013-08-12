@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at donmik@gmail.com.
-    Version: 1.5.7
+    Version: 1.5.7.1
     Author: donmik
 */
 //load text domain
@@ -490,10 +490,12 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
             if ($childs[0]->name == 'show_age') 
                 $show_age = true;
         }
-        if ($show_age) {
-            $value_to_return = '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
-        } else {
-            $value_to_return = '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
+        if ($value != '') {
+            if ($show_age) {
+                $value_to_return = '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
+            } else {
+                $value_to_return = '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
+            }
         }
     }
     elseif ($type == 'datepicker') {
@@ -607,10 +609,12 @@ function bxcft_get_field_data($value, $field_id) {
             if ($childs[0]->name == 'show_age') 
                 $show_age = true;
         }
-        if ($show_age) {
-            $value_to_return = '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
-        } else {
-            $value_to_return = '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
+        if ($value != '') {
+            if ($show_age) {
+                $value_to_return = '<p>'.floor((time() - strtotime($value))/31556926).'</p>';
+            } else {
+                $value_to_return = '<p>'.date_i18n(get_option('date_format') ,strtotime($value) ).'</p>';
+            }
         }
     }
     elseif ($field->type == 'datepicker') {
