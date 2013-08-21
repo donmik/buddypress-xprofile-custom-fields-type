@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at donmik@gmail.com.
-    Version: 1.5.7.1
+    Version: 1.5.7.2
     Author: donmik
 */
 //load text domain
@@ -22,7 +22,7 @@ add_action ( 'bp_init', 'bxcft_load_textdomain', 2 );
 function bxcft_add_new_xprofile_field_type($field_types){
    $new_field_types = array('birthdate', 'email', 'web', 'datepicker',
        'select_custom_post_type', 'multiselect_custom_post_type', 
-       'checkbox_acceptance', 'image', 'file', 'color');
+       'checkbox_acceptance', 'image', 'file', 'color', 'number');
    $field_types = array_merge($field_types, $new_field_types);
    return $field_types;
 }
@@ -31,6 +31,10 @@ add_filter( 'xprofile_field_types', 'bxcft_add_new_xprofile_field_type' );
 function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
    $html = '';
    switch ( $field->type ) {
+       case 'number':
+           $html .= '<input type="number" name="field_'.$field->id.'" id="'.$field->id.'" class="input-number" />';
+           break;
+       
        case 'color':
            $html .= '<input type="color" name="field_'.$field->id.'" id="'.$field->id.'" class="input-color" />';
            break;
@@ -445,6 +449,14 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
         </script>
        <?php
        }
+       elseif (bp_get_the_profile_field_type() == 'number') {
+       ?>
+       <div class="input-number">
+            <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) { echo __('*', 'bxcft'); } ?></label>
+            <input type="number" name="<?php bp_the_profile_field_input_name() ?>" id="<?php bp_the_profile_field_input_name() ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="input" value="<?php echo bp_the_profile_field_edit_value(); ?>" />
+       </div>   
+       <?php
+       }
 
        $output = ob_get_contents();
    ob_end_clean();
@@ -585,6 +597,7 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
         }
         $value_to_return = '<p>'.$value.'</p>';
     }
+    // Number nothing to do.
     
     return apply_filters('bxcft_show_field_value', $value_to_return, $type, $id, $value);
 }
@@ -699,6 +712,7 @@ function bxcft_get_field_data($value, $field_id) {
         }
         $value_to_return = '<p>'.$value.'</p>';
     }
+    // Number nothing to do.
     
     return apply_filters('bxcft_show_field_value', $value_to_return, $field->type, $field_id, $value);
     
@@ -715,7 +729,7 @@ function bxcft_xprofile_filter_link_profile_data( $field_value, $field_type = 't
 	if ( 'datebox' == $field_type || 'email' == $field_type || 'birthdate' == $field_type ||
             'datepicker' == $field_type || 'web' == $field_type || 'select_custom_post_type' == $field_type ||
             'multiselect_custom_post_type' == $field_type || 'image' == $field_type || 'file' == $field_type ||
-            'color' == $field_type)
+            'color' == $field_type || 'number' == $field_type)
 		return $field_value;
 
 	if ( !strpos( $field_value, ',' ) && ( count( explode( ' ', $field_value ) ) > 5 ) )
@@ -772,7 +786,8 @@ function bxcft_add_js($hook) {
         'checkbox_acceptance' => __('Checkbox acceptance', 'bxcft'),
         'image' => __('Image', 'bxcft'),
         'file' => __('File', 'bxcft'),
-        'color' => __('Color', 'bxcft')
+        'color' => __('Color', 'bxcft'),
+        'number' => __('Number', 'bxcft')
     );
     wp_localize_script('bxcft-js', 'params', $params);
 }

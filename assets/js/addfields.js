@@ -96,7 +96,14 @@
                         jQ('div#poststuff select#fieldtype option[value="color"]').html() == null){
 						var colorOption = '<option value="color">'+params.color+'</option>';
 						jQ("div#poststuff select#fieldtype").append(colorOption);
-                    }					
+                    }				
+                
+                    //add number field type on Add/Edit Xprofile field admin screen
+					if (jQ('div#poststuff select#fieldtype option[value="number"]').html() === undefined ||
+                        jQ('div#poststuff select#fieldtype option[value="number"]').html() == null){
+						var numberOption = '<option value="number">'+params.number+'</option>';
+						jQ("div#poststuff select#fieldtype").append(numberOption);
+                    }				
 				}
 			},
         
