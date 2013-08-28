@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.7.2
+Stable tag: 1.5.7.3
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -76,7 +76,37 @@ function my_show_field($value_to_return, $type, $id, $value) {
 
 Your files are uploaded in "YOUR_UPLOAD_DIR / profiles / ID_OF_USER" folder.
 
+= How can I put description text below my field's label ? =
+
+For now, you can use javascript to do this. Write this javascript at the end of your template file (register.php for example).
+
+`// For each description we have.
+jQuery('p.description').each(function() {
+    // Clone description.
+    // Looking for parent div.
+    // Looking for label of checkbox field or radio field first.
+    var desc = jQuery(this).clone(),
+        parent = jQuery(this).parent(),
+        label = parent.find('span.label');
+    // If there is no label of checkbox field or radio field, we look for normal labels.
+    if (!label.length) {
+        label = parent.find('label');
+    }
+    // If there is a label.
+    if (label.length) {
+        // Putting the description after the label.
+        label.after(desc);
+        // Removing the original description.
+        jQuery(this).remove();
+    }
+});`
+
 == Changelog ==
+
+= 1.5.7.3 =
+* Updated FAQ with javascript snippet to change location of description.
+* Updated all translations files.
+* Changed "*" with "(required)" string from buddypress files. Now the required word is the same for all fields. Fields from this plugin and original fields from buddypress.
 
 = 1.5.7.2 =
 * Added a new field type: Number.
