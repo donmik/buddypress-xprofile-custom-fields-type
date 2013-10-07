@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.7.3
+Stable tag: 1.5.7.4
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -102,6 +102,10 @@ jQuery('p.description').each(function() {
 });`
 
 == Changelog ==
+
+= 1.5.7.4 =
+* Updated German translation. Thanks to Thorsten Wollenhöfer.
+* Added hook for errors like buddypress registration template: bp_fieldname_errors.
 
 = 1.5.7.3 =
 * Updated FAQ with javascript snippet to change location of description.
