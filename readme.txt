@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.7.4
+Stable tag: 1.5.7.5
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -101,7 +101,20 @@ jQuery('p.description').each(function() {
     }
 });`
 
+= I've removed the filter that make clickable the profile fields, but with this plugin the links are still there ? =
+
+With my plugin, you need to use this code to hide the links of profile fields:
+
+`function remove_xprofile_links() {
+    remove_filter( 'bp_get_the_profile_field_value', 'xprofile_filter_link_profile_data', 9, 2 );
+}
+add_action('bp_setup_globals', 'remove_xprofile_links');`
+
 == Changelog ==
+
+= 1.5.7.5 =
+* Solved a bug in bxcft_edit_render_new_xprofile_field function. Thanks to thomaslhotta.
+* Updated FAQ.
 
 = 1.5.7.4 =
 * Updated German translation. Thanks to Thorsten Wollenhöfer.
