@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.7.6
+Stable tag: 1.5.7.7
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -52,6 +52,10 @@ Yes, you can, since version 1.5.4, I have added a filter called "bxcft_show_fiel
 
 `add_filter( 'bxcft_show_field_value', 'my_show_field', 15, 4);
 function my_show_field($value_to_return, $type, $id, $value) {
+    $value_to_return = $value;
+    if ($value_to_return == '')
+        return $value_to_return;
+    $value_to_return = $value;
     if ($type == 'birthdate') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
@@ -111,6 +115,10 @@ With my plugin, you need to use this code to hide the links of profile fields:
 add_action('bp_setup_globals', 'remove_xprofile_links');`
 
 == Changelog ==
+
+= 1.5.7.7 =
+* When a field is empty, my plugin add <p> tags and this is wrong. Now when a field is empty, it will return empty...
+* Updated FAQ.
 
 = 1.5.7.6 =
 * Solving a bug caused by me solving another bug...

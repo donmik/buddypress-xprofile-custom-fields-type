@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at miguel@donmik.com.
-    Version: 1.5.7.6
+    Version: 1.5.7.7
     Author: donmik
 */
 //load text domain
@@ -503,8 +503,11 @@ else
     add_action( 'bp_custom_profile_edit_fields', 'bxcft_edit_render_new_xprofile_field' );
 
 function bxcft_get_field_value( $value='', $type='', $id='') {
-
+    
     $value_to_return = $value;
+
+    if ($value_to_return == '')
+        return apply_filters('bxcft_show_field_value', $value_to_return, $type, $id, $value);
     
     $uploads = wp_upload_dir();
     
@@ -629,9 +632,14 @@ add_filter( 'bp_get_the_profile_field_value', 'bxcft_get_field_value', 15, 3);
  * @return string
  */
 function bxcft_get_field_data($value, $field_id) {
+    
     $value_to_return = $value;
-    $uploads = wp_upload_dir();
     $field = new BP_XProfile_Field($field_id);
+
+    if ($value_to_return == '')
+        return apply_filters('bxcft_show_field_value', $value_to_return, $field->type, $field_id, $value);
+    
+    $uploads = wp_upload_dir();
     if ($field->type == 'birthdate') {
         // Get children.
         $childs = $field->get_children();
