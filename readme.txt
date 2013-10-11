@@ -117,7 +117,7 @@ add_action('bp_setup_globals', 'remove_xprofile_links');`
 == Changelog ==
 
 = 1.5.7.7 =
-* When a field is empty, my plugin add <p> tags and this is wrong. Now when a field is empty, it will return empty...
+* When a field is empty, my plugin add "p" tags and this is wrong. Now when a field is empty, it will return empty...
 * Updated FAQ.
 
 = 1.5.7.6 =
