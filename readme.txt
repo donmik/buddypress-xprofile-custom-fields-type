@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.7.7
+Stable tag: 1.5.7.8
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -15,6 +15,7 @@ Add more custom fields type to extended profiles in buddypress: Birthdate, Email
 We add now a new visibility setting 'Nobody' to create fields hidden to all members of buddypress.
 Works with <a href="http://wordpress.org/plugins/buddypress-xprofile-custom-fields-type/" title="BP Profile Search">BP Profile Search plugin</a> searching birthdate and age range.
 If you need more fields type, you are free to add them yourself or request me at miguel@donmik.com.
+I've moved this plugin to <a href="https://github.com/donmik/buddypress-xprofile-custom-fields-type">github</a>, you can contribute now. 
 
 = Features =
 * Add Birthdate field.
@@ -114,7 +115,18 @@ With my plugin, you need to use this code to hide the links of profile fields:
 }
 add_action('bp_setup_globals', 'remove_xprofile_links');`
 
+= How to limit the size of image or file uploads ? =
+In the function "bxcft_updated_profile", after this code:
+`// Handles image field type saving.
+if (isset($_FILES['field_'.$field_id]) && $_FILES['field_'.$field_id]['size'] > 0 .......here......... ) {...`
+Thanks to borisnov for this tip.
+
 == Changelog ==
+
+= 1.5.7.8 =
+* Updated FAQ.
+* Moved to <a href="https://github.com/donmik/buddypress-xprofile-custom-fields-type">github</a>.
+
 
 = 1.5.7.7 =
 * When a field is empty, my plugin add "p" tags and this is wrong. Now when a field is empty, it will return empty...
