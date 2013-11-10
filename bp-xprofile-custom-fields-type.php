@@ -1035,7 +1035,7 @@ function bxcft_xprofile_get_hidden_fields_for_user($hidden_fields, $displayed_us
     
     return $hidden_fields;
 }
-add_filter('bp_xprofile_get_hidden_fields_for_user', 'bxcft_xprofile_get_hidden_fields_for_user', 3);
+add_filter('bp_xprofile_get_hidden_fields_for_user', 'bxcft_xprofile_get_hidden_fields_for_user', 1, 3);
 
 /**
  * Update profile 
