@@ -123,12 +123,9 @@ Thanks to borisnov for this tip.
 
 == Changelog ==
 
-<<<<<<< HEAD
 = 1.5.7.9 =
 * Bug in setting up add_filter. It requires a priority parameter first before the accepted_args so it only send the hidden fields. The other 2 fields $display_user_id and $current_user_id is set to 0 and the function returns erratic or no results because of that. Thanks to moggedb.
 
-=======
->>>>>>> Adding message moving to GitHub, Updated FAQ
 = 1.5.7.8 =
 * Updated FAQ.
 * Moved to <a href="https://github.com/donmik/buddypress-xprofile-custom-fields-type">github</a>.
