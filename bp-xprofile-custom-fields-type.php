@@ -2,7 +2,7 @@
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at miguel@donmik.com.
-    Version: 1.5.7.8
+    Version: 1.5.7.9
     Author: donmik
 */
 //load text domain
@@ -1035,7 +1035,7 @@ function bxcft_xprofile_get_hidden_fields_for_user($hidden_fields, $displayed_us
     
     return $hidden_fields;
 }
-add_filter('bp_xprofile_get_hidden_fields_for_user', 'bxcft_xprofile_get_hidden_fields_for_user', 3);
+add_filter('bp_xprofile_get_hidden_fields_for_user', 'bxcft_xprofile_get_hidden_fields_for_user', 1, 3);
 
 /**
  * Update profile 
