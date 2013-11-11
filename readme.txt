@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.5.7.8
+Stable tag: 1.5.7.9
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -122,6 +122,9 @@ if (isset($_FILES['field_'.$field_id]) && $_FILES['field_'.$field_id]['size'] > 
 Thanks to borisnov for this tip.
 
 == Changelog ==
+
+= 1.5.7.9 =
+* Bug in setting up add_filter. It requires a priority parameter first before the accepted_args so it only send the hidden fields. The other 2 fields $display_user_id and $current_user_id is set to 0 and the function returns erratic or no results because of that. Thanks to moggedb.
 
 = 1.5.7.8 =
 * Updated FAQ.
