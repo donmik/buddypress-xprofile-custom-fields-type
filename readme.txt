@@ -14,7 +14,8 @@ Buddypress installation required!! With Buddypress 1.7, I'm using a new hook "bp
 Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker, Custom post type, Multi custom post type, checkbox acceptance, image, file, colorpicker, number. 
 We add now a new visibility setting 'Nobody' to create fields hidden to all members of buddypress.
 Works with <a href="http://wordpress.org/plugins/buddypress-xprofile-custom-fields-type/" title="BP Profile Search">BP Profile Search plugin</a> searching birthdate and age range.
-If you need more fields type, you are free to add them yourself or request me at miguel@donmik.com. I've moved this plugin to <a href="https://github.com/donmik/buddypress-xprofile-custom-fields-type">github</a>, you can contribute now.
+If you need more fields type, you are free to add them yourself or request me at miguel@donmik.com. 
+I've moved this plugin to <a href="https://github.com/donmik/buddypress-xprofile-custom-fields-type">github</a>, you can contribute now.
 
 = Features =
 * Add Birthdate field.
