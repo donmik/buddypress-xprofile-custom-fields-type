@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.7.1
-Stable tag: 1.5.8
+Stable tag: 1.5.8.1
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -130,6 +130,9 @@ For image and file fields, I've added two filters for displaying the actual imag
  
 
 == Changelog ==
+
+= 1.5.8.1 =
+* Changed priority of my custom filter: bxcft_xprofile_get_hidden_fields_for_user.
 
 = 1.5.8 =
 * Added new filters for labels and inputs. See <a href="http://wordpress.org/plugins/buddypress-xprofile-custom-fields-type/faq/">FAQ</a> for more information.
