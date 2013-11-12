@@ -3,8 +3,8 @@ Contributors: donmik, romik jan, dabesa, Branco Radenovich, @per4mance
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmik%40gmail%2ecom&lc=GB&item_name=donmik%20%2d%20Plugin%20Buddypress%20Xprofile%20Custom%20Fields%20Type&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
-Tested up to: 3.5
-Stable tag: 1.5.7.9
+Tested up to: 3.7.1
+Stable tag: 1.5.8
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -120,7 +120,19 @@ In the function "bxcft_updated_profile", after this code:
 if (isset($_FILES['field_'.$field_id]) && $_FILES['field_'.$field_id]['size'] > 0 .......here......... ) {...`
 Thanks to borisnov for this tip.
 
+= Can I modify the way label and input fields are shown? =
+Yes, you can. Since version 1.5.8, you have new filters to modify the way labels and filters are shown. The filters are:
+- bxcft_field_label. The arguments are: id of field, type of field, name of input, name of field, field is required? (this is a boolean value).
+- bxcft_field_input. The arguments are: id of field, type of field, name of input, field is required? (this is a boolean value).
+For image and file fields, I've added two filters for displaying the actual image and file.
+- bxcft_field_actual_image. The arguments are: id of field, type of field, name of input, value of field (url of image).
+- bxcft_field_actual_file. The arguments are: id of field, type of field, name of input, value of field (url of file).
+ 
+
 == Changelog ==
+
+= 1.5.8 =
+* Added new filters for labels and inputs. See <a href="http://wordpress.org/plugins/buddypress-xprofile-custom-fields-type/faq/">FAQ</a> for more information.
 
 = 1.5.7.9 =
 * Bug in setting up add_filter. It requires a priority parameter first before the accepted_args so it only send the hidden fields. The other 2 fields $display_user_id and $current_user_id is set to 0 and the function returns erratic or no results because of that. Thanks to moggedb.

@@ -3,7 +3,7 @@
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Plugin URI: https://github.com/donmik/buddypress-xprofile-custom-fields-type/
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at miguel@donmik.com.
-    Version: 1.5.7.9
+    Version: 1.5.8
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -253,90 +253,164 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
            }
        ?>
            <div class="datebox">
-               <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name(); ?>_day"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) { _e( '(required)', 'buddypress' ); } ?></label>
-
-               <?php do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' ); ?>
-               <select name="<?php bp_the_profile_field_input_name(); ?>_day" id="<?php bp_the_profile_field_input_name(); ?>_day" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true"<?php endif; ?>>
-                   <option value=""<?=selected( $day, '', false )?>>--</option>
-               <?php
-                   for ( $i = 1; $i < 32; ++$i ) {
-                       echo '<option value="' . $i .'"' . selected( $day, $i, false ) . '>' . $i . '</option>';
-                   } 
-               ?>
-
-               </select>
-
-               <select name="<?php bp_the_profile_field_input_name() ?>_month" id="<?php bp_the_profile_field_input_name(); ?>_month" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true"<?php endif; ?>>
-               <?php
-                   $eng_months = array( 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' );
-                   $months = array(
-                       __( 'January', 'buddypress' ),
-                       __( 'February', 'buddypress' ),
-                       __( 'March', 'buddypress' ),
-                       __( 'April', 'buddypress' ),
-                       __( 'May', 'buddypress' ),
-                       __( 'June', 'buddypress' ),
-                       __( 'July', 'buddypress' ),
-                       __( 'August', 'buddypress' ),
-                       __( 'September', 'buddypress' ),
-                       __( 'October', 'buddypress' ),
-                       __( 'November', 'buddypress' ),
-                       __( 'December', 'buddypress' )
-                   );
-               ?>
-               <option value=""<?=selected( $month, '', false )?>>------</option>
-               <?php
-                   for ( $i = 0; $i < 12; ++$i ) {
-                       echo '<option value="' . $eng_months[$i] . '"' . selected( $month, $eng_months[$i], false ) . '>' . $months[$i] . '</option>';
-                   }
-               ?>
-               </select>
-               <?php
-               $birthdate_start_year = date('Y')-1;
-               ?>               
-
-               <select name="<?php bp_the_profile_field_input_name() ?>_year" id="<?php bp_the_profile_field_input_name(); ?>_year" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?>>
-               <option value=""<?=selected( $year, '', false )?>>----</option>
-               <?php
-                   for ( $i = $birthdate_start_year; $i > 1901; $i-- ) {
-                       echo '<option value="' . $i .'"' . selected( $year, $i, false ) . '>' . $i . '</option>';
-                   }
-               ?>
-               </select>
+            <?php
+                $label = sprintf('<label class="label-form%s" for="%s_day">%s%s</label>',
+                                bp_get_the_profile_field_is_required()?' required':'',
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_name(),
+                                bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
+                
+                // Dropdown => Day of month.
+                $options_day = '';
+                for ($i=1; $i<32; ++$i) {
+                    $options_day .= sprintf('<option value="%s"%s>%s</option>',
+                                            $i,
+                                            selected($day, $i, false),
+                                            $i);
+                } 
+                $input = sprintf('<select name="%s_day" id="%s_day"%s><option value=""%s>--</option>%s</select>',
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_is_required()?'aria-required="true"':'',
+                                        selected($day, '', false),
+                                        $options_day); 
+                
+                // Dropdown => Month.
+                $eng_months = array( 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' );
+                $months = array(
+                    __( 'January', 'buddypress' ),
+                    __( 'February', 'buddypress' ),
+                    __( 'March', 'buddypress' ),
+                    __( 'April', 'buddypress' ),
+                    __( 'May', 'buddypress' ),
+                    __( 'June', 'buddypress' ),
+                    __( 'July', 'buddypress' ),
+                    __( 'August', 'buddypress' ),
+                    __( 'September', 'buddypress' ),
+                    __( 'October', 'buddypress' ),
+                    __( 'November', 'buddypress' ),
+                    __( 'December', 'buddypress' )
+                );
+                $options_month = '';
+                for ($i=0; $i<12; ++$i) {
+                    $options_month .= sprintf('<option value="%s"%s>%s</option>',
+                                            $eng_months[$i],
+                                            selected( $month, $eng_months[$i], false ),
+                                            $months[$i]);
+                }
+                $input .= sprintf('<select name="%s_month" id="%s_month"%s><option value=""%s>------</option>%s</select>',
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_is_required()?'aria-required="true"':'',
+                                        selected($month, '', false),
+                                        $options_month);
+                
+                // Dropdown => Year.
+                $birthdate_start_year = date('Y')-1;
+                $options_year = '';
+                for ($i=$birthdate_start_year; $i>1901; $i--) {
+                    $options_year .= sprintf('<option value="%s"%s>%s</option>',
+                                            $i,
+                                            selected($year, $i, false),
+                                            $i);
+                }
+                $input .= sprintf('<select name="%s_year" id="%s_year"%s><option value=""%s>----</option>%s</select>',
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_is_required()?'aria-required="true" required="required"':'',
+                                        selected($year, '', false),
+                                        $options_year);
+                
+                echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
+                
+                do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
+                
+                echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
+            ?>       
            </div>
        <?php
        } 
        elseif ( bp_get_the_profile_field_type() == 'email' ) {
        ?>
         <div class="input-email">
-            <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) { _e( '(required)', 'buddypress' ); } ?></label>
-            
-            <?php do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' ); ?>
-            <input type="email" name="<?php bp_the_profile_field_input_name() ?>" id="<?php bp_the_profile_field_input_name() ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="input" value="<?php bp_the_profile_field_edit_value() ?>" placeholder="<?php _e('example@mail.com', 'bxcft'); ?>" />
+            <?php
+                $label = sprintf('<label class="label-form%s" for="%s">%s%s</label>',
+                                bp_get_the_profile_field_is_required()?' required':'',
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_name(),
+                                bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
+                
+                $input = sprintf('<input type="email" name="%s" id="%s"%s class="input" value="%s" placeholder="%s" />',
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_is_required()?' aria-required="true" required="required"':'',
+                                bp_get_the_profile_field_edit_value(),
+                                __('example@mail.com', 'bxcft'));
+                
+                echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
+                
+                do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
+                
+                echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
+            ?>
        </div>
        <?php
        } 
        elseif ( bp_get_the_profile_field_type() == 'web' ) {
        ?>
         <div class="input-web">
-            <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) { _e( '(required)', 'buddypress' ); } ?></label>
-            
-            <?php do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' ); ?>
-            <input type="url" name="<?php bp_the_profile_field_input_name() ?>" id="<?php bp_the_profile_field_input_name() ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="input" value="<?php bp_the_profile_field_edit_value() ?>" placeholder="<?php _e('http://yourwebsite.com', 'bxcft'); ?>" />
+            <?php
+                $label = sprintf('<label class="label-form%s" for="%s">%s%s</label>',
+                                bp_get_the_profile_field_is_required()?' required':'',
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_name(),
+                                bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
+                
+                $input = sprintf('<input type="url" name="%s" id="%s"%s class="input" value="%s" placeholder="%s" />',
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_is_required()?' aria-required="true" required="required"':'',
+                                bp_get_the_profile_field_edit_value(),
+                                __('http://yourwebsite.com', 'bxcft'));
+                
+                echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
+                
+                do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
+                
+                echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
+            ?>
        </div>
        <?php
        }
        elseif ( bp_get_the_profile_field_type() == 'datepicker' ) {
        ?>
-        <div class="input-web">
-            <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) { _e( '(required)', 'buddypress' ); } ?></label>
-            
-            <?php do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' ); ?>
-            <input type="date" name="<?php bp_the_profile_field_input_name() ?>" id="<?php bp_the_profile_field_input_name() ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="input" value="<?php bp_the_profile_field_edit_value() ?>" />
+        <div class="input-datepicker">
+            <?php
+                $label = sprintf('<label class="label-form%s" for="%s">%s%s</label>',
+                                bp_get_the_profile_field_is_required()?' required':'',
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_name(),
+                                bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
+                
+                $input = sprintf('<input type="date" name="%s" id="%s"%s class="input" value="%s" />',
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_is_required()?' aria-required="true" required="required"':'',
+                                bp_get_the_profile_field_edit_value());
+                
+                echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
+                
+                do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
+                
+                echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
+            ?>
        </div>
        <?php
        }
        elseif ( bp_get_the_profile_field_type() == 'select_custom_post_type' ) {
+       ?>
+        <div class="input-custom-post-type">
+       <?php
            $custom_post_type_selected = BP_XProfile_ProfileData::get_value_byid( $field->id );
            if ( isset( $_POST['field_' . $field->id] ) && $_POST['field_' . $field->id] != '' ) {
                 if ( !empty( $_POST['field_' . $field->id] ) ) {
@@ -355,20 +429,43 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                $custom_post_type = $childs[0]->name;
                // Get the posts of custom post type.
                $loop = new WP_Query(array('posts_per_page' => -1, 'post_type' => $custom_post_type, 'order_by' => 'title', 'order' => 'ASC' ));
-       ?>
-       <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) { _e( '(required)', 'buddypress' ); } ?></label>
-       
-       <?php do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' ); ?>
-       <select name="<?php bp_the_profile_field_input_name(); ?>" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="select">
-           <option value=""><?php _e('Select...', 'bxcft'); ?></option>
-       <?php foreach ($loop->posts as $post): ?>
-           <option value="<?php echo $post->ID; ?>" <?php if ($custom_post_type_selected == $post->ID): ?>selected="selected"<?php endif; ?>><?php echo $post->post_title; ?></option>
-       <?php endforeach; ?>
-       </select>
-       <?php
+               
+                $label = sprintf('<label class="label-form%s" for="%s">%s%s</label>',
+                                bp_get_the_profile_field_is_required()?' required':'',
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_name(),
+                                bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
+                
+                $options_posts = '';
+                foreach ($loop->posts as $post) {
+                    $options_posts .= sprintf('<option value="%s"%s>%s</option>',
+                                            $post->ID,
+                                            ($custom_post_type_selected==$post->ID)?' selected="selected"':'',
+                                            $post->post_title);
+                }
+                $input = sprintf('<select name="%s" id="%s"%s class="select"><option value="">%s</option>%s</select>',
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_is_required()?' aria-required="true" required="required"':'',
+                                __('Select...', 'bxcft'),
+                                $options_posts);
+                
+                echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
+                
+                do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
+                
+                echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
+           } else {
+                _e('There is no custom post type selected.', 'bxcft');
            }
+        ?>
+        </div>
+    <?php
        }
        elseif ( bp_get_the_profile_field_type() == 'multiselect_custom_post_type' ) {
+    ?>
+        <div class="input-custom-post-type-multi">
+    <?php
            $custom_post_type_selected = maybe_unserialize(BP_XProfile_ProfileData::get_value_byid( $field->id ));
            if ( isset( $_POST['field_' . $field->id] ) && $_POST['field_' . $field->id] != '' ) {
                 if ( !empty( $_POST['field_' . $field->id] ) ) {
@@ -384,70 +481,149 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                $custom_post_type = $childs[0]->name;
                // Get the posts of custom post type.
                $loop = new WP_Query(array('posts_per_page' => -1, 'post_type' => $custom_post_type, 'order_by' => 'title', 'order' => 'ASC' ));
-       ?>
-       <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) { _e( '(required)', 'buddypress' ); } ?></label>
-       
-       <?php do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' ); ?>
-       <select name="<?php bp_the_profile_field_input_name(); ?>[]" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="select" multiple="multiple">
-       <?php foreach ($loop->posts as $post): ?>
-           <option value="<?php echo $post->ID; ?>" <?php if (in_array($post->ID, $custom_post_type_selected)): ?>selected="selected"<?php endif; ?>><?php echo $post->post_title; ?></option>
-       <?php endforeach; ?>
-       </select>
-       <?php
+               
+                $label = sprintf('<label class="label-form%s" for="%s">%s%s</label>',
+                                bp_get_the_profile_field_is_required()?' required':'',
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_name(),
+                                bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
+                
+                $options_posts = '';
+                foreach ($loop->posts as $post) {
+                    $options_posts .= sprintf('<option value="%s"%s>%s</option>',
+                                            $post->ID,
+                                            (!empty($custom_post_type_selected) &&in_array($post->ID, $custom_post_type_selected))?' selected="selected"':'',
+                                            $post->post_title);
+                }
+                $input = sprintf('<select name="%s[]" id="%s"%s class="select" multiple="multiple"><option value="">%s</option>%s</select>',
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_input_name(),
+                                bp_get_the_profile_field_is_required()?' aria-required="true" required="required"':'',
+                                __('Select...', 'bxcft'),
+                                $options_posts);
+                
+                echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
+                
+                do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
+                
+                echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
            } else {
                 _e('There is no custom post type selected.', 'bxcft');
            }
+        ?>
+        </div>    
+    <?php
        }
        elseif (bp_get_the_profile_field_type() == 'checkbox_acceptance') {
-       ?>
-           <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>"
-                  for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?></label>
-        
-               <?php do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' ); ?>
-               <input type="checkbox" name="<?php bp_the_profile_field_input_name(); ?>" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="checkbox" value="1" <?php if (bp_get_the_profile_field_edit_value()): ?>checked="checked"<?php endif; ?> />
-               <?php bp_the_profile_field_description(); $field->description = ''; ?>
+        ?>
+        <div class="checkbox-acceptance">
+        <?php
+            $label = sprintf('<label class="label-form%s" for="%s">%s%s</label>',
+                            bp_get_the_profile_field_is_required()?' required':'',
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_name(),
+                            bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
+
+            $input = sprintf('<input type="checkbox" name="%s" id="%s"%s class="checkbox" value="1"%s />%s',
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_is_required()?' aria-required="true" required="required"':'',
+                            bp_get_the_profile_field_edit_value()?' checked="checked"':'',
+                            bp_get_the_profile_field_description());
+
+            echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
+
+            do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
+
+            echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
+            $field_description = '';
+        ?>
+        </div>
        <?php
        }
        elseif (bp_get_the_profile_field_type() == 'image') {
-       ?>
-            <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>"
-                   for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?></label>
-               
-            <?php do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' ); ?>
-            <input type="file" name="<?php bp_the_profile_field_input_name(); ?>" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> />
-            <?php if (bp_get_the_profile_field_edit_value() != ''): ?>
-                <img src="<?php echo $uploads['baseurl'] . bp_get_the_profile_field_edit_value(); ?>" alt="<?php bp_the_profile_field_input_name(); ?>" />
-                <label for="<?php bp_the_profile_field_input_name(); ?>_deleteimg">
-                    <input type="checkbox" name="<?php bp_the_profile_field_input_name(); ?>_deleteimg" id="<?php bp_the_profile_field_input_name(); ?>_deleteimg" value="1" />
-                    <?php _e('Check this to delete this image', 'bxcft'); ?>
-                </label>
-                <input type="hidden" name="<?php bp_the_profile_field_input_name(); ?>_hiddenimg" id="<?php bp_the_profile_field_input_name(); ?>_hiddenimg" value="<?php bp_the_profile_field_edit_value(); ?>" />
-            <?php endif; ?>
+        ?>
+        <div class="input-image">
+        <?php
+            $label = sprintf('<label class="label-form%s" for="%s">%s%s</label>',
+                            bp_get_the_profile_field_is_required()?' required':'',
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_name(),
+                            bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
+
+            if (bp_get_the_profile_field_edit_value() != '') {
+                $actual_image = sprintf('<img src="%s" alt="%s" /><label for="%s_deleteimg"><input type="checkbox" name="%s_deleteimg" id="%s_deleteimg" value="1" />%s</label><input type="hidden" name="%s_hiddenimg" id="%s_hiddenimg" value="%s" />',
+                                        $uploads['baseurl'].bp_get_the_profile_field_edit_value(),
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_input_name(),
+                                        __('Check this to delete this image', 'bxcft'),
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_edit_value());
+            } else {
+                $actual_image = '';
+            }
+            $input = sprintf('<input type="file" name="%s" id="%s"%s />',
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_is_required()?' aria-required="true" required="required"':'');
+
+            echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
+
+            do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
+
+            echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
+            
+            echo apply_filters('bxcft_field_actual_image', $actual_image, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_edit_value());
+        ?>
             <script type="text/javascript">
                 jQuery('#profile-edit-form').attr('enctype', 'multipart/form-data');
             </script>
+        </div>
        <?php
        }
        elseif (bp_get_the_profile_field_type() == 'file') {
        ?>
-            <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>"
-                   for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?></label>
+        <div class="input-file">
+        <?php
+            $label = sprintf('<label class="label-form%s" for="%s">%s%s</label>',
+                            bp_get_the_profile_field_is_required()?' required':'',
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_name(),
+                            bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
+
+            if (bp_get_the_profile_field_edit_value() != '') {
+                $actual_file = sprintf('%s<label for="%s_deletefile"><input type="checkbox" name="%s_deletefile" id="%s_deletefile" value="1" />%s</label><input type="hidden" name="%s_hiddenfile" id="%s_hiddenfile" value="%s" />',
+                                        apply_filters('bxcft_show_download_file_link', '<a href="' . $uploads['baseurl'] . bp_get_the_profile_field_edit_value() . '" title="' . bp_get_the_profile_field_input_name() . '">' . __('Download file', 'bxcft') . '</a>', bp_get_the_profile_field_type(), bp_get_the_profile_field_id(), bp_get_the_profile_field_edit_value()),
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_input_name(),
+                                        __('Check this to delete this file', 'bxcft'),
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_input_name(),
+                                        bp_get_the_profile_field_edit_value());
+            } else {
+                $actual_file = '';
+            }
+            $input = sprintf('<input type="file" name="%s" id="%s"%s />',
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_is_required()?' aria-required="true" required="required"':'');
+
+            echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
+
+            do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
+
+            echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
             
-            <?php do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' ); ?>
-            <input type="file" name="<?php bp_the_profile_field_input_name(); ?>" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> />
-            <?php if (bp_get_the_profile_field_edit_value() != ''): ?>
-                <?php   
-                    echo apply_filters('bxcft_show_download_file_link', '<a href="' . $uploads['baseurl'] . bp_get_the_profile_field_edit_value() . '" title="' . bp_get_the_profile_field_input_name() . '">' . __('Download file', 'bxcft') . '</a>', bp_get_the_profile_field_type(), bp_get_the_profile_field_id(), bp_get_the_profile_field_edit_value());
-                ?>
-                <label for="<?php bp_the_profile_field_input_name(); ?>_deletefile">
-                    <input type="checkbox" name="<?php bp_the_profile_field_input_name(); ?>_deletefile" id="<?php bp_the_profile_field_input_name(); ?>_deletefile" value="1" />
-                    <?php _e('Check this to delete this file', 'bxcft'); ?>
-                </label>
-                <input type="hidden" name="<?php bp_the_profile_field_input_name(); ?>_hiddenfile" id="<?php bp_the_profile_field_input_name(); ?>_hiddenfile" value="<?php bp_the_profile_field_edit_value(); ?>" />
-            <?php endif; ?>
+            echo apply_filters('bxcft_field_actual_file', $actual_file, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_edit_value());
+        ?>
             <script type="text/javascript">
                 jQuery('#profile-edit-form').attr('enctype', 'multipart/form-data');
             </script>
+        </div>
        <?php
        }
        elseif (bp_get_the_profile_field_type() == 'color') {
@@ -457,10 +633,25 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
            }
        ?>
        <div class="input-color">
-            <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) { _e( '(required)', 'buddypress' ); } ?></label>
-            
-            <?php do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' ); ?>
-            <input type="color" name="<?php bp_the_profile_field_input_name() ?>" id="<?php bp_the_profile_field_input_name() ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="input" value="<?php echo $color_selected; ?>" />
+        <?php
+            $label = sprintf('<label class="label-form%s" for="%s">%s%s</label>',
+                            bp_get_the_profile_field_is_required()?' required':'',
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_name(),
+                            bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
+
+            $input = sprintf('<input type="color" name="%s" id="%s"%s class="input" value="%s" />',
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_is_required()?' aria-required="true" required="required"':'',
+                            $color_selected);
+
+            echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
+
+            do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
+
+            echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
+        ?>
        </div>    
         <script>
             if (!Modernizr.inputtypes.color) {
@@ -473,10 +664,25 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
        elseif (bp_get_the_profile_field_type() == 'number') {
        ?>
        <div class="input-number">
-            <label class="label-form <?php if ( bp_get_the_profile_field_is_required() ) : ?>required<?php endif; ?>" for="<?php bp_the_profile_field_input_name() ?>"><?php bp_the_profile_field_name() ?> <?php if ( bp_get_the_profile_field_is_required() ) { _e( '(required)', 'buddypress' ); } ?></label>
-            
-            <?php do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' ); ?>
-            <input type="number" name="<?php bp_the_profile_field_input_name() ?>" id="<?php bp_the_profile_field_input_name() ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true" required="required"<?php endif; ?> class="input" value="<?php echo bp_the_profile_field_edit_value(); ?>" />
+        <?php
+            $label = sprintf('<label class="label-form%s" for="%s">%s%s</label>',
+                            bp_get_the_profile_field_is_required()?' required':'',
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_name(),
+                            bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
+
+            $input = sprintf('<input type="number" name="%s" id="%s"%s class="input" value="%s" />',
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_input_name(),
+                            bp_get_the_profile_field_is_required()?' aria-required="true" required="required"':'',
+                            bp_get_the_profile_field_edit_value());
+
+            echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
+
+            do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
+
+            echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
+        ?>
        </div>   
        <?php
        }
