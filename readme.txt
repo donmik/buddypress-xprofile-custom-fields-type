@@ -131,6 +131,9 @@ For image and file fields, I've added two filters for displaying the actual imag
 
 == Changelog ==
 
+= 1.5.8.2 =
+* Hungarian translation added thanks to Laszlo Espadas.
+
 = 1.5.8.1 =
 * Changed priority of my custom filter: bxcft_xprofile_get_hidden_fields_for_user.
 
