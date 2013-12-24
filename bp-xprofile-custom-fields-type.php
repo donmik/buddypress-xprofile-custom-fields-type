@@ -3,7 +3,7 @@
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Plugin URI: https://github.com/donmik/buddypress-xprofile-custom-fields-type/
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at miguel@donmik.com.
-    Version: 1.5.8.2
+    Version: 1.5.8.3
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -809,7 +809,7 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
     } elseif ($type == 'checkbox_acceptance') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        $value_to_return = '<p>'.($value==1)?__('yes', 'bxcft'):__('no', 'bxcft').'</p>';
+        $value_to_return = '<p>'.(($value==1)?__('yes', 'bxcft'):__('no', 'bxcft')).'</p>';
     } elseif ($type == 'image') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
@@ -929,7 +929,7 @@ function bxcft_get_field_data($value, $field_id) {
     } elseif ($field->type == 'checkbox_acceptance') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
-        $value_to_return = '<p>'.($value==1)?__('yes', 'bxcft'):__('no', 'bxcft').'</p>';
+        $value_to_return = '<p>'.(($value==1)?__('yes', 'bxcft'):__('no', 'bxcft')).'</p>';
     } elseif ($field->type == 'image') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
