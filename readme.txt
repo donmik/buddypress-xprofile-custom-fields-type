@@ -134,6 +134,9 @@ For image and file fields, I've added two filters for displaying the actual imag
 = 1.5.8.4 =
 * Solving this issue https://github.com/donmik/buddypress-xprofile-custom-fields-type/issues/2#issuecomment-31181714
 
+= 1.5.8.3 =
+* Solving this issue https://github.com/donmik/buddypress-xprofile-custom-fields-type/issues/3
+
 = 1.5.8.2 =
 * Hungarian translation added thanks to Laszlo Espadas.
 
