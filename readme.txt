@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.5.8.3
+Stable tag: 1.5.8.4
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -131,8 +131,8 @@ For image and file fields, I've added two filters for displaying the actual imag
 
 == Changelog ==
 
-= 1.5.8.3 =
-* Solving this issue https://github.com/donmik/buddypress-xprofile-custom-fields-type/issues/3
+= 1.5.8.4 =
+* Solving this issue https://github.com/donmik/buddypress-xprofile-custom-fields-type/issues/2#issuecomment-31181714
 
 = 1.5.8.2 =
 * Hungarian translation added thanks to Laszlo Espadas.
