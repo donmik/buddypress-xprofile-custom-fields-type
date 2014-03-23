@@ -3,7 +3,7 @@
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Plugin URI: https://github.com/donmik/buddypress-xprofile-custom-fields-type/
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at miguel@donmik.com.
-    Version: 1.5.8.5
+    Version: 1.5.8.6
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -49,7 +49,6 @@ function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
        case 'checkbox_acceptance':
            $html .= '<input type="checkbox" name="field_'.$field->id.'" id="'.$field->id.'" class="input-checkbox" value="" /> ';
            $html .= $field->description;
-           $field->description = '';
            break;
        
        case 'select_custom_post_type':
@@ -536,9 +535,13 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
             do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
 
             echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
-            $field_description = '';
         ?>
         </div>
+        <script>
+            jQuery(function() {
+                jQuery('.field_<?php echo bp_get_the_profile_field_id(); ?> p.description').hide().remove();
+            });
+        </script>
        <?php
        }
        elseif (bp_get_the_profile_field_type() == 'image') {
