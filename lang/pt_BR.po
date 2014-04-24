@@ -1,0 +1,200 @@
+# Copyright (C) 2013 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version: BuddyPress Xprofile Custom Fields Type\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/buddypress-xprofile-custom-"
+"fields-type\n"
+"POT-Creation-Date: 2013-08-22 07:26:02+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-04-16 13:38-0300\n"
+"Last-Translator: Renato Alves <espellcaste@gmail.com>\n"
+"Language-Team: Renato Alves <LL@li.org, espellcaste@gmail.com>\n"
+"X-Generator: Poedit 1.6.4\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: pt_BR\n"
+
+#: bp-xprofile-custom-fields-type.php:94
+msgid "yourwebsite.com"
+msgstr "seusite.com"
+
+#: bp-xprofile-custom-fields-type.php:98
+#: bp-xprofile-custom-fields-type.php:310
+msgid "example@mail.com"
+msgstr "exemplo@email.com"
+
+#: bp-xprofile-custom-fields-type.php:157
+#: bp-xprofile-custom-fields-type.php:270
+msgid "January"
+msgstr "Janeiro"
+
+#: bp-xprofile-custom-fields-type.php:158
+#: bp-xprofile-custom-fields-type.php:271
+msgid "February"
+msgstr "Fevereiro"
+
+#: bp-xprofile-custom-fields-type.php:159
+#: bp-xprofile-custom-fields-type.php:272
+msgid "March"
+msgstr "Março"
+
+#: bp-xprofile-custom-fields-type.php:160
+#: bp-xprofile-custom-fields-type.php:273
+msgid "April"
+msgstr "Abril"
+
+#: bp-xprofile-custom-fields-type.php:161
+#: bp-xprofile-custom-fields-type.php:274
+msgid "May"
+msgstr "Maio"
+
+#: bp-xprofile-custom-fields-type.php:162
+#: bp-xprofile-custom-fields-type.php:275
+msgid "June"
+msgstr "Junho"
+
+#: bp-xprofile-custom-fields-type.php:163
+#: bp-xprofile-custom-fields-type.php:276
+msgid "July"
+msgstr "Julho"
+
+#: bp-xprofile-custom-fields-type.php:164
+#: bp-xprofile-custom-fields-type.php:277
+msgid "August"
+msgstr "Agosto"
+
+#: bp-xprofile-custom-fields-type.php:165
+#: bp-xprofile-custom-fields-type.php:278
+msgid "September"
+msgstr "Setembro"
+
+#: bp-xprofile-custom-fields-type.php:166
+#: bp-xprofile-custom-fields-type.php:279
+msgid "October"
+msgstr "Outubro"
+
+#: bp-xprofile-custom-fields-type.php:167
+#: bp-xprofile-custom-fields-type.php:280
+msgid "November"
+msgstr "Novembro"
+
+#: bp-xprofile-custom-fields-type.php:168
+#: bp-xprofile-custom-fields-type.php:281
+msgid "December"
+msgstr "Dezembro"
+
+#: bp-xprofile-custom-fields-type.php:254
+#: bp-xprofile-custom-fields-type.php:309
+#: bp-xprofile-custom-fields-type.php:317
+#: bp-xprofile-custom-fields-type.php:325
+#: bp-xprofile-custom-fields-type.php:350
+#: bp-xprofile-custom-fields-type.php:377
+#: bp-xprofile-custom-fields-type.php:441
+#: bp-xprofile-custom-fields-type.php:455
+msgid "*"
+msgstr "*"
+
+#: bp-xprofile-custom-fields-type.php:318
+msgid "http://yourwebsite.com"
+msgstr "http://seusite.com"
+
+#: bp-xprofile-custom-fields-type.php:352
+msgid "Select..."
+msgstr "Selecionar..."
+
+#: bp-xprofile-custom-fields-type.php:385
+msgid "There is no custom post type selected."
+msgstr "Nenhum tipo de post personalizado foi selecionado."
+
+#: bp-xprofile-custom-fields-type.php:405
+msgid "Check this to delete this image"
+msgstr "Marque este para excluir esta imagem"
+
+#: bp-xprofile-custom-fields-type.php:421
+#: bp-xprofile-custom-fields-type.php:591
+#: bp-xprofile-custom-fields-type.php:706
+msgid "Download file"
+msgstr "Baixar aquivo"
+
+#: bp-xprofile-custom-fields-type.php:425
+msgid "Check this to delete this file"
+msgstr "Marque este para excluir este arquivo"
+
+#: bp-xprofile-custom-fields-type.php:583
+#: bp-xprofile-custom-fields-type.php:698
+msgid "yes"
+msgstr "sim"
+
+#: bp-xprofile-custom-fields-type.php:583
+#: bp-xprofile-custom-fields-type.php:698
+msgid "no"
+msgstr "não"
+
+#: bp-xprofile-custom-fields-type.php:780
+msgid "Birthdate"
+msgstr "Data de aniversário"
+
+#: bp-xprofile-custom-fields-type.php:781
+msgid "Email"
+msgstr "E-mail"
+
+#: bp-xprofile-custom-fields-type.php:782
+msgid "Website"
+msgstr "Site"
+
+#: bp-xprofile-custom-fields-type.php:783
+msgid "Datepicker"
+msgstr "Selecionador de Data"
+
+#: bp-xprofile-custom-fields-type.php:784
+msgid "Custom Post Type Selector"
+msgstr "Seletor de Tipo de Post Customizado"
+
+#: bp-xprofile-custom-fields-type.php:785
+msgid "Custom Post Type Multiselector"
+msgstr "Multiseletor de Tipo de Post Customizado"
+
+#: bp-xprofile-custom-fields-type.php:786
+msgid "Checkbox acceptance"
+msgstr "Checkbox de aceitação"
+
+#: bp-xprofile-custom-fields-type.php:787
+msgid "Image"
+msgstr "Imagem"
+
+#: bp-xprofile-custom-fields-type.php:788
+msgid "File"
+msgstr "Arquivo"
+
+#: bp-xprofile-custom-fields-type.php:789
+msgid "Color"
+msgstr "Cor"
+
+#: bp-xprofile-custom-fields-type.php:790
+msgid "Number"
+msgstr "Número"
+
+#: bp-xprofile-custom-fields-type.php:874
+#: bp-xprofile-custom-fields-type.php:905
+msgid "Please, select custom post type"
+msgstr "Por favor, selecione um tipo de post personalizado"
+
+#: bp-xprofile-custom-fields-type.php:876
+#: bp-xprofile-custom-fields-type.php:907
+msgid "Custom Post Type:"
+msgstr "Tipo de Post Personalizado:"
+
+#: bp-xprofile-custom-fields-type.php:931
+msgid "Show age (hide birthdate)"
+msgstr "Mostrar idade (esconder data de aniversário)"
+
+#: bp-xprofile-custom-fields-type.php:933
+msgid "Check this if you want to show age instead of birthdate:"
+msgstr ""
+"Cheque este se você deseja mostrar a idade ao invés da data de aniverário:"
+
+#: bp-xprofile-custom-fields-type.php:955
+msgid "Nobody"
+msgstr "Ninguém"
