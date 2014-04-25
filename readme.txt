@@ -137,6 +137,7 @@ Working with Buddypress 2.0!
 * Changed FAQ.
 * Rewritten validation and use of fields of type: file and image. This is working now when marked as required field in registration form.
 * Deleted p tags from values. You will get the value of field.
+* Added Brazilian translation. Thanks to https://github.com/espellcaste
 
 = 1.5.8.7 =
 * Remove the default description field in case the field is checkbox acceptance also in registration form.
