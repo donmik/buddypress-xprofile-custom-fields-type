@@ -3,8 +3,8 @@ Contributors: donmik, romik jan, dabesa, Branco Radenovich, @per4mance, Laszlo E
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmik%40gmail%2ecom&lc=GB&item_name=donmik%20%2d%20Plugin%20Buddypress%20Xprofile%20Custom%20Fields%20Type&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
-Tested up to: 3.8.1
-Stable tag: 1.5.8.7
+Tested up to: 3.9
+Stable tag: 1.5.9
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -15,6 +15,8 @@ Add more custom fields type to extended profiles in buddypress: Birthdate, Email
 We add now a new visibility setting 'Nobody' to create fields hidden to all members of buddypress.
 Works with <a href="http://wordpress.org/plugins/buddypress-xprofile-custom-fields-type/" title="BP Profile Search">BP Profile Search plugin</a> searching birthdate and age range.
 If you need more fields type, you are free to add them yourself or request me at miguel@donmik.com. I've moved this plugin to <a href="https://github.com/donmik/buddypress-xprofile-custom-fields-type">github</a>, you can contribute now.
+
+Tested with Buddypress 2.0!
 
 = Features =
 * Add Birthdate field.
@@ -55,7 +57,6 @@ function my_show_field($value_to_return, $type, $id, $value) {
     $value_to_return = $value;
     if ($value_to_return == '')
         return $value_to_return;
-    $value_to_return = $value;
     if ($type == 'birthdate') {
         $value = str_replace("<p>", "", $value);
         $value = str_replace("</p>", "", $value);
@@ -130,6 +131,12 @@ For image and file fields, I've added two filters for displaying the actual imag
  
 
 == Changelog ==
+
+= 1.5.9 =
+Working with Buddypress 2.0!
+* Changed FAQ.
+* Rewritten validation and use of fields of type: file and image. This is working now when marked as required field in registration form.
+* Deleted p tags from values. You will get the value of field.
 
 = 1.5.8.7 =
 * Remove the default description field in case the field is checkbox acceptance also in registration form.
