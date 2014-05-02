@@ -132,12 +132,17 @@ For image and file fields, I've added two filters for displaying the actual imag
 
 == Changelog ==
 
+<<<<<<< HEAD
 = 1.5.9.1 =
 * Solving error when rendering field values like birthdate, age or datepicker.
 * Solving error when more than one image field. https://github.com/donmik/buddypress-xprofile-custom-fields-type/issues/9
 
 = 1.5.9 =
 * Working with Buddypress 2.0!
+=======
+= 1.5.9 =
+Working with Buddypress 2.0!
+>>>>>>> 99d0eed54142a5efb21b40e7927b193904c22512
 * Changed FAQ.
 * Rewritten validation and use of fields of type: file and image. This is working now when marked as required field in registration form.
 * Deleted p tags from values. You will get the value of field.
