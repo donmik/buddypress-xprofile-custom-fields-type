@@ -3,7 +3,7 @@
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Plugin URI: https://github.com/donmik/buddypress-xprofile-custom-fields-type/
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at miguel@donmik.com.
-    Version: 1.5.9
+    Version: 1.5.9.1
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -781,6 +781,7 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
     
     $uploads = wp_upload_dir();
     
+    $value = strip_tags($value);
     if ($type == 'birthdate') {
         $field = new BP_XProfile_Field($id);
         // Get children.
@@ -857,10 +858,8 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
             $value_to_return = '--';
         }
     } elseif ($type == 'checkbox_acceptance') {
-        $value = strip_tags($value);
         $value_to_return = (((int)$value==1)?__('yes', 'bxcft'):__('no', 'bxcft'));
     } elseif ($type == 'image') {
-        $value = strip_tags($value);
         if (strpos($value, $uploads['baseurl']) === false) {
             $value = $uploads['baseurl'].$value;
         } else {
@@ -868,7 +867,6 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
         }
         $value_to_return = '<img src="'.$value.'" alt="" />';
     } elseif ($type == 'file') {
-        $value = strip_tags($value);
         if (strpos($value, $uploads['baseurl']) === false) {
             $value = $uploads['baseurl'].$value;
         }
@@ -901,6 +899,8 @@ function bxcft_get_field_data($value, $field_id) {
         return apply_filters('bxcft_show_field_value', $value_to_return, $field->type, $field_id, $value);
     
     $uploads = wp_upload_dir();
+    
+    $value = strip_tags($value);
     if ($field->type == 'birthdate') {
         // Get children.
         $childs = $field->get_children();
@@ -973,7 +973,6 @@ function bxcft_get_field_data($value, $field_id) {
         $value = strip_tags($value);
         $value_to_return = (((int)$value==1)?__('yes', 'bxcft'):__('no', 'bxcft'));
     } elseif ($field->type == 'image') {
-        $value = strip_tags($value);
         if (strpos($value, $uploads['baseurl']) === false) {
             $value = $uploads['baseurl'].$value;
         } else {
@@ -981,7 +980,6 @@ function bxcft_get_field_data($value, $field_id) {
         }
         $value_to_return = '<img src="'.$value.'" alt="" />';
     } elseif ($field->type == 'file') {
-        $value = strip_tags($value);
         if (strpos($value, $uploads['baseurl']) === false) {
             $value = $uploads['baseurl'].$value;
         }
@@ -1335,6 +1333,7 @@ function bxcft_xprofile_data_before_save($data) {
                 add_filter( 'upload_dir', 'bxcft_profile_upload_dir', 10, 0 );
                 $_POST['action'] = 'wp_handle_upload';
                 $uploaded_file = wp_handle_upload( $_FILES['field_'.$field_id] );
+                remove_filter('upload_dir', 'bxcft_profile_upload_dir');
                 $value = str_replace($uploads['baseurl'], '', $uploaded_file['url']);
             }
         } else {  
@@ -1344,7 +1343,7 @@ function bxcft_xprofile_data_before_save($data) {
                     unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg']);
                 } 
                 $value = array();
-            } else {
+            } elseif ($field->type == 'image') {
                 $value = $_POST['field_'.$field_id.'_hiddenimg'];
             }
             
@@ -1353,7 +1352,7 @@ function bxcft_xprofile_data_before_save($data) {
                     unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']);
                 } 
                 $value = array();
-            } else {
+            } elseif ($field->type == 'file') {
                 $value = $_POST['field_'.$field_id.'_hiddenfile'];
             }
         }
