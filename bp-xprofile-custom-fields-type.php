@@ -655,10 +655,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                             bp_get_the_profile_field_input_name(),
                             (bp_get_the_profile_field_edit_value()!=''&&bp_get_the_profile_field_edit_value()!='-')?bp_get_the_profile_field_edit_value():'-',
                             bp_get_the_profile_field_input_name(),
-<<<<<<< HEAD
                             bp_get_the_profile_field_input_name(),
-=======
->>>>>>> 99d0eed54142a5efb21b40e7927b193904c22512
                             (bp_get_the_profile_field_is_required()&&(bp_get_the_profile_field_edit_value()==''||bp_get_the_profile_field_edit_value()=='-'))?' aria-required="true" required="required"':'');
 
             echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
@@ -861,15 +858,8 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
             $value_to_return = '--';
         }
     } elseif ($type == 'checkbox_acceptance') {
-<<<<<<< HEAD
         $value_to_return = (((int)$value==1)?__('yes', 'bxcft'):__('no', 'bxcft'));
     } elseif ($type == 'image') {
-=======
-        $value = strip_tags($value);
-        $value_to_return = (((int)$value==1)?__('yes', 'bxcft'):__('no', 'bxcft'));
-    } elseif ($type == 'image') {
-        $value = strip_tags($value);
->>>>>>> 99d0eed54142a5efb21b40e7927b193904c22512
         if (strpos($value, $uploads['baseurl']) === false) {
             $value = $uploads['baseurl'].$value;
         } else {
@@ -983,10 +973,6 @@ function bxcft_get_field_data($value, $field_id) {
         $value = strip_tags($value);
         $value_to_return = (((int)$value==1)?__('yes', 'bxcft'):__('no', 'bxcft'));
     } elseif ($field->type == 'image') {
-<<<<<<< HEAD
-=======
-        $value = strip_tags($value);
->>>>>>> 99d0eed54142a5efb21b40e7927b193904c22512
         if (strpos($value, $uploads['baseurl']) === false) {
             $value = $uploads['baseurl'].$value;
         } else {
@@ -994,10 +980,6 @@ function bxcft_get_field_data($value, $field_id) {
         }
         $value_to_return = '<img src="'.$value.'" alt="" />';
     } elseif ($field->type == 'file') {
-<<<<<<< HEAD
-=======
-        $value = strip_tags($value);
->>>>>>> 99d0eed54142a5efb21b40e7927b193904c22512
         if (strpos($value, $uploads['baseurl']) === false) {
             $value = $uploads['baseurl'].$value;
         }
@@ -1351,10 +1333,7 @@ function bxcft_xprofile_data_before_save($data) {
                 add_filter( 'upload_dir', 'bxcft_profile_upload_dir', 10, 0 );
                 $_POST['action'] = 'wp_handle_upload';
                 $uploaded_file = wp_handle_upload( $_FILES['field_'.$field_id] );
-<<<<<<< HEAD
-=======
-        $value = strip_tags($value);
->>>>>>> 99d0eed54142a5efb21b40e7927b193904c22512
+                remove_filter('upload_dir', 'bxcft_profile_upload_dir');
                 $value = str_replace($uploads['baseurl'], '', $uploaded_file['url']);
             }
         } else {  
@@ -1364,10 +1343,7 @@ function bxcft_xprofile_data_before_save($data) {
                     unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg']);
                 } 
                 $value = array();
-<<<<<<< HEAD
-                remove_filter('upload_dir', 'bxcft_profile_upload_dir');
-=======
->>>>>>> 99d0eed54142a5efb21b40e7927b193904c22512
+            } elseif ($field->type == 'image') {
                 $value = $_POST['field_'.$field_id.'_hiddenimg'];
             }
             
@@ -1376,11 +1352,7 @@ function bxcft_xprofile_data_before_save($data) {
                     unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']);
                 } 
                 $value = array();
-<<<<<<< HEAD
-            } elseif ($field->type == 'image') {
-=======
-            } else {
->>>>>>> 99d0eed54142a5efb21b40e7927b193904c22512
+            } elseif ($field->type == 'file') {
                 $value = $_POST['field_'.$field_id.'_hiddenfile'];
             }
         }
@@ -1498,8 +1470,3 @@ function bxcft_profile_field_type($type) {
     return $type;
 }
 add_filter('bp_the_profile_field_type', 'bxcft_profile_field_type', 1);
-<<<<<<< HEAD
-            } elseif ($field->type == 'file') {
-=======
-            } else {
->>>>>>> 99d0eed54142a5efb21b40e7927b193904c22512
