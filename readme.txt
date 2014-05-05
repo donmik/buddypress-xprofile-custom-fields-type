@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 1.5.9.2
+Stable tag: 1.5.9.3
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -130,6 +130,9 @@ For image and file fields, I've added two filters for displaying the actual imag
 - bxcft_field_actual_file. The arguments are: id of field, type of field, name of input, value of field (url of file).
  
 == Changelog ==
+
+= 1.5.9.3 =
+* Resolving changelog issues.
 
 = 1.5.9.2 =
 * Nothing new!
