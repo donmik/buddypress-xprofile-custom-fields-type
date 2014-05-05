@@ -129,7 +129,6 @@ For image and file fields, I've added two filters for displaying the actual imag
 - bxcft_field_actual_image. The arguments are: id of field, type of field, name of input, value of field (url of image).
 - bxcft_field_actual_file. The arguments are: id of field, type of field, name of input, value of field (url of file).
  
-
 == Changelog ==
 
 = 1.5.9.2 =
