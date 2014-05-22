@@ -1,10 +1,10 @@
 === Buddypress Xprofile Custom Fields Type ===
-Contributors: donmik, romik jan, dabesa, Branco Radenovich, @per4mance, Laszlo Espadas
+Contributors: donmik, romik jan, dabesa, Branco Radenovich, @per4mance, Laszlo Espadas, Michael Yunat
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmik%40gmail%2ecom&lc=GB&item_name=donmik%20%2d%20Plugin%20Buddypress%20Xprofile%20Custom%20Fields%20Type&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 1.5.9.3
+Stable tag: 1.5.9.4
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -130,6 +130,10 @@ For image and file fields, I've added two filters for displaying the actual imag
 - bxcft_field_actual_file. The arguments are: id of field, type of field, name of input, value of field (url of file).
  
 == Changelog ==
+
+= 1.5.9.4 =
+* Solving warning errors when uploading image in registration form.
+* Added Ukranian translation thanks to Michael Yunat, Ukranian <a href="http://getvoip.com/blog">http://getvoip.com</a>
 
 = 1.5.9.3 =
 * Resolving changelog issues.

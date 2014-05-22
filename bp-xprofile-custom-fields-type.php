@@ -3,7 +3,7 @@
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Plugin URI: https://github.com/donmik/buddypress-xprofile-custom-fields-type/
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at miguel@donmik.com.
-    Version: 1.5.9.3
+    Version: 1.5.9.4
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -1320,7 +1320,9 @@ function bxcft_xprofile_data_before_save($data) {
                     $data->field_id = 0;
                 } else {
                     // Delete previous file.
-                    if (file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile'])) {
+                    if (isset($_POST['field_'.$field_id.'_hiddenfile'])     &&
+                        !empty($_POST['field_'.$field_id.'_hiddenfile'])    && 
+                        file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile'])) {
                         unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']);
                     }
                 }
@@ -1339,7 +1341,9 @@ function bxcft_xprofile_data_before_save($data) {
         } else {  
             // Handles delete checkbox.
             if ($field->type == 'image' && isset($_POST['field_'.$field_id.'_deleteimg']) && $_POST['field_'.$field_id.'_deleteimg']) {
-                if (file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg'])) {
+                if (isset($_POST['field_'.$field_id.'_hiddenimg'])      &&
+                        !empty($_POST['field_'.$field_id.'_hiddenimg'])     && 
+                        file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg'])) {
                     unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg']);
                 } 
                 $value = array();
@@ -1348,7 +1352,9 @@ function bxcft_xprofile_data_before_save($data) {
             }
             
             if ($field->type == 'file' && isset($_POST['field_'.$field_id.'_deletefile']) && $_POST['field_'.$field_id.'_deletefile']) {
-                if (file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile'])) {
+                if (isset($_POST['field_'.$field_id.'_hiddenfile'])     &&
+                        !empty($_POST['field_'.$field_id.'_hiddenfile'])    && 
+                        file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile'])) {
                     unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']);
                 } 
                 $value = array();
