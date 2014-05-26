@@ -24,7 +24,7 @@ add_action ( 'bp_init', 'bxcft_load_textdomain', 2 );
 function bxcft_add_new_xprofile_field_type($field_types){
    $new_field_types = array('birthdate', 'email', 'web', 'datepicker',
        'select_custom_post_type', 'multiselect_custom_post_type', 
-       'checkbox_acceptance', 'image', 'file', 'color', 'number');
+       'checkbox_acceptance', 'image', 'file', 'color');
    $field_types = array_merge($field_types, $new_field_types);
    return $field_types;
 }
@@ -33,9 +33,6 @@ add_filter( 'xprofile_field_types', 'bxcft_add_new_xprofile_field_type' );
 function bxcft_admin_render_new_xprofile_field_type($field, $echo = true) {
    $html = '';
    switch ( $field->type ) {
-       case 'number':
-           $html .= '<input type="number" name="field_'.$field->id.'" id="'.$field->id.'" class="input-number" />';
-           break;
        
        case 'color':
            $html .= '<input type="color" name="field_'.$field->id.'" id="'.$field->id.'" class="input-color" />';
@@ -723,32 +720,6 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
         </script>
        <?php
        }
-       elseif (bp_get_the_profile_field_type() == 'number') {
-       ?>
-       <div class="input-number">
-        <?php
-            $label = sprintf('<label class="label-form%s" for="%s">%s%s</label>',
-                            bp_get_the_profile_field_is_required()?' required':'',
-                            bp_get_the_profile_field_input_name(),
-                            bp_get_the_profile_field_name(),
-                            bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
-
-            $input = sprintf('<input type="number" name="%s" id="%s"%s class="input" value="%s" />',
-                            bp_get_the_profile_field_input_name(),
-                            bp_get_the_profile_field_input_name(),
-                            bp_get_the_profile_field_is_required()?' aria-required="true" required="required"':'',
-                            bp_get_the_profile_field_edit_value());
-
-            echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
-
-            do_action( 'bp_' . bp_get_the_profile_field_input_name() . '_errors' );
-
-            echo apply_filters('bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required());
-        ?>
-       </div>   
-       <?php
-       }
-
        $output = ob_get_contents();
    ob_end_clean();
 
