@@ -169,10 +169,6 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:790
-msgid "Number"
-msgstr ""
-
 #: bp-xprofile-custom-fields-type.php:874
 #: bp-xprofile-custom-fields-type.php:905
 msgid "Please, select custom post type"
