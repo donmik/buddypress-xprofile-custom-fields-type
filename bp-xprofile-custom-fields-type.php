@@ -3,7 +3,7 @@
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Plugin URI: https://github.com/donmik/buddypress-xprofile-custom-fields-type/
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at miguel@donmik.com.
-    Version: 1.5.9.4
+    Version: 1.5.9.5
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -848,7 +848,6 @@ function bxcft_get_field_value( $value='', $type='', $id='') {
         }
         $value_to_return = $value;
     }
-    // Number nothing to do.
     
     return apply_filters('bxcft_show_field_value', $value_to_return, $type, $id, $value);
 }
@@ -961,7 +960,6 @@ function bxcft_get_field_data($value, $field_id) {
         }
         $value_to_return = $value;
     }
-    // Number nothing to do.
     
     return apply_filters('bxcft_show_field_value', $value_to_return, $field->type, $field_id, $value);
     
@@ -978,7 +976,7 @@ function bxcft_xprofile_filter_link_profile_data( $field_value, $field_type = 't
 	if ( 'datebox' == $field_type || 'email' == $field_type || 'birthdate' == $field_type ||
             'datepicker' == $field_type || 'web' == $field_type || 'select_custom_post_type' == $field_type ||
             'multiselect_custom_post_type' == $field_type || 'image' == $field_type || 'file' == $field_type ||
-            'color' == $field_type || 'number' == $field_type)
+            'color' == $field_type)
 		return $field_value;
 
 	if ( !strpos( $field_value, ',' ) && ( count( explode( ' ', $field_value ) ) > 5 ) )
@@ -1035,8 +1033,7 @@ function bxcft_add_js($hook) {
         'checkbox_acceptance' => __('Checkbox acceptance', 'bxcft'),
         'image' => __('Image', 'bxcft'),
         'file' => __('File', 'bxcft'),
-        'color' => __('Color', 'bxcft'),
-        'number' => __('Number', 'bxcft')
+        'color' => __('Color', 'bxcft')
     );
     wp_localize_script('bxcft-js', 'params', $params);
 }
