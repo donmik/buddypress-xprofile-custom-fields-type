@@ -3,7 +3,7 @@
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Plugin URI: https://github.com/donmik/buddypress-xprofile-custom-fields-type/
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at miguel@donmik.com.
-    Version: 1.5.9.5
+    Version: 1.5.9.6
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -551,7 +551,7 @@ function bxcft_edit_render_new_xprofile_field($echo = true) {
                             bp_get_the_profile_field_name(),
                             bp_get_the_profile_field_is_required()?' '.__('(required)', 'buddypress'):'');
 
-            if (bp_get_the_profile_field_edit_value() != '') {
+            if (bp_get_the_profile_field_edit_value() != '' && bp_get_the_profile_field_edit_value() != '-') {
                 $actual_image = sprintf('<img src="%s" alt="%s" /><label for="%s_deleteimg"><input type="checkbox" name="%s_deleteimg" id="%s_deleteimg" value="1" />%s</label><input type="hidden" name="%s_hiddenimg" id="%s_hiddenimg" value="%s" />',
                                         $uploads['baseurl'].bp_get_the_profile_field_edit_value(),
                                         bp_get_the_profile_field_input_name(),
@@ -1276,7 +1276,9 @@ function bxcft_xprofile_data_before_save($data) {
                     $data->field_id = 0;
                 } else {
                     // Delete previous image.
-                    if (file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg'])) {
+                    if (isset($_POST['field_'.$field_id.'_hiddenfile'])     &&
+                        !empty($_POST['field_'.$field_id.'_hiddenfile'])    && 
+                        file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile'])) {
                         unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg']);
                     }
                 }
@@ -1364,8 +1366,9 @@ function bxcft_signup_validate() {
             $profile_field_ids = explode( ',', $_POST['signup_profile_field_ids'] );
             foreach ($profile_field_ids as $field_id) {
                 $field = new BP_XProfile_Field($field_id);
-                if ($field->type == 'image' || $field->type == 'file'
-                        && isset($_FILES['field_'.$field_id])) {
+                if (($field->type == 'image' || $field->type == 'file') 
+                        && isset($_FILES['field_'.$field_id])
+                        && $_FILES['field_'.$field_id]['name'] != '') {
                     // Delete required field error.
                     unset($bp->signup->errors['field_'.$field_id]);
 
