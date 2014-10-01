@@ -5,204 +5,230 @@ msgstr ""
 "Project-Id-Version: v1.5.x\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/buddypress-xprofile-custom-"
 "fields-type\n"
-"POT-Creation-Date: 2013-08-22 07:26:02+00:00\n"
-"PO-Revision-Date: 2013-08-28 11:33+0100\n"
-"Last-Translator: Thorsten Wollenhoefer <thorsten.wollenhoefer@gmail.com>\n"
+"POT-Creation-Date: 2014-06-30 17:13+0100\n"
+"PO-Revision-Date: 2014-06-30 17:13+0100\n"
+"Last-Translator: miguel <donmik@gmail.com>\n"
 "Language-Team: Thorsten Wollenhöfer <thorsten.wollenhoefer@gmail.com>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: /Volumes/Almacen/proyectos/php/wp-plugins/bp-xprofile-"
-"custom-fields-type/trunk\n"
+"X-Poedit-SearchPath-0: /Volumes/Almacen/proyectos/php/test/wp-content/"
+"plugins/bp-xprofile-custom-fields-type-new\n"
 
-#: bp-xprofile-custom-fields-type.php:94
-msgid "yourwebsite.com"
-msgstr "yourwebsite.com"
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:90
+msgid ""
+"Buddypress Xprofile Custom Fields Type plugin needs <b>Buddypress 2.0</b>, "
+"please install or upgrade Buddypress."
+msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:98
-#: bp-xprofile-custom-fields-type.php:310
-msgid "example@mail.com"
-msgstr "example@mail.com"
-
-#: bp-xprofile-custom-fields-type.php:157
-#: bp-xprofile-custom-fields-type.php:270
-msgid "January"
-msgstr "Januar"
-
-#: bp-xprofile-custom-fields-type.php:158
-#: bp-xprofile-custom-fields-type.php:271
-msgid "February"
-msgstr "Februar"
-
-#: bp-xprofile-custom-fields-type.php:159
-#: bp-xprofile-custom-fields-type.php:272
-msgid "March"
-msgstr "M&auml;rz"
-
-#: bp-xprofile-custom-fields-type.php:160
-#: bp-xprofile-custom-fields-type.php:273
-msgid "April"
-msgstr "April"
-
-#: bp-xprofile-custom-fields-type.php:161
-#: bp-xprofile-custom-fields-type.php:274
-msgid "May"
-msgstr "Mai"
-
-#: bp-xprofile-custom-fields-type.php:162
-#: bp-xprofile-custom-fields-type.php:275
-msgid "June"
-msgstr "Juni"
-
-#: bp-xprofile-custom-fields-type.php:163
-#: bp-xprofile-custom-fields-type.php:276
-msgid "July"
-msgstr "Juli"
-
-#: bp-xprofile-custom-fields-type.php:164
-#: bp-xprofile-custom-fields-type.php:277
-msgid "August"
-msgstr "August"
-
-#: bp-xprofile-custom-fields-type.php:165
-#: bp-xprofile-custom-fields-type.php:278
-msgid "September"
-msgstr "September"
-
-#: bp-xprofile-custom-fields-type.php:166
-#: bp-xprofile-custom-fields-type.php:279
-msgid "October"
-msgstr "Oktober"
-
-#: bp-xprofile-custom-fields-type.php:167
-#: bp-xprofile-custom-fields-type.php:280
-msgid "November"
-msgstr "November"
-
-#: bp-xprofile-custom-fields-type.php:168
-#: bp-xprofile-custom-fields-type.php:281
-msgid "December"
-msgstr "Dezember"
-
-#: bp-xprofile-custom-fields-type.php:254
-#: bp-xprofile-custom-fields-type.php:309
-#: bp-xprofile-custom-fields-type.php:317
-#: bp-xprofile-custom-fields-type.php:325
-#: bp-xprofile-custom-fields-type.php:350
-#: bp-xprofile-custom-fields-type.php:377
-#: bp-xprofile-custom-fields-type.php:441
-#: bp-xprofile-custom-fields-type.php:455
-msgid "*"
-msgstr "*"
-
-#: bp-xprofile-custom-fields-type.php:318
-msgid "http://yourwebsite.com"
-msgstr "http://yourwebsite.com"
-
-#: bp-xprofile-custom-fields-type.php:352
-msgid "Select..."
-msgstr "W&auml;hlen Sie..."
-
-#: bp-xprofile-custom-fields-type.php:385
-msgid "There is no custom post type selected."
-msgstr "Es ist kein individueller Beitrag ausgew&auml;hlt."
-
-#: bp-xprofile-custom-fields-type.php:405
-msgid "Check this to delete this image"
-msgstr "Aktivieren Sie diese Option, um dieses Bild zu l&ouml;schen"
-
-#: bp-xprofile-custom-fields-type.php:421
-#: bp-xprofile-custom-fields-type.php:591
-#: bp-xprofile-custom-fields-type.php:706
-msgid "Download file"
-msgstr "Datei herunterladen"
-
-#: bp-xprofile-custom-fields-type.php:425
-msgid "Check this to delete this file"
-msgstr "Aktivieren Sie diese Option, um diese Datei zu l&ouml;schen"
-
-#: bp-xprofile-custom-fields-type.php:583
-#: bp-xprofile-custom-fields-type.php:698
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:218
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:337
 msgid "yes"
 msgstr "ja"
 
-#: bp-xprofile-custom-fields-type.php:583
-#: bp-xprofile-custom-fields-type.php:698
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:218
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:337
 msgid "no"
 msgstr "nein"
 
-#: bp-xprofile-custom-fields-type.php:780
-msgid "Birthdate"
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:234
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:353
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_File.php:58
+msgid "Download file"
+msgstr "Datei herunterladen"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:403
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:421
+msgid "This is a required field"
+msgstr ""
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:409
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:445
+#, php-format
+msgid "Image type not allowed: (%s)."
+msgstr ""
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:413
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:461
+#, php-format
+msgid "File type not allowed: (%s)."
+msgstr ""
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:12
+#, fuzzy
+msgid "Birthdate Selector"
 msgstr "Geburtstag"
 
-#: bp-xprofile-custom-fields-type.php:781
-msgid "Email"
-msgstr "Email"
-
-#: bp-xprofile-custom-fields-type.php:782
-msgid "Website"
-msgstr "Website"
-
-#: bp-xprofile-custom-fields-type.php:783
-msgid "Datepicker"
-msgstr "Datumsauswahl 2"
-
-#: bp-xprofile-custom-fields-type.php:784
-msgid "Custom Post Type Selector"
-msgstr "Benutzerdefinierter Post Typ Selector"
-
-#: bp-xprofile-custom-fields-type.php:785
-msgid "Custom Post Type Multiselector"
-msgstr "Benutzerdefinierter Post Tyo Multiselector"
-
-#: bp-xprofile-custom-fields-type.php:786
-msgid "Checkbox acceptance"
-msgstr "Checkbox akzeptieren"
-
-#: bp-xprofile-custom-fields-type.php:787
-msgid "Image"
-msgstr "Bild"
-
-#: bp-xprofile-custom-fields-type.php:788
-msgid "File"
-msgstr "Datei"
-
-#: bp-xprofile-custom-fields-type.php:789
-msgid "Color"
-msgstr "Farbe"
-
-#: bp-xprofile-custom-fields-type.php:790
-msgid "Number"
-msgstr "Anzahl"
-
-#: bp-xprofile-custom-fields-type.php:874
-#: bp-xprofile-custom-fields-type.php:905
-msgid "Please, select custom post type"
-msgstr "Bitte w&auml;hlen Sie einen benutzerdefinierten Post Typ"
-
-#: bp-xprofile-custom-fields-type.php:876
-#: bp-xprofile-custom-fields-type.php:907
-msgid "Custom Post Type:"
-msgstr "Benutzerdefinierter Post Typ:"
-
-#: bp-xprofile-custom-fields-type.php:931
-msgid "Show age (hide birthdate)"
-msgstr "Zeige das Alter (den Geburtstag verstecken)"
-
-#: bp-xprofile-custom-fields-type.php:933
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:104
 msgid "Check this if you want to show age instead of birthdate:"
 msgstr ""
 "Bitte markieren, wenn Sie das Alter in Jahren anstelle des Geburtsdatums "
 "anzeigen m&ouml;chten:"
 
-#: bp-xprofile-custom-fields-type.php:955
-msgid "Nobody"
-msgstr "Niemand"
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:228
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:253
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:261
+msgid "----"
+msgstr ""
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:239
+msgid "January"
+msgstr "Januar"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:240
+msgid "February"
+msgstr "Februar"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:241
+msgid "March"
+msgstr "M&auml;rz"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:242
+msgid "April"
+msgstr "April"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:243
+msgid "May"
+msgstr "Mai"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:244
+msgid "June"
+msgstr "Juni"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:245
+msgid "July"
+msgstr "Juli"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:246
+msgid "August"
+msgstr "August"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:247
+msgid "September"
+msgstr "September"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:248
+msgid "October"
+msgstr "Oktober"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:249
+msgid "November"
+msgstr "November"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:250
+msgid "December"
+msgstr "Dezember"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_CheckboxAcceptance.php:12
+#, fuzzy
+msgid "Checkbox Acceptance"
+msgstr "Checkbox akzeptieren"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Color.php:12
+#, fuzzy
+msgid "Color (HTML5 field)"
+msgstr "Farbe"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Datepicker.php:12
+#, fuzzy
+msgid "Datepicker (HTML5 field)"
+msgstr "Datumsauswahl 2"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Email.php:12
+#, fuzzy
+msgid "Email (HTML5 field)"
+msgstr "Email"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_File.php:12
+msgid "File"
+msgstr "Datei"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_File.php:60
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_File.php:67
+msgid "Check this to delete this file"
+msgstr "Aktivieren Sie diese Option, um diese Datei zu l&ouml;schen"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Image.php:12
+msgid "Image"
+msgstr "Bild"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Image.php:60
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Image.php:67
+msgid "Check this to delete this image"
+msgstr "Aktivieren Sie diese Option, um dieses Bild zu l&ouml;schen"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:12
+msgid "Custom Post Type Multiselector"
+msgstr "Benutzerdefinierter Post Tyo Multiselector"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:87
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_SelectCustomPostType.php:79
+#, fuzzy
+msgid ""
+"There is no custom post type. You need to create at least one to use this "
+"field."
+msgstr "Es ist kein individueller Beitrag ausgew&auml;hlt."
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:92
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_SelectCustomPostType.php:84
+#, fuzzy
+msgid "Select a custom post type:"
+msgstr "Bitte w&auml;hlen Sie einen benutzerdefinierten Post Typ"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:94
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_SelectCustomPostType.php:86
+msgid "Select..."
+msgstr "W&auml;hlen Sie..."
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_SelectCustomPostType.php:12
+msgid "Custom Post Type Selector"
+msgstr "Benutzerdefinierter Post Typ Selector"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Web.php:12
+#, fuzzy
+msgid "Website (HTML5 field)"
+msgstr "Website"
+
+#~ msgid "yourwebsite.com"
+#~ msgstr "yourwebsite.com"
+
+#~ msgid "example@mail.com"
+#~ msgstr "example@mail.com"
+
+#~ msgid "*"
+#~ msgstr "*"
+
+#~ msgid "http://yourwebsite.com"
+#~ msgstr "http://yourwebsite.com"
+
+#~ msgid "Email"
+#~ msgstr "Email"
+
+#~ msgid "Website"
+#~ msgstr "Website"
+
+#~ msgid "Datepicker"
+#~ msgstr "Datumsauswahl 2"
+
+#~ msgid "Color"
+#~ msgstr "Farbe"
+
+#~ msgid "Number"
+#~ msgstr "Anzahl"
+
+#~ msgid "Custom Post Type:"
+#~ msgstr "Benutzerdefinierter Post Typ:"
+
+#~ msgid "Show age (hide birthdate)"
+#~ msgstr "Zeige das Alter (den Geburtstag verstecken)"
+
+#~ msgid "Nobody"
+#~ msgstr "Niemand"
 
 #~ msgid "(required)"
 #~ msgstr "(required)"
