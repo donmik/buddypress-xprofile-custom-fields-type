@@ -2,196 +2,228 @@
 # This file is distributed under the same license as the Buddypress Xprofile Custom Fields Type package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2013-12-13 17:52+0100\n"
+"Project-Id-Version: Buddypress Xprofile Custom Fields Type\n"
+"POT-Creation-Date: 2014-06-30 17:21+0100\n"
+"PO-Revision-Date: 2014-06-30 17:21+0100\n"
+"Last-Translator: miguel <donmik@gmail.com>\n"
+"Language-Team: \n"
+"Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/0.1\n"
-"Project-Id-Version: Buddypress Xprofile Custom Fields Type\n"
-"POT-Creation-Date: \n"
-"Last-Translator: Laszlo Espadas <kw@kardiweb.org>\n"
-"Language-Team: \n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: __;_e;_x\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /Volumes/Almacen/proyectos/php/test/wp-content/"
+"plugins/bp-xprofile-custom-fields-type-new\n"
 
-#: bp-xprofile-custom-fields-type.php:787
-msgid "Image"
-msgstr "Kép"
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:90
+msgid ""
+"Buddypress Xprofile Custom Fields Type plugin needs <b>Buddypress 2.0</b>, "
+"please install or upgrade Buddypress."
+msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:788
-msgid "File"
-msgstr "Fájl"
-
-#: bp-xprofile-custom-fields-type.php:789
-msgid "Color"
-msgstr "Szín"
-
-#: bp-xprofile-custom-fields-type.php:790
-msgid "Number"
-msgstr "Szám"
-
-#: bp-xprofile-custom-fields-type.php:874
-#: bp-xprofile-custom-fields-type.php:905
-msgid "Please, select custom post type"
-msgstr "Válasszuk ki az egyedi bejegyzés típust"
-
-#: bp-xprofile-custom-fields-type.php:876
-#: bp-xprofile-custom-fields-type.php:907
-msgid "Custom Post Type:"
-msgstr "Egyedi bejegyzés típus:"
-
-#: bp-xprofile-custom-fields-type.php:931
-msgid "Show age (hide birthdate)"
-msgstr "Kor megjelenítés (születési dátum elrejtés)"
-
-#: bp-xprofile-custom-fields-type.php:933
-msgid "Check this if you want to show age instead of birthdate:"
-msgstr "Jelöljük be ezt ha szeretnénk, hogy a korunk jelenjen meg és ne a születési dátum:"
-
-#: bp-xprofile-custom-fields-type.php:955
-msgid "Nobody"
-msgstr "Senki"
-
-#: bp-xprofile-custom-fields-type.php:160
-#: bp-xprofile-custom-fields-type.php:273
-msgid "April"
-msgstr "Április"
-
-#: bp-xprofile-custom-fields-type.php:161
-#: bp-xprofile-custom-fields-type.php:274
-msgid "May"
-msgstr "Május"
-
-#: bp-xprofile-custom-fields-type.php:162
-#: bp-xprofile-custom-fields-type.php:275
-msgid "June"
-msgstr "Június"
-
-#: bp-xprofile-custom-fields-type.php:163
-#: bp-xprofile-custom-fields-type.php:276
-msgid "July"
-msgstr "Július"
-
-#: bp-xprofile-custom-fields-type.php:164
-#: bp-xprofile-custom-fields-type.php:277
-msgid "August"
-msgstr "Augusztus"
-
-#: bp-xprofile-custom-fields-type.php:165
-#: bp-xprofile-custom-fields-type.php:278
-msgid "September"
-msgstr "Szeptember"
-
-#: bp-xprofile-custom-fields-type.php:166
-#: bp-xprofile-custom-fields-type.php:279
-msgid "October"
-msgstr "Október"
-
-#: bp-xprofile-custom-fields-type.php:167
-#: bp-xprofile-custom-fields-type.php:280
-msgid "November"
-msgstr "November"
-
-#: bp-xprofile-custom-fields-type.php:168
-#: bp-xprofile-custom-fields-type.php:281
-msgid "December"
-msgstr "December"
-
-#: bp-xprofile-custom-fields-type.php:254
-#: bp-xprofile-custom-fields-type.php:309
-#: bp-xprofile-custom-fields-type.php:317
-#: bp-xprofile-custom-fields-type.php:325
-#: bp-xprofile-custom-fields-type.php:350
-#: bp-xprofile-custom-fields-type.php:377
-#: bp-xprofile-custom-fields-type.php:441
-#: bp-xprofile-custom-fields-type.php:455
-msgid "*"
-msgstr "*"
-
-#: bp-xprofile-custom-fields-type.php:318
-msgid "http://yourwebsite.com"
-msgstr "http://carplove.com"
-
-#: bp-xprofile-custom-fields-type.php:352
-msgid "Select..."
-msgstr "Kiválasztás..."
-
-#: bp-xprofile-custom-fields-type.php:385
-msgid "There is no custom post type selected."
-msgstr "Nincs egyedi bejegyzés típus kiválasztva."
-
-#: bp-xprofile-custom-fields-type.php:405
-msgid "Check this to delete this image"
-msgstr "Ha törölni szeretnénk a képet, jelöljük ezt be"
-
-#: bp-xprofile-custom-fields-type.php:421
-#: bp-xprofile-custom-fields-type.php:591
-#: bp-xprofile-custom-fields-type.php:706
-msgid "Download file"
-msgstr "Fájl letöltés"
-
-#: bp-xprofile-custom-fields-type.php:425
-msgid "Check this to delete this file"
-msgstr "Jelöljük be ezt a fájlt a törléshez"
-
-#: bp-xprofile-custom-fields-type.php:583
-#: bp-xprofile-custom-fields-type.php:698
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:218
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:337
 msgid "yes"
 msgstr "igen"
 
-#: bp-xprofile-custom-fields-type.php:583
-#: bp-xprofile-custom-fields-type.php:698
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:218
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:337
 msgid "no"
 msgstr "nem"
 
-#: bp-xprofile-custom-fields-type.php:780
-msgid "Birthdate"
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:234
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:353
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_File.php:58
+msgid "Download file"
+msgstr "Fájl letöltés"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:403
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:421
+msgid "This is a required field"
+msgstr ""
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:409
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:445
+#, php-format
+msgid "Image type not allowed: (%s)."
+msgstr ""
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:413
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/bp-xprofile-custom-fields-type-new.php:461
+#, php-format
+msgid "File type not allowed: (%s)."
+msgstr ""
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:12
+#, fuzzy
+msgid "Birthdate Selector"
 msgstr "Születésnap"
 
-#: bp-xprofile-custom-fields-type.php:781
-msgid "Email"
-msgstr "E-mail"
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:104
+msgid "Check this if you want to show age instead of birthdate:"
+msgstr ""
+"Jelöljük be ezt ha szeretnénk, hogy a korunk jelenjen meg és ne a születési "
+"dátum:"
 
-#: bp-xprofile-custom-fields-type.php:782
-msgid "Website"
-msgstr "Honlap"
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:228
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:253
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:261
+msgid "----"
+msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:783
-msgid "Datepicker"
-msgstr "Dátum választó"
-
-#: bp-xprofile-custom-fields-type.php:784
-msgid "Custom Post Type Selector"
-msgstr "Egyéni bejegyzés típus kiválasztás"
-
-#: bp-xprofile-custom-fields-type.php:785
-msgid "Custom Post Type Multiselector"
-msgstr "Egyedi bejegyzés típus multi-kiválasztás"
-
-#: bp-xprofile-custom-fields-type.php:786
-msgid "Checkbox acceptance"
-msgstr "Jelölőnégyzet elfogadás"
-
-#: bp-xprofile-custom-fields-type.php:94
-msgid "yourwebsite.com"
-msgstr "carplove.com"
-
-#: bp-xprofile-custom-fields-type.php:98
-#: bp-xprofile-custom-fields-type.php:310
-msgid "example@mail.com"
-msgstr "emailcim@domainnev.hu"
-
-#: bp-xprofile-custom-fields-type.php:157
-#: bp-xprofile-custom-fields-type.php:270
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:239
 msgid "January"
 msgstr "Január"
 
-#: bp-xprofile-custom-fields-type.php:158
-#: bp-xprofile-custom-fields-type.php:271
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:240
 msgid "February"
 msgstr "Február"
 
-#: bp-xprofile-custom-fields-type.php:159
-#: bp-xprofile-custom-fields-type.php:272
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:241
 msgid "March"
 msgstr "Március"
 
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:242
+msgid "April"
+msgstr "Április"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:243
+msgid "May"
+msgstr "Május"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:244
+msgid "June"
+msgstr "Június"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:245
+msgid "July"
+msgstr "Július"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:246
+msgid "August"
+msgstr "Augusztus"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:247
+msgid "September"
+msgstr "Szeptember"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:248
+msgid "October"
+msgstr "Október"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:249
+msgid "November"
+msgstr "November"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Birthdate.php:250
+msgid "December"
+msgstr "December"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_CheckboxAcceptance.php:12
+#, fuzzy
+msgid "Checkbox Acceptance"
+msgstr "Jelölőnégyzet elfogadás"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Color.php:12
+#, fuzzy
+msgid "Color (HTML5 field)"
+msgstr "Szín"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Datepicker.php:12
+#, fuzzy
+msgid "Datepicker (HTML5 field)"
+msgstr "Dátum választó"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Email.php:12
+#, fuzzy
+msgid "Email (HTML5 field)"
+msgstr "E-mail"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_File.php:12
+msgid "File"
+msgstr "Fájl"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_File.php:60
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_File.php:67
+msgid "Check this to delete this file"
+msgstr "Jelöljük be ezt a fájlt a törléshez"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Image.php:12
+msgid "Image"
+msgstr "Kép"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Image.php:60
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Image.php:67
+msgid "Check this to delete this image"
+msgstr "Ha törölni szeretnénk a képet, jelöljük ezt be"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:12
+msgid "Custom Post Type Multiselector"
+msgstr "Egyedi bejegyzés típus multi-kiválasztás"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:87
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_SelectCustomPostType.php:79
+#, fuzzy
+msgid ""
+"There is no custom post type. You need to create at least one to use this "
+"field."
+msgstr "Nincs egyedi bejegyzés típus kiválasztva."
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:92
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_SelectCustomPostType.php:84
+#, fuzzy
+msgid "Select a custom post type:"
+msgstr "Válasszuk ki az egyedi bejegyzés típust"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:94
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_SelectCustomPostType.php:86
+msgid "Select..."
+msgstr "Kiválasztás..."
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_SelectCustomPostType.php:12
+msgid "Custom Post Type Selector"
+msgstr "Egyéni bejegyzés típus kiválasztás"
+
+#: /Volumes/Almacen/proyectos/php/test/wp-content/plugins/bp-xprofile-custom-fields-type-new/classes/Bxcft_Field_Type_Web.php:12
+#, fuzzy
+msgid "Website (HTML5 field)"
+msgstr "Honlap"
+
+#~ msgid "Color"
+#~ msgstr "Szín"
+
+#~ msgid "Number"
+#~ msgstr "Szám"
+
+#~ msgid "Custom Post Type:"
+#~ msgstr "Egyedi bejegyzés típus:"
+
+#~ msgid "Show age (hide birthdate)"
+#~ msgstr "Kor megjelenítés (születési dátum elrejtés)"
+
+#~ msgid "Nobody"
+#~ msgstr "Senki"
+
+#~ msgid "*"
+#~ msgstr "*"
+
+#~ msgid "http://yourwebsite.com"
+#~ msgstr "http://carplove.com"
+
+#~ msgid "Email"
+#~ msgstr "E-mail"
+
+#~ msgid "Website"
+#~ msgstr "Honlap"
+
+#~ msgid "Datepicker"
+#~ msgstr "Dátum választó"
+
+#~ msgid "yourwebsite.com"
+#~ msgstr "carplove.com"
+
+#~ msgid "example@mail.com"
+#~ msgstr "emailcim@domainnev.hu"
