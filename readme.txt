@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 2.0
+Stable tag: 2.0.1
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -132,6 +132,9 @@ For image and file fields, I've added two filters for displaying the actual imag
 - bxcft_field_actual_file. The arguments are: id of field, type of field, name of input, value of field (url of file).
  
 == Changelog ==
+
+= 2.0.1 =
+* Solved error with checkbox acceptance field. https://wordpress.org/support/topic/checkbox-aceptance-field-doesnt-work
 
 = 2.0 =
 * UPDATE CAREFULLY !!! Completely rewritten using new features of Buddypress 2.0. Maybe something from previous versions stop working in 2.0.
