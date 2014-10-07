@@ -236,18 +236,18 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                     $eng_months = array( 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' );
                     
                     $months = array(
-                        1   => __( 'January', 'buddypress' ),
-                        2   => __( 'February', 'buddypress' ),
-                        3   => __( 'March', 'buddypress' ),
-                        4   => __( 'April', 'buddypress' ),
-                        5   => __( 'May', 'buddypress' ),
-                        6   => __( 'June', 'buddypress' ),
-                        7   => __( 'July', 'buddypress' ),
-                        8   => __( 'August', 'buddypress' ),
-                        9   => __( 'September', 'buddypress' ),
-                        10  => __( 'October', 'buddypress' ),
-                        11  => __( 'November', 'buddypress' ),
-                        12  => __( 'December', 'buddypress' )
+                        0   => __( 'January', 'buddypress' ),
+                        1   => __( 'February', 'buddypress' ),
+                        2   => __( 'March', 'buddypress' ),
+                        3   => __( 'April', 'buddypress' ),
+                        4   => __( 'May', 'buddypress' ),
+                        5   => __( 'June', 'buddypress' ),
+                        6   => __( 'July', 'buddypress' ),
+                        7   => __( 'August', 'buddypress' ),
+                        8   => __( 'September', 'buddypress' ),
+                        9  => __( 'October', 'buddypress' ),
+                        10  => __( 'November', 'buddypress' ),
+                        11  => __( 'December', 'buddypress' )
                     );
 
                     $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $month, 0, false ), /* translators: no option picked in select box */ __( '----', 'buddypress' ) );
