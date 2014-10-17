@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -49,6 +49,37 @@ BE CAREFUL! Version 2.0 should work ONLY with Buddypress 2.0 at least.
 = Why my fields are not showing ? =
 
 If you are using Buddypress 1.7, you need to check if you have the new hook "bp_custom_profile_edit_fields_pre_visibility". Check in your edit.php (/your-theme/members/single/profile/edit.php, if this page is not in your theme, check in buddypress plugin in bp-themes/bp-default folder) and register page (/your-theme/registration/register.php, if this page is not in your theme, check bp-default theme of buddypress plugin) if this line of code: `<?php do_action ( 'bp_custom_profile_edit_fields_pre_visibility' ); ?>`. If you don't see it, you must add it just before the code of visibility settings.
+
+With Buddypress 2.0, things changed. The new template used by buddypress in edit.php is:
+`
+<div<?php bp_field_css_class( 'editfield' ); ?>>
+<?php
+    $field_type = bp_xprofile_create_field_type( bp_get_the_profile_field_type() );
+    $field_type->edit_field_html();
+
+    do_action( 'bp_custom_profile_edit_fields_pre_visibility' );
+?>`
+If your file edit.php don't have this code, you should not see the fields created with this plugin, so you need to update your template edit.php and also register.php with this code. You only need replace all the content mainly php between this line "<div<?php bp_field_css_class( 'editfield' ); ?>>" and this line "do_action( 'bp_custom_profile_edit_fields_pre_visibility' );". 
+The old templates should look like this:
+`
+<div<?php bp_field_css_class( 'editfield' ); ?>>
+<?php if ( 'textbox' == bp_get_the_profile_field_type() ) : ?>
+
+					<label for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?><?php _e( '(required)', 'buddypress' ); ?><?php endif; ?></label>
+					<input type="text" name="<?php bp_the_profile_field_input_name(); ?>" id="<?php bp_the_profile_field_input_name(); ?>" value="<?php bp_the_profile_field_edit_value(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true"<?php endif; ?>/>
+
+				<?php endif; ?>
+
+				<?php if ( 'textarea' == bp_get_the_profile_field_type() ) : ?>
+
+					<label for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?><?php _e( '(required)', 'buddypress' ); ?><?php endif; ?></label>
+					<textarea rows="5" cols="40" name="<?php bp_the_profile_field_input_name(); ?>" id="<?php bp_the_profile_field_input_name(); ?>" <?php if ( bp_get_the_profile_field_is_required() ) : ?>aria-required="true"<?php endif; ?>><?php bp_the_profile_field_edit_value(); ?></textarea>
+
+				<?php endif; ?>
+
+[...]
+[...]
+<?php do_action( 'bp_custom_profile_edit_fields_pre_visibility' ); ?>`
 
 = Can I modify how the fields value are showned? =
 
@@ -108,30 +139,19 @@ jQuery('p.description').each(function() {
     }
 });`
 
-= I've removed the filter that make clickable the profile fields, but with this plugin the links are still there ? =
-
-With my plugin, you need to use this code to hide the links of profile fields:
-
-`function remove_xprofile_links() {
-    remove_filter( 'bp_get_the_profile_field_value', 'xprofile_filter_link_profile_data', 9, 2 );
-}
-add_action('bp_setup_globals', 'remove_xprofile_links');`
-
-= How to limit the size of image or file uploads ? =
-In the function "bxcft_updated_profile", after this code:
-`// Handles image field type saving.
-if (isset($_FILES['field_'.$field_id]) && $_FILES['field_'.$field_id]['size'] > 0 .......here......... ) {...`
-Thanks to borisnov for this tip.
-
 = Can I modify the way label and input fields are shown? =
 Yes, you can. Since version 1.5.8, you have new filters to modify the way labels and filters are shown. The filters are:
 - bxcft_field_label. The arguments are: id of field, type of field, name of input, name of field, field is required? (this is a boolean value).
 - bxcft_field_input. The arguments are: id of field, type of field, name of input, field is required? (this is a boolean value).
-For image and file fields, I've added two filters for displaying the actual image and file.
+For image and file fields, This filter exists only for image and file field.
 - bxcft_field_actual_image. The arguments are: id of field, type of field, name of input, value of field (url of image).
 - bxcft_field_actual_file. The arguments are: id of field, type of field, name of input, value of field (url of file).
  
 == Changelog ==
+
+= 2.0.3 =
+* Search links on profile fields are back now.
+* FAQ updated.
 
 = 2.0.2 =
 * Solved error with birthdate month selector. It was displaying only january to november. https://wordpress.org/support/topic/birthdate-selector-off-by-1-month

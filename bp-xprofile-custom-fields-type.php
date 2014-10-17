@@ -3,7 +3,7 @@
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Plugin URI: https://github.com/donmik/buddypress-xprofile-custom-fields-type/
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at miguel@donmik.com.
-    Version: 2.0.2
+    Version: 2.0.3
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -241,6 +241,9 @@ if (!class_exists('Bxcft_Plugin'))
                     if (strpos($value_to_return, '#') === false) {
                         $value_to_return = '#'.$value_to_return;
                     }
+                } else {
+                    // Not stripping tags.
+                    $value_to_return = $value;
                 }
             }
             
@@ -360,6 +363,9 @@ if (!class_exists('Bxcft_Plugin'))
                     if (strpos($value_to_return, '#') === false) {
                         $value_to_return = '#'.$value_to_return;
                     }
+                } else {
+                    // Not stripping tags.
+                    $value_to_return = $value;
                 }
             }
             
