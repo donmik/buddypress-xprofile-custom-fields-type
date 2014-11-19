@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -146,8 +146,24 @@ Yes, you can. Since version 1.5.8, you have new filters to modify the way labels
 For image and file fields, This filter exists only for image and file field.
 - bxcft_field_actual_image. The arguments are: id of field, type of field, name of input, value of field (url of image).
 - bxcft_field_actual_file. The arguments are: id of field, type of field, name of input, value of field (url of file).
+
+= Can I limit numbers of characters allowed in a field? =
+Yes, you can do it with this javascript.
+`
+<script>
+jQuery(document).ready(function($) {
+$('#field_XXX').attr('maxlength', 'YYY');
+});
+</script>
+`
+Replace "XXX" with the ID of your field. Replace "YYY" with the number of characters you want.
+Thanks to wplamp => https://wordpress.org/support/topic/limit-the-of-characters-in-a-text-area
  
 == Changelog ==
+
+= 2.0.4 =
+* Image and file type field were always required on registration page. Solved!
+* FAQ updated.
 
 = 2.0.3 =
 * Search links on profile fields are back now.
