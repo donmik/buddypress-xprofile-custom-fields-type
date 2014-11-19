@@ -3,7 +3,7 @@
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Plugin URI: https://github.com/donmik/buddypress-xprofile-custom-fields-type/
     Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at miguel@donmik.com.
-    Version: 2.0.3
+    Version: 2.0.4
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -18,7 +18,7 @@ if (!class_exists('Bxcft_Plugin'))
         
         public function __construct ()
         {
-            $this->version = "2.0.2";
+            $this->version = "2.0.4";
             $this->images_ext_allowed   = apply_filters('images_ext_allowed', array(
                 'jpg', 'jpeg', 'gif', 'png'
             ));
@@ -410,7 +410,7 @@ if (!class_exists('Bxcft_Plugin'))
 
                             if ($field->is_required && $_FILES['field_'.$field_id]['size'] <= 0) {
                                 $bp->signup->errors['field_' . $field_id] = __( 'This is a required field', 'buddypress' );
-                            } else {
+                            } elseif ($_FILES['field_'.$field_id]['size'] > 0) {
                                 // Check extensions.
                                 $ext = strtolower(substr($_FILES['field_'.$field_id]['name'], strrpos($_FILES['field_'.$field_id]['name'],'.')+1));
                                 if ($field->type == 'image') {
