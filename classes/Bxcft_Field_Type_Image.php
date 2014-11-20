@@ -76,7 +76,7 @@ if (!class_exists('Bxcft_Field_Type_Image'))
             echo apply_filters('bxcft_field_actual_image', $actual_image, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_edit_value());
         ?>
             <script type="text/javascript">
-                jQuery('#profile-edit-form').attr('enctype', 'multipart/form-data');
+                jQuery('#your-profile').attr('enctype', 'multipart/form-data');
             <?php if (bp_get_the_profile_field_edit_value() != '' && bp_get_the_profile_field_edit_value() != '-'): ?>
                 jQuery('#field_<?php echo bp_get_the_profile_field_id(); ?>_deleteimg').change(function() {
                     if (jQuery(this).is(':checked') && jQuery('input#field_<?php echo bp_get_the_profile_field_id(); ?>[type=file]').val() === '') {
