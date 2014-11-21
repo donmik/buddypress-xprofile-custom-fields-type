@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 
 Add more custom fields type to extended profiles in Buddypress: Birthdate, Email, Web, Datepicker, ...
 
@@ -160,6 +160,9 @@ Replace "XXX" with the ID of your field. Replace "YYY" with the number of charac
 Thanks to wplamp => https://wordpress.org/support/topic/limit-the-of-characters-in-a-text-area
  
 == Changelog ==
+
+= 2.0.5 =
+* Image and File upload was not working when editing extended profile inside wordpress admin. Thanks to sakibmoon! https://github.com/donmik/buddypress-xprofile-custom-fields-type/pull/14
 
 = 2.0.4 =
 * Image and file type field were always required on registration page. Solved!
