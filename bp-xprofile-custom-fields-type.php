@@ -1,9 +1,9 @@
 <?php
 /*
     Plugin Name: Buddypress Xprofile Custom Fields Type
-    Plugin URI: https://github.com/donmik/buddypress-xprofile-custom-fields-type/
-    Description: Buddypress installation required!! Add more custom fields type to extended profiles in buddypress: Birthdate, Email, Web, Datepicker. If you need more fields type, you are free to add them yourself or request us at miguel@donmik.com.
-    Version: 2.0.5
+    Plugin URI: http://donmik.com/en/buddypress-xprofile-custom-fields-type/
+    Description: Buddypress installation required!! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, Datepicker, Custom post type selector, Custom post type multiselector, Checkbox acceptance, Image, File and Colorpicker. If you need more fields type, you are free to add them yourself or request me at miguel@donmik.com.
+    Version: 2.1
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -18,7 +18,7 @@ if (!class_exists('Bxcft_Plugin'))
         
         public function __construct ()
         {
-            $this->version = "2.0.5";
+            $this->version = "2.1";
             $this->images_ext_allowed   = apply_filters('images_ext_allowed', array(
                 'jpg', 'jpeg', 'gif', 'png'
             ));
@@ -43,6 +43,11 @@ if (!class_exists('Bxcft_Plugin'))
             add_filter( 'bp_xprofile_get_field_types', array($this, 'bxcft_get_field_types'), 10, 1 );
             add_filter( 'xprofile_get_field_data', array($this, 'bxcft_get_field_data'), 10, 2 );
             add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_get_field_value'), 10, 3 );
+            /** BP Profile Search Filters **/
+            add_filter ('bps_field_validation_type', array($this, 'bxcft_map'), 10, 2);
+            add_filter ('bps_field_html_type', array($this, 'bxcft_map'), 10, 2);
+            add_filter ('bps_field_criteria_type', array($this, 'bxcft_map'), 10, 2);
+            add_filter ('bps_field_query_type', array($this, 'bxcft_map'), 10, 2);
         }
         
         public function init()
@@ -557,6 +562,32 @@ if (!class_exists('Bxcft_Plugin'))
                     unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']);
                 } 
             }
+        }
+        
+        public function bxcft_map($field_type, $field)
+        {
+            switch($field_type) {
+                case 'birthdate':
+                case 'datepicker':
+                    $field_type = 'datebox';
+                    break;
+                
+                case 'email':
+                case 'web': 
+                case 'image':
+                case 'file':
+                case 'color':
+                    $field_type = 'textbox';
+                    break;
+                
+                case 'select_custom_post_type':
+                case 'multiselect_custom_post_type':
+                case 'checkbox_acceptance':
+                    $field_type = 'selectbox';
+                    break;
+            }
+            
+            return $field_type;
         }
         
         public function bxcft_update() 
