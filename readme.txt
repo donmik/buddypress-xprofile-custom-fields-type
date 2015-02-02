@@ -4,32 +4,29 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GLPv2 or later
 
-Buddypress installation required!! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
+Buddypress 2.0 required! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
 
 == Description ==
 
 = Buddypress required! (v2.0 at least) = 
 
 This plugin add more fields type to Buddypress extension: Xprofile. The fields type added are:
+
 * Birthdate.
 * [Email](http://www.w3.org/TR/html-markup/input.email.html "Input type email - HTML5").
 * [Web](http://www.w3.org/TR/html-markup/input.url.html "Input type url - HTML5").
-* [Datepicker](http://www.w3.org/TR/2013/NOTE-html-markup-20130528/input.date.html "Input type date - HTML5).
+* [Datepicker](http://www.w3.org/TR/2013/NOTE-html-markup-20130528/input.date.html "Input type date - HTML5").
 * Custom post type selector.
 * Custom post type multiselector.
 * Checkbox acceptance.
 * Image.
 * File.
-* [Colorpicker](http://www.w3.org/TR/2013/NOTE-html-markup-20130528/input.color.html "Input type color - HTML5).
+* [Colorpicker](http://www.w3.org/TR/2013/NOTE-html-markup-20130528/input.color.html "Input type color - HTML5").
 
-= Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ "BP Profile Search plugin") =
-
-= [Available on Github](https://github.com/donmik/buddypress-xprofile-custom-fields-type "Feel free to contribute") =
-
-If you need more fields type, you are free to add them yourself or request me at miguel@donmik.com. Follow me on [donmik.com](http://donmik.com "Follow me") or [@kimnod](http://twitter.com/kimnod "Follow me on Twitter")
+Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ "BP Profile Search plugin"). [Available on Github](https://github.com/donmik/buddypress-xprofile-custom-fields-type "Feel free to contribute"). If you need more fields type, you are free to add them yourself or request me at miguel@donmik.com. Follow me: [donmik.com](http://donmik.com "Follow me") or [@kimnod](http://twitter.com/kimnod "Follow me on Twitter")
 
 == Installation ==
 
@@ -46,9 +43,12 @@ If you need more fields type, you are free to add them yourself or request me at
  
 == Changelog ==
 
+= 2.1.2 =
+* Readme bugs...
+
 = 2.1.1 =
 * Solved issue with required checkbox acceptance in safari. <https://wordpress.org/support/topic/checkbox-acceptance-field-safari-issue?replies=1>
-* Plugin's readme improved!
+* Plugin readme improved!
 
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
