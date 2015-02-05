@@ -92,7 +92,7 @@ if (!class_exists('Bxcft_Field_Type_CheckboxAcceptance'))
                     }
 
                     $options[] = (object) array(
-                        'id'                => -1,
+                        'id'                => 0,
                         'is_default_option' => $is_default_option,
                         'name'              => sanitize_text_field( stripslashes( $_POST[$type . '_option'][$i] ) ),
                     );
@@ -103,7 +103,7 @@ if (!class_exists('Bxcft_Field_Type_CheckboxAcceptance'))
 
                 if ( ! $options ) {
                     $options[] = (object) array(
-                        'id'                => -1,
+                        'id'                => 0,
                         'is_default_option' => false,
                         'name'              => '',
                     );
@@ -155,7 +155,7 @@ if (!class_exists('Bxcft_Field_Type_CheckboxAcceptance'))
             if ($checkbox_acceptance == 1) {
                 $html .= ' value="1" /> ';
             } else {
-                $html .= ' value="-1" /> ';
+                $html .= ' value="0" /> ';
             }
             if ($options) {
                 foreach ($options as $option) {
@@ -171,7 +171,7 @@ if (!class_exists('Bxcft_Field_Type_CheckboxAcceptance'))
                             if (jQuery(this).is(":checked")) {
                                 jQuery("#'.bp_get_the_profile_field_input_name().'").val("1");
                             } else {
-                                jQuery("#'.bp_get_the_profile_field_input_name().'").val("-1");
+                                jQuery("#'.bp_get_the_profile_field_input_name().'").val("0");
                             }
                         });
                     });
