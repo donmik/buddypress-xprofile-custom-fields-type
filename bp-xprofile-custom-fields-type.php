@@ -3,7 +3,7 @@
     Plugin Name: Buddypress Xprofile Custom Fields Type
     Plugin URI: http://donmik.com/en/buddypress-xprofile-custom-fields-type/
     Description: Buddypress installation required!! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, Datepicker, ...
-    Version: 2.1.2
+    Version: 2.1.3
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -18,7 +18,7 @@ if (!class_exists('Bxcft_Plugin'))
         
         public function __construct ()
         {
-            $this->version = "2.1.2";
+            $this->version = "2.1.3";
             $this->images_ext_allowed   = apply_filters('images_ext_allowed', array(
                 'jpg', 'jpeg', 'gif', 'png'
             ));
@@ -139,7 +139,7 @@ if (!class_exists('Bxcft_Plugin'))
         {
             $field = new BP_XProfile_Field($field_id);
             $value_to_return = strip_tags($value);
-            if (!empty($value_to_return)) {
+            if ($value_to_return !== '') {
                 // Birthdate.
                 if ($field->type == 'birthdate') {
                     $show_age = false;
@@ -258,7 +258,7 @@ if (!class_exists('Bxcft_Plugin'))
         public function bxcft_get_field_value($value='', $type='', $id='')
         {
             $value_to_return = strip_tags($value);
-            if (!empty($value_to_return)) {
+            if ($value_to_return !== '') {
                 // Birthdate.
                 if ($type == 'birthdate') {
                     $show_age = false;
