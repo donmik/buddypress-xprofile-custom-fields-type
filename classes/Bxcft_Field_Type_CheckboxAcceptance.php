@@ -57,13 +57,9 @@ if (!class_exists('Bxcft_Field_Type_CheckboxAcceptance'))
                 $required = false;
             }
         ?>
-            <div class="checkbox_acceptance">
-
-                <label for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?><?php esc_html_e( '(required)', 'buddypress' ); ?><?php endif; ?></label>
-                <?php do_action( bp_get_the_profile_field_errors_action() ); ?>
-                <?php bp_the_profile_field_options( "user_id={$user_id}&required={$required}" ); ?>
-
-            </div>
+            <label for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?><?php esc_html_e( '(required)', 'buddypress' ); ?><?php endif; ?></label>
+            <?php do_action( bp_get_the_profile_field_errors_action() ); ?>
+            <?php bp_the_profile_field_options( "user_id={$user_id}&required={$required}" ); ?>
         <?php
         }
         

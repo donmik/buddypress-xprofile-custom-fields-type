@@ -52,17 +52,13 @@ if (!class_exists('Bxcft_Field_Type_Web'))
                     (bp_get_the_profile_field_is_required()) ?
                         ' ' . esc_html__( '(required)', 'buddypress' ) : ''
             );
+            // Label.
+            echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
+            // Errors.
+            do_action( bp_get_the_profile_field_errors_action() );
+            // Input.
         ?>
-            <div class="input-web">
-        <?php
-                // Label.
-                echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
-                // Errors.
-                do_action( bp_get_the_profile_field_errors_action() );
-                // Input.
-        ?>
-                <input <?php echo $html; ?> />
-            </div>
+            <input <?php echo $html; ?> />
         <?php
         }
         

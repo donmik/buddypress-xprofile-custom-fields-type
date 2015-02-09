@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 License: GLPv2 or later
 
 Buddypress 2.0 required! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
@@ -43,8 +43,8 @@ Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ 
  
 == Changelog ==
 
-= 2.1.3 =
-* Really now, I solved an issue with required checkbox acceptance in safari. <https://wordpress.org/support/topic/checkbox-acceptance-field-safari-issue?replies=1>
+= 2.1.4 =
+* I've removed the div wrapping some fields (birthdate, checkbox acceptance, datepicker, email and web). This div has no special purpose and was causing a css conflict in wordpress admin when editing a profile. Thanks to garett-eclipse <https://wordpress.org/support/topic/admin-extended-profile-for-html5-fields-display-differently?replies=1#post-6530098>
 
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
