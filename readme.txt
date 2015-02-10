@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 2.1.4
+Stable tag: 2.1.5
 License: GLPv2 or later
 
 Buddypress 2.0 required! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
@@ -43,11 +43,14 @@ Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ 
  
 == Changelog ==
 
-= 2.1.4 =
-* I've removed the div wrapping some fields (birthdate, checkbox acceptance, datepicker, email and web). This div has no special purpose and was causing a css conflict in wordpress admin when editing a profile. Thanks to garett-eclipse <https://wordpress.org/support/topic/admin-extended-profile-for-html5-fields-display-differently?replies=1#post-6530098>
+= 2.1.5 =
+* Finally, a filter to limit file upload size and image upload size ("bxcft_files_max_filesize" and "bxcft_images_max_filesize"). See [FAQ for more info](http://donmik.com/en/buddypress-xprofile-custom-fields-type/#faq "FAQ")
+* I have moved the initialization of variables that control the types of files and images allowed inside the "init" method because it was not working from the constructor. The filters "images_ext_allowed" and "files_ext_allowed" should work now as expected.
+* When the extension of file or image is wrong or the size is greater than maximum, I display now a custom message error and not the default message from buddypress. This message can be customized in language files.
+* Spanish, English and French translations updated. The rest is pending, any contribution is welcome.
 
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
 
 == Upgrade Notice ==
-* Small bug fixes and description updated. Read changes <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
+* Added new filters. Translations updated. Read changes <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
