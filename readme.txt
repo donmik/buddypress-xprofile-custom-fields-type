@@ -4,14 +4,14 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 2.1.5
+Stable tag: 2.1.6
 License: GLPv2 or later
 
 Buddypress 2.0 required! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
 
 == Description ==
 
-= Buddypress required! (v2.0 at least) = 
+= Buddypress required! (v2.0 at least) =
 
 This plugin add more fields type to Buddypress extension: Xprofile. The fields type added are:
 
@@ -40,17 +40,14 @@ Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ 
 == Frequently Asked Questions ==
 
 <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#faq>
- 
+
 == Changelog ==
 
-= 2.1.5 =
-* Finally, a filter to limit file upload size and image upload size ("bxcft_files_max_filesize" and "bxcft_images_max_filesize"). See [FAQ for more info](http://donmik.com/en/buddypress-xprofile-custom-fields-type/#faq "FAQ")
-* I have moved the initialization of variables that control the types of files and images allowed inside the "init" method because it was not working from the constructor. The filters "images_ext_allowed" and "files_ext_allowed" should work now as expected.
-* When the extension of file or image is wrong or the size is greater than maximum, I display now a custom message error and not the default message from buddypress. This message can be customized in language files.
-* Spanish, English and French translations updated. The rest is pending, any contribution is welcome.
+= 2.1.6 =
+* Updated all language files / German translation / small typos - https://github.com/donmik/buddypress-xprofile-custom-fields-type/pull/17
 
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
 
 == Upgrade Notice ==
-* Added new filters. Translations updated. Read changes <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
+* Translations updated. Read changes <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
