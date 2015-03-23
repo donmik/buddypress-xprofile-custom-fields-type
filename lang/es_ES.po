@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: bxcft\n"
+"Project-Id-Version: BuddyPress Xprofile Custom Fields Type v2.1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-10 10:30+0100\n"
-"PO-Revision-Date: 2015-02-10 10:30+0100\n"
-"Last-Translator: miguel <donmik@gmail.com>\n"
+"POT-Creation-Date: 2015-03-11 12:42+0100\n"
+"PO-Revision-Date: 2015-03-11 12:42+0100\n"
+"Last-Translator: Sol Huebner <translations@it-specialist.net>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
@@ -12,16 +12,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-Basepath: ../\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: bp-xprofile-custom-fields-type.php:105
 msgid ""
-"Buddypress Xprofile Custom Fields Type plugin needs <b>Buddypress 2.0</b>, "
-"please install or upgrade Buddypress."
+"BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.0</b>, "
+"please install or upgrade BuddyPress."
 msgstr ""
-"El plugin \"Buddypress Xprofile Custom Fields Type\" necesita <b>Buddypress "
-"2.0</b>, por favor instala o actualiza Buddypress."
+"El plugin \"BuddyPress Xprofile Custom Fields Type\" necesita <b>BuddyPress "
+"2.0</b>, por favor instala o actualiza BuddyPress."
 
 #: bp-xprofile-custom-fields-type.php:233
 #: bp-xprofile-custom-fields-type.php:355
@@ -77,11 +77,12 @@ msgstr ""
 "Marque esta opción si quiere mostrar la edad en lugar de la fecha de "
 "nacimiento:"
 
+# no option picked in select box
 #: classes/Bxcft_Field_Type_Birthdate.php:224
 #: classes/Bxcft_Field_Type_Birthdate.php:249
 #: classes/Bxcft_Field_Type_Birthdate.php:257
 msgid "----"
-msgstr "----"
+msgstr ""
 
 #: classes/Bxcft_Field_Type_Birthdate.php:235
 msgid "January"
@@ -193,6 +194,13 @@ msgstr "Selector de tipo de post personalizado"
 #: classes/Bxcft_Field_Type_Web.php:12
 msgid "Website (HTML5 field)"
 msgstr "Sitio web (Campo HTML5)"
+
+#~ msgid ""
+#~ "Buddypress Xprofile Custom Fields Type plugin needs <b>Buddypress 2.0</"
+#~ "b>, please install or upgrade Buddypress."
+#~ msgstr ""
+#~ "El plugin \"Buddypress Xprofile Custom Fields Type\" necesita "
+#~ "<b>Buddypress 2.0</b>, por favor instala o actualiza Buddypress."
 
 #~ msgid "http://yourwebsite.com"
 #~ msgstr "http://tusitioweb.es"
