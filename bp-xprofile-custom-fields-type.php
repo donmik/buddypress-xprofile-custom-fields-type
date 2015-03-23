@@ -1,8 +1,8 @@
 <?php
 /*
-    Plugin Name: Buddypress Xprofile Custom Fields Type
+    Plugin Name: BuddyPress Xprofile Custom Fields Type
     Plugin URI: http://donmik.com/en/buddypress-xprofile-custom-fields-type/
-    Description: Buddypress installation required!! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, Datepicker, ...
+    Description: BuddyPress installation required!! This plugin add custom field types to BuddyPress Xprofile extension. Field types are: Birthdate, Email, Url, Datepicker, ...
     Version: 2.1.5
     Author: donmik
     Author URI: http://donmik.com
@@ -91,10 +91,10 @@ if (!class_exists('Bxcft_Plugin'))
         {
             if (is_admin() && get_option('bxcft_activated') == 1) {
                 delete_option('bxcft_activated');
-                // Check if buddypress 2.0 is installed.
+                // Check if BuddyPress 2.0 is installed.
                 $version_bp = 0;
                 if (function_exists('is_plugin_active') && is_plugin_active('buddypress/bp-loader.php')) {
-                    // Buddypress loaded.
+                    // BuddyPress loaded.
                     $data = get_file_data(WP_PLUGIN_DIR . '/buddypress/bp-loader.php', array('Version'));
                     if (isset($data) && count($data) > 0 && $data[0] != '') {
                         $version_bp = (float)$data[0];
@@ -102,7 +102,7 @@ if (!class_exists('Bxcft_Plugin'))
                 }
                 if ($version_bp < 2) {
                     $notices = get_option('bxcft_notices');
-                    $notices[] = __('Buddypress Xprofile Custom Fields Type plugin needs <b>Buddypress 2.0</b>, please install or upgrade Buddypress.', 'bxcft');
+                    $notices[] = __('BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.0</b>, please install or upgrade BuddyPress.', 'bxcft');
                     update_option('bxcft_notices', $notices);
                 }
             
