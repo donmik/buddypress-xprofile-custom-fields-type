@@ -80,6 +80,7 @@ if (!class_exists('Bxcft_Plugin'))
             require_once( 'classes/Bxcft_Field_Type_Image.php' );
             require_once( 'classes/Bxcft_Field_Type_File.php' );
             require_once( 'classes/Bxcft_Field_Type_Color.php' );
+            require_once( 'classes/Bxcft_Field_Type_DecimalNumber.php' );
 
             if (bp_is_user_profile_edit() || bp_is_register_page()) {
                 wp_enqueue_script('bxcft-modernizr', plugin_dir_url(__FILE__) . 'js/modernizr.js', array(), '2.6.2', false);
@@ -136,6 +137,7 @@ if (!class_exists('Bxcft_Plugin'))
                 'image'                         => 'Bxcft_Field_Type_Image',
                 'file'                          => 'Bxcft_Field_Type_File',
                 'color'                         => 'Bxcft_Field_Type_Color',
+                'decimal_number'                => 'Bxcft_Field_Type_DecimalNumber',
             );
             $fields = array_merge($fields, $new_fields);
 
@@ -603,6 +605,10 @@ if (!class_exists('Bxcft_Plugin'))
                 case 'file':
                 case 'color':
                     $field_type = 'textbox';
+                    break;
+					
+                case 'decimal_number':
+                    $field_type = 'number';
                     break;
 
                 case 'select_custom_post_type':
