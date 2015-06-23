@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Xprofile Custom Fields Type v2.1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 12:42+0100\n"
-"PO-Revision-Date: 2015-03-11 12:42+0100\n"
+"POT-Creation-Date: 2015-06-22 14:55+0100\n"
+"PO-Revision-Date: 2015-06-22 15:09+0100\n"
 "Last-Translator: Sol Huebner <translations@it-specialist.net>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -12,10 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-Basepath: ../\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.7.6\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: bp-xprofile-custom-fields-type.php:105
+#: bp-xprofile-custom-fields-type.php:122
 msgid ""
 "BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.0</b>, "
 "please install or upgrade BuddyPress."
@@ -23,46 +23,46 @@ msgstr ""
 "El plugin \"BuddyPress Xprofile Custom Fields Type\" necesita <b>BuddyPress "
 "2.0</b>, por favor instala o actualiza BuddyPress."
 
-#: bp-xprofile-custom-fields-type.php:233
-#: bp-xprofile-custom-fields-type.php:355
+#: bp-xprofile-custom-fields-type.php:252
+#: bp-xprofile-custom-fields-type.php:379
 msgid "yes"
 msgstr "sí"
 
-#: bp-xprofile-custom-fields-type.php:233
-#: bp-xprofile-custom-fields-type.php:355
+#: bp-xprofile-custom-fields-type.php:252
+#: bp-xprofile-custom-fields-type.php:379
 msgid "no"
 msgstr "no"
 
-#: bp-xprofile-custom-fields-type.php:249
-#: bp-xprofile-custom-fields-type.php:371 classes/Bxcft_Field_Type_File.php:58
+#: bp-xprofile-custom-fields-type.php:268
+#: bp-xprofile-custom-fields-type.php:395 classes/Bxcft_Field_Type_File.php:58
 msgid "Download file"
 msgstr "Descargar archivo"
 
-#: bp-xprofile-custom-fields-type.php:425
-#: bp-xprofile-custom-fields-type.php:449
+#: bp-xprofile-custom-fields-type.php:454
+#: bp-xprofile-custom-fields-type.php:478
 msgid "This is a required field"
 msgstr "Este campo es obligatorio."
 
-#: bp-xprofile-custom-fields-type.php:431
-#: bp-xprofile-custom-fields-type.php:476
+#: bp-xprofile-custom-fields-type.php:460
+#: bp-xprofile-custom-fields-type.php:505
 #, php-format
 msgid "Image type not allowed: (%s)."
 msgstr "Tipo de imagen no permitido: (%s)."
 
-#: bp-xprofile-custom-fields-type.php:434
-#: bp-xprofile-custom-fields-type.php:480
+#: bp-xprofile-custom-fields-type.php:463
+#: bp-xprofile-custom-fields-type.php:509
 #, php-format
 msgid "Max image upload size: %s MB."
 msgstr "Tamaño máximo de imagen: %s MB."
 
-#: bp-xprofile-custom-fields-type.php:438
-#: bp-xprofile-custom-fields-type.php:496
+#: bp-xprofile-custom-fields-type.php:467
+#: bp-xprofile-custom-fields-type.php:525
 #, php-format
 msgid "File type not allowed: (%s)."
 msgstr "Tipo de archivo no permitido: (%s)."
 
-#: bp-xprofile-custom-fields-type.php:441
-#: bp-xprofile-custom-fields-type.php:500
+#: bp-xprofile-custom-fields-type.php:470
+#: bp-xprofile-custom-fields-type.php:529
 #, php-format
 msgid "Max file upload size: %s MB."
 msgstr "Tamaño máximo de archivo: %s MB."
@@ -144,6 +144,10 @@ msgstr "Color (Campo HTML5)"
 msgid "Datepicker (HTML5 field)"
 msgstr "Selector de fecha (Campo HTML5)"
 
+#: classes/Bxcft_Field_Type_DecimalNumber.php:12
+msgid "Decimal number (HTML5 field)"
+msgstr "Número decimal (Campo HTML5)"
+
 #: classes/Bxcft_Field_Type_Email.php:12
 msgid "Email (HTML5 field)"
 msgstr "E-mail (Campo HTML5)"
@@ -155,6 +159,22 @@ msgstr "Archivo"
 #: classes/Bxcft_Field_Type_File.php:60 classes/Bxcft_Field_Type_File.php:67
 msgid "Check this to delete this file"
 msgstr "Marca esta casilla para borrar el fichero"
+
+#: classes/Bxcft_Field_Type_Gender.php:26
+msgid "Gender Selector"
+msgstr "Selector de sexo"
+
+#: classes/Bxcft_Field_Type_Gender.php:193
+msgid "Male"
+msgstr "Masculino"
+
+#: classes/Bxcft_Field_Type_Gender.php:194
+msgid "Female"
+msgstr "Femenino"
+
+#: classes/Bxcft_Field_Type_Gender.php:263
+msgid "Default Value"
+msgstr "Valor por defecto"
 
 #: classes/Bxcft_Field_Type_Image.php:12
 msgid "Image"
