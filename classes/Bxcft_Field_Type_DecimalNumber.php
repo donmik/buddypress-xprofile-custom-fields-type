@@ -9,7 +9,7 @@ if (!class_exists('Bxcft_Field_Type_DecimalNumber'))
         public function __construct() {
             parent::__construct();
 
-            $this->name             = _x( 'Decimal number (HTML5 field)', 'xprofile field type', 'bxcft' );
+            $this->name             = __( 'Decimal number (HTML5 field)', 'bxcft' );
             
 			$this->set_format( '/^\d+|-\d+\.?\d*$/', 'replace' );
 			

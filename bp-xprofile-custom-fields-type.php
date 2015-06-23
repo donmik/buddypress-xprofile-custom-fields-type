@@ -58,17 +58,7 @@ if (!class_exists('Bxcft_Plugin'))
                 'doc', 'docx', 'pdf'
             ));
             $this->files_max_filesize = apply_filters('bxcft_files_max_filesize', Bxcft_Plugin::BXCFT_MAX_FILESIZE);
-
-            $locale = apply_filters( 'bxcft_load_load_textdomain_get_locale', get_locale() );
-            if ( !empty( $locale ) ) {
-                $mofile_default = sprintf( '%slang/%s.mo', plugin_dir_path(__FILE__), $locale );
-                $mofile = apply_filters( 'bxcft_load_textdomain_mofile', $mofile_default );
-
-                if ( file_exists( $mofile ) ) {
-                    load_textdomain( "bxcft", $mofile );
-                }
-            }
-
+ 
             /** Includes **/
             require_once( 'classes/Bxcft_Field_Type_Birthdate.php' );
             require_once( 'classes/Bxcft_Field_Type_Email.php' );
@@ -620,9 +610,19 @@ if (!class_exists('Bxcft_Plugin'))
 
             return $field_type;
         }
-
+	
         public function bxcft_update()
         {
+            $locale = apply_filters( 'bxcft_load_load_textdomain_get_locale', get_locale() );
+            if ( !empty( $locale ) ) {
+                $mofile_default = sprintf( '%slang/%s.mo', plugin_dir_path(__FILE__), $locale );
+                $mofile = apply_filters( 'bxcft_load_textdomain_mofile', $mofile_default );
+
+                if ( file_exists( $mofile ) ) {
+                    load_textdomain( "bxcft", $mofile );
+                }
+            }
+			
             if (!get_option('bxcft_activated')) {
                 add_option('bxcft_activated', 1);
             }
