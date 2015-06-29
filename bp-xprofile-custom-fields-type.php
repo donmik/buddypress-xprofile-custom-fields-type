@@ -72,6 +72,7 @@ if (!class_exists('Bxcft_Plugin'))
             require_once( 'classes/Bxcft_Field_Type_Color.php' );
             require_once( 'classes/Bxcft_Field_Type_DecimalNumber.php' );
             require_once( 'classes/Bxcft_Field_Type_Gender.php' );
+            require_once( 'classes/Bxcft_Field_Type_Diet.php' );
 
             if (bp_is_user_profile_edit() || bp_is_register_page()) {
                 wp_enqueue_script('bxcft-modernizr', plugin_dir_url(__FILE__) . 'js/modernizr.js', array(), '2.6.2', false);
@@ -130,6 +131,7 @@ if (!class_exists('Bxcft_Plugin'))
                 'color'                         => 'Bxcft_Field_Type_Color',
                 'decimal_number'                => 'Bxcft_Field_Type_DecimalNumber',
                 'gender'                        => 'Bxcft_Field_Type_Gender',
+                'diet'                          => 'Bxcft_Field_Type_Diet',
             );
             $fields = array_merge($fields, $new_fields);
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Xprofile Custom Fields Type v2.1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-22 14:55+0100\n"
-"PO-Revision-Date: 2015-06-22 14:55+0100\n"
+"POT-Creation-Date: 2015-06-29 10:30+0100\n"
+"PO-Revision-Date: 2015-06-29 10:31+0100\n"
 "Last-Translator: Sol Huebner <translations@it-specialist.net>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Poedit 1.7.6\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: bp-xprofile-custom-fields-type.php:122
+#: bp-xprofile-custom-fields-type.php:98
 msgid ""
 "BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.0</b>, "
 "please install or upgrade BuddyPress."
@@ -23,46 +23,46 @@ msgstr ""
 "BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.0</b>, "
 "please install or upgrade BuddyPress."
 
-#: bp-xprofile-custom-fields-type.php:252
-#: bp-xprofile-custom-fields-type.php:379
+#: bp-xprofile-custom-fields-type.php:229
+#: bp-xprofile-custom-fields-type.php:351
 msgid "yes"
 msgstr "yes"
 
-#: bp-xprofile-custom-fields-type.php:252
-#: bp-xprofile-custom-fields-type.php:379
+#: bp-xprofile-custom-fields-type.php:229
+#: bp-xprofile-custom-fields-type.php:351
 msgid "no"
 msgstr "no"
 
-#: bp-xprofile-custom-fields-type.php:268
-#: bp-xprofile-custom-fields-type.php:395 classes/Bxcft_Field_Type_File.php:58
+#: bp-xprofile-custom-fields-type.php:245
+#: bp-xprofile-custom-fields-type.php:367 classes/Bxcft_Field_Type_File.php:58
 msgid "Download file"
 msgstr "Download file"
 
-#: bp-xprofile-custom-fields-type.php:454
-#: bp-xprofile-custom-fields-type.php:478
+#: bp-xprofile-custom-fields-type.php:421
+#: bp-xprofile-custom-fields-type.php:445
 msgid "This is a required field"
 msgstr "This is a required field"
 
-#: bp-xprofile-custom-fields-type.php:460
-#: bp-xprofile-custom-fields-type.php:505
+#: bp-xprofile-custom-fields-type.php:427
+#: bp-xprofile-custom-fields-type.php:472
 #, php-format
 msgid "Image type not allowed: (%s)."
 msgstr "Image type not allowed: (%s)."
 
-#: bp-xprofile-custom-fields-type.php:463
-#: bp-xprofile-custom-fields-type.php:509
+#: bp-xprofile-custom-fields-type.php:430
+#: bp-xprofile-custom-fields-type.php:476
 #, php-format
 msgid "Max image upload size: %s MB."
 msgstr "Max image upload size: %s MB."
 
-#: bp-xprofile-custom-fields-type.php:467
-#: bp-xprofile-custom-fields-type.php:525
+#: bp-xprofile-custom-fields-type.php:434
+#: bp-xprofile-custom-fields-type.php:492
 #, php-format
 msgid "File type not allowed: (%s)."
 msgstr "File type not allowed: (%s)."
 
-#: bp-xprofile-custom-fields-type.php:470
-#: bp-xprofile-custom-fields-type.php:529
+#: bp-xprofile-custom-fields-type.php:437
+#: bp-xprofile-custom-fields-type.php:496
 #, php-format
 msgid "Max file upload size: %s MB."
 msgstr "Max file upload size: %s MB."
@@ -146,6 +146,23 @@ msgstr "Datepicker (HTML5 field)"
 msgid "Decimal number (HTML5 field)"
 msgstr "Decimal number (HTML5 field)"
 
+#: classes/Bxcft_Field_Type_Diet.php:26
+msgid "Diet Selector"
+msgstr "Diet Selector"
+
+#: classes/Bxcft_Field_Type_Diet.php:33
+msgid "No dietary restriction"
+msgstr "No dietary restriction"
+
+#: classes/Bxcft_Field_Type_Diet.php:34
+msgid "Low-protein diet"
+msgstr "Low-protein diet"
+
+#: classes/Bxcft_Field_Type_Diet.php:268
+#: classes/Bxcft_Field_Type_Gender.php:269
+msgid "Default Value"
+msgstr "Default Value"
+
 #: classes/Bxcft_Field_Type_Email.php:12
 msgid "Email (HTML5 field)"
 msgstr "Email (HTML5 field)"
@@ -162,17 +179,13 @@ msgstr "Check this to delete this file"
 msgid "Gender Selector"
 msgstr "Gender Selector"
 
-#: classes/Bxcft_Field_Type_Gender.php:193
+#: classes/Bxcft_Field_Type_Gender.php:33
 msgid "Male"
 msgstr "Male"
 
-#: classes/Bxcft_Field_Type_Gender.php:194
+#: classes/Bxcft_Field_Type_Gender.php:34
 msgid "Female"
 msgstr "Female"
-
-#: classes/Bxcft_Field_Type_Gender.php:263
-msgid "Default Value"
-msgstr "Default Value"
 
 #: classes/Bxcft_Field_Type_Image.php:12
 msgid "Image"

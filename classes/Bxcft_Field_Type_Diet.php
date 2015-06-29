@@ -7,43 +7,42 @@
  */
 
 /**
- * Gender xprofile field type.
+ * Diet xprofile field type.
  *
  * @since BuddyPress (2.0.0)
  */
- if (!class_exists('Bxcft_Field_Type_Gender')) 
+ if (!class_exists('Bxcft_Field_Type_Diet')) 
 {
-class Bxcft_Field_Type_Gender extends BP_XProfile_Field_Type {
+class Bxcft_Field_Type_Diet extends BP_XProfile_Field_Type {
 
 	/**
-	 * Constructor for the gender field type
+	 * Constructor for the diet field type
 	 *
 	 * @since BuddyPress (2.0.0)
  	 */
 	public function __construct() {
 		parent::__construct();
 
-		$this->name             = __( 'Gender Selector', 'bxcft' );
+		$this->name             = __( 'Diet Selector', 'bxcft' );
 		
 		$this->supports_options = true;
 
 		$this->set_format( '/^.+$/', 'replace' );
 		
-		$this->genders = array(
-			0   => __('Male', 'bxcft' ),
-			1   => __('Female', 'bxcft' ),
+		$this->diets = array(
+			0   => __('No dietary restriction', 'bxcft' ),
+			1   => __('Low-protein diet', 'bxcft' ),
 		);
-		
+
 		/**
-		 * Fires inside __construct() method for BP_XProfile_Field_Type_Gender class.
+		 * Fires inside __construct() method for BP_XProfile_Field_Type_Diet class.
 		 *
 		 * @since BuddyPress (2.0.0)
 		 *
-		 * @param BP_XProfile_Field_Type_Gender $this Current instance of
+		 * @param BP_XProfile_Field_Type_Diet $this Current instance of
 		 *                                               the field type select box.
 		 */
-		do_action( 'bp_xprofile_field_type_gender', $this );
-		
+		do_action( 'bp_xprofile_field_type_diet', $this );
 	}
 
 	/**
@@ -88,7 +87,7 @@ class Bxcft_Field_Type_Gender extends BP_XProfile_Field_Type {
 	/**
 	 * Output the edit field options HTML for this field type.
 	 *
-	 * BuddyPress considers a field's "options" to be, for example, the items in a gender.
+	 * BuddyPress considers a field's "options" to be, for example, the items in a diet.
 	 * These are stored separately in the database, and their templating is handled separately.
 	 *
 	 * This templating is separate from {@link BP_XProfile_Field_Type::edit_field_html()} because
@@ -195,9 +194,9 @@ class Bxcft_Field_Type_Gender extends BP_XProfile_Field_Type {
 		$class            = $current_field->type != $type ? 'display: none;' : '';
 		$current_type_obj = bp_xprofile_create_field_type( $type );
 		
-		$gender_values = array(
-			0   => 'Male',
-			1   => 'Female',
+		$diet_values = array(
+			0   => 'No dietary restriction',
+			1   => 'Low-protein diet',
 		);
 		
 		?>
@@ -285,11 +284,11 @@ class Bxcft_Field_Type_Gender extends BP_XProfile_Field_Type {
 				<div id="<?php echo esc_attr( "{$type}_more" ); ?>"></div>				
 				
 				<script>
-					if (!document.getElementById('gender_option2')) {
+					if (!document.getElementById('diet_option2')) {
 						add_option('<?php echo esc_js( $type ); ?>');
 						
-						document.getElementById('gender_option1').value = "<?php echo $gender_values[0] ?>";
-						document.getElementById('gender_option2').value = "<?php echo $gender_values[1] ?>";
+						document.getElementById('diet_option1').value = "<?php echo $diet_values[0] ?>";
+						document.getElementById('diet_option2').value = "<?php echo $diet_values[1] ?>";
 					}					
 				</script>
 				
