@@ -58,17 +58,7 @@ if (!class_exists('Bxcft_Plugin'))
                 'doc', 'docx', 'pdf'
             ));
             $this->files_max_filesize = apply_filters('bxcft_files_max_filesize', Bxcft_Plugin::BXCFT_MAX_FILESIZE);
-
-            $locale = apply_filters( 'bxcft_load_load_textdomain_get_locale', get_locale() );
-            if ( !empty( $locale ) ) {
-                $mofile_default = sprintf( '%slang/%s.mo', plugin_dir_path(__FILE__), $locale );
-                $mofile = apply_filters( 'bxcft_load_textdomain_mofile', $mofile_default );
-
-                if ( file_exists( $mofile ) ) {
-                    load_textdomain( "bxcft", $mofile );
-                }
-            }
-
+ 
             /** Includes **/
             require_once( 'classes/Bxcft_Field_Type_Birthdate.php' );
             require_once( 'classes/Bxcft_Field_Type_Email.php' );
@@ -80,6 +70,9 @@ if (!class_exists('Bxcft_Plugin'))
             require_once( 'classes/Bxcft_Field_Type_Image.php' );
             require_once( 'classes/Bxcft_Field_Type_File.php' );
             require_once( 'classes/Bxcft_Field_Type_Color.php' );
+            require_once( 'classes/Bxcft_Field_Type_DecimalNumber.php' );
+            require_once( 'classes/Bxcft_Field_Type_Gender.php' );
+            require_once( 'classes/Bxcft_Field_Type_Diet.php' );
 
             if (bp_is_user_profile_edit() || bp_is_register_page()) {
                 wp_enqueue_script('bxcft-modernizr', plugin_dir_url(__FILE__) . 'js/modernizr.js', array(), '2.6.2', false);
@@ -136,6 +129,9 @@ if (!class_exists('Bxcft_Plugin'))
                 'image'                         => 'Bxcft_Field_Type_Image',
                 'file'                          => 'Bxcft_Field_Type_File',
                 'color'                         => 'Bxcft_Field_Type_Color',
+                'decimal_number'                => 'Bxcft_Field_Type_DecimalNumber',
+                'gender'                        => 'Bxcft_Field_Type_Gender',
+                'diet'                          => 'Bxcft_Field_Type_Diet',
             );
             $fields = array_merge($fields, $new_fields);
 
@@ -604,6 +600,10 @@ if (!class_exists('Bxcft_Plugin'))
                 case 'color':
                     $field_type = 'textbox';
                     break;
+					
+                case 'decimal_number':
+                    $field_type = 'number';
+                    break;
 
                 case 'select_custom_post_type':
                 case 'multiselect_custom_post_type':
@@ -614,9 +614,19 @@ if (!class_exists('Bxcft_Plugin'))
 
             return $field_type;
         }
-
+	
         public function bxcft_update()
         {
+            $locale = apply_filters( 'bxcft_load_load_textdomain_get_locale', get_locale() );
+            if ( !empty( $locale ) ) {
+                $mofile_default = sprintf( '%slang/%s.mo', plugin_dir_path(__FILE__), $locale );
+                $mofile = apply_filters( 'bxcft_load_textdomain_mofile', $mofile_default );
+
+                if ( file_exists( $mofile ) ) {
+                    load_textdomain( "bxcft", $mofile );
+                }
+            }
+			
             if (!get_option('bxcft_activated')) {
                 add_option('bxcft_activated', 1);
             }
