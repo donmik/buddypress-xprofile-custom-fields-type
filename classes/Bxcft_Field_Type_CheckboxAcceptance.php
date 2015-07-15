@@ -178,29 +178,8 @@ if (!class_exists('Bxcft_Field_Type_CheckboxAcceptance'))
         }
         
         public function is_valid( $values ) {
-            $validated = false;
-
-            // Some types of field (e.g. multi-selectbox) may have multiple values to check
-            foreach ( (array) $values as $value ) {
-
-                // Validate the $value against the type's accepted format(s).
-                foreach ( $this->validation_regex as $format ) {
-                    if ( 1 === preg_match( $format, $value ) ) {
-                        $validated = true;
-                        continue;
-
-                    } else {
-                        $validated = false;
-                    }
-                }
-            }
-
-            // Handle field types with accepts_null_value set if $values is an empty array
-            if ( ! $validated && is_array( $values ) && empty( $values ) && $this->accepts_null_value ) {
-                $validated = true;
-            }
-
-            return (bool) apply_filters( 'bp_xprofile_field_type_is_valid', $validated, $values, $this );
+            $this->validation_whitelist = null;
+            return parent::is_valid($values);
         }
 
     }

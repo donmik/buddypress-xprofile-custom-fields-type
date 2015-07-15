@@ -5,67 +5,67 @@ msgstr ""
 "Project-Id-Version: BuddyPress Xprofile Custom Fields Type v2.1.5\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/buddypress-xprofile-custom-"
 "fields-type\n"
-"POT-Creation-Date: 2015-03-11 12:43+0100\n"
-"PO-Revision-Date: 2015-03-11 12:43+0100\n"
+"POT-Creation-Date: 2015-07-15 16:16+0100\n"
+"PO-Revision-Date: 2015-07-15 16:16+0100\n"
 "Last-Translator: Sol Huebner <translations@it-specialist.net>\n"
 "Language-Team: Renato Alves <LL@li.org, espellcaste@gmail.com>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.1\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Poedit-KeywordsList: __;_e;_x\n"
+"X-Poedit-KeywordsList: __;_e;_x;esc_html_e\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: bp-xprofile-custom-fields-type.php:105
+#: bp-xprofile-custom-fields-type.php:95
 msgid ""
 "BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.0</b>, "
 "please install or upgrade BuddyPress."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:233
-#: bp-xprofile-custom-fields-type.php:355
+#: bp-xprofile-custom-fields-type.php:225
+#: bp-xprofile-custom-fields-type.php:347
 msgid "yes"
 msgstr "sim"
 
-#: bp-xprofile-custom-fields-type.php:233
-#: bp-xprofile-custom-fields-type.php:355
+#: bp-xprofile-custom-fields-type.php:225
+#: bp-xprofile-custom-fields-type.php:347
 msgid "no"
 msgstr "não"
 
-#: bp-xprofile-custom-fields-type.php:249
-#: bp-xprofile-custom-fields-type.php:371
+#: bp-xprofile-custom-fields-type.php:241
+#: bp-xprofile-custom-fields-type.php:363
 #: classes/Bxcft_Field_Type_File.php:58
 msgid "Download file"
 msgstr "Baixar aquivo"
 
-#: bp-xprofile-custom-fields-type.php:425
-#: bp-xprofile-custom-fields-type.php:449
+#: bp-xprofile-custom-fields-type.php:417
+#: bp-xprofile-custom-fields-type.php:441
 msgid "This is a required field"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:431
-#: bp-xprofile-custom-fields-type.php:476
+#: bp-xprofile-custom-fields-type.php:423
+#: bp-xprofile-custom-fields-type.php:468
 #, php-format
 msgid "Image type not allowed: (%s)."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:434
-#: bp-xprofile-custom-fields-type.php:480
+#: bp-xprofile-custom-fields-type.php:426
+#: bp-xprofile-custom-fields-type.php:472
 #, php-format
 msgid "Max image upload size: %s MB."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:438
-#: bp-xprofile-custom-fields-type.php:496
+#: bp-xprofile-custom-fields-type.php:430
+#: bp-xprofile-custom-fields-type.php:488
 #, php-format
 msgid "File type not allowed: (%s)."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:441
-#: bp-xprofile-custom-fields-type.php:500
+#: bp-xprofile-custom-fields-type.php:433
+#: bp-xprofile-custom-fields-type.php:492
 #, php-format
 msgid "Max file upload size: %s MB."
 msgstr ""
@@ -74,69 +74,85 @@ msgstr ""
 msgid "Birthdate Selector"
 msgstr "Data de aniversário"
 
-#: classes/Bxcft_Field_Type_Birthdate.php:104
+#: classes/Bxcft_Field_Type_Birthdate.php:95
+msgid "Show age (hide birthdate):"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:98
 msgid "Check this if you want to show age instead of birthdate:"
 msgstr ""
 "Cheque este se você deseja mostrar a idade ao invés da data de aniverário:"
 
 # no option picked in select box
-#: classes/Bxcft_Field_Type_Birthdate.php:224
-#: classes/Bxcft_Field_Type_Birthdate.php:249
-#: classes/Bxcft_Field_Type_Birthdate.php:257
+#: classes/Bxcft_Field_Type_Birthdate.php:219
+#: classes/Bxcft_Field_Type_Birthdate.php:244
+#: classes/Bxcft_Field_Type_Birthdate.php:252
 msgid "----"
 msgstr ""
 
-#: classes/Bxcft_Field_Type_Birthdate.php:235
+#: classes/Bxcft_Field_Type_Birthdate.php:230
 msgid "January"
 msgstr "Janeiro"
 
-#: classes/Bxcft_Field_Type_Birthdate.php:236
+#: classes/Bxcft_Field_Type_Birthdate.php:231
 msgid "February"
 msgstr "Fevereiro"
 
-#: classes/Bxcft_Field_Type_Birthdate.php:237
+#: classes/Bxcft_Field_Type_Birthdate.php:232
 msgid "March"
 msgstr "Março"
 
-#: classes/Bxcft_Field_Type_Birthdate.php:238
+#: classes/Bxcft_Field_Type_Birthdate.php:233
 msgid "April"
 msgstr "Abril"
 
-#: classes/Bxcft_Field_Type_Birthdate.php:239
+#: classes/Bxcft_Field_Type_Birthdate.php:234
 msgid "May"
 msgstr "Maio"
 
-#: classes/Bxcft_Field_Type_Birthdate.php:240
+#: classes/Bxcft_Field_Type_Birthdate.php:235
 msgid "June"
 msgstr "Junho"
 
-#: classes/Bxcft_Field_Type_Birthdate.php:241
+#: classes/Bxcft_Field_Type_Birthdate.php:236
 msgid "July"
 msgstr "Julho"
 
-#: classes/Bxcft_Field_Type_Birthdate.php:242
+#: classes/Bxcft_Field_Type_Birthdate.php:237
 msgid "August"
 msgstr "Agosto"
 
-#: classes/Bxcft_Field_Type_Birthdate.php:243
+#: classes/Bxcft_Field_Type_Birthdate.php:238
 msgid "September"
 msgstr "Setembro"
 
-#: classes/Bxcft_Field_Type_Birthdate.php:244
+#: classes/Bxcft_Field_Type_Birthdate.php:239
 msgid "October"
 msgstr "Outubro"
 
-#: classes/Bxcft_Field_Type_Birthdate.php:245
+#: classes/Bxcft_Field_Type_Birthdate.php:240
 msgid "November"
 msgstr "Novembro"
 
-#: classes/Bxcft_Field_Type_Birthdate.php:246
+#: classes/Bxcft_Field_Type_Birthdate.php:241
 msgid "December"
 msgstr "Dezembro"
 
 #: classes/Bxcft_Field_Type_CheckboxAcceptance.php:12
 msgid "Checkbox Acceptance"
 msgstr "Checkbox de aceitação"
+
+#: classes/Bxcft_Field_Type_CheckboxAcceptance.php:60
+#: classes/Bxcft_Field_Type_Color.php:48
+#: classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:129
+#: classes/Bxcft_Field_Type_SelectCustomPostType.php:114
+msgid "(required)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_CheckboxAcceptance.php:114
+msgid ""
+"Use this field to write a text that should be displayed beside the checkbox:"
+msgstr ""
 
 #: classes/Bxcft_Field_Type_Color.php:12
 msgid "Color (HTML5 field)"
@@ -145,6 +161,14 @@ msgstr "Cor (HTML5)"
 #: classes/Bxcft_Field_Type_Datepicker.php:12
 msgid "Datepicker (HTML5 field)"
 msgstr "Selecionador de Data (HTML5)"
+
+#: classes/Bxcft_Field_Type_DecimalNumber.php:12
+msgid "Decimal number (HTML5 field)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_DecimalNumber.php:127
+msgid "Select max number of decimals:"
+msgstr ""
 
 #: classes/Bxcft_Field_Type_Email.php:12
 msgid "Email (HTML5 field)"
@@ -178,7 +202,9 @@ msgid ""
 "field."
 msgstr "Nenhum tipo de post personalizado foi selecionado."
 
+#: classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:89
 #: classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:92
+#: classes/Bxcft_Field_Type_SelectCustomPostType.php:81
 #: classes/Bxcft_Field_Type_SelectCustomPostType.php:84
 msgid "Select a custom post type:"
 msgstr "Por favor, selecione um tipo de post personalizado"
