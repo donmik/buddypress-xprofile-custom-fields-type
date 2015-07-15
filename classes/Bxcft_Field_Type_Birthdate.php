@@ -71,13 +71,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 $options = array();
                 $i       = 1;
                 while ( isset( $_POST[$type . '_option'][$i] ) ) {
-                    if ( $current_type_obj->supports_options && ! $current_type_obj->supports_multiple_defaults && isset( $_POST["isDefault_{$type}_option"][$i] ) && (int) $_POST["isDefault_{$type}_option"] === $i ) {
-                        $is_default_option = true;
-                    } elseif ( isset( $_POST["isDefault_{$type}_option"][$i] ) ) {
-                        $is_default_option = (bool) $_POST["isDefault_{$type}_option"][$i];
-                    } else {
-                        $is_default_option = false;
-                    }
+                    $id_default_option = true;
 
                     $options[] = (object) array(
                         'id'                => -1,
@@ -102,6 +96,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 <div class="inside">
                     <p>
                         <?php _e('Check this if you want to show age instead of birthdate:', 'bxcft'); ?>
+                        <input type="hidden" name="<?php echo esc_attr( "{$type}_option[0]" ); ?>" id="<?php echo esc_attr( "{$type}_option0" ); ?>" value="show_birthdate" />
                         <input type="checkbox" name="<?php echo esc_attr( "{$type}_option[1]" ); ?>" id="<?php echo esc_attr( "{$type}_option1" ); ?>" value="show_age"
                                <?php if ($options[0]->name == 'show_age') : ?>checked="checked"<?php endif; ?>/>
                     </p>
@@ -294,4 +289,3 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
         }
     }
 }
-
