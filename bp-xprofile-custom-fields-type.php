@@ -461,7 +461,7 @@ if (!class_exists('Bxcft_Plugin'))
             $field_id = $data->field_id;
             $field = new BP_XProfile_Field($field_id);
 
-            if ($field->type == 'image' || $field->type == 'file')
+            if ($field->type == 'image' || $field->type == 'file' && isset($_FILES['field_'.$field_id]))
             {
                 $uploads = wp_upload_dir();
                 $filesize = round($_FILES['field_'.$field_id]['size'] / (1024 * 1024), 2);
