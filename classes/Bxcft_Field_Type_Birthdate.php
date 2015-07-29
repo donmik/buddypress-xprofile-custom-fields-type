@@ -216,7 +216,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
             // $type will be passed by calling function when needed
             switch ( $args['type'] ) {
                 case 'day':
-                    $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $day, 0, false ), /* translators: no option picked in select box */ __( '----', 'buddypress' ) );
+                    $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $day, 0, false ), /* translators: no option picked in select box */ __( 'Day', 'buddypress' ) );
 
                     for ( $i = 1; $i < 32; ++$i ) {
                         $html .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', (int) $i, selected( $day, $i, false ), (int) $i );
@@ -241,7 +241,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                         11  => __( 'December', 'buddypress' )
                     );
 
-                    $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $month, 0, false ), /* translators: no option picked in select box */ __( '----', 'buddypress' ) );
+                    $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $month, 0, false ), /* translators: no option picked in select box */ __( 'Month', 'buddypress' ) );
 
                     for ( $i = 0; $i < 12; ++$i ) {
                         $html .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', esc_attr( $eng_months[$i] ), selected( $month, $eng_months[$i], false ), $months[$i] );
@@ -249,7 +249,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 break;
 
                 case 'year':
-                    $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $year, 0, false ), /* translators: no option picked in select box */ __( '----', 'buddypress' ) );
+                    $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $year, 0, false ), /* translators: no option picked in select box */ __( 'Year', 'buddypress' ) );
 
                     for ( $i = date('Y')-1; $i > 1901; $i-- ) {
                         $html .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', (int) $i, selected( $year, $i, false ), (int) $i );
