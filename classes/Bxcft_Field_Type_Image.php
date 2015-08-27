@@ -2,7 +2,7 @@
 /**
  * Image Type
  */
-if (!class_exists('Bxcft_Field_Type_Image')) 
+if (!class_exists('Bxcft_Field_Type_Image'))
 {
     class Bxcft_Field_Type_Image extends BP_XProfile_Field_Type
     {
@@ -10,7 +10,7 @@ if (!class_exists('Bxcft_Field_Type_Image'))
             parent::__construct();
 
             $this->name             = _x( 'Image', 'xprofile field type', 'bxcft' );
-            
+
             $this->set_format( '/^.+$/', 'replace' );
             do_action( 'bp_xprofile_field_type_image', $this );
         }
@@ -18,7 +18,10 @@ if (!class_exists('Bxcft_Field_Type_Image'))
         public function admin_field_html (array $raw_properties = array ())
         {
             $html = $this->get_edit_field_html_elements( array_merge(
-                array( 'type' => 'file' ),
+                array(
+                    'type' => 'file',
+                    'accept' => 'image/*',
+                ),
                 $raw_properties
             ) );
         ?>
@@ -34,12 +37,13 @@ if (!class_exists('Bxcft_Field_Type_Image'))
             $html = $this->get_edit_field_html_elements( array_merge(
                 array(
                     'type'  => 'file',
+                    'accept' => 'image/*',
                 ),
                 $raw_properties
             ) );
-            
+
             $uploads = wp_upload_dir();
-            
+
             // Label.
             $label = sprintf('<label for="%s">%s%s</label>',
                         bp_get_the_profile_field_input_name(),
@@ -69,7 +73,7 @@ if (!class_exists('Bxcft_Field_Type_Image'))
             } else {
                 $actual_image = '';
             }
-            
+
             echo apply_filters( 'bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required() );
             do_action( bp_get_the_profile_field_errors_action() );
             echo apply_filters( 'bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required() );
@@ -101,7 +105,7 @@ if (!class_exists('Bxcft_Field_Type_Image'))
             </script>
         <?php
         }
-        
+
         public function admin_new_field_html( BP_XProfile_Field $current_field, $control_type = '' ) {}
 
     }
