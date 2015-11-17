@@ -1,20 +1,20 @@
 <?php
 /**
- * Select Custom Post Type Type
+ * Select Custom Taxonomy Type
  */
-if (!class_exists('Bxcft_Field_Type_SelectCustomPostType'))
+if (!class_exists('Bxcft_Field_Type_SelectCustomTaxonomy'))
 {
-    class Bxcft_Field_Type_SelectCustomPostType extends BP_XProfile_Field_Type
+    class Bxcft_Field_Type_SelectCustomTaxonomy extends BP_XProfile_Field_Type
     {
         public function __construct() {
             parent::__construct();
 
-            $this->name             = _x( 'Custom Post Type Selector', 'xprofile field type', 'bxcft' );
+            $this->name = _x( 'Custom Taxonomy Selector', 'xprofile field type', 'bxcft' );
 
             $this->supports_options = true;
 
             $this->set_format( '/^.+$/', 'replace' );
-            do_action( 'bp_xprofile_field_type_select_custom_post_type', $this );
+            do_action( 'bp_xprofile_field_type_select_custom_taxonomy', $this );
         }
 
         public function admin_field_html( array $raw_properties = array() ) {
@@ -67,24 +67,24 @@ if (!class_exists('Bxcft_Field_Type_SelectCustomPostType'))
                 }
             }
 
-            $post_types = get_post_types(array(
+            $taxonomies = get_taxonomies(array(
                 'public'    => true,
                 '_builtin'  => false,
             ));
         ?>
             <div id="<?php echo esc_attr( $type ); ?>" class="postbox bp-options-box" style="<?php echo esc_attr( $class ); ?> margin-top: 15px;">
         <?php
-            if (!$post_types):
+            if (!$taxonomies):
         ?>
-                <h3><?php _e('There is no custom post type. You need to create at least one to use this field.', 'bxcft'); ?></h3>
+                <h3><?php _e('There is no custom taxonomy. You need to create at least one to use this field.', 'bxcft'); ?></h3>
         <?php else : ?>
-                <h3><?php esc_html_e( 'Select a custom post type:', 'bxcft' ); ?></h3>
+                <h3><?php esc_html_e( 'Select a custom taxonomy:', 'bxcft' ); ?></h3>
                 <div class="inside">
                     <p>
-                        <?php _e('Select a custom post type:', 'bxcft'); ?>
+                        <?php _e('Select a custom taxonomy:', 'bxcft'); ?>
                         <select name="<?php echo esc_attr( "{$type}_option[1]" ); ?>" id="<?php echo esc_attr( "{$type}_option[1]" ); ?>">
                             <option value=""><?php _e('Select...', 'bxcft'); ?></option>
-                        <?php foreach($post_types as $k=>$v): ?>
+                        <?php foreach($taxonomies as $k=>$v): ?>
                             <option value="<?php echo $k; ?>"<?php if ($options[0]->name == $k): ?> selected="selected"<?php endif; ?>><?php echo $v; ?></option>
                         <?php endforeach; ?>
                         </select>
@@ -122,33 +122,30 @@ if (!class_exists('Bxcft_Field_Type_SelectCustomPostType'))
 
         public function edit_field_options_html( array $args = array() ) {
             $options        = $this->field_obj->get_children();
-            $post_selected  = BP_XProfile_ProfileData::get_value_byid( $this->field_obj->id, $args['user_id'] );
+            $term_selected  = BP_XProfile_ProfileData::get_value_byid( $this->field_obj->id, $args['user_id'] );
 
             $html = '';
             if ($options) {
-                $post_type_selected = $options[0]->name;
+                $taxonomy_selected = $options[0]->name;
                 if ( !empty($_POST['field_' . $this->field_obj->id]) ) {
-                    $new_post_selected = (int) $_POST['field_' . $this->field_obj->id];
-                    $post_selected = ( $post_selected != $new_post_selected ) ? $new_post_selected : $post_selected;
+                    $new_term_selected = (int) $_POST['field_' . $this->field_obj->id];
+                    $term_selected = ( $term_selected != $new_term_selected ) ? $new_term_selected : $term_selected;
                 }
-                // Get posts of custom post type selected.
-                $posts = new WP_Query(array(
-                    'posts_per_page'    => -1,
-                    'post_type'         => $post_type_selected,
-                    'orderby'           => 'title',
-                    'order'             => 'ASC'
+                // Get terms of custom taxonomy selected.
+                $terms = get_terms($taxonomy_selected, array(
+                    'hide_empty' => false
                 ));
-                if ($posts) {
-                    foreach ($posts->posts as $post) {
+                if ($terms) {
+                    foreach ($terms as $term) {
                         $html .= sprintf('<option value="%s"%s>%s</option>',
-                                    $post->ID,
-                                    ($post_selected==$post->ID)?' selected="selected"':'',
-                                    $post->post_title);
+                                    $term->term_id,
+                                    ($term_selected==$term->term_id)?' selected="selected"':'',
+                                    $term->name);
                     }
                 }
             }
 
-            echo apply_filters( 'bp_get_the_profile_field_select_custom_post_type', $html, $args['type'], $post_type_selected, $this->field_obj->id );
+            echo apply_filters( 'bp_get_the_profile_field_select_custom_taxonomy', $html, $args['type'], $term_selected, $this->field_obj->id );
         }
 
         /**

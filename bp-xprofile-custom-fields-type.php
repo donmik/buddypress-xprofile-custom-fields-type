@@ -3,7 +3,7 @@
     Plugin Name: BuddyPress Xprofile Custom Fields Type
     Plugin URI: http://donmik.com/en/buddypress-xprofile-custom-fields-type/
     Description: BuddyPress installation required!! This plugin add custom field types to BuddyPress Xprofile extension. Field types are: Birthdate, Email, Url, Datepicker, ...
-    Version: 2.2.0
+    Version: 2.3.0
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -22,7 +22,7 @@ if (!class_exists('Bxcft_Plugin'))
 
         public function __construct ()
         {
-            $this->version = "2.2.0";
+            $this->version = "2.3.0";
 
             /** Main hooks **/
             add_action( 'plugins_loaded', array($this, 'bxcft_update') );
@@ -66,11 +66,14 @@ if (!class_exists('Bxcft_Plugin'))
             require_once( 'classes/Bxcft_Field_Type_Datepicker.php' );
             require_once( 'classes/Bxcft_Field_Type_SelectCustomPostType.php' );
             require_once( 'classes/Bxcft_Field_Type_MultiSelectCustomPostType.php' );
+            require_once( 'classes/Bxcft_Field_Type_SelectCustomTaxonomy.php' );
+            require_once( 'classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php' );
             require_once( 'classes/Bxcft_Field_Type_CheckboxAcceptance.php' );
             require_once( 'classes/Bxcft_Field_Type_Image.php' );
             require_once( 'classes/Bxcft_Field_Type_File.php' );
             require_once( 'classes/Bxcft_Field_Type_Color.php' );
             require_once( 'classes/Bxcft_Field_Type_DecimalNumber.php' );
+            require_once( 'classes/Bxcft_Field_Type_NumberMinMax.php' );
 
             if (bp_is_user_profile_edit() || bp_is_register_page()) {
                 wp_enqueue_script('bxcft-modernizr', plugin_dir_url(__FILE__) . 'js/modernizr.js', array(), '2.6.2', false);
@@ -123,11 +126,14 @@ if (!class_exists('Bxcft_Plugin'))
                 'datepicker'                    => 'Bxcft_Field_Type_Datepicker',
                 'select_custom_post_type'       => 'Bxcft_Field_Type_SelectCustomPostType',
                 'multiselect_custom_post_type'  => 'Bxcft_Field_Type_MultiSelectCustomPostType',
+                'select_custom_taxonomy'        => 'Bxcft_Field_Type_SelectCustomTaxonomy',
+                'multiselect_custom_taxonomy'   => 'Bxcft_Field_Type_MultiSelectCustomTaxonomy',
                 'checkbox_acceptance'           => 'Bxcft_Field_Type_CheckboxAcceptance',
                 'image'                         => 'Bxcft_Field_Type_Image',
                 'file'                          => 'Bxcft_Field_Type_File',
                 'color'                         => 'Bxcft_Field_Type_Color',
                 'decimal_number'                => 'Bxcft_Field_Type_DecimalNumber',
+                'number_minmax'                 => 'Bxcft_Field_Type_NumberMinMax',
             );
             $fields = array_merge($fields, $new_fields);
 
@@ -209,6 +215,51 @@ if (!class_exists('Bxcft_Plugin'))
                                     if ($cad == '')
                                         $cad .= '<ul class="list_custom_post_type">';
                                     $cad .= '<li>'.$post->post_title.'</li>';
+                                }
+                            }
+                            if ($cad != '') {
+                                $cad .= '</ul>';
+                            }
+                        }
+                        $value_to_return = $cad;
+                    } else {
+                        $value_to_return = '--';
+                    }
+                }
+                // Select custom taxonomy.
+                elseif ($field->type == 'select_custom_taxonomy') {
+                    if ($field) {
+                        $childs = $field->get_children();
+                        if (isset($childs) && $childs && count($childs) > 0
+                                && is_object($childs[0])) {
+                            $taxonomy_selected = $childs[0]->name;
+                        }
+                        $term = get_term_by('id', $value_to_return, $taxonomy_selected);
+                        if ($term->taxonomy == $taxonomy_selected) {
+                            $value_to_return = $term->name;
+                        } else {
+                            // Custom taxonomy is not the same.
+                            $value_to_return = '--';
+                        }
+                    } else {
+                        $value_to_return = '--';
+                    }
+                }
+                // Multi select custom taxonomy.
+                elseif ($field->type == 'multiselect_custom_taxonomy') {
+                    if ($field) {
+                        $values = explode(",", $value_to_return);
+                        $childs = $field->get_children();
+                        if (isset($childs) && $childs && count($childs) > 0
+                                && is_object($childs[0])) {
+                            $taxonomy_selected = $childs[0]->name;
+                            $cad = '';
+                            foreach ($values as $v) {
+                                $term = get_term_by('id', $value_to_return, $taxonomy_selected);
+                                if ($term->taxonomy == $taxonomy_selected) {
+                                    if ($cad == '')
+                                        $cad .= '<ul class="list_custom_taxonomy">';
+                                    $cad .= '<li>'.$term->name.'</li>';
                                 }
                             }
                             if ($cad != '') {
@@ -331,6 +382,53 @@ if (!class_exists('Bxcft_Plugin'))
                                     if ($cad == '')
                                         $cad .= '<ul class="list_custom_post_type">';
                                     $cad .= '<li>'.$post->post_title.'</li>';
+                                }
+                            }
+                            if ($cad != '') {
+                                $cad .= '</ul>';
+                            }
+                        }
+                        $value_to_return = $cad;
+                    } else {
+                        $value_to_return = '--';
+                    }
+                }
+                // Select custom taxonomy.
+                elseif ($type == 'select_custom_taxonomy') {
+                    $field = new BP_XProfile_Field($id);
+                    if ($field) {
+                        $childs = $field->get_children();
+                        if (isset($childs) && $childs && count($childs) > 0
+                                && is_object($childs[0])) {
+                            $taxonomy_selected = $childs[0]->name;
+                        }
+                        $term = get_term_by('id', $value_to_return, $taxonomy_selected);
+                        if ($term->taxonomy == $taxonomy_selected) {
+                            $value_to_return = $term->name;
+                        } else {
+                            // Custom taxonomy is not the same.
+                            $value_to_return = '--';
+                        }
+                    } else {
+                        $value_to_return = '--';
+                    }
+                }
+                // Multi select custom taxonomy.
+                elseif ($type == 'multiselect_custom_taxonomy') {
+                    $field = new BP_XProfile_Field($id);
+                    if ($field) {
+                        $values = explode(",", $value_to_return);
+                        $childs = $field->get_children();
+                        if (isset($childs) && $childs && count($childs) > 0
+                                && is_object($childs[0])) {
+                            $taxonomy_selected = $childs[0]->name;
+                            $cad = '';
+                            foreach ($values as $v) {
+                                $term = get_term_by('id', trim($v), $taxonomy_selected);
+                                if ($term->taxonomy == $taxonomy_selected) {
+                                    if ($cad == '')
+                                        $cad .= '<ul class="list_custom_taxonomy">';
+                                    $cad .= '<li>'.$term->name.'</li>';
                                 }
                             }
                             if ($cad != '') {
@@ -596,13 +694,16 @@ if (!class_exists('Bxcft_Plugin'))
                 case 'color':
                     $field_type = 'textbox';
                     break;
-                    
+
                 case 'decimal_number':
+                case 'number_minmax':
                     $field_type = 'number';
                     break;
 
                 case 'select_custom_post_type':
                 case 'multiselect_custom_post_type':
+                case 'select_custom_taxonomy':
+                case 'multiselect_custom_taxonomy':
                 case 'checkbox_acceptance':
                     $field_type = 'selectbox';
                     break;

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 2.2.0
+Stable tag: 2.3.0
 License: GLPv2 or later
 
 Buddypress 2.0 required! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
@@ -26,6 +26,9 @@ This plugin add more fields type to Buddypress extension: Xprofile. The fields t
 * File.
 * [Colorpicker](http://www.w3.org/TR/2013/NOTE-html-markup-20130528/input.color.html "Input type color - HTML5").
 * Decimal number.
+* Number within min/max values.
+* Custom taxonomy selector.
+* Custom taxonomy multiselector.
 
 Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ "BP Profile Search plugin"). [Available on Github](https://github.com/donmik/buddypress-xprofile-custom-fields-type "Feel free to contribute"). If you need more fields type, you are free to add them yourself or request me at miguel@donmik.com. Follow me: [donmik.com](http://donmik.com "Follow me") or [@kimnod](http://twitter.com/kimnod "Follow me on Twitter")
 
@@ -44,19 +47,17 @@ Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ 
 
 == Changelog ==
 
-= 2.2.0 =
-* Fixed undefined index. Thanks to jonatascabral. https://github.com/donmik/buddypress-xprofile-custom-fields-type/pull/19
-* New type of field! Decimal number. Thanks to ftena. https://github.com/donmik/buddypress-xprofile-custom-fields-type/pull/20
-* Fixed a bug with Website field. Sometimes the regular expression was giving false negatives. I've copied the regular expression from buddypress url field type.
-* Fixed a bug with Checkbox Acceptance that does not let you create or update this field.
-* Fixed a bug with Birthdate field type. Buddypress was throwing an error when user try to display age instead of birthdate.
-* Updated description of plugin.
-* Translations updated.
+= 2.3.0 =
+* NEW! Type of field: Selector of custom taxonomies.
+* NEW! Type of field: Multiselector of custom taxonomies.
+* NEW! Type of field: Number within min and max values.
+* Fixed some bugs.
+* Translation file updated with new strings.
 
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
 
 == Upgrade Notice ==
+* Added 3 new types of field: Number within min and max values, Selector and Multiselector of custom taxonomies.
 * Fixed some bugs.
-* Added a new type of field: Decimal number.
 * Translations updated.

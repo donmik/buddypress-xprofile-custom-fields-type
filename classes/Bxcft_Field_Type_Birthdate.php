@@ -2,7 +2,7 @@
 /**
  * Birthdate type
  */
-if (!class_exists('Bxcft_Field_Type_Birthdate')) 
+if (!class_exists('Bxcft_Field_Type_Birthdate'))
 {
     class Bxcft_Field_Type_Birthdate extends BP_XProfile_Field_Type
     {
@@ -55,23 +55,23 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
             </select>
         <?php
         }
-        
+
         public function admin_new_field_html (\BP_XProfile_Field $current_field, $control_type = '')
         {
             $type = array_search( get_class( $this ), bp_xprofile_get_field_types() );
             if ( false === $type ) {
                 return;
             }
-            
+
             $class            = $current_field->type != $type ? 'display: none;' : '';
             $current_type_obj = bp_xprofile_create_field_type( $type );
-            
+
             $options = $current_field->get_children( true );
             if ( ! $options ) {
                 $options = array();
                 $i       = 1;
                 while ( isset( $_POST[$type . '_option'][$i] ) ) {
-                    $id_default_option = true;
+                    $is_default_option = true;
 
                     $options[] = (object) array(
                         'id'                => -1,
@@ -102,7 +102,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                     </p>
                 </div>
             </div>
-        <?php  
+        <?php
         }
 
         public function edit_field_html (array $raw_properties = array ())
@@ -114,7 +114,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 $user_id = (int) $raw_properties['user_id'];
                 unset( $raw_properties['user_id'] );
             }
-            
+
             // HTML5 required attribute.
             if ( bp_get_the_profile_field_is_required() ) {
                 $raw_properties['required'] = 'required';
@@ -143,7 +143,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 ),
                 $raw_properties
             ) );
-            
+
             $label = sprintf(
                 '<label for="%s_day">%s%s</label>',
                     bp_get_the_profile_field_input_name(),
@@ -170,7 +170,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
             </select>
         <?php
         }
-        
+
         public function edit_field_options_html( array $args = array() ) {
             $options = $this->field_obj->get_children();
             $date    = BP_XProfile_ProfileData::get_value_byid( $this->field_obj->id, $args['user_id'] );
@@ -196,7 +196,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                     $year  = mysql2date( 'Y', $date );
                 }
             }
-            
+
             // Check for updated posted values, and errors preventing them from being saved first time.
             if ( ! empty( $_POST['field_' . $this->field_obj->id . '_day'] ) ) {
                 $new_day = (int) $_POST['field_' . $this->field_obj->id . '_day'];
@@ -225,7 +225,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
 
                 case 'month':
                     $eng_months = array( 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' );
-                    
+
                     $months = array(
                         0   => __( 'January', 'buddypress' ),
                         1   => __( 'February', 'buddypress' ),
@@ -259,7 +259,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
 
             echo apply_filters( 'bp_get_the_profile_field_birthdate', $html, $args['type'], $day, $month, $year, $this->field_obj->id, $date );
         }
-        
+
         /**
          * Overriden, we cannot validate against the whitelist.
          * @param type $values

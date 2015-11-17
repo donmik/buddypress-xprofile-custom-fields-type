@@ -1,42 +1,45 @@
 <?php
 /**
- * DecimalNumber Type
+ * NumberMinMax Type
  */
-if (!class_exists('Bxcft_Field_Type_DecimalNumber'))
+if (!class_exists('Bxcft_Field_Type_NumberMinMax'))
 {
-    class Bxcft_Field_Type_DecimalNumber extends BP_XProfile_Field_Type
+    class Bxcft_Field_Type_NumberMinMax extends BP_XProfile_Field_Type
     {
         public function __construct() {
             parent::__construct();
 
-            $this->name             = __( 'Decimal number (HTML5 field)', 'bxcft' );
+            $this->name = __( 'Number within min/max values (HTML5 field)', 'bxcft' );
 
-            $this->accepts_null_value   = true;
-            $this->supports_options     = true;
+            $this->accepts_null_value = true;
+            $this->supports_options = true;
 
 			$this->set_format( '/^\d+\.?\d*$/', 'replace' );
 
-            do_action( 'bp_xprofile_field_type_decimal_number', $this );
+            do_action( 'bp_xprofile_field_type_number_minmax', $this );
         }
 
         public function admin_field_html (array $raw_properties = array ())
         {
             global $field;
 
+            $args = array(
+                'type' => 'number'
+            );
+
             $options = $field->get_children( true );
-            if (count($options) > 0) {
-                $step = (1 / (pow(10, (int)$options[0]->name)));
-            } else {
-                $step = 0.01;
+            if ($options) {
+                foreach ($options as $o) {
+                    if (strpos($o->name, 'min_') !== false) {
+                        $args['min'] = str_replace('min_', '', $o->name);
+                    }
+                    if (strpos($o->name, 'max_') !== false) {
+                        $args['max'] = str_replace('max_', '', $o->name);
+                    }
+                }
             }
 
-            $html = $this->get_edit_field_html_elements( array_merge(
-                array(
-					'type' => 'number',
-					'step' => $step,
-				),
-                $raw_properties
-            ) );
+            $html = $this->get_edit_field_html_elements(array_merge($args,$raw_properties));
         ?>
             <input <?php echo $html; ?> />
         <?php
@@ -55,21 +58,24 @@ if (!class_exists('Bxcft_Field_Type_DecimalNumber'))
 
             $field = new BP_XProfile_Field(bp_get_the_profile_field_id());
 
+
+            $args = array(
+                'type'  => 'number',
+                'value' => bp_get_the_profile_field_edit_value(),
+            );
             $options = $field->get_children( true );
-            if (count($options) > 0) {
-                $step = (1 / (pow(10, (int)$options[0]->name)));
-            } else {
-                $step = 0.01;
+            if ($options) {
+                foreach ($options as $o) {
+                    if (strpos($o->name, 'min_') !== false) {
+                        $args['min'] = str_replace('min_', '', $o->name);
+                    }
+                    if (strpos($o->name, 'max_') !== false) {
+                        $args['max'] = str_replace('max_', '', $o->name);
+                    }
+                }
             }
 
-            $html = $this->get_edit_field_html_elements( array_merge(
-                array(
-                    'type'  => 'number',
-					'step' => $step,
-                    'value' => bp_get_the_profile_field_edit_value(),
-                ),
-                $raw_properties
-            ) );
+            $html = $this->get_edit_field_html_elements(array_merge($args, $raw_properties));
 
             $label = sprintf(
                 '<label for="%s">%s%s</label>',
@@ -99,6 +105,8 @@ if (!class_exists('Bxcft_Field_Type_DecimalNumber'))
             $current_type_obj = bp_xprofile_create_field_type( $type );
 
             $options = $current_field->get_children( true );
+            $min = '';
+            $max = '';
             if ( ! $options ) {
                 $options = array();
                 $i       = 1;
@@ -121,20 +129,38 @@ if (!class_exists('Bxcft_Field_Type_DecimalNumber'))
                         'name'              => '2',
                     );
                 }
+            } else {
+                foreach ($options as $o) {
+                    if (strpos($o->name, 'min_') !== false) {
+                        $min = str_replace('min_', '', $o->name);
+                    }
+                    if (strpos($o->name, 'max_') !== false) {
+                        $max = str_replace('max_', '', $o->name);
+                    }
+                }
             }
         ?>
             <div id="<?php echo esc_attr( $type ); ?>" class="postbox bp-options-box" style="<?php echo esc_attr( $class ); ?> margin-top: 15px;">
-                <h3><?php esc_html_e( 'Select max number of decimals:', 'bxcft' ); ?></h3>
+                <h3><?php esc_html_e( 'Write min and max values. You can leave any field blank if you want.', 'bxcft' ); ?></h3>
                 <div class="inside">
                     <p>
-                        <select name="<?php echo esc_attr( "{$type}_option[1]" ); ?>" id="<?php echo esc_attr( "{$type}_option1" ); ?>">
-                        <?php for ($j=1;$j<=6;$j++): ?>
-                            <option value="<?php echo $j; ?>"<?php if ($j === (int)$options[0]->name): ?> selected="selected"<?php endif; ?>><?php echo $j; ?></option>
-                        <?php endfor; ?>
-                        </select>
+                        <label for="<?php echo esc_attr( "{$type}_option1" ); ?>">
+                            <?php esc_html_e('Minimum:', 'bxcft'); ?>
+                        </label>
+                        <input type="text" name="<?php echo esc_attr( "{$type}_option[1]" ); ?>"
+                            id="<?php echo esc_attr( "{$type}_option1" ); ?>" value="<?php echo $min; ?>" />
+                        <label for="<?php echo esc_attr( "{$type}_option2" ); ?>">
+                            <?php esc_html_e('Maximum:', 'bxcft'); ?>
+                        </label>
+                        <input type="text" name="<?php echo esc_attr( "{$type}_option[2]" ); ?>"
+                            id="<?php echo esc_attr( "{$type}_option2" ); ?>" value="<?php echo $max; ?>" />
                     </p>
                 </div>
             </div>
+            <script>
+                var error_msg_number_minmax = '<?php esc_html_e("Min value cannot be bigger than max value.", "bxcft"); ?>',
+                    error_msg_number_minmax_empty = '<?php esc_html_e("You have to fill at least one field.", "bxcft"); ?>';
+            </script>
         <?php
         }
 

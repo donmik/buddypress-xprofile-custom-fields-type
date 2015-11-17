@@ -5,67 +5,68 @@ msgstr ""
 "Project-Id-Version: BuddyPress Xprofile Custom Fields Type v2.1.5\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/buddypress-xprofile-custom-"
 "fields-type\n"
-"POT-Creation-Date: 2015-07-15 16:16+0100\n"
-"PO-Revision-Date: 2015-07-15 16:16+0100\n"
+"POT-Creation-Date: 2015-11-16 18:47+0100\n"
+"PO-Revision-Date: 2015-11-16 18:47+0100\n"
 "Last-Translator: Sol Huebner <translations@it-specialist.net>\n"
 "Language-Team: Renato Alves <LL@li.org, espellcaste@gmail.com>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Poedit-KeywordsList: __;_e;_x;esc_html_e\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext;_n;__ngettext_noop;_n_noop;_x;_nx;"
+"_nx_noop;_ex;esc_attr__;esc_attr_e;esc_attr_x;esc_html__;esc_html_e;"
+"esc_html_x;_c;_nc\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: bp-xprofile-custom-fields-type.php:95
+#: bp-xprofile-custom-fields-type.php:98
 msgid ""
 "BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.0</b>, "
 "please install or upgrade BuddyPress."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:225
-#: bp-xprofile-custom-fields-type.php:347
+#: bp-xprofile-custom-fields-type.php:276
+#: bp-xprofile-custom-fields-type.php:445
 msgid "yes"
 msgstr "sim"
 
-#: bp-xprofile-custom-fields-type.php:225
-#: bp-xprofile-custom-fields-type.php:347
+#: bp-xprofile-custom-fields-type.php:276
+#: bp-xprofile-custom-fields-type.php:445
 msgid "no"
 msgstr "não"
 
-#: bp-xprofile-custom-fields-type.php:241
-#: bp-xprofile-custom-fields-type.php:363
-#: classes/Bxcft_Field_Type_File.php:58
+#: bp-xprofile-custom-fields-type.php:292
+#: bp-xprofile-custom-fields-type.php:461 classes/Bxcft_Field_Type_File.php:58
 msgid "Download file"
 msgstr "Baixar aquivo"
 
-#: bp-xprofile-custom-fields-type.php:417
-#: bp-xprofile-custom-fields-type.php:441
+#: bp-xprofile-custom-fields-type.php:515
+#: bp-xprofile-custom-fields-type.php:539
 msgid "This is a required field"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:423
-#: bp-xprofile-custom-fields-type.php:468
+#: bp-xprofile-custom-fields-type.php:521
+#: bp-xprofile-custom-fields-type.php:566
 #, php-format
 msgid "Image type not allowed: (%s)."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:426
-#: bp-xprofile-custom-fields-type.php:472
+#: bp-xprofile-custom-fields-type.php:524
+#: bp-xprofile-custom-fields-type.php:570
 #, php-format
 msgid "Max image upload size: %s MB."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:430
-#: bp-xprofile-custom-fields-type.php:488
+#: bp-xprofile-custom-fields-type.php:528
+#: bp-xprofile-custom-fields-type.php:586
 #, php-format
 msgid "File type not allowed: (%s)."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:433
-#: bp-xprofile-custom-fields-type.php:492
+#: bp-xprofile-custom-fields-type.php:531
+#: bp-xprofile-custom-fields-type.php:590
 #, php-format
 msgid "Max file upload size: %s MB."
 msgstr ""
@@ -82,6 +83,21 @@ msgstr ""
 msgid "Check this if you want to show age instead of birthdate:"
 msgstr ""
 "Cheque este se você deseja mostrar a idade ao invés da data de aniverário:"
+
+#: classes/Bxcft_Field_Type_Birthdate.php:152
+#: classes/Bxcft_Field_Type_CheckboxAcceptance.php:60
+#: classes/Bxcft_Field_Type_Color.php:48
+#: classes/Bxcft_Field_Type_Datepicker.php:53
+#: classes/Bxcft_Field_Type_DecimalNumber.php:79
+#: classes/Bxcft_Field_Type_Email.php:53
+#: classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:129
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:129
+#: classes/Bxcft_Field_Type_NumberMinMax.php:85
+#: classes/Bxcft_Field_Type_SelectCustomPostType.php:114
+#: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:114
+#: classes/Bxcft_Field_Type_Web.php:53
+msgid "(required)"
+msgstr ""
 
 # no option picked in select box
 #: classes/Bxcft_Field_Type_Birthdate.php:219
@@ -142,13 +158,6 @@ msgstr "Dezembro"
 msgid "Checkbox Acceptance"
 msgstr "Checkbox de aceitação"
 
-#: classes/Bxcft_Field_Type_CheckboxAcceptance.php:60
-#: classes/Bxcft_Field_Type_Color.php:48
-#: classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:129
-#: classes/Bxcft_Field_Type_SelectCustomPostType.php:114
-msgid "(required)"
-msgstr ""
-
 #: classes/Bxcft_Field_Type_CheckboxAcceptance.php:114
 msgid ""
 "Use this field to write a text that should be displayed beside the checkbox:"
@@ -186,8 +195,7 @@ msgstr "Marque este para excluir este arquivo"
 msgid "Image"
 msgstr "Imagem"
 
-#: classes/Bxcft_Field_Type_Image.php:60
-#: classes/Bxcft_Field_Type_Image.php:67
+#: classes/Bxcft_Field_Type_Image.php:60 classes/Bxcft_Field_Type_Image.php:67
 msgid "Check this to delete this image"
 msgstr "Marque este para excluir esta imagem"
 
@@ -210,13 +218,63 @@ msgid "Select a custom post type:"
 msgstr "Por favor, selecione um tipo de post personalizado"
 
 #: classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:94
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:94
 #: classes/Bxcft_Field_Type_SelectCustomPostType.php:86
+#: classes/Bxcft_Field_Type_SelectCustomPostType.php:117
+#: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:86
+#: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:117
 msgid "Select..."
 msgstr "Selecionar..."
+
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:12
+msgid "Custom Taxonomy Multiselector"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:87
+#: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:79
+msgid ""
+"There is no custom taxonomy. You need to create at least one to use this "
+"field."
+msgstr ""
+
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:89
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:92
+#: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:81
+#: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:84
+msgid "Select a custom taxonomy:"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_NumberMinMax.php:12
+msgid "Number within min/max values (HTML5 field)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_NumberMinMax.php:144
+msgid "Write min and max values. You can leave any field blank if you want."
+msgstr ""
+
+#: classes/Bxcft_Field_Type_NumberMinMax.php:148
+msgid "Minimum:"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_NumberMinMax.php:153
+msgid "Maximum:"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_NumberMinMax.php:161
+msgid "Min value cannot be bigger than max value."
+msgstr ""
+
+#: classes/Bxcft_Field_Type_NumberMinMax.php:162
+msgid "You have to fill at least one field."
+msgstr ""
 
 #: classes/Bxcft_Field_Type_SelectCustomPostType.php:12
 msgid "Custom Post Type Selector"
 msgstr "Seletor de Tipo de Post Customizado"
+
+#: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:12
+msgid "Custom Taxonomy Selector"
+msgstr ""
 
 #: classes/Bxcft_Field_Type_Web.php:12
 msgid "Website (HTML5 field)"
