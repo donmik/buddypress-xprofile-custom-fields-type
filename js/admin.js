@@ -72,6 +72,30 @@ function bxcft_save_range($, e) {
     }
 }
 
+function bxcft_save_range_slider($, e) {
+    var min = $('#slider_option1').val();
+    var max = $('#slider_option2').val();
+    if (min === '' || max === '') {
+        alert(error_msg_slider_empty);
+        e.preventDefault();
+        return false;
+    }
+    else if (parseInt(min) >= parseInt(max)) {
+        alert(error_msg_slider);
+        e.preventDefault();
+        return false;
+    }
+
+    if (min !== '') {
+        $('#slider_option1').parent().hide();
+        $('#slider_option1').val('min_' + min);
+    }
+    if (max !== '') {
+        $('#slider_option2').parent().hide();
+        $('#slider_option2').val('max_' + max);
+    }
+}
+
 jQuery(document).ready(function($) {
     $('#bp-xprofile-add-field').on('submit', function(e) {
         if ($('select#fieldtype').val() == 'checkbox_acceptance') {
@@ -82,6 +106,9 @@ jQuery(document).ready(function($) {
         }
         else if ($('select#fieldtype').val() == 'number_minmax') {
             bxcft_save_range($, e);
+        }
+        else if ($('select#fieldtype').val() == 'slider') {
+            bxcft_save_range_slider($, e);
         }
     });
 });

@@ -3,7 +3,7 @@
     Plugin Name: BuddyPress Xprofile Custom Fields Type
     Plugin URI: http://donmik.com/en/buddypress-xprofile-custom-fields-type/
     Description: BuddyPress installation required!! This plugin add custom field types to BuddyPress Xprofile extension. Field types are: Birthdate, Email, Url, Datepicker, ...
-    Version: 2.3.0
+    Version: 2.4.0
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -22,7 +22,7 @@ if (!class_exists('Bxcft_Plugin'))
 
         public function __construct ()
         {
-            $this->version = "2.3.0";
+            $this->version = "2.4.0";
 
             /** Main hooks **/
             add_action( 'plugins_loaded', array($this, 'bxcft_update') );
@@ -42,10 +42,13 @@ if (!class_exists('Bxcft_Plugin'))
             add_filter( 'xprofile_get_field_data', array($this, 'bxcft_get_field_data'), 10, 2 );
             add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_get_field_value'), 10, 3 );
             /** BP Profile Search Filters **/
-            add_filter ('bps_field_validation_type', array($this, 'bxcft_map'), 10, 2);
-            add_filter ('bps_field_html_type', array($this, 'bxcft_map'), 10, 2);
-            add_filter ('bps_field_criteria_type', array($this, 'bxcft_map'), 10, 2);
-            add_filter ('bps_field_query_type', array($this, 'bxcft_map'), 10, 2);
+            add_filter( 'bps_field_validation_type', array($this, 'bxcft_standard_fields_validation_type' ) );
+            add_filter( 'bps_field_type_for_search_form', array($this, 'bxcft_standard_fields_type_for_search_form' ) );
+            add_filter( 'bps_field_type_for_query', array($this, 'bxcft_standard_fields_for_query' ) );
+            // Special fields.
+            add_filter( 'bps_field_validation', array($this, 'bxcft_special_fields_search_validation' ), 10, 2);
+            add_filter( 'bps_field_data_for_search_form', array($this, 'bxcft_special_fields_data_for_search_form' ) );
+            add_filter( 'bps_field_query', array($this, 'bxcft_special_fields_query' ), 10, 4);
         }
 
         public function init()
@@ -74,10 +77,12 @@ if (!class_exists('Bxcft_Plugin'))
             require_once( 'classes/Bxcft_Field_Type_Color.php' );
             require_once( 'classes/Bxcft_Field_Type_DecimalNumber.php' );
             require_once( 'classes/Bxcft_Field_Type_NumberMinMax.php' );
+            require_once( 'classes/Bxcft_Field_Type_Slider.php' );
 
             if (bp_is_user_profile_edit() || bp_is_register_page()) {
                 wp_enqueue_script('bxcft-modernizr', plugin_dir_url(__FILE__) . 'js/modernizr.js', array(), '2.6.2', false);
                 wp_enqueue_script('bxcft-jscolor', plugin_dir_url(__FILE__) . 'js/jscolor/jscolor.js', array(), '1.4.1', true);
+                wp_enqueue_script('bxcft-public', plugin_dir_url(__FILE__) . 'js/public.js', array('jquery'), $this->version, true);
             }
         }
 
@@ -134,6 +139,7 @@ if (!class_exists('Bxcft_Plugin'))
                 'color'                         => 'Bxcft_Field_Type_Color',
                 'decimal_number'                => 'Bxcft_Field_Type_DecimalNumber',
                 'number_minmax'                 => 'Bxcft_Field_Type_NumberMinMax',
+                'slider'                        => 'Bxcft_Field_Type_Slider',
             );
             $fields = array_merge($fields, $new_fields);
 
@@ -679,37 +685,208 @@ if (!class_exists('Bxcft_Plugin'))
             }
         }
 
-        public function bxcft_map($field_type, $field)
+        public function bxcft_standard_fields_validation_type($field_type)
         {
             switch($field_type) {
                 case 'birthdate':
-                case 'datepicker':
+                    // Search by age.
                     $field_type = 'datebox';
                     break;
 
                 case 'email':
                 case 'web':
-                case 'image':
-                case 'file':
-                case 'color':
                     $field_type = 'textbox';
                     break;
 
-                case 'decimal_number':
                 case 'number_minmax':
+                case 'slider':
+                    $field_type = 'number';
+                    break;
+            }
+
+            return $field_type;
+        }
+
+        public function bxcft_standard_fields_for_query($field_type) {
+            switch($field_type) {
+                case 'birthdate':
+                case 'datepicker':
+                    // Search by age.
+                    $field_type = 'datebox';
+                    break;
+
+                case 'email':
+                case 'web':
+                case 'color':
+                case 'decimal_number':
+                    $field_type = 'textbox';
+                    break;
+
+                case 'number_minmax':
+                case 'slider':
                     $field_type = 'number';
                     break;
 
+                case 'select_custom_post_type':
+                case 'select_custom_taxonomy':
+                    $field_type = 'selectbox';
+                    break;
+
+                case 'multiselect_custom_post_type':
+                case 'multiselect_custom_taxonomy':
+                    $field_type = 'multiselectbox';
+                    break;
+
+                case 'checkbox_acceptance':
+                    $field_type = 'radio';
+                    break;
+            }
+
+            return $field_type;
+        }
+
+        public function bxcft_standard_fields_type_for_search_form($field_type) {
+            switch($field_type) {
+                case 'birthdate':
+                case 'datepicker':
+                    // Search by age.
+                    $field_type = 'datebox';
+                    break;
+
+                case 'email':
+                case 'web':
+                case 'color':
+                case 'decimal_number':
+                    $field_type = 'textbox';
+                    break;
+
+                case 'number_minmax':
+                case 'slider':
+                    $field_type = 'number';
+                    break;
+            }
+
+            return $field_type;
+        }
+
+        public function bxcft_special_fields_search_validation($settings, $field_type) {
+            list($value, $description, $range) = $settings;
+            switch ($field_type) {
+                case 'decimal_number':
+                    $range = true;
+                    break;
+
+                case 'datepicker':
                 case 'select_custom_post_type':
                 case 'multiselect_custom_post_type':
                 case 'select_custom_taxonomy':
                 case 'multiselect_custom_taxonomy':
                 case 'checkbox_acceptance':
-                    $field_type = 'selectbox';
+                case 'image':
+                case 'file':
+                case 'color':
+                    $range = false;
                     break;
             }
 
-            return $field_type;
+            return array($value, $description, $range);
+        }
+
+        public function bxcft_special_fields_data_for_search_form($f) {
+            $request = stripslashes_deep ($_REQUEST);
+            switch ($f->type) {
+                case 'select_custom_post_type':
+                case 'multiselect_custom_post_type':
+                    $f->values = isset ($request[$f->code])? (array)$request[$f->code]: array ();
+                    $field = new BP_XProfile_Field($f->id);
+                    $array_options = array();
+                    if ($field) {
+                        $childs = $field->get_children();
+                        if (isset($childs) && $childs && count($childs) > 0
+                                && is_object($childs[0])) {
+                            $post_type_selected = $childs[0]->name;
+                            $posts = new WP_Query(array(
+                                'posts_per_page'    => -1,
+                                'post_type'         => $post_type_selected,
+                                'orderby'           => 'title',
+                                'order'             => 'ASC'
+                            ));
+                            if ($posts) {
+                                foreach ($posts->posts as $p) {
+                                    $array_options[$p->ID] = $p->post_title;
+                                }
+                            }
+                        }
+                    }
+                    $f->options = $array_options;
+                    if ($f->type === 'select_custom_post_type') {
+                        $f->display = 'selectbox';
+                    } else {
+                        $f->display = 'multiselectbox';
+                    }
+                    break;
+
+                case 'select_custom_taxonomy':
+                case 'multiselect_custom_taxonomy':
+                    $f->values = isset ($request[$f->code])? (array)$request[$f->code]: array ();
+                    $field = new BP_XProfile_Field($f->id);
+                    $array_options = array();
+                    if ($field) {
+                        $childs = $field->get_children();
+                        if (isset($childs) && $childs && count($childs) > 0
+                                && is_object($childs[0])) {
+                            $taxonomy_selected = $childs[0]->name;
+                            $terms = get_terms($taxonomy_selected, array(
+                                'hide_empty' => false
+                            ));
+                            if ($terms) {
+                                foreach ($terms as $t) {
+                                    $array_options[$t->term_id] = $t->name;
+                                }
+                            }
+                        }
+                    }
+                    $f->options = $array_options;
+                    if ($f->type === 'select_custom_taxonomy') {
+                        $f->display = 'selectbox';
+                    } else {
+                        $f->display = 'multiselectbox';
+                    }
+                    break;
+
+                case 'checkbox_acceptance':
+                    $f->values = isset ($request[$f->code])? (array)$request[$f->code]: array ();
+                    $f->options = array(
+                        0 => __('no', 'bxcft'),
+                        1 => __('yes', 'bxcft')
+                    );
+                    $f->display = 'radio';
+                    break;
+
+                case 'image':
+                case 'file':
+                    $f->values = isset ($request[$f->code])? (array)$request[$f->code]: array ();
+                    $f->options = array(
+                        1 => __('Not empty', 'bxcft')
+                    );
+                    $f->display = 'checkbox';
+                    break;
+            }
+
+            return $f;
+        }
+
+        public function bxcft_special_fields_query($results, $field, $key, $value) {
+            global $bp, $wpdb;
+            switch ($field->type) {
+                case 'image':
+                case 'file':
+                    $sql = $wpdb->prepare ("SELECT user_id FROM {$bp->profile->table_name_data} WHERE field_id = %d AND value != ''", $field->id);
+                    $results = $wpdb->get_col ($sql);
+                    break;
+            }
+
+            return $results;
         }
 
         public function bxcft_update()
