@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Xprofile Custom Fields Type v2.1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-16 18:46+0100\n"
-"PO-Revision-Date: 2015-11-16 18:47+0100\n"
+"POT-Creation-Date: 2016-02-03 10:10+0100\n"
+"PO-Revision-Date: 2016-02-03 10:11+0100\n"
 "Last-Translator: Sol Huebner <translations@it-specialist.net>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -14,10 +14,10 @@ msgstr ""
 "_nx_noop;_ex;esc_attr__;esc_attr_e;esc_attr_x;esc_html__;esc_html_e;"
 "esc_html_x;_c;_nc\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: bp-xprofile-custom-fields-type.php:98
+#: bp-xprofile-custom-fields-type.php:103
 msgid ""
 "BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.0</b>, "
 "please install or upgrade BuddyPress."
@@ -25,49 +25,55 @@ msgstr ""
 "Le plugin BuddyPress Xprofile Custom Fields Type a besoin de <b>BuddyPress "
 "2.0</b>, s'il vous plait installez ou actualiser BuddyPress."
 
-#: bp-xprofile-custom-fields-type.php:276
-#: bp-xprofile-custom-fields-type.php:445
+#: bp-xprofile-custom-fields-type.php:282
+#: bp-xprofile-custom-fields-type.php:451
+#: bp-xprofile-custom-fields-type.php:861
 msgid "yes"
 msgstr "oui"
 
-#: bp-xprofile-custom-fields-type.php:276
-#: bp-xprofile-custom-fields-type.php:445
+#: bp-xprofile-custom-fields-type.php:282
+#: bp-xprofile-custom-fields-type.php:451
+#: bp-xprofile-custom-fields-type.php:860
 msgid "no"
 msgstr "non"
 
-#: bp-xprofile-custom-fields-type.php:292
-#: bp-xprofile-custom-fields-type.php:461 classes/Bxcft_Field_Type_File.php:58
+#: bp-xprofile-custom-fields-type.php:298
+#: bp-xprofile-custom-fields-type.php:467 classes/Bxcft_Field_Type_File.php:58
 msgid "Download file"
 msgstr "Télécharger le fichier"
 
-#: bp-xprofile-custom-fields-type.php:515
-#: bp-xprofile-custom-fields-type.php:539
+#: bp-xprofile-custom-fields-type.php:521
+#: bp-xprofile-custom-fields-type.php:545
 msgid "This is a required field"
 msgstr "Ce champ est obligatoire."
 
-#: bp-xprofile-custom-fields-type.php:521
-#: bp-xprofile-custom-fields-type.php:566
+#: bp-xprofile-custom-fields-type.php:527
+#: bp-xprofile-custom-fields-type.php:572
 #, php-format
 msgid "Image type not allowed: (%s)."
 msgstr "Type d'image pas permis: (%s)."
 
-#: bp-xprofile-custom-fields-type.php:524
-#: bp-xprofile-custom-fields-type.php:570
+#: bp-xprofile-custom-fields-type.php:530
+#: bp-xprofile-custom-fields-type.php:576
 #, php-format
 msgid "Max image upload size: %s MB."
 msgstr "Taille maximum d'image: %s MB."
 
-#: bp-xprofile-custom-fields-type.php:528
-#: bp-xprofile-custom-fields-type.php:586
+#: bp-xprofile-custom-fields-type.php:534
+#: bp-xprofile-custom-fields-type.php:592
 #, php-format
 msgid "File type not allowed: (%s)."
 msgstr "Type de fichier pas permis: (%s)."
 
-#: bp-xprofile-custom-fields-type.php:531
-#: bp-xprofile-custom-fields-type.php:590
+#: bp-xprofile-custom-fields-type.php:537
+#: bp-xprofile-custom-fields-type.php:596
 #, php-format
 msgid "Max file upload size: %s MB."
 msgstr "Taille maximum de fichier: %s MB."
+
+#: bp-xprofile-custom-fields-type.php:870
+msgid "Not empty"
+msgstr "Non vide"
 
 #: classes/Bxcft_Field_Type_Birthdate.php:12
 msgid "Birthdate Selector"
@@ -94,7 +100,7 @@ msgstr ""
 #: classes/Bxcft_Field_Type_NumberMinMax.php:85
 #: classes/Bxcft_Field_Type_SelectCustomPostType.php:114
 #: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:114
-#: classes/Bxcft_Field_Type_Web.php:53
+#: classes/Bxcft_Field_Type_Slider.php:87 classes/Bxcft_Field_Type_Web.php:53
 msgid "(required)"
 msgstr "(required)"
 
@@ -254,20 +260,24 @@ msgid "Number within min/max values (HTML5 field)"
 msgstr "Nombre entre valeurs min/max (Champ HTML5)"
 
 #: classes/Bxcft_Field_Type_NumberMinMax.php:144
+#: classes/Bxcft_Field_Type_Slider.php:146
 msgid "Write min and max values. You can leave any field blank if you want."
 msgstr ""
 "Écrivez les valeurs min et max. Vous pouvez laisser les champs vides si vous "
 "voulez."
 
 #: classes/Bxcft_Field_Type_NumberMinMax.php:148
+#: classes/Bxcft_Field_Type_Slider.php:150
 msgid "Minimum:"
 msgstr "Minimum:"
 
 #: classes/Bxcft_Field_Type_NumberMinMax.php:153
+#: classes/Bxcft_Field_Type_Slider.php:155
 msgid "Maximum:"
 msgstr "Maximum:"
 
 #: classes/Bxcft_Field_Type_NumberMinMax.php:161
+#: classes/Bxcft_Field_Type_Slider.php:163
 msgid "Min value cannot be bigger than max value."
 msgstr "Le valeur minimum ne peut pas être plus grand que le valeur maximum."
 
@@ -282,6 +292,14 @@ msgstr "Sélecteur de type de post personnalisé"
 #: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:12
 msgid "Custom Taxonomy Selector"
 msgstr "Sélecteur de taxonomie personnalisée"
+
+#: classes/Bxcft_Field_Type_Slider.php:12
+msgid "Range input (HTML5 field)"
+msgstr "Slider (Champ HTML5)"
+
+#: classes/Bxcft_Field_Type_Slider.php:164
+msgid "You have to fill the two fields."
+msgstr "Vous devez remplir les deux champs"
 
 #: classes/Bxcft_Field_Type_Web.php:12
 msgid "Website (HTML5 field)"

@@ -3,8 +3,8 @@ Contributors: donmik, dabesa, briannaorg
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmik%40gmail%2ecom&lc=GB&item_name=donmik%20%2d%20Plugin%20Buddypress%20Xprofile%20Custom%20Fields%20Type&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
-Tested up to: 4.1
-Stable tag: 2.3.0
+Tested up to: 4.4
+Stable tag: 2.4.0
 License: GLPv2 or later
 
 Buddypress 2.0 required! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
@@ -29,6 +29,7 @@ This plugin add more fields type to Buddypress extension: Xprofile. The fields t
 * Number within min/max values.
 * Custom taxonomy selector.
 * Custom taxonomy multiselector.
+* Range input (slider)
 
 Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ "BP Profile Search plugin"). [Available on Github](https://github.com/donmik/buddypress-xprofile-custom-fields-type "Feel free to contribute"). If you need more fields type, you are free to add them yourself or request me at miguel@donmik.com. Follow me: [donmik.com](http://donmik.com "Follow me") or [@kimnod](http://twitter.com/kimnod "Follow me on Twitter")
 
@@ -47,17 +48,15 @@ Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ 
 
 == Changelog ==
 
-= 2.3.0 =
-* NEW! Type of field: Selector of custom taxonomies.
-* NEW! Type of field: Multiselector of custom taxonomies.
-* NEW! Type of field: Number within min and max values.
-* Fixed some bugs.
-* Translation file updated with new strings.
+= 2.4.0 =
+* NEW! Type of field: Range input (slider).
+* Working with BP Profile Search finally! I've been working to make this plugin fully compatible with BP Profile Search.
+* Translation file updated
 
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
 
 == Upgrade Notice ==
-* Added 3 new types of field: Number within min and max values, Selector and Multiselector of custom taxonomies.
-* Fixed some bugs.
-* Translations updated.
+* Added a new type of field: Range input (slider).
+* Working with BP Profile Search finally!
+* Translation file updated
