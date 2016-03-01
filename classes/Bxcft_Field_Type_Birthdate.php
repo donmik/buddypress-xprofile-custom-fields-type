@@ -22,6 +22,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 array(
                     'id'   => bp_get_the_profile_field_input_name() . '_day',
                     'name' => bp_get_the_profile_field_input_name() . '_day',
+                    'class' => 'bxcft-birthdate-day'
                 ),
                 $raw_properties
             ) );
@@ -30,6 +31,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 array(
                     'id'   => bp_get_the_profile_field_input_name() . '_month',
                     'name' => bp_get_the_profile_field_input_name() . '_month',
+                    'class' => 'bxcft-birthdate-month'
                 ),
                 $raw_properties
             ) );
@@ -38,6 +40,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 array(
                     'id'   => bp_get_the_profile_field_input_name() . '_year',
                     'name' => bp_get_the_profile_field_input_name() . '_year',
+                    'class' => 'bxcft-birthdate-year'
                 ),
                 $raw_properties
             ) );
@@ -124,6 +127,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 array(
                     'id'   => bp_get_the_profile_field_input_name() . '_day',
                     'name' => bp_get_the_profile_field_input_name() . '_day',
+                    'class' => 'bxcft-birthdate-day'
                 ),
                 $raw_properties
             ) );
@@ -132,6 +136,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 array(
                     'id'   => bp_get_the_profile_field_input_name() . '_month',
                     'name' => bp_get_the_profile_field_input_name() . '_month',
+                    'class' => 'bxcft-birthdate-month'
                 ),
                 $raw_properties
             ) );
@@ -140,6 +145,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 array(
                     'id'   => bp_get_the_profile_field_input_name() . '_year',
                     'name' => bp_get_the_profile_field_input_name() . '_year',
+                    'class' => 'bxcft-birthdate-year'
                 ),
                 $raw_properties
             ) );
@@ -236,7 +242,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                         6   => __( 'July', 'buddypress' ),
                         7   => __( 'August', 'buddypress' ),
                         8   => __( 'September', 'buddypress' ),
-                        9  => __( 'October', 'buddypress' ),
+                        9   => __( 'October', 'buddypress' ),
                         10  => __( 'November', 'buddypress' ),
                         11  => __( 'December', 'buddypress' )
                     );
