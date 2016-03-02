@@ -11,10 +11,19 @@
 
         // Birthdate.
         if ($('div.field_birthdate') !== undefined) {
-            // Year changed.
             var $year = $('select.bxcft-birthdate-year');
+
+            // Check when page is loaded.
+            $year.each(function(k) {
+                var field_id = ($(this).attr('id')).replace('_year', ''),
+                    $thisMonth = $('select#' + field_id + '_month'),
+                    $thisDay = $('select#' + field_id + '_day');
+
+                verifyDaysOfMonth($thisDay, $thisMonth, $(this));
+            });
+
+            // Year changed.
             $year.on('change', function(e) {
-                console.log(e.target);
                 var field_id = ($(e.target).attr('id')).replace('_year', ''),
                     $monthThisYear = $('select#' + field_id + '_month'),
                     $dayThisYear = $('select#' + field_id + '_day');
