@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 4.4
-Stable tag: 2.4.2
+Stable tag: 2.4.3
 License: GLPv2 or later
 
 Buddypress 2.0 required! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
@@ -48,15 +48,11 @@ Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ 
 
 == Changelog ==
 
-= 2.4.2 =
-* Birthdate selector improvement! Days of month are correct now. 28/29 for February, 31 for
-January, March, May, July, August, October and December. 30 for April, June, September and
-November.
+= 2.4.3 =
+* Loads js for birthdate selector when page loads and not only when you change month and year.
 
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
 
 == Upgrade Notice ==
-* Birthdate selector improvement! Days of month are correct now. 28/29 for February, 31 for
-January, March, May, July, August, October and December. 30 for April, June, September and
-November.
+* Loads js for birthdate selector when page loads and not only when you change month and year.
