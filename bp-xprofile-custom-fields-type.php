@@ -3,7 +3,7 @@
     Plugin Name: BuddyPress Xprofile Custom Fields Type
     Plugin URI: http://donmik.com/en/buddypress-xprofile-custom-fields-type/
     Description: BuddyPress installation required!! This plugin add custom field types to BuddyPress Xprofile extension. Field types are: Birthdate, Email, Url, Datepicker, ...
-    Version: 2.4.3
+    Version: 2.4.4
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -22,7 +22,7 @@ if (!class_exists('Bxcft_Plugin'))
 
         public function __construct ()
         {
-            $this->version = "2.4.3";
+            $this->version = "2.4.4";
 
             /** Main hooks **/
             add_action( 'plugins_loaded', array($this, 'bxcft_update') );
@@ -545,6 +545,31 @@ if (!class_exists('Bxcft_Plugin'))
                                 $bp->signup->errors['field_' . $field_id] = __( 'This is a required field', 'buddypress' );
                             }
                         }
+                        elseif ($field->type == 'birthdate') {
+                            $max_age = 0;
+                            $options = $field->get_children();
+                            foreach ($options as $o) {
+                                if ($o->name != 'show_age' && $o->name != 'show_birthdate') {
+                                    $max_age = (int)$o->name;
+                                    break;
+                                }
+                            }
+
+                            if ($max_age > 0) {
+                                // Check birthdate.
+                                if (class_exists(DateTime)) {
+                                    $now = new DateTime();
+                                    $birthdate = new DateTime(sprintf("%s-%s-%s",
+                                        $_POST['field_'.$field_id.'_year'],
+                                        $_POST['field_'.$field_id.'_month'],
+                                        $_POST['field_'.$field_id.'_day']));
+                                    $age = $now->diff($birthdate);
+                                    if ($age->y < $max_age) {
+                                        $bp->signup->errors['field_' . $field_id] = sprintf(__( 'You have to be at least %s years old.', 'bxcft' ), $max_age);
+                                    }
+                                }
+                            }
+                        }
                     } // End foreach...
                 } // End if ( isset...
             } // End if ( bp_is_active(...
@@ -654,6 +679,32 @@ if (!class_exists('Bxcft_Plugin'))
                 }
 
                 $data->value = (isset($value))?$value:'';
+            }
+            elseif ($field->type == 'birthdate') {
+                $max_age = 0;
+                $options = $field->get_children();
+                foreach ($options as $o) {
+                    if ($o->name != 'show_age' && $o->name != 'show_birthdate') {
+                        $max_age = (int)$o->name;
+                        break;
+                    }
+                }
+
+                if ($max_age > 0) {
+                    // Check birthdate.
+                    if (class_exists(DateTime)) {
+                        $now = new DateTime();
+                        $birthdate = new DateTime(sprintf("%s-%s-%s",
+                            $_POST['field_'.$field_id.'_year'],
+                            $_POST['field_'.$field_id.'_month'],
+                            $_POST['field_'.$field_id.'_day']));
+                        $age = $now->diff($birthdate);
+                        if ($age->y < $max_age) {
+                            bp_core_add_message( sprintf(__( 'You have to be at least %s years old.', 'bxcft' ), $max_age), 'error' );
+                            bp_core_redirect( trailingslashit( bp_displayed_user_domain() . $bp->profile->slug . '/edit/group/' . bp_action_variable( 1 ) ) );
+                        }
+                    }
+                }
             }
         }
 
@@ -769,9 +820,9 @@ if (!class_exists('Bxcft_Plugin'))
             return $field_type;
         }
 
-        public function bxcft_special_fields_search_validation($settings, $field_type) {
+        public function bxcft_special_fields_search_validation($settings, $field) {
             list($value, $description, $range) = $settings;
-            switch ($field_type) {
+            switch ($field->type) {
                 case 'decimal_number':
                     $range = true;
                     break;
