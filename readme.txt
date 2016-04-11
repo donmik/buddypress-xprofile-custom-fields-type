@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 4.4
-Stable tag: 2.4.4
+Stable tag: 2.4.5
 License: GLPv2 or later
 
 Buddypress 2.0 required! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
@@ -30,6 +30,7 @@ This plugin add more fields type to Buddypress extension: Xprofile. The fields t
 * Custom taxonomy selector.
 * Custom taxonomy multiselector.
 * Range input (slider)
+* [Select2 javascript plugin](https://select2.github.io/) for select boxes.
 
 Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ "BP Profile Search plugin"). [Available on Github](https://github.com/donmik/buddypress-xprofile-custom-fields-type "Feel free to contribute"). If you need more fields type, you are free to add them yourself or request me at miguel@donmik.com. Follow me: [donmik.com](http://donmik.com "Follow me") or [@kimnod](http://twitter.com/kimnod "Follow me on Twitter")
 
@@ -40,6 +41,9 @@ Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ 
 3. Go to Users > Profile Fields
 4. Create or Edit a field (default buddypress field Name don't allow changing type, it will not work here).
 5. In Field Type select, you can see new field's type.
+6. For select2, you can see a new box below submit button only with selectbox, multiselectbox,
+custom post type selector, custom post type multiselector, custom taxonomy selector and
+custom taxonomy multiselector.
 6. Enjoy!
 
 == Frequently Asked Questions ==
@@ -48,15 +52,25 @@ Works with [BP Profile Search](https://wordpress.org/plugins/bp-profile-search/ 
 
 == Changelog ==
 
-= 2.4.4 =
-* Solve a bug with "bxcft_special_fields_search_validation". Thanks to sergeytraveler.
-https://wordpress.org/support/topic/litle-bug-in-search-validation-function-resolved-may-be-update-the-plugin?replies=1#post-8209583
-* You can define now a minimum age for birthdate fields.
+= 2.4.5 =
+* Use new feature of Buddypress "Autolink". Buddypress allows to enable/disable autolink
+feature at a field level. This plugin is now working with this feature.
+[Thanks to riklisci for reporting this](https://wordpress.org/support/topic/custom-posttaxonomy-autolink).
+* Add support for [select2 javascript plugin](https://select2.github.io/). You can
+enable now select2 for select boxes and multi select boxes. Works with selectbox,
+multiselectbox, custom post type selector, custom post type multiselector, custom
+taxonomy selector and custom taxonomy multiselector.
+* Some translations updated.
 
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
 
 == Upgrade Notice ==
-* Solve a bug with "bxcft_special_fields_search_validation". Thanks to sergeytraveler.
-https://wordpress.org/support/topic/litle-bug-in-search-validation-function-resolved-may-be-update-the-plugin?replies=1#post-8209583
-* You can define now a minimum age for birthdate fields.
+* Use new feature of Buddypress "Autolink". Buddypress allows to enable/disable autolink
+feature at a field level. This plugin is now working with this feature.
+[Thanks to riklisci for reporting this](https://wordpress.org/support/topic/custom-posttaxonomy-autolink).
+* Add support for [select2 javascript plugin](https://select2.github.io/). You can
+enable now select2 for select boxes and multi select boxes. Works with selectbox,
+multiselectbox, custom post type selector, custom post type multiselector, custom
+taxonomy selector and custom taxonomy multiselector.
+* Some translations updated.

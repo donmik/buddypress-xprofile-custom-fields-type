@@ -3,7 +3,7 @@
     Plugin Name: BuddyPress Xprofile Custom Fields Type
     Plugin URI: http://donmik.com/en/buddypress-xprofile-custom-fields-type/
     Description: BuddyPress installation required!! This plugin add custom field types to BuddyPress Xprofile extension. Field types are: Birthdate, Email, Url, Datepicker, ...
-    Version: 2.4.4
+    Version: 2.4.5
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -19,10 +19,12 @@ if (!class_exists('Bxcft_Plugin'))
         private $images_max_filesize;
         private $files_ext_allowed;
         private $files_max_filesize;
+        private $fields_type_with_select2;
+        private $fields_type_multiple;
 
         public function __construct ()
         {
-            $this->version = "2.4.4";
+            $this->version = "2.4.5";
 
             /** Main hooks **/
             add_action( 'plugins_loaded', array($this, 'bxcft_update') );
@@ -37,10 +39,15 @@ if (!class_exists('Bxcft_Plugin'))
             add_action( 'xprofile_data_before_save', array($this, 'bxcft_xprofile_data_before_save') );
             add_action( 'xprofile_data_after_delete', array($this, 'bxcft_xprofile_data_after_delete') );
 
+            /** Select2 fields */
+            add_action( 'xprofile_field_after_submitbox', array($this, 'bxcft_show_select2_box') );
+            add_action( 'xprofile_fields_saved_field', array($this, 'bxcft_save_do_select2') );
+            add_action( 'bp_custom_profile_edit_fields_pre_visibility', array($this, 'bxcft_enable_select2_field') );
+
             /** Filters **/
             add_filter( 'bp_xprofile_get_field_types', array($this, 'bxcft_get_field_types'), 10, 1 );
             add_filter( 'xprofile_get_field_data', array($this, 'bxcft_get_field_data'), 10, 2 );
-            add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_get_field_value'), 10, 3 );
+            add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_get_field_value'), 8, 3 );
             /** BP Profile Search Filters **/
             add_filter( 'bps_field_validation_type', array($this, 'bxcft_standard_fields_validation_type' ) );
             add_filter( 'bps_field_type_for_search_form', array($this, 'bxcft_standard_fields_type_for_search_form' ) );
@@ -61,6 +68,15 @@ if (!class_exists('Bxcft_Plugin'))
                 'doc', 'docx', 'pdf'
             ));
             $this->files_max_filesize = apply_filters('bxcft_files_max_filesize', Bxcft_Plugin::BXCFT_MAX_FILESIZE);
+            $this->fields_type_with_select2 = apply_filters('bxcft_field_types_with_select2', array(
+                'selectbox', 'multiselectbox', 'select_custom_post_type',
+                'multiselect_custom_post_type', 'select_custom_taxonomy',
+                'multiselect_custom_taxonomy'
+            ));
+            $this->fields_type_multiple = apply_filters('bxcft_field_types_multiple', array(
+                'multiselectbox', 'multiselect_custom_post_type',
+                'multiselect_custom_taxonomy'
+            ));
 
             /** Includes **/
             require_once( 'classes/Bxcft_Field_Type_Birthdate.php' );
@@ -83,6 +99,14 @@ if (!class_exists('Bxcft_Plugin'))
                 wp_enqueue_script('bxcft-modernizr', plugin_dir_url(__FILE__) . 'js/modernizr.js', array(), '2.6.2', false);
                 wp_enqueue_script('bxcft-jscolor', plugin_dir_url(__FILE__) . 'js/jscolor/jscolor.js', array(), '1.4.1', true);
                 wp_enqueue_script('bxcft-public', plugin_dir_url(__FILE__) . 'js/public.js', array('jquery'), $this->version, true);
+
+                // Select 2.
+                wp_enqueue_script('bxcft-select2', plugin_dir_url(__FILE__) . 'js/select2/select2.min.js', array('jquery'), '4.0.2', true);
+                $locale = get_locale();
+                if (file_exists(plugin_dir_path(__FILE__) . 'js/select2/i18n/' . $locale . '.js')) {
+                    wp_enqueue_script('bxcft-select2-i18n', plugin_dir_url(__FILE__) . 'js/select2/i18n/' . get_locale() . '.js', array('bxcft-select2'), '4.0.2', true);
+                }
+                wp_enqueue_style('bxcft-select2', plugin_dir_url(__FILE__) . 'css/select2/select2.min.css', array(), '4.0.2');
             }
         }
 
@@ -106,7 +130,10 @@ if (!class_exists('Bxcft_Plugin'))
                 }
 
                 // Enqueue javascript.
-                wp_enqueue_script('bxcft-js', plugin_dir_url(__FILE__) . 'js/admin.js', array(), $this->version, true);
+                // wp_register_script('bxcft_js', plugin_dir_url(__FILE__) . 'js/admin.js');
+                wp_enqueue_script('bxcft-js', plugin_dir_url(__FILE__) . 'js/admin.js', array(), $this->version, false);
+                wp_localize_script('bxcft-js', 'fields_type_with_select2', array('types' => $this->fields_type_with_select2));
+                // wp_enqueue_script('bxcft_js');
             }
         }
 
@@ -938,6 +965,71 @@ if (!class_exists('Bxcft_Plugin'))
             }
 
             return $results;
+        }
+
+        public function bxcft_show_select2_box($field) {
+            $do_select2 = bp_xprofile_get_meta( $field->id, 'field', 'do_select2');
+            $hidden = true;
+            if (in_array($field->type, $this->fields_type_with_select2)) {
+                $hidden = false;
+            }
+        ?>
+        <div id="select2-box" class="postbox<?php if ($hidden): ?> hidden<?php endif; ?>">
+            <h2><?php esc_html_e('Select2', 'bxft'); ?></h2>
+            <div class="inside">
+                <p class="description">Enable select2 javascript code.</p>
+
+                <p>
+                    <label for="do-select2" class="screen-reader-text">Select2 status for this field</label>
+                    <select name="do_select2" id="do-select2">
+                        <option value="on" <?php if ($do_select2 === 'on'): ?> selected="selected"<?php endif; ?>>Enabled</option>
+                        <option value=""<?php if ($do_select2 !== 'on'): ?> selected="selected"<?php endif; ?>>Disabled</option>
+                    </select>
+                </p>
+            </div>
+        </div>
+        <?php
+        }
+
+        public function bxcft_save_do_select2($field) {
+            $field_id = $field->id;
+
+            if (!in_array($field->type, $this->fields_type_with_select2)) {
+                bp_xprofile_update_field_meta($field_id, 'do_select2', '' );
+                return;
+            }
+
+            // Save select2 settings.
+            if ( 1 != $field_id ) {
+                if ( isset( $_POST['do_select2'] ) && 'on' === wp_unslash( $_POST['do_select2'] ) ) {
+                    bp_xprofile_update_field_meta( $field_id, 'do_select2', 'on' );
+                } else {
+                    bp_xprofile_update_field_meta( $field_id, 'do_select2', 'off' );
+                }
+            }
+        }
+
+        public function bxcft_enable_select2_field() {
+            global $field;
+
+            if (!in_array($field->type, $this->fields_type_with_select2)) {
+                return;
+            }
+
+            $do_select2 = bp_xprofile_get_meta($field->id, 'field', 'do_select2');
+            if ($do_select2 === 'on') {
+                $field_name_id = bp_get_the_profile_field_input_name();
+                if (in_array($field->type, $this->fields_type_multiple)) {
+                    $field_name_id .= '[]';
+                }
+            ?>
+                <script>
+                    jQuery(function($) {
+                        $('select[name="<?php echo $field_name_id; ?>"]').select2();
+                    });
+                </script>
+            <?php
+            }
         }
 
         public function bxcft_update()
