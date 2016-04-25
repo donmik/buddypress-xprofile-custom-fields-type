@@ -193,5 +193,69 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomTaxonomy'))
             return (bool) apply_filters( 'bp_xprofile_field_type_is_valid', $validated, $values, $this );
         }
 
+        /**
+         * Modify the appearance of value. Apply autolink if enabled.
+         *
+         * @param  string   $value      Original value of field
+         * @param  int      $field_id   Id of field
+         * @return string   Value formatted
+         */
+        public static function display_filter($field_value, $field_id = '') {
+
+            $new_field_value = $field_value;
+
+            if (!empty($field_value) && !empty($field_id)) {
+                $field = BP_XProfile_Field::get_instance($field_id);
+                if ($field) {
+                    $do_autolink = apply_filters('bxcft_do_autolink',
+                        $field->get_do_autolink());
+                    if ($do_autolink) {
+                        $query_arg = bp_core_get_component_search_query_arg( 'members' );
+                    }
+                    $childs = $field->get_children();
+                    if (!empty($childs) && isset($childs[0])) {
+                        $taxonomy_selected = $childs[0]->name;
+                    }
+                    $aux = '';
+                    $term_ids = explode(',', $field_value);
+                    foreach ($term_ids as $tid) {
+                        $tid = trim($tid);
+                        $term = get_term_by('id', $tid, $taxonomy_selected);
+                        if ($term && $term->taxonomy == $taxonomy_selected) {
+                            if (empty($aux)) {
+                                $aux .= '<ul class="list_custom_taxonomy">';
+                            }
+                            $aux .= '<li>';
+                            if ($do_autolink) {
+                                $search_url = add_query_arg( array(
+                                    $query_arg => urlencode( $tid )
+                                ), bp_get_members_directory_permalink() );
+                                $aux .= '<a href="' . esc_url( $search_url ) .
+                                    '" rel="nofollow">' . $term->name . '</a>';
+                            } else {
+                                $aux .= $term->name;
+                            }
+                            $aux .= '</li>';
+                        }
+                    }
+                    if (!empty($aux)) {
+                        $aux .= '</ul>';
+                    }
+                    $new_field_value = $aux;
+                }
+            }
+
+            /**
+             * bxcft_multiselect_custom_taxonomy_display_filter
+             *
+             * Use this filter to modify the appearance of Multiselector
+             * Custom Taxonomy field value.
+             * @param  $new_field_value Value of field
+             * @param  $field_id Id of field.
+             * @return  Filtered value of field.
+             */
+            return apply_filters('bxcft_multiselect_custom_taxonomy_display_filter',
+                $new_field_value, $field_id);
+        }
     }
 }

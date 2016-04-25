@@ -2,7 +2,7 @@
 /**
  * Multiselect Custom Post Type Type
  */
-if (!class_exists('Bxcft_Field_Type_MultiSelectCustomPostType')) 
+if (!class_exists('Bxcft_Field_Type_MultiSelectCustomPostType'))
 {
     class Bxcft_Field_Type_MultiSelectCustomPostType extends BP_XProfile_Field_Type
     {
@@ -33,17 +33,17 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomPostType'))
             </select>
         <?php
         }
-        
+
         public function admin_new_field_html (\BP_XProfile_Field $current_field, $control_type = '')
         {
             $type = array_search( get_class( $this ), bp_xprofile_get_field_types() );
             if ( false === $type ) {
                 return;
             }
-            
+
             $class            = $current_field->type != $type ? 'display: none;' : '';
             $current_type_obj = bp_xprofile_create_field_type( $type );
-            
+
             $options = $current_field->get_children( true );
             if ( ! $options ) {
                 $options = array();
@@ -74,7 +74,7 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomPostType'))
                     );
                 }
             }
-            
+
             $post_types = get_post_types(array(
                 'public'    => true,
                 '_builtin'  => false,
@@ -106,17 +106,17 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomPostType'))
         public function edit_field_html (array $raw_properties = array ())
         {
             $user_id = bp_displayed_user_id();
-            
+
             if ( isset( $raw_properties['user_id'] ) ) {
                 $user_id = (int) $raw_properties['user_id'];
                 unset( $raw_properties['user_id'] );
             }
-            
+
             // HTML5 required attribute.
             if ( bp_get_the_profile_field_is_required() ) {
                 $raw_properties['required'] = 'required';
             }
-            
+
             $html = $this->get_edit_field_html_elements( array_merge(
                 array(
                     'multiple' => 'multiple',
@@ -133,11 +133,11 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomPostType'))
             </select>
         <?php
         }
-        
+
         public function edit_field_options_html( array $args = array() ) {
             $options        = $this->field_obj->get_children();
             $posts_selected  = maybe_unserialize(BP_XProfile_ProfileData::get_value_byid( $this->field_obj->id, $args['user_id'] ));
-            
+
             $html = '';
             if ($options) {
                 $post_type_selected = $options[0]->name;
@@ -147,10 +147,10 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomPostType'))
                 }
                 // Get posts of custom post type selected.
                 $posts = new WP_Query(array(
-                    'posts_per_page'    => -1, 
-                    'post_type'         => $post_type_selected, 
-                    'orderby'           => 'title', 
-                    'order'             => 'ASC' 
+                    'posts_per_page'    => -1,
+                    'post_type'         => $post_type_selected,
+                    'orderby'           => 'title',
+                    'order'             => 'ASC'
                 ));
                 if ($posts) {
                     foreach ($posts->posts as $post) {
@@ -164,7 +164,7 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomPostType'))
 
             echo apply_filters( 'bp_get_the_profile_field_multiselect_custom_post_type', $html, $args['type'], $post_type_selected, $this->field_obj->id );
         }
-        
+
         /**
          * Overriden, we cannot validate against the whitelist.
          * @param type $values
@@ -196,5 +196,69 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomPostType'))
             return (bool) apply_filters( 'bp_xprofile_field_type_is_valid', $validated, $values, $this );
         }
 
+        /**
+         * Modify the appearance of value. Apply autolink if enabled.
+         *
+         * @param  string   $value      Original value of field
+         * @param  int      $field_id   Id of field
+         * @return string   Value formatted
+         */
+        public static function display_filter($field_value, $field_id = '') {
+
+            $new_field_value = $field_value;
+
+            if (!empty($field_value) && !empty($field_id)) {
+                $field = BP_XProfile_Field::get_instance($field_id);
+                if ($field) {
+                    $do_autolink = apply_filters('bxcft_do_autolink',
+                        $field->get_do_autolink());
+                    if ($do_autolink) {
+                        $query_arg = bp_core_get_component_search_query_arg( 'members' );
+                    }
+                    $childs = $field->get_children();
+                    if (!empty($childs) && isset($childs[0])) {
+                        $post_type_selected = $childs[0]->name;
+                    }
+                    $aux = '';
+                    $post_ids = explode(',', $field_value);
+                    foreach ($post_ids as $pid) {
+                        $pid = trim($pid);
+                        $post = get_post($pid);
+                        if ($post && $post->post_type == $post_type_selected) {
+                            if (empty($aux)) {
+                                $aux .= '<ul class="list_custom_post_type">';
+                            }
+                            $aux .= '<li>';
+                            if ($do_autolink) {
+                                $search_url = add_query_arg( array(
+                                    $query_arg => urlencode( $pid )
+                                ), bp_get_members_directory_permalink() );
+                                $aux .= '<a href="' . esc_url( $search_url ) .
+                                    '" rel="nofollow">' . $post->post_title . '</a>';
+                            } else {
+                                $aux .= $post->post_title;
+                            }
+                            $aux .= '</li>';
+                        }
+                    }
+                    if (!empty($aux)) {
+                        $aux .= '</ul>';
+                    }
+                    $new_field_value = $aux;
+                }
+            }
+
+            /**
+             * bxcft_multiselect_custom_post_type_display_filter
+             *
+             * Use this filter to modify the appearance of Multiselector
+             * Custom Post Type field value.
+             * @param  $new_field_value Value of field
+             * @param  $field_id Id of field.
+             * @return  Filtered value of field.
+             */
+            return apply_filters('bxcft_multiselect_custom_post_type_display_filter',
+                $new_field_value, $field_id);
+        }
     }
 }

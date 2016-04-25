@@ -2,7 +2,7 @@
 /**
  * File Type
  */
-if (!class_exists('Bxcft_Field_Type_File')) 
+if (!class_exists('Bxcft_Field_Type_File'))
 {
     class Bxcft_Field_Type_File extends BP_XProfile_Field_Type
     {
@@ -10,7 +10,7 @@ if (!class_exists('Bxcft_Field_Type_File'))
             parent::__construct();
 
             $this->name             = _x( 'File', 'xprofile field type', 'bxcft' );
-            
+
             $this->set_format( '/^.+$/', 'replace' );
             do_action( 'bp_xprofile_field_type_file', $this );
         }
@@ -37,7 +37,7 @@ if (!class_exists('Bxcft_Field_Type_File'))
                 ),
                 $raw_properties
             ) );
-            
+
             $uploads = wp_upload_dir();
 
             // Label.
@@ -69,7 +69,7 @@ if (!class_exists('Bxcft_Field_Type_File'))
             } else {
                 $actual_file = '';
             }
-            
+
             echo apply_filters( 'bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required() );
             do_action( bp_get_the_profile_field_errors_action() );
             echo apply_filters( 'bxcft_field_input', $input, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_is_required() );
@@ -101,8 +101,40 @@ if (!class_exists('Bxcft_Field_Type_File'))
             </script>
         <?php
         }
-        
+
         public function admin_new_field_html( BP_XProfile_Field $current_field, $control_type = '' ) {}
 
+        /**
+         * Modify the appearance of value. No autolink feature for File type.
+         *
+         * @param  string   $value      Original value of field
+         * @param  int      $field_id   Id of field
+         * @return string   Value formatted
+         */
+        public static function display_filter($field_value, $field_id = '') {
+
+            $new_field_value = $field_value;
+
+            if (!empty($field_value)) {
+                $uploads = wp_upload_dir();
+                if (strpos($field_value, $uploads['baseurl']) === false) {
+                    $new_field_value = $uploads['baseurl'] . $field_value;
+                }
+                $new_field_value = sprintf('<a href="%s" rel="nofollow">%s</a>',
+                    $new_field_value, __('Download file', 'bxcft'));
+            }
+
+            /**
+             * bxcft_file_display_filter
+             *
+             * Use this filter to modify the appearance of File
+             * field value.
+             * @param  $new_field_value Value of field
+             * @param  $field_id Id of field.
+             * @return  Filtered value of field.
+             */
+            return apply_filters('bxcft_file_display_filter',
+                $new_field_value, $field_id);
+        }
     }
 }

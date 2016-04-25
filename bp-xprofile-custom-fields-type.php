@@ -3,7 +3,7 @@
     Plugin Name: BuddyPress Xprofile Custom Fields Type
     Plugin URI: http://donmik.com/en/buddypress-xprofile-custom-fields-type/
     Description: BuddyPress installation required!! This plugin add custom field types to BuddyPress Xprofile extension. Field types are: Birthdate, Email, Url, Datepicker, ...
-    Version: 2.4.5
+    Version: 2.4.6
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -22,9 +22,11 @@ if (!class_exists('Bxcft_Plugin'))
         private $fields_type_with_select2;
         private $fields_type_multiple;
 
+        private $autolink_filter_removed = false;
+
         public function __construct ()
         {
-            $this->version = "2.4.5";
+            $this->version = "2.4.6";
 
             /** Main hooks **/
             add_action( 'plugins_loaded', array($this, 'bxcft_update') );
@@ -47,7 +49,10 @@ if (!class_exists('Bxcft_Plugin'))
             /** Filters **/
             add_filter( 'bp_xprofile_get_field_types', array($this, 'bxcft_get_field_types'), 10, 1 );
             add_filter( 'xprofile_get_field_data', array($this, 'bxcft_get_field_data'), 10, 2 );
-            add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_get_field_value'), 8, 3 );
+            add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_remove_autolink_filter_from_buddypress'), 7, 1);
+            add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_get_field_value'), 10, 3);
+            add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_restore_autolink_filter_from_buddypress'), 11, 1);
+            add_filter( 'bxcft_do_autolink', array($this, 'bxcft_enabled_autolink'), 10, 1 );
             /** BP Profile Search Filters **/
             add_filter( 'bps_field_validation_type', array($this, 'bxcft_standard_fields_validation_type' ) );
             add_filter( 'bps_field_type_for_search_form', array($this, 'bxcft_standard_fields_type_for_search_form' ) );
@@ -130,10 +135,8 @@ if (!class_exists('Bxcft_Plugin'))
                 }
 
                 // Enqueue javascript.
-                // wp_register_script('bxcft_js', plugin_dir_url(__FILE__) . 'js/admin.js');
                 wp_enqueue_script('bxcft-js', plugin_dir_url(__FILE__) . 'js/admin.js', array(), $this->version, false);
                 wp_localize_script('bxcft-js', 'fields_type_with_select2', array('types' => $this->fields_type_with_select2));
-                // wp_enqueue_script('bxcft_js');
             }
         }
 
@@ -173,347 +176,119 @@ if (!class_exists('Bxcft_Plugin'))
             return $fields;
         }
 
+        /**
+         * Remove `xprofile_filter_link_profile_data` on `bp_get_the_profile_field_value`
+         *
+         * @since  2.4.6
+         * @param  mixed $value Value of field
+         * @return mixed        Same value of field
+         */
+        public function bxcft_remove_autolink_filter_from_buddypress($value) {
+            if (!Bxcft_Plugin::is_autolink_filter_removed()) {
+                $this->autolink_filter_removed = true;
+                remove_filter( 'bp_get_the_profile_field_value',
+                    'xprofile_filter_link_profile_data', 9 );
+            }
+
+            return $value;
+        }
+
+        /**
+         * Restore `xprofile_filter_link_profile_data` on `bp_get_the_profile_field_value`
+         *
+         * @since  2.4.6
+         * @param  mixed $value Value of field
+         * @return mixed        Same value of field
+         */
+        public function bxcft_restore_autolink_filter_from_buddypress($value) {
+            if ($this->autolink_filter_removed) {
+                add_filter( 'bp_get_the_profile_field_value',
+                    'xprofile_filter_link_profile_data', 9, 3 );
+            }
+
+            return $value;
+        }
+
+        /**
+         * Check if autolink is enabled. If it is enabled for this type of field and
+         * if it was removed or it isn't removed by the user in functions.php.
+         *
+         * @since  2.4.6
+         * @param  boolean $do_autolink Actual value of do_autolink
+         * @return boolean              Filtered value of do_autolink
+         */
+        public function bxcft_enabled_autolink($do_autolink) {
+            return ($do_autolink &&
+                ($this->autolink_filter_removed
+                    || !Bxcft_Plugin::is_autolink_filter_removed()));
+        }
+
+        /**
+         * This method is now useless, it will be removed on version 3.0.
+         *
+         * @since  2.4.6
+         * @param  mixed $value     Value of field
+         * @param  int $field_id    Id of field
+         * @return mixed            Same value of field
+         */
         public function bxcft_get_field_data($value, $field_id)
         {
-            $field = new BP_XProfile_Field($field_id);
-            $value_to_return = strip_tags($value);
-            if ($value_to_return !== '') {
-                // Birthdate.
-                if ($field->type == 'birthdate') {
-                    $show_age = false;
-                    if ($field) {
-                        $childs = $field->get_children();
-                        if (isset($childs) && $childs && count($childs) > 0
-                                && is_object($childs[0]) && $childs[0]->name == 'show_age') {
-                            $show_age = true;
-                        }
-                    }
-                    if ($show_age) {
-                        $value_to_return = floor((time() - strtotime($value_to_return))/31556926);
-                    } else {
-                        $value_to_return = date_i18n(get_option('date_format') ,strtotime($value_to_return) );
-                    }
-                }
-                // Email.
-                elseif ($field->type == 'email') {
-                    if (strpos($value_to_return, 'mailto') === false) {
-                        $value_to_return = sprintf('<a href="mailto:%s">%s</a>',
-                                                $value_to_return,
-                                                $value_to_return);
-                    }
-                }
-                // Web.
-                elseif ($field->type == 'web') {
-                    if (strpos($value_to_return, 'href=') === false) {
-                        $value_to_return = sprintf('<a href="%s">%s</a>',
-                            $value_to_return,
-                            $value_to_return);
-                    }
-                }
-                // Datepicker.
-                elseif ($field->type == 'datepicker') {
-                    $value_to_return = date_i18n(get_option('date_format') ,strtotime($value_to_return) );
-                }
-                // Select custom post type.
-                elseif ($field->type == 'select_custom_post_type') {
-                    if ($field) {
-                        $childs = $field->get_children();
-                        if (isset($childs) && $childs && count($childs) > 0
-                                && is_object($childs[0])) {
-                            $post_type_selected = $childs[0]->name;
-                        }
-                        $post = get_post($value_to_return);
-                        if ($post->post_type == $post_type_selected) {
-                            $value_to_return = $post->post_title;
-                        } else {
-                            // Custom post type is not the same.
-                            $value_to_return = '--';
-                        }
-                    } else {
-                        $value_to_return = '--';
-                    }
-                }
-                // Multi select custom post type.
-                elseif ($field->type == 'multiselect_custom_post_type') {
-                    if ($field) {
-                        $values = explode(",", $value_to_return);
-                        $childs = $field->get_children();
-                        if (isset($childs) && $childs && count($childs) > 0
-                                && is_object($childs[0])) {
-                            $post_type_selected = $childs[0]->name;
-                            $cad = '';
-                            foreach ($values as $v) {
-                                $post = get_post($v);
-                                if ($post->post_type == $post_type_selected) {
-                                    if ($cad == '')
-                                        $cad .= '<ul class="list_custom_post_type">';
-                                    $cad .= '<li>'.$post->post_title.'</li>';
-                                }
-                            }
-                            if ($cad != '') {
-                                $cad .= '</ul>';
-                            }
-                        }
-                        $value_to_return = $cad;
-                    } else {
-                        $value_to_return = '--';
-                    }
-                }
-                // Select custom taxonomy.
-                elseif ($field->type == 'select_custom_taxonomy') {
-                    if ($field) {
-                        $childs = $field->get_children();
-                        if (isset($childs) && $childs && count($childs) > 0
-                                && is_object($childs[0])) {
-                            $taxonomy_selected = $childs[0]->name;
-                        }
-                        $term = get_term_by('id', $value_to_return, $taxonomy_selected);
-                        if ($term->taxonomy == $taxonomy_selected) {
-                            $value_to_return = $term->name;
-                        } else {
-                            // Custom taxonomy is not the same.
-                            $value_to_return = '--';
-                        }
-                    } else {
-                        $value_to_return = '--';
-                    }
-                }
-                // Multi select custom taxonomy.
-                elseif ($field->type == 'multiselect_custom_taxonomy') {
-                    if ($field) {
-                        $values = explode(",", $value_to_return);
-                        $childs = $field->get_children();
-                        if (isset($childs) && $childs && count($childs) > 0
-                                && is_object($childs[0])) {
-                            $taxonomy_selected = $childs[0]->name;
-                            $cad = '';
-                            foreach ($values as $v) {
-                                $term = get_term_by('id', $value_to_return, $taxonomy_selected);
-                                if ($term->taxonomy == $taxonomy_selected) {
-                                    if ($cad == '')
-                                        $cad .= '<ul class="list_custom_taxonomy">';
-                                    $cad .= '<li>'.$term->name.'</li>';
-                                }
-                            }
-                            if ($cad != '') {
-                                $cad .= '</ul>';
-                            }
-                        }
-                        $value_to_return = $cad;
-                    } else {
-                        $value_to_return = '--';
-                    }
-                }
-                // Checkbox acceptance.
-                elseif ($field->type == 'checkbox_acceptance') {
-                    $value_to_return = (((int)$value_to_return==1)?__('yes', 'bxcft'):__('no', 'bxcft'));
-                }
-                // Image.
-                elseif ($field->type == 'image') {
-                    $uploads = wp_upload_dir();
-                    if (strpos($value_to_return, $uploads['baseurl']) === false) {
-                        $value_to_return = $uploads['baseurl'].$value_to_return;
-                    }
-                    $value_to_return = '<img src="'.$value_to_return.'" alt="" />';
-                }
-                // File.
-                elseif ($field->type == 'file') {
-                    $uploads = wp_upload_dir();
-                    if (strpos($value_to_return, $uploads['baseurl']) === false) {
-                        $value_to_return = $uploads['baseurl'].$value_to_return;
-                    }
-                    $value_to_return = '<a href="'.$value_to_return.'">'.__('Download file', 'bxcft').'</a>';
-                }
-                // Color.
-                elseif ($field->type == 'color') {
-                    if (strpos($value_to_return, '#') === false) {
-                        $value_to_return = '#'.$value_to_return;
-                    }
-                } else {
-                    // Not stripping tags.
-                    $value_to_return = $value;
-                }
+            $field = BP_XProfile_Field::get_instance($field_id);
+            if (!$field) {
+                return;
             }
 
-            return apply_filters('bxcft_show_field_value', $value_to_return, $field->type, $field_id, $value);
+            /**
+             * @deprecated 3.0 This filter will be removed in version 3.0. Please
+             * stop using it, use instead 'bxcft_TYPENAME_display_filter'
+             */
+            return apply_filters('bxcft_show_field_value', $value, $field->type,
+                $field_id, $value);
         }
 
+        /**
+         * This method is now useless, it will be removed on version 3.0.
+         *
+         * @since  2.4.6
+         * @param  mixed $value     Value of field
+         * @param  int $field_id    Id of field
+         * @param  string $type     Type of field
+         * @return mixed            Same value of field
+         */
         public function bxcft_get_field_value($value='', $type='', $id='')
         {
-            $value_to_return = strip_tags($value);
-            if ($value_to_return !== '') {
-                // Birthdate.
-                if ($type == 'birthdate') {
-                    $show_age = false;
-                    $field = new BP_XProfile_Field($id);
-                    if ($field) {
-                        $childs = $field->get_children();
-                        if (isset($childs) && $childs && count($childs) > 0
-                                && is_object($childs[0]) && $childs[0]->name == 'show_age') {
-                            $show_age = true;
-                        }
-                    }
-                    if ($show_age) {
-                        $value_to_return = floor((time() - strtotime($value_to_return))/31556926);
-                    } else {
-                        $value_to_return = date_i18n(get_option('date_format') ,strtotime($value_to_return) );
-                    }
-                }
-                // Email.
-                elseif ($type == 'email') {
-                    if (strpos($value_to_return, 'mailto') === false) {
-                        $value_to_return = sprintf('<a href="mailto:%s">%s</a>',
-                                                $value_to_return,
-                                                $value_to_return);
-                    }
-                }
-                // Web.
-                elseif ($type == 'web') {
-                    if (strpos($value_to_return, 'href=') === false) {
-                        $value_to_return = sprintf('<a href="%s">%s</a>',
-                            $value_to_return,
-                            $value_to_return);
-                    }
-                }
-                // Datepicker.
-                elseif ($type == 'datepicker') {
-                    $value_to_return = date_i18n(get_option('date_format') ,strtotime($value_to_return) );
-                }
-                // Select custom post type.
-                elseif ($type == 'select_custom_post_type') {
-                    $field = new BP_XProfile_Field($id);
-                    if ($field) {
-                        $childs = $field->get_children();
-                        if (isset($childs) && $childs && count($childs) > 0
-                                && is_object($childs[0])) {
-                            $post_type_selected = $childs[0]->name;
-                        }
-                        $post = get_post($value_to_return);
-                        if ($post->post_type == $post_type_selected) {
-                            $value_to_return = $post->post_title;
-                        } else {
-                            // Custom post type is not the same.
-                            $value_to_return = '--';
-                        }
-                    } else {
-                        $value_to_return = '--';
-                    }
-                }
-                // Multi select custom post type.
-                elseif ($type == 'multiselect_custom_post_type') {
-                    $field = new BP_XProfile_Field($id);
-                    if ($field) {
-                        $values = explode(",", $value_to_return);
-                        $childs = $field->get_children();
-                        if (isset($childs) && $childs && count($childs) > 0
-                                && is_object($childs[0])) {
-                            $post_type_selected = $childs[0]->name;
-                            $cad = '';
-                            foreach ($values as $v) {
-                                $post = get_post($v);
-                                if ($post->post_type == $post_type_selected) {
-                                    if ($cad == '')
-                                        $cad .= '<ul class="list_custom_post_type">';
-                                    $cad .= '<li>'.$post->post_title.'</li>';
-                                }
-                            }
-                            if ($cad != '') {
-                                $cad .= '</ul>';
-                            }
-                        }
-                        $value_to_return = $cad;
-                    } else {
-                        $value_to_return = '--';
-                    }
-                }
-                // Select custom taxonomy.
-                elseif ($type == 'select_custom_taxonomy') {
-                    $field = new BP_XProfile_Field($id);
-                    if ($field) {
-                        $childs = $field->get_children();
-                        if (isset($childs) && $childs && count($childs) > 0
-                                && is_object($childs[0])) {
-                            $taxonomy_selected = $childs[0]->name;
-                        }
-                        $term = get_term_by('id', $value_to_return, $taxonomy_selected);
-                        if ($term->taxonomy == $taxonomy_selected) {
-                            $value_to_return = $term->name;
-                        } else {
-                            // Custom taxonomy is not the same.
-                            $value_to_return = '--';
-                        }
-                    } else {
-                        $value_to_return = '--';
-                    }
-                }
-                // Multi select custom taxonomy.
-                elseif ($type == 'multiselect_custom_taxonomy') {
-                    $field = new BP_XProfile_Field($id);
-                    if ($field) {
-                        $values = explode(",", $value_to_return);
-                        $childs = $field->get_children();
-                        if (isset($childs) && $childs && count($childs) > 0
-                                && is_object($childs[0])) {
-                            $taxonomy_selected = $childs[0]->name;
-                            $cad = '';
-                            foreach ($values as $v) {
-                                $term = get_term_by('id', trim($v), $taxonomy_selected);
-                                if ($term->taxonomy == $taxonomy_selected) {
-                                    if ($cad == '')
-                                        $cad .= '<ul class="list_custom_taxonomy">';
-                                    $cad .= '<li>'.$term->name.'</li>';
-                                }
-                            }
-                            if ($cad != '') {
-                                $cad .= '</ul>';
-                            }
-                        }
-                        $value_to_return = $cad;
-                    } else {
-                        $value_to_return = '--';
-                    }
-                }
-                // Checkbox acceptance.
-                elseif ($type == 'checkbox_acceptance') {
-                    $value_to_return = (((int)$value_to_return==1)?__('yes', 'bxcft'):__('no', 'bxcft'));
-                }
-                // Image.
-                elseif ($type == 'image') {
-                    $uploads = wp_upload_dir();
-                    if (strpos($value_to_return, $uploads['baseurl']) === false) {
-                        $value_to_return = $uploads['baseurl'].$value_to_return;
-                    }
-                    $value_to_return = '<img src="'.$value_to_return.'" alt="" />';
-                }
-                // File.
-                elseif ($type == 'file') {
-                    $uploads = wp_upload_dir();
-                    if (strpos($value_to_return, $uploads['baseurl']) === false) {
-                        $value_to_return = $uploads['baseurl'].$value_to_return;
-                    }
-                    $value_to_return = '<a href="'.$value_to_return.'">'.__('Download file', 'bxcft').'</a>';
-                }
-                // Color.
-                elseif ($type == 'color') {
-                    if (strpos($value_to_return, '#') === false) {
-                        $value_to_return = '#'.$value_to_return;
-                    }
-                } else {
-                    // Not stripping tags.
-                    $value_to_return = $value;
-                }
-            }
-
-            return apply_filters('bxcft_show_field_value', $value_to_return, $type, $id, $value);
+            /**
+             * @deprecated 3.0 This filter will be removed in version 3.0. Please
+             * stop using it, use instead 'bxcft_TYPENAME_display_filter'
+             */
+            return apply_filters('bxcft_show_field_value', $value, $type, $id, $value);
         }
 
+        /**
+         * Returns the folder where files and images will be saved.
+         *
+         * @since  2.4.6
+         * @param  integer $user_id Id of current displayed user.
+         * @return array            array of upload_dir
+         */
         public function bxcft_profile_upload_dir( $user_id = 0 )
         {
             if ($user_id == 0 && empty($this->user_id))
             {
                 $this->user_id = bp_displayed_user_id();
             }
-            $profile_subdir = '/profiles/' . $this->user_id;
+
+            /**
+             * bxcft_upload_dir
+             *
+             * Use this filter if you want to change the folder
+             * where files and images are saved.
+             *
+             * @since  2.4.6
+             * @var string
+             */
+            $profile_subdir = apply_filters( 'bxcft_upload_dir', '/profiles/' . $this->user_id,
+                $this->user_id);
 
             $upload_dir = array(
                 'path'    => bp_core_get_upload_dir()       . $profile_subdir,
@@ -524,7 +299,7 @@ if (!class_exists('Bxcft_Plugin'))
                 'error'   => false,
             );
 
-            return $upload_dir;
+            return apply_filters( 'bxcft_profile_upload_dir', $upload_dir );
         }
 
         public function bxcft_signup_validate()
@@ -1050,6 +825,18 @@ if (!class_exists('Bxcft_Plugin'))
             if (!get_option('bxcft_notices')) {
                 add_option('bxcft_notices');
             }
+        }
+
+        /**
+         * Returns true if autolink filter is removed,
+         * false if it exists.
+         *
+         * @since  2.4.6
+         * @return boolean
+         */
+        public static function is_autolink_filter_removed() {
+            return !(has_filter('bp_get_the_profile_field_value',
+                'xprofile_filter_link_profile_data', 9));
         }
 
         public static function activate()
