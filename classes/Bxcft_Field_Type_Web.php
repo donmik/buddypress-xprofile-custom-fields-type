@@ -2,7 +2,7 @@
 /**
  * Web Type
  */
-if (!class_exists('Bxcft_Field_Type_Web')) 
+if (!class_exists('Bxcft_Field_Type_Web'))
 {
     class Bxcft_Field_Type_Web extends BP_XProfile_Field_Type
     {
@@ -31,7 +31,7 @@ if (!class_exists('Bxcft_Field_Type_Web'))
             if ( isset( $raw_properties['user_id'] ) ) {
                 unset( $raw_properties['user_id'] );
             }
-            
+
             // HTML5 required attribute.
             if ( bp_get_the_profile_field_is_required() ) {
                 $raw_properties['required'] = 'required';
@@ -44,7 +44,7 @@ if (!class_exists('Bxcft_Field_Type_Web'))
                 ),
                 $raw_properties
             ) );
-            
+
             $label = sprintf(
                 '<label for="%s">%s%s</label>',
                     bp_get_the_profile_field_input_name(),
@@ -61,8 +61,36 @@ if (!class_exists('Bxcft_Field_Type_Web'))
             <input <?php echo $html; ?> />
         <?php
         }
-        
+
         public function admin_new_field_html( BP_XProfile_Field $current_field, $control_type = '' ) {}
 
+        /**
+         * Modify the appearance of value. No autolink feature for Web type.
+         *
+         * @param  string   $value      Original value of field
+         * @param  int      $field_id   Id of field
+         * @return string   Value formatted
+         */
+        public static function display_filter($field_value, $field_id = '') {
+
+            $new_field_value = $field_value;
+
+            if (!empty($field_value)) {
+                $new_field_value = sprintf('<a href="%1$s">%1$s</a>',
+                    $field_value);
+            }
+
+            /**
+             * bxcft_web_display_filter
+             *
+             * Use this filter to modify the appearance of Web
+             * field value.
+             * @param  $new_field_value Value of field
+             * @param  $field_id Id of field.
+             * @return  Filtered value of field.
+             */
+            return apply_filters('bxcft_web_display_filter',
+                $new_field_value, $field_id);
+        }
     }
 }

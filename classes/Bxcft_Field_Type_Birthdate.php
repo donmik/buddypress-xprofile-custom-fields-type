@@ -6,6 +6,8 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
 {
     class Bxcft_Field_Type_Birthdate extends BP_XProfile_Field_Type
     {
+        const OPTION_SHOW_AGE = 'show_age';
+
         public function __construct() {
             parent::__construct();
 
@@ -106,8 +108,8 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                         <input type="checkbox"
                             name="<?php echo esc_attr( "{$type}_option[1]" ); ?>"
                             id="<?php echo esc_attr( "{$type}_option1" ); ?>"
-                            value="show_age"
-                            <?php if ($options[0]->name == 'show_age') : ?>checked="checked"<?php endif; ?>/>
+                            value="<?php echo Bxcft_Field_Type_Birthdate::OPTION_SHOW_AGE; ?>"
+                            <?php if ($options[0]->name == Bxcft_Field_Type_Birthdate::OPTION_SHOW_AGE) : ?>checked="checked"<?php endif; ?>/>
                     </p>
                 </div>
 
@@ -310,6 +312,67 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
             }
 
             return (bool) apply_filters( 'bp_xprofile_field_type_is_valid', $validated, $values, $this );
+        }
+
+        /**
+         * Modify the appearance of value. Apply autolink if enabled.
+         *
+         * @param  string   $value      Original value of field
+         * @param  int      $field_id   Id of field
+         * @return string   Value formatted
+         */
+        public static function display_filter($field_value, $field_id = '') {
+
+            $new_field_value = $field_value;
+
+            if (!empty($field_value) && !empty($field_id)) {
+                $field = BP_XProfile_Field::get_instance($field_id);
+
+                if ($field) {
+                    $show_age = false;
+
+                    // Looking for "show_age" flag.
+                    $childs = $field->get_children();
+                    if (!empty($childs)) {
+                        foreach ($childs as $c) {
+                            if ($c->name == Bxcft_Field_Type_Birthdate::OPTION_SHOW_AGE) {
+                                $show_age = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if ($show_age) {
+                        // Calculate age.
+                        $new_field_value = floor((time() - strtotime($field_value)) / 31556926);
+                    } else {
+                        // Display birthdate with WP Settings Date Format.
+                        $new_field_value = date_i18n( get_option('date_format'),
+                            strtotime($field_value) );
+                    }
+
+                    $do_autolink = apply_filters('bxcft_do_autolink',
+                        $field->get_do_autolink());
+
+                    if ($do_autolink) {
+                        $query_arg = bp_core_get_component_search_query_arg( 'members' );
+                        $search_url = add_query_arg( array( $query_arg => urlencode( $field_value ) ),
+                            bp_get_members_directory_permalink() );
+                        $new_field_value = '<a href="' . esc_url( $search_url ) .
+                            '" rel="nofollow">' . $new_field_value . '</a>';
+                    }
+                }
+            }
+
+            /**
+             * bxcft_birthdate_display_filter
+             *
+             * Use this filter to modify the appearance of Birthdate field value.
+             * @param  $new_field_value Value of field
+             * @param  $field_id Id of field.
+             * @return  Filtered value of field.
+             */
+            return apply_filters('bxcft_birthdate_display_filter', $new_field_value, $field_id);
         }
     }
 }

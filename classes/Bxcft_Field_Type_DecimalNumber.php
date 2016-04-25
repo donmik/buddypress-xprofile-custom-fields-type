@@ -14,7 +14,7 @@ if (!class_exists('Bxcft_Field_Type_DecimalNumber'))
             $this->accepts_null_value   = true;
             $this->supports_options     = true;
 
-			$this->set_format( '/^\d+\.?\d*$/', 'replace' );
+            $this->set_format( '/^\d+\.?\d*$/', 'replace' );
 
             do_action( 'bp_xprofile_field_type_decimal_number', $this );
         }
@@ -32,9 +32,9 @@ if (!class_exists('Bxcft_Field_Type_DecimalNumber'))
 
             $html = $this->get_edit_field_html_elements( array_merge(
                 array(
-					'type' => 'number',
-					'step' => $step,
-				),
+                    'type' => 'number',
+                    'step' => $step,
+                ),
                 $raw_properties
             ) );
         ?>
@@ -65,7 +65,7 @@ if (!class_exists('Bxcft_Field_Type_DecimalNumber'))
             $html = $this->get_edit_field_html_elements( array_merge(
                 array(
                     'type'  => 'number',
-					'step' => $step,
+                    'step' => $step,
                     'value' => bp_get_the_profile_field_edit_value(),
                 ),
                 $raw_properties
@@ -141,6 +141,48 @@ if (!class_exists('Bxcft_Field_Type_DecimalNumber'))
         public function is_valid( $values ) {
             $this->validation_whitelist = null;
             return parent::is_valid($values);
+        }
+
+        /**
+         * Modify the appearance of value. Apply autolink if enabled.
+         *
+         * @param  string   $value      Original value of field
+         * @param  int      $field_id   Id of field
+         * @return string   Value formatted
+         */
+        public static function display_filter($field_value, $field_id = '') {
+
+            $new_field_value = $field_value;
+
+            if (!empty($field_value)) {
+                if (!empty($field_id)) {
+                    $field = BP_XProfile_Field::get_instance($field_id);
+                    if ($field) {
+                        $do_autolink = apply_filters('bxcft_do_autolink',
+                            $field->get_do_autolink());
+                        if ($do_autolink) {
+                            $query_arg = bp_core_get_component_search_query_arg( 'members' );
+                            $search_url = add_query_arg( array(
+                                    $query_arg => urlencode( $field_value )
+                                ), bp_get_members_directory_permalink() );
+                            $new_field_value = '<a href="' . esc_url( $search_url ) .
+                                '" rel="nofollow">' . $new_field_value . '</a>';
+                        }
+                    }
+                }
+            }
+
+            /**
+             * bxcft_decimal_number_display_filter
+             *
+             * Use this filter to modify the appearance of Decimal Number
+             * field value.
+             * @param  $new_field_value Value of field
+             * @param  $field_id Id of field.
+             * @return  Filtered value of field.
+             */
+            return apply_filters('bxcft_decimal_number_display_filter',
+                $new_field_value, $field_id);
         }
     }
 }
