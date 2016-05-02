@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 4.4
-Stable tag: 2.4.6
+Stable tag: 2.4.7
 License: GLPv2 or later
 
 Buddypress 2.0 required! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
@@ -52,41 +52,13 @@ custom taxonomy multiselector.
 
 == Changelog ==
 
-= 2.4.6 =
-* Emails, Images, Files links were not working since last update 2.4.5. This is because
-Autolink feature makes no sense for this type of fields.
-https://wordpress.org/support/topic/images-field-broken-on-front-end?replies=2#post-8273463
-* Added a new method to all Field Type classes overriding "display_filter" method.
-This method will handle the way the field values are displayed.
-* Email: When you enable autolink, you will see the buddypress search link. If you
-disable autolink, you will see the "mailto" link.
-* Image, File, Web: For this type of field, Autolink is not working. It does not matter you
-enable/disable it, you will always see the same value displayed.
-* Added new filters to change the way the fields are displayed. You can use now
-'bxcft_NAMEOFTYPE_display_filter' to change the way the field are displayed. Replace
-NAMEOFTYPE with the name of the type like "birthdate", "email", "web", ...
-Please stop using 'bxcft_show_field_value'. This filter will be removed in version 3.0.
-* Added a filter to change the upload dir for images and files. 'bxcft_upload_dir'.
-Override this filter to change the folder where files and images are saved.
-* Translation file and spanish language updated.
+= 2.4.7 =
+* The last version was disabling autolink feature for defaults fields types from buddypress.
+This is solved in version 2.4.7
 
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
 
 == Upgrade Notice ==
-* Emails, Images, Files links were not working since last update 2.4.5. This is because
-Autolink feature makes no sense for this type of fields.
-https://wordpress.org/support/topic/images-field-broken-on-front-end?replies=2#post-8273463
-* Added a new method to all Field Type classes overriding "display_filter" method.
-This method will handle the way the field values are displayed.
-* Email: When you enable autolink, you will see the buddypress search link. If you
-disable autolink, you will see the "mailto" link.
-* Image, File, Web: For this type of field, Autolink is not working. It does not matter you
-enable/disable it, you will always see the same value displayed.
-* Added new filters to change the way the fields are displayed. You can use now
-'bxcft_NAMEOFTYPE_display_filter' to change the way the field are displayed. Replace
-NAMEOFTYPE with the name of the type like "birthdate", "email", "web", ...
-Please stop using 'bxcft_show_field_value'. This filter will be removed in version 3.0.
-* Added a filter to change the upload dir for images and files. 'bxcft_upload_dir'.
-Override this filter to change the folder where files and images are saved.
-* Translation file and spanish language updated.
+* The last version was disabling autolink feature for defaults fields types from buddypress.
+This is solved in version 2.4.7

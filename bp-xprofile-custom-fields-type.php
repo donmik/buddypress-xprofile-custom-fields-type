@@ -24,9 +24,27 @@ if (!class_exists('Bxcft_Plugin'))
 
         private $autolink_filter_removed = false;
 
+        private $bxcft_field_types = array(
+            'birthdate'                     => 'Bxcft_Field_Type_Birthdate',
+            'email'                         => 'Bxcft_Field_Type_Email',
+            'web'                           => 'Bxcft_Field_Type_Web',
+            'datepicker'                    => 'Bxcft_Field_Type_Datepicker',
+            'select_custom_post_type'       => 'Bxcft_Field_Type_SelectCustomPostType',
+            'multiselect_custom_post_type'  => 'Bxcft_Field_Type_MultiSelectCustomPostType',
+            'select_custom_taxonomy'        => 'Bxcft_Field_Type_SelectCustomTaxonomy',
+            'multiselect_custom_taxonomy'   => 'Bxcft_Field_Type_MultiSelectCustomTaxonomy',
+            'checkbox_acceptance'           => 'Bxcft_Field_Type_CheckboxAcceptance',
+            'image'                         => 'Bxcft_Field_Type_Image',
+            'file'                          => 'Bxcft_Field_Type_File',
+            'color'                         => 'Bxcft_Field_Type_Color',
+            'decimal_number'                => 'Bxcft_Field_Type_DecimalNumber',
+            'number_minmax'                 => 'Bxcft_Field_Type_NumberMinMax',
+            'slider'                        => 'Bxcft_Field_Type_Slider',
+        );
+
         public function __construct ()
         {
-            $this->version = "2.4.6";
+            $this->version = "2.4.7";
 
             /** Main hooks **/
             add_action( 'plugins_loaded', array($this, 'bxcft_update') );
@@ -49,9 +67,9 @@ if (!class_exists('Bxcft_Plugin'))
             /** Filters **/
             add_filter( 'bp_xprofile_get_field_types', array($this, 'bxcft_get_field_types'), 10, 1 );
             add_filter( 'xprofile_get_field_data', array($this, 'bxcft_get_field_data'), 10, 2 );
-            add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_remove_autolink_filter_from_buddypress'), 7, 1);
+            add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_remove_autolink_filter_from_buddypress'), 7, 2);
             add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_get_field_value'), 10, 3);
-            add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_restore_autolink_filter_from_buddypress'), 11, 1);
+            add_filter( 'bp_get_the_profile_field_value', array($this, 'bxcft_restore_autolink_filter_from_buddypress'), 11, 2);
             add_filter( 'bxcft_do_autolink', array($this, 'bxcft_enabled_autolink'), 10, 1 );
             /** BP Profile Search Filters **/
             add_filter( 'bps_field_validation_type', array($this, 'bxcft_standard_fields_validation_type' ) );
@@ -154,25 +172,7 @@ if (!class_exists('Bxcft_Plugin'))
 
         public function bxcft_get_field_types($fields)
         {
-            $new_fields = array(
-                'birthdate'                     => 'Bxcft_Field_Type_Birthdate',
-                'email'                         => 'Bxcft_Field_Type_Email',
-                'web'                           => 'Bxcft_Field_Type_Web',
-                'datepicker'                    => 'Bxcft_Field_Type_Datepicker',
-                'select_custom_post_type'       => 'Bxcft_Field_Type_SelectCustomPostType',
-                'multiselect_custom_post_type'  => 'Bxcft_Field_Type_MultiSelectCustomPostType',
-                'select_custom_taxonomy'        => 'Bxcft_Field_Type_SelectCustomTaxonomy',
-                'multiselect_custom_taxonomy'   => 'Bxcft_Field_Type_MultiSelectCustomTaxonomy',
-                'checkbox_acceptance'           => 'Bxcft_Field_Type_CheckboxAcceptance',
-                'image'                         => 'Bxcft_Field_Type_Image',
-                'file'                          => 'Bxcft_Field_Type_File',
-                'color'                         => 'Bxcft_Field_Type_Color',
-                'decimal_number'                => 'Bxcft_Field_Type_DecimalNumber',
-                'number_minmax'                 => 'Bxcft_Field_Type_NumberMinMax',
-                'slider'                        => 'Bxcft_Field_Type_Slider',
-            );
-            $fields = array_merge($fields, $new_fields);
-
+            $fields = array_merge($fields, $this->bxcft_field_types);
             return $fields;
         }
 
@@ -183,8 +183,9 @@ if (!class_exists('Bxcft_Plugin'))
          * @param  mixed $value Value of field
          * @return mixed        Same value of field
          */
-        public function bxcft_remove_autolink_filter_from_buddypress($value) {
-            if (!Bxcft_Plugin::is_autolink_filter_removed()) {
+        public function bxcft_remove_autolink_filter_from_buddypress($value, $type='') {
+            if (in_array($type, array_keys($this->bxcft_field_types))
+                && !Bxcft_Plugin::is_autolink_filter_removed()) {
                 $this->autolink_filter_removed = true;
                 remove_filter( 'bp_get_the_profile_field_value',
                     'xprofile_filter_link_profile_data', 9 );
@@ -200,7 +201,7 @@ if (!class_exists('Bxcft_Plugin'))
          * @param  mixed $value Value of field
          * @return mixed        Same value of field
          */
-        public function bxcft_restore_autolink_filter_from_buddypress($value) {
+        public function bxcft_restore_autolink_filter_from_buddypress($value, $type='') {
             if ($this->autolink_filter_removed) {
                 add_filter( 'bp_get_the_profile_field_value',
                     'xprofile_filter_link_profile_data', 9, 3 );
