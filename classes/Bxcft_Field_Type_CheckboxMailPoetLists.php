@@ -10,7 +10,7 @@ if (!class_exists('Bxcft_Field_Type_CheckboxMailPoetLists'))
 		public function __construct() {
 			parent::__construct();
 
-			$this->name				= _x( 'MailPoet Newsletter Lists', 'xprofile field type', 'bxcft' );
+			$this->name		= _x( 'MailPoet Newsletter Lists', 'xprofile field type', 'bxcft' );
 			$this->supports_options	= true;
 
 			$this->set_format( '/^.+$/', 'replace' );
@@ -143,10 +143,10 @@ if (!class_exists('Bxcft_Field_Type_CheckboxMailPoetLists'))
 
 		public function edit_field_options_html( array $args = array() ) {
 			
-			$user_id		= bp_displayed_user_id();
-			$attr			= $this->get_edit_field_html_elements($args);
-			$field_name		= esc_attr( "field_{$this->field_obj->id}[]" );
-			$labelledby		= bp_get_the_profile_field_input_name();
+			$user_id	= bp_displayed_user_id();
+			$attr		= $this->get_edit_field_html_elements($args);
+			$field_name	= esc_attr( "field_{$this->field_obj->id}[]" );
+			$labelledby	= bp_get_the_profile_field_input_name();
 			
 			$options        = $this->field_obj->get_children();
 			
@@ -190,17 +190,6 @@ if (!class_exists('Bxcft_Field_Type_CheckboxMailPoetLists'))
 						$labelledby
 					);
 					
-					/**
-					 * Filters the HTML output for an individual field options checkbox.
-					 *
-					 * @since 1.1.0
-					 *
-					 * @param string $new_html Label and checkbox input field.
-					 * @param object $value    Current option being rendered for.
-					 * @param int    $id       ID of the field object being rendered.
-					 * @param string $selected Current selected value.
-					 * @param string $k        Current index in the foreach loop.
-					 */
 					$html .= apply_filters( 'bp_get_the_profile_field_checkbox_mailpoet_lists', $new_html, $options[$k], $this->field_obj->id, $selected, $k );
 							
 				}
@@ -211,7 +200,6 @@ if (!class_exists('Bxcft_Field_Type_CheckboxMailPoetLists'))
 		}
 
 		/**
-		 * Overriden, we cannot validate against the whitelist.
 		 * @param type $values
 		 * @return type
 		 */
@@ -242,7 +230,7 @@ if (!class_exists('Bxcft_Field_Type_CheckboxMailPoetLists'))
 		}
 
 		/**
-		 * Modify the appearance of value. Apply autolink if enabled. NOT IMPLEMENTED
+		 * Modify the appearance of value. Apply autolink if enabled.
 		 *
 		 * @param  string   $value      Original value of field
 		 * @param  int      $field_id   Id of field
@@ -250,7 +238,7 @@ if (!class_exists('Bxcft_Field_Type_CheckboxMailPoetLists'))
 		 */
 		public static function display_filter($field_value, $field_id = '') {
 			
-			$user_id						= bp_displayed_user_id();
+			$user_id			= bp_displayed_user_id();
 			list($userlists, $listnames)	= Bxcft_Field_Type_CheckboxMailPoetLists::_getUserLists($user_id);
 			
 			$values		= array();
@@ -288,7 +276,7 @@ if (!class_exists('Bxcft_Field_Type_CheckboxMailPoetLists'))
 			// get the enabled lists
 			$model_list		= WYSIJA::get('list', 'model');
 			$listsdata		= $model_list->get(array('list_id', 'name'), array('is_enabled' => '1'));
-			$enabled_list_ids = array();
+			$enabled_list_ids	= array();
 			foreach ($listsdata as $listdt) {
 				$enabled_list_ids[] = $listdt['list_id'];
 			}
@@ -298,21 +286,30 @@ if (!class_exists('Bxcft_Field_Type_CheckboxMailPoetLists'))
 			$listidsfromuser = $model_user_list->get(array('list_id'), array('user_id' => $user_id, 'list_id' => $enabled_list_ids));
 			
 			$option_values	= array();
-			$removeFromList = array();
-			$addToList		= array();
+			$removeFromList	= array();
+			$addToList	= array();
 			
-			$changed		= false;
+			$changed	= false;
+			// walk thru each list the user is subscribed to
 			foreach ($listidsfromuser as $listdt) {
+				// add the list id to an array
 				$option_values[] = (string)$listdt['list_id'];
+				
+				// if the list is not checked anymore, then add it to the removal-list
 				if (!in_array((string)$listdt['list_id'], $options)) $removeFromList[] = $listdt['list_id'];
 			}
+			
+			// now walk thru the checked/submitted lists
 			foreach ($options as $option) {
+				// if user is not yet subsribed to the list, then add the list to the add-list
 				if (!in_array($option, $option_values)) $addToList[] = (int)$option;
 			}
-			$userHelper = WYSIJA::get('user', 'helper'); //new WYSIJA_help_user();
+			
+			// get the MailPoet / WYSIJA user helper object
+			$userHelper = WYSIJA::get('user', 'helper');
 			
 			if (count($removeFromList)) {
-					$userHelper->removeFromLists($removeFromList, array($user_id));
+				$userHelper->removeFromLists($removeFromList, array($user_id));
 			}
 			if (count($addToList)) {
 				$userHelper->addToLists($addToList, $user_id);
