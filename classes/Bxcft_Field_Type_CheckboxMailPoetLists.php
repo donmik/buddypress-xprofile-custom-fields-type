@@ -152,8 +152,7 @@ if (!class_exists('Bxcft_Field_Type_CheckboxMailPoetLists'))
 			
 			// get the enabled lists
 			list($listidsfromuser, $listnames) = Bxcft_Field_Type_CheckboxMailPoetLists::_getUserLists($user_id);
-			//wh_print_r($listidsfromuser);
-			
+
 			$option_values = array();
 			foreach ($listidsfromuser as $listdt) {
 				$option_values[] = (string)$listdt['list_id'];
