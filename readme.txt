@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 4.4
-Stable tag: 2.4.7
+Stable tag: 2.4.8
 License: GLPv2 or later
 
 Buddypress 2.0 required! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
@@ -52,13 +52,11 @@ custom taxonomy multiselector.
 
 == Changelog ==
 
-= 2.4.7 =
-* The last version was disabling autolink feature for defaults fields types from buddypress.
-This is solved in version 2.4.7
+= 2.4.8 =
+* Solves error with version.
 
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
 
 == Upgrade Notice ==
-* The last version was disabling autolink feature for defaults fields types from buddypress.
-This is solved in version 2.4.7
+* Solves error with version.
