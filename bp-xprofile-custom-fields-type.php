@@ -3,7 +3,7 @@
     Plugin Name: BuddyPress Xprofile Custom Fields Type
     Plugin URI: http://donmik.com/en/buddypress-xprofile-custom-fields-type/
     Description: BuddyPress installation required!! This plugin add custom field types to BuddyPress Xprofile extension. Field types are: Birthdate, Email, Url, Datepicker, ...
-    Version: 2.4.8
+    Version: 2.4.9
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -44,7 +44,7 @@ if (!class_exists('Bxcft_Plugin'))
 
         public function __construct ()
         {
-            $this->version = "2.4.8";
+            $this->version = "2.4.9";
 
             /** Main hooks **/
             add_action( 'plugins_loaded', array($this, 'bxcft_update') );
@@ -119,24 +119,28 @@ if (!class_exists('Bxcft_Plugin'))
             require_once( 'classes/Bxcft_Field_Type_Slider.php' );
 
             if (bp_is_user_profile_edit() || bp_is_register_page()) {
-                wp_enqueue_script('bxcft-modernizr', plugin_dir_url(__FILE__) . 'js/modernizr.js', array(), '2.6.2', false);
-                wp_enqueue_script('bxcft-jscolor', plugin_dir_url(__FILE__) . 'js/jscolor/jscolor.js', array(), '1.4.1', true);
-                wp_enqueue_script('bxcft-public', plugin_dir_url(__FILE__) . 'js/public.js', array('jquery'), $this->version, true);
-
-                // Select 2.
-                wp_enqueue_script('bxcft-select2', plugin_dir_url(__FILE__) . 'js/select2/select2.min.js', array('jquery'), '4.0.2', true);
-                $locale = get_locale();
-                if (file_exists(plugin_dir_path(__FILE__) . 'js/select2/i18n/' . $locale . '.js')) {
-                    wp_enqueue_script('bxcft-select2-i18n', plugin_dir_url(__FILE__) . 'js/select2/i18n/' . get_locale() . '.js', array('bxcft-select2'), '4.0.2', true);
-                }
-                wp_enqueue_style('bxcft-select2', plugin_dir_url(__FILE__) . 'css/select2/select2.min.css', array(), '4.0.2');
+                $this->load_js();
             }
+        }
+
+        public function load_js() {
+            wp_enqueue_script('bxcft-modernizr', plugin_dir_url(__FILE__) . 'js/modernizr.js', array(), '2.6.2', false);
+            wp_enqueue_script('bxcft-jscolor', plugin_dir_url(__FILE__) . 'js/jscolor/jscolor.js', array(), '1.4.1', true);
+            wp_enqueue_script('bxcft-public', plugin_dir_url(__FILE__) . 'js/public.js', array('jquery'), $this->version, true);
+
+            // Select 2.
+            wp_enqueue_script('bxcft-select2', plugin_dir_url(__FILE__) . 'js/select2/select2.min.js', array('jquery'), '4.0.2', true);
+            $locale = get_locale();
+            if (file_exists(plugin_dir_path(__FILE__) . 'js/select2/i18n/' . $locale . '.js')) {
+                wp_enqueue_script('bxcft-select2-i18n', plugin_dir_url(__FILE__) . 'js/select2/i18n/' . get_locale() . '.js', array('bxcft-select2'), '4.0.2', true);
+            }
+            wp_enqueue_style('bxcft-select2', plugin_dir_url(__FILE__) . 'css/select2/select2.min.css', array(), '4.0.2');
         }
 
         public function admin_init()
         {
             if (is_admin() && get_option('bxcft_activated') == 1) {
-                // Check if BuddyPress 2.0 is installed.
+                // Check if BuddyPress 2.5 is installed.
                 $version_bp = 0;
                 if (function_exists('is_plugin_active') && is_plugin_active('buddypress/bp-loader.php')) {
                     // BuddyPress loaded.
@@ -145,9 +149,9 @@ if (!class_exists('Bxcft_Plugin'))
                         $version_bp = (float)$data[0];
                     }
                 }
-                if ($version_bp < 2) {
+                if ($version_bp < 2.5) {
                     $notices = get_option('bxcft_notices');
-                    $notices[] = __('BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.0</b>, please install or upgrade BuddyPress.', 'bxcft');
+                    $notices[] = __('BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.5</b>, please install or upgrade BuddyPress.', 'bxcft');
                     update_option('bxcft_notices', $notices);
                     delete_option('bxcft_activated');
                 }
@@ -155,6 +159,10 @@ if (!class_exists('Bxcft_Plugin'))
                 // Enqueue javascript.
                 wp_enqueue_script('bxcft-js', plugin_dir_url(__FILE__) . 'js/admin.js', array(), $this->version, false);
                 wp_localize_script('bxcft-js', 'fields_type_with_select2', array('types' => $this->fields_type_with_select2));
+
+                if (isset($_GET['page']) && $_GET['page'] === 'bp-profile-edit') {
+                    $this->load_js();
+                }
             }
         }
 
