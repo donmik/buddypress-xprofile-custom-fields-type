@@ -96,15 +96,6 @@ function bxcft_save_range_slider($, e) {
     }
 }
 
-function show_hide_select2box($, selected_type) {
-    if (selected_type !== '' && selected_type !== undefined &&
-        $.inArray(selected_type, fields_type_with_select2.types) >= 0) {
-        $('#select2-box').show();
-    } else {
-        $('#select2-box').hide();
-    }
-}
-
 jQuery(document).ready(function($) {
     $('#bp-xprofile-add-field').on('submit', function(e) {
         if ($('select#fieldtype').val() == 'checkbox_acceptance') {
@@ -120,10 +111,4 @@ jQuery(document).ready(function($) {
             bxcft_save_range_slider($, e);
         }
     });
-
-    $('select#fieldtype').on('change', function() {
-        show_hide_select2box($, $(this).val());
-    });
-
-    show_hide_select2box($, $('select#fieldtype').val());
 });
