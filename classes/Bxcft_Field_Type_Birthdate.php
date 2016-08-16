@@ -99,9 +99,27 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 <div class="inside">
                     <p>
                         <?php _e('Check this if you want to show age instead of birthdate:', 'bxcft'); ?>
-                        <input type="hidden" name="<?php echo esc_attr( "{$type}_option[0]" ); ?>" id="<?php echo esc_attr( "{$type}_option0" ); ?>" value="show_birthdate" />
-                        <input type="checkbox" name="<?php echo esc_attr( "{$type}_option[1]" ); ?>" id="<?php echo esc_attr( "{$type}_option1" ); ?>" value="show_age"
-                               <?php if ($options[0]->name == 'show_age') : ?>checked="checked"<?php endif; ?>/>
+                        <input type="hidden"
+                            name="<?php echo esc_attr( "{$type}_option[0]" ); ?>"
+                            id="<?php echo esc_attr( "{$type}_option0" ); ?>"
+                            value="show_birthdate" />
+                        <input type="checkbox"
+                            name="<?php echo esc_attr( "{$type}_option[1]" ); ?>"
+                            id="<?php echo esc_attr( "{$type}_option1" ); ?>"
+                            value="show_age"
+                            <?php if ($options[0]->name == 'show_age') : ?>checked="checked"<?php endif; ?>/>
+                    </p>
+                </div>
+
+                <h3><?php esc_html_e( 'Define a minimum age:', 'bxcft' ); ?></h3>
+                <div class="inside">
+                    <p>
+                        <?php _e('Minimum age:', 'bxcft'); ?>
+                        <input type="number"
+                            name="<?php echo esc_attr( "{$type}_option[2]" ); ?>"
+                            id="<?php echo esc_attr( "{$type}_option2" ); ?>"
+                            min="1" max="100"
+                            value="<?php if (count($options) > 0) { echo $options[1]->name; } ?>" />
                     </p>
                 </div>
             </div>
