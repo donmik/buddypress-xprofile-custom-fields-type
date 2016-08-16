@@ -6,11 +6,6 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
 {
     class Bxcft_Field_Type_Birthdate extends BP_XProfile_Field_Type
     {
-        const OPTION_SHOW_AGE = 'show_age';
-
-        private $_englishMonths = array();
-        private $_months = array();
-
         public function __construct() {
             parent::__construct();
 
@@ -19,38 +14,6 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
 
             $this->set_format( '/^\d{4}-\d{1,2}-\d{1,2} 00:00:00$/', 'replace' );  // "Y-m-d 00:00:00"
             do_action( 'bp_xprofile_field_type_birthdate', $this );
-        }
-
-        private function getEnglishMonths() {
-            if (!$this->_englishMonths) {
-                $this->_englishMonths = array(
-                    'January', 'February', 'March', 'April', 'May', 'June', 'July',
-                    'August', 'September', 'October', 'November', 'December'
-                );
-            }
-
-            return $this->_englishMonths;
-        }
-
-        private function getMonths() {
-            if (!$this->_months) {
-                $this->_months = array(
-                    0   => __( 'January', 'buddypress' ),
-                    1   => __( 'February', 'buddypress' ),
-                    2   => __( 'March', 'buddypress' ),
-                    3   => __( 'April', 'buddypress' ),
-                    4   => __( 'May', 'buddypress' ),
-                    5   => __( 'June', 'buddypress' ),
-                    6   => __( 'July', 'buddypress' ),
-                    7   => __( 'August', 'buddypress' ),
-                    8   => __( 'September', 'buddypress' ),
-                    9   => __( 'October', 'buddypress' ),
-                    10  => __( 'November', 'buddypress' ),
-                    11  => __( 'December', 'buddypress' )
-                );
-            }
-
-            return $this->_months;
         }
 
         public function admin_field_html (array $raw_properties = array ())
@@ -136,27 +99,9 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 <div class="inside">
                     <p>
                         <?php _e('Check this if you want to show age instead of birthdate:', 'bxcft'); ?>
-                        <input type="hidden"
-                            name="<?php echo esc_attr( "{$type}_option[0]" ); ?>"
-                            id="<?php echo esc_attr( "{$type}_option0" ); ?>"
-                            value="show_birthdate" />
-                        <input type="checkbox"
-                            name="<?php echo esc_attr( "{$type}_option[1]" ); ?>"
-                            id="<?php echo esc_attr( "{$type}_option1" ); ?>"
-                            value="<?php echo Bxcft_Field_Type_Birthdate::OPTION_SHOW_AGE; ?>"
-                            <?php if ($options[0]->name == Bxcft_Field_Type_Birthdate::OPTION_SHOW_AGE) : ?>checked="checked"<?php endif; ?>/>
-                    </p>
-                </div>
-
-                <h3><?php esc_html_e( 'Define a minimum age:', 'bxcft' ); ?></h3>
-                <div class="inside">
-                    <p>
-                        <?php _e('Minimum age:', 'bxcft'); ?>
-                        <input type="number"
-                            name="<?php echo esc_attr( "{$type}_option[2]" ); ?>"
-                            id="<?php echo esc_attr( "{$type}_option2" ); ?>"
-                            min="1" max="100"
-                            value="<?php if (count($options) > 0) { echo $options[1]->name; } ?>" />
+                        <input type="hidden" name="<?php echo esc_attr( "{$type}_option[0]" ); ?>" id="<?php echo esc_attr( "{$type}_option0" ); ?>" value="show_birthdate" />
+                        <input type="checkbox" name="<?php echo esc_attr( "{$type}_option[1]" ); ?>" id="<?php echo esc_attr( "{$type}_option1" ); ?>" value="show_age"
+                               <?php if ($options[0]->name == 'show_age') : ?>checked="checked"<?php endif; ?>/>
                     </p>
                 </div>
             </div>
@@ -229,17 +174,6 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
             <select <?php echo $year_html; ?>>
                 <?php bp_the_profile_field_options( array( 'type' => 'year', 'user_id' => $user_id ) ); ?>
             </select>
-            <script>
-                if (bxcft_months === undefined) {
-                    var bxcft_months = [];
-                    <?php
-                        $months = $this->getMonths();
-                        foreach ($months as $k => $m):
-                            printf("bxcft_months[%s] = '%s';", $k, $m);
-                        endforeach;
-                    ?>
-                }
-            </script>
         <?php
         }
 
@@ -288,7 +222,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
             // $type will be passed by calling function when needed
             switch ( $args['type'] ) {
                 case 'day':
-                    $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $day, 0, false ), /* translators: no option picked in select box */ __( 'Day', 'buddypress' ) );
+                    $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $day, 0, false ), /* translators: no option picked in select box */ __( '----', 'buddypress' ) );
 
                     for ( $i = 1; $i < 32; ++$i ) {
                         $html .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', (int) $i, selected( $day, $i, false ), (int) $i );
@@ -296,10 +230,24 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 break;
 
                 case 'month':
-                    $eng_months = $this->getEnglishMonths();
-                    $months = $this->getMonths();
+                    $eng_months = array( 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' );
 
-                    $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $month, 0, false ), /* translators: no option picked in select box */ __( 'Month', 'buddypress' ) );
+                    $months = array(
+                        0   => __( 'January', 'buddypress' ),
+                        1   => __( 'February', 'buddypress' ),
+                        2   => __( 'March', 'buddypress' ),
+                        3   => __( 'April', 'buddypress' ),
+                        4   => __( 'May', 'buddypress' ),
+                        5   => __( 'June', 'buddypress' ),
+                        6   => __( 'July', 'buddypress' ),
+                        7   => __( 'August', 'buddypress' ),
+                        8   => __( 'September', 'buddypress' ),
+                        9   => __( 'October', 'buddypress' ),
+                        10  => __( 'November', 'buddypress' ),
+                        11  => __( 'December', 'buddypress' )
+                    );
+
+                    $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $month, 0, false ), /* translators: no option picked in select box */ __( '----', 'buddypress' ) );
 
                     for ( $i = 0; $i < 12; ++$i ) {
                         $html .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', esc_attr( $eng_months[$i] ), selected( $month, $eng_months[$i], false ), $months[$i] );
@@ -307,9 +255,9 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 break;
 
                 case 'year':
-                    $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $year, 0, false ), /* translators: no option picked in select box */ __( 'Year', 'buddypress' ) );
+                    $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $year, 0, false ), /* translators: no option picked in select box */ __( '----', 'buddypress' ) );
 
-                    for ( $i = date('Y', time()-60*60*24); $i > 1901; $i-- ) {
+                    for ( $i = date('Y')-1; $i > 1901; $i-- ) {
                         $html .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', (int) $i, selected( $year, $i, false ), (int) $i );
                     }
                 break;
@@ -344,67 +292,6 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
             }
 
             return (bool) apply_filters( 'bp_xprofile_field_type_is_valid', $validated, $values, $this );
-        }
-
-        /**
-         * Modify the appearance of value. Apply autolink if enabled.
-         *
-         * @param  string   $value      Original value of field
-         * @param  int      $field_id   Id of field
-         * @return string   Value formatted
-         */
-        public static function display_filter($field_value, $field_id = '') {
-
-            $new_field_value = $field_value;
-
-            if (!empty($field_value) && !empty($field_id)) {
-                $field = BP_XProfile_Field::get_instance($field_id);
-
-                if ($field) {
-                    $show_age = false;
-
-                    // Looking for "show_age" flag.
-                    $childs = $field->get_children();
-                    if (!empty($childs)) {
-                        foreach ($childs as $c) {
-                            if ($c->name == Bxcft_Field_Type_Birthdate::OPTION_SHOW_AGE) {
-                                $show_age = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    if ($show_age) {
-                        // Calculate age.
-                        $new_field_value = floor((time() - strtotime($field_value)) / 31556926);
-                    } else {
-                        // Display birthdate with WP Settings Date Format.
-                        $new_field_value = date_i18n( get_option('date_format'),
-                            strtotime($field_value) );
-                    }
-
-                    $do_autolink = apply_filters('bxcft_do_autolink',
-                        $field->get_do_autolink());
-
-                    if ($do_autolink) {
-                        $query_arg = bp_core_get_component_search_query_arg( 'members' );
-                        $search_url = add_query_arg( array( $query_arg => urlencode( $field_value ) ),
-                            bp_get_members_directory_permalink() );
-                        $new_field_value = '<a href="' . esc_url( $search_url ) .
-                            '" rel="nofollow">' . $new_field_value . '</a>';
-                    }
-                }
-            }
-
-            /**
-             * bxcft_birthdate_display_filter
-             *
-             * Use this filter to modify the appearance of Birthdate field value.
-             * @param  $new_field_value Value of field
-             * @param  $field_id Id of field.
-             * @return  Filtered value of field.
-             */
-            return apply_filters('bxcft_birthdate_display_filter', $new_field_value, $field_id);
         }
     }
 }
