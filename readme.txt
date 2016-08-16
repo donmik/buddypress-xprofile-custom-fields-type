@@ -59,7 +59,6 @@ custom taxonomy multiselector.
 * Solved a js error when editing profiles inside wordpress admin.
 * Until now birthdates have to be in past year. Now birthdates can be until yesterday.
 
-
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
 

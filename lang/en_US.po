@@ -2,13 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Xprofile Custom Fields Type v2.1.5\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< 8f31f72f7d1b1e130df8311a73e049240bc4c915
 "POT-Creation-Date: 2016-04-09 08:15+0200\n"
 "PO-Revision-Date: 2016-04-09 08:15+0200\n"
-=======
-"POT-Creation-Date: 2016-02-03 10:09+0100\n"
-"PO-Revision-Date: 2016-02-03 10:09+0100\n"
->>>>>>> Version 2.4.0
 "Last-Translator: Sol Huebner <translations@it-specialist.net>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -20,17 +15,11 @@ msgstr ""
 "esc_html_x;_c;_nc\n"
 "X-Poedit-Basepath: ..\n"
 "X-Generator: Poedit 1.8.7\n"
-<<<<<<< 8f31f72f7d1b1e130df8311a73e049240bc4c915
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: bp-xprofile-custom-fields-type.php:127
-=======
-"X-Poedit-SearchPath-0: .\n"
-
-#: bp-xprofile-custom-fields-type.php:103
->>>>>>> Version 2.4.0
 msgid ""
 "BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.0</b>, "
 "please install or upgrade BuddyPress."
@@ -38,7 +27,6 @@ msgstr ""
 "BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.0</b>, "
 "please install or upgrade BuddyPress."
 
-<<<<<<< 8f31f72f7d1b1e130df8311a73e049240bc4c915
 #: bp-xprofile-custom-fields-type.php:309
 #: bp-xprofile-custom-fields-type.php:478
 #: bp-xprofile-custom-fields-type.php:939
@@ -63,70 +51,28 @@ msgstr "This is a required field"
 
 #: bp-xprofile-custom-fields-type.php:554
 #: bp-xprofile-custom-fields-type.php:624
-=======
-#: bp-xprofile-custom-fields-type.php:282
-#: bp-xprofile-custom-fields-type.php:451
-#: bp-xprofile-custom-fields-type.php:861
-msgid "yes"
-msgstr "yes"
-
-#: bp-xprofile-custom-fields-type.php:282
-#: bp-xprofile-custom-fields-type.php:451
-#: bp-xprofile-custom-fields-type.php:860
-msgid "no"
-msgstr "no"
-
-#: bp-xprofile-custom-fields-type.php:298
-#: bp-xprofile-custom-fields-type.php:467 classes/Bxcft_Field_Type_File.php:58
-msgid "Download file"
-msgstr "Download file"
-
-#: bp-xprofile-custom-fields-type.php:521
-#: bp-xprofile-custom-fields-type.php:545
-msgid "This is a required field"
-msgstr "This is a required field"
-
-#: bp-xprofile-custom-fields-type.php:527
-#: bp-xprofile-custom-fields-type.php:572
->>>>>>> Version 2.4.0
 #, php-format
 msgid "Image type not allowed: (%s)."
 msgstr "Image type not allowed: (%s)."
 
-<<<<<<< 8f31f72f7d1b1e130df8311a73e049240bc4c915
 #: bp-xprofile-custom-fields-type.php:557
 #: bp-xprofile-custom-fields-type.php:628
-=======
-#: bp-xprofile-custom-fields-type.php:530
-#: bp-xprofile-custom-fields-type.php:576
->>>>>>> Version 2.4.0
 #, php-format
 msgid "Max image upload size: %s MB."
 msgstr "Max image upload size: %s MB."
 
-<<<<<<< 8f31f72f7d1b1e130df8311a73e049240bc4c915
 #: bp-xprofile-custom-fields-type.php:561
 #: bp-xprofile-custom-fields-type.php:644
-=======
-#: bp-xprofile-custom-fields-type.php:534
-#: bp-xprofile-custom-fields-type.php:592
->>>>>>> Version 2.4.0
 #, php-format
 msgid "File type not allowed: (%s)."
 msgstr "File type not allowed: (%s)."
 
-<<<<<<< 8f31f72f7d1b1e130df8311a73e049240bc4c915
 #: bp-xprofile-custom-fields-type.php:564
 #: bp-xprofile-custom-fields-type.php:648
-=======
-#: bp-xprofile-custom-fields-type.php:537
-#: bp-xprofile-custom-fields-type.php:596
->>>>>>> Version 2.4.0
 #, php-format
 msgid "Max file upload size: %s MB."
 msgstr "Max file upload size: %s MB."
 
-<<<<<<< 8f31f72f7d1b1e130df8311a73e049240bc4c915
 #: bp-xprofile-custom-fields-type.php:595
 #: bp-xprofile-custom-fields-type.php:730
 #, php-format
@@ -141,12 +87,6 @@ msgstr "Not empty"
 msgid "Select2"
 msgstr "Select2"
 
-=======
-#: bp-xprofile-custom-fields-type.php:870
-msgid "Not empty"
-msgstr "Not empty"
-
->>>>>>> Version 2.4.0
 #: classes/Bxcft_Field_Type_Birthdate.php:12
 msgid "Birthdate Selector"
 msgstr "Birthdate Selector"

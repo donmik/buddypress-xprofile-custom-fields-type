@@ -140,7 +140,7 @@ if (!class_exists('Bxcft_Plugin'))
         public function admin_init()
         {
             if (is_admin() && get_option('bxcft_activated') == 1) {
-                // Check if BuddyPress 2.5 is installed.
+                // Check if BuddyPress 2.0 is installed.
                 $version_bp = 0;
                 if (function_exists('is_plugin_active') && is_plugin_active('buddypress/bp-loader.php')) {
                     // BuddyPress loaded.
