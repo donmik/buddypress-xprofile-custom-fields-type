@@ -96,6 +96,7 @@ function bxcft_save_range_slider($, e) {
     }
 }
 
+<<<<<<< 8f31f72f7d1b1e130df8311a73e049240bc4c915
 function show_hide_select2box($, selected_type) {
     if (selected_type !== '' && selected_type !== undefined &&
         $.inArray(selected_type, fields_type_with_select2.types) >= 0) {
@@ -105,6 +106,8 @@ function show_hide_select2box($, selected_type) {
     }
 }
 
+=======
+>>>>>>> Version 2.4.0
 jQuery(document).ready(function($) {
     $('#bp-xprofile-add-field').on('submit', function(e) {
         if ($('select#fieldtype').val() == 'checkbox_acceptance') {
