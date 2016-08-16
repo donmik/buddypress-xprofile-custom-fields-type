@@ -18,7 +18,10 @@ if (!class_exists('Bxcft_Field_Type_Image'))
         public function admin_field_html (array $raw_properties = array ())
         {
             $html = $this->get_edit_field_html_elements( array_merge(
-                array( 'type' => 'file' ),
+                array(
+                    'type' => 'file',
+                    'accept' => 'image/*',
+                ),
                 $raw_properties
             ) );
         ?>
@@ -34,6 +37,7 @@ if (!class_exists('Bxcft_Field_Type_Image'))
             $html = $this->get_edit_field_html_elements( array_merge(
                 array(
                     'type'  => 'file',
+                    'accept' => 'image/*',
                 ),
                 $raw_properties
             ) );
