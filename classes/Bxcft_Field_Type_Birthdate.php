@@ -8,6 +8,9 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
     {
         const OPTION_SHOW_AGE = 'show_age';
 
+        private $_englishMonths = array();
+        private $_months = array();
+
         public function __construct() {
             parent::__construct();
 
@@ -16,6 +19,38 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
 
             $this->set_format( '/^\d{4}-\d{1,2}-\d{1,2} 00:00:00$/', 'replace' );  // "Y-m-d 00:00:00"
             do_action( 'bp_xprofile_field_type_birthdate', $this );
+        }
+
+        private function getEnglishMonths() {
+            if (!$this->_englishMonths) {
+                $this->_englishMonths = array(
+                    'January', 'February', 'March', 'April', 'May', 'June', 'July',
+                    'August', 'September', 'October', 'November', 'December'
+                );
+            }
+
+            return $this->_englishMonths;
+        }
+
+        private function getMonths() {
+            if (!$this->_months) {
+                $this->_months = array(
+                    0   => __( 'January', 'buddypress' ),
+                    1   => __( 'February', 'buddypress' ),
+                    2   => __( 'March', 'buddypress' ),
+                    3   => __( 'April', 'buddypress' ),
+                    4   => __( 'May', 'buddypress' ),
+                    5   => __( 'June', 'buddypress' ),
+                    6   => __( 'July', 'buddypress' ),
+                    7   => __( 'August', 'buddypress' ),
+                    8   => __( 'September', 'buddypress' ),
+                    9   => __( 'October', 'buddypress' ),
+                    10  => __( 'November', 'buddypress' ),
+                    11  => __( 'December', 'buddypress' )
+                );
+            }
+
+            return $this->_months;
         }
 
         public function admin_field_html (array $raw_properties = array ())
@@ -194,6 +229,17 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
             <select <?php echo $year_html; ?>>
                 <?php bp_the_profile_field_options( array( 'type' => 'year', 'user_id' => $user_id ) ); ?>
             </select>
+            <script>
+                if (bxcft_months === undefined) {
+                    var bxcft_months = [];
+                    <?php
+                        $months = $this->getMonths();
+                        foreach ($months as $k => $m):
+                            printf("bxcft_months[%s] = '%s';", $k, $m);
+                        endforeach;
+                    ?>
+                }
+            </script>
         <?php
         }
 
@@ -250,22 +296,8 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 break;
 
                 case 'month':
-                    $eng_months = array( 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' );
-
-                    $months = array(
-                        0   => __( 'January', 'buddypress' ),
-                        1   => __( 'February', 'buddypress' ),
-                        2   => __( 'March', 'buddypress' ),
-                        3   => __( 'April', 'buddypress' ),
-                        4   => __( 'May', 'buddypress' ),
-                        5   => __( 'June', 'buddypress' ),
-                        6   => __( 'July', 'buddypress' ),
-                        7   => __( 'August', 'buddypress' ),
-                        8   => __( 'September', 'buddypress' ),
-                        9   => __( 'October', 'buddypress' ),
-                        10  => __( 'November', 'buddypress' ),
-                        11  => __( 'December', 'buddypress' )
-                    );
+                    $eng_months = $this->getEnglishMonths();
+                    $months = $this->getMonths();
 
                     $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $month, 0, false ), /* translators: no option picked in select box */ __( '----', 'buddypress' ) );
 
@@ -277,7 +309,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                 case 'year':
                     $html = sprintf( '<option value="" %1$s>%2$s</option>', selected( $year, 0, false ), /* translators: no option picked in select box */ __( '----', 'buddypress' ) );
 
-                    for ( $i = date('Y')-1; $i > 1901; $i-- ) {
+                    for ( $i = date('Y', time()-60*60*24); $i > 1901; $i-- ) {
                         $html .= sprintf( '<option value="%1$s" %2$s>%3$s</option>', (int) $i, selected( $year, $i, false ), (int) $i );
                     }
                 break;

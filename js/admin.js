@@ -97,7 +97,6 @@ function bxcft_save_range_slider($, e) {
 }
 
 function show_hide_select2box($, selected_type) {
-    console.log(selected_type);
     if (selected_type !== '' && selected_type !== undefined &&
         $.inArray(selected_type, fields_type_with_select2.types) >= 0) {
         $('#select2-box').show();
