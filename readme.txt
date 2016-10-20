@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 4.4
-Stable tag: 2.5
+Stable tag: 2.6
 License: GLPv2 or later
 
 Buddypress 2.5 required! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
@@ -52,19 +52,13 @@ custom taxonomy multiselector.
 
 == Changelog ==
 
-= 2.5 =
-* Changed the description of the plugin. Now BuddyPress 2.5 is required to be installed instead of BuddyPress 2.0.
-* Changed "---" default option in Birthdate with "Day", "Month" and "Year" words. Pull request from rrodrigonuez accepted.
-* Fieldype image only accepts images. Pull request from tienbuide accepted.
-* Solved a js error when editing profiles inside wordpress admin.
-* Until now birthdates have to be in past year. Now birthdates can be until yesterday.
+= 2.6 =
+* Improve the checks made during activation. Buddypress 2.5 is required and Xprofile component needs to be enabled.
+* If you use select2 javascript plugin and a multi custom taxonomy selector field type, you can now allow users to insert new tags.
 
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
 
 == Upgrade Notice ==
-* Changed the description of the plugin. Now BuddyPress 2.5 is required to be installed instead of BuddyPress 2.0.
-* Changed "---" default option in Birthdate with "Day", "Month" and "Year" words. Pull request from rrodrigonuez accepted.
-* Fieldype image only accepts images. Pull request from tienbuide accepted.
-* Solved a js error when editing profiles inside wordpress admin.
-* Until now birthdates have to be in past year. Now birthdates can be until yesterday.
+* Improve the checks made during activation. Buddypress 2.5 is required and Xprofile component needs to be enabled.
+* If you use select2 javascript plugin and a multi custom taxonomy selector field type, you can now allow users to insert new tags.
