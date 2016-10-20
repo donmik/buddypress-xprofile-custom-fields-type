@@ -6,6 +6,8 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomTaxonomy'))
 {
     class Bxcft_Field_Type_MultiSelectCustomTaxonomy extends BP_XProfile_Field_Type
     {
+        const ALLOW_NEW_TAGS = "allow_new_tags";
+
         public function __construct() {
             parent::__construct();
 
@@ -97,6 +99,12 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomTaxonomy'))
                         <?php endforeach; ?>
                         </select>
                     </p>
+                    <p>
+                        <?php _e('Allow users to add new tags:', 'bxcft'); ?>
+                        <input type="checkbox" name="<?php echo esc_attr( "{$type}_option[2]" ); ?>"
+                            id="<?php echo esc_attr( "{$type}_option[2]" ); ?>" value="<?php echo Bxcft_Field_Type_MultiSelectCustomTaxonomy::ALLOW_NEW_TAGS; ?>"
+                            <?php if ($options[1]->name === Bxcft_Field_Type_MultiSelectCustomTaxonomy::ALLOW_NEW_TAGS): ?> checked="checked"<?php endif; ?> />
+                    </p>
                 </div>
         <?php endif; ?>
             </div>
@@ -140,7 +148,12 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomTaxonomy'))
 
             $html = '';
             if ($options) {
-                $taxonomy_selected = $options[0]->name;
+                foreach ($options as $option) {
+                    if (Bxcft_Field_Type_MultiSelectCustomTaxonomy::ALLOW_NEW_TAGS !== $option->name) {
+                        $taxonomy_selected = $option->name;
+                        break;
+                    }
+                }
                 if ( !empty($_POST['field_' . $this->field_obj->id]) ) {
                     $new_terms_selected = $_POST['field_' . $this->field_obj->id];
                     $terms_selected = ( $terms_selected != $new_terms_selected ) ? $new_terms_selected : $terms_selected;
@@ -162,35 +175,31 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomTaxonomy'))
             echo apply_filters( 'bp_get_the_profile_field_multiselect_custom_taxonomy', $html, $args['type'], $terms_selected, $this->field_obj->id );
         }
 
-        /**
-         * Overriden, we cannot validate against the whitelist.
-         * @param type $values
-         * @return type
-         */
-        public function is_valid( $values ) {
-            $validated = false;
-
-            // Some types of field (e.g. multi-selectbox) may have multiple values to check
-            foreach ( (array) $values as $value ) {
-
-                // Validate the $value against the type's accepted format(s).
-                foreach ( $this->validation_regex as $format ) {
-                    if ( 1 === preg_match( $format, $value ) ) {
-                        $validated = true;
-                        continue;
-
-                    } else {
-                        $validated = false;
-                    }
+        public function set_whitelist_values( $values ) {
+            foreach ($values as $value) {
+                if (Bxcft_Field_Type_MultiSelectCustomTaxonomy::ALLOW_NEW_TAGS !== $value) {
+                    $taxonomy_to_check = $value;
+                    break;
                 }
             }
 
-            // Handle field types with accepts_null_value set if $values is an empty array
-            if ( ! $validated && is_array( $values ) && empty( $values ) && $this->accepts_null_value ) {
-                $validated = true;
+            $terms = get_terms( array(
+                'taxonomy' => $taxonomy_to_check,
+                'hide_empty' => false,
+                'fields' => 'id=>name',
+            ) );
+
+            if ( $terms ) {
+                $this->validation_whitelist = array_merge(
+                    // Convert ids to strings for validation.
+                    array_map( function($v) {
+                        return "$v";
+                    }, array_keys( $terms ) ),
+                    array_values( $terms )
+                );
             }
 
-            return (bool) apply_filters( 'bp_xprofile_field_type_is_valid', $validated, $values, $this );
+            return $this;
         }
 
         /**

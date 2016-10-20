@@ -3,7 +3,7 @@
     Plugin Name: BuddyPress Xprofile Custom Fields Type
     Plugin URI: http://donmik.com/en/buddypress-xprofile-custom-fields-type/
     Description: BuddyPress installation required!! This plugin add custom field types to BuddyPress Xprofile extension. Field types are: Birthdate, Email, Url, Datepicker, ...
-    Version: 2.5
+    Version: 2.6
     Author: donmik
     Author URI: http://donmik.com
 */
@@ -44,7 +44,7 @@ if (!class_exists('Bxcft_Plugin'))
 
         public function __construct ()
         {
-            $this->version = "2.5";
+            $this->version = "2.6";
 
             /** Main hooks **/
             add_action( 'plugins_loaded', array($this, 'bxcft_update') );
@@ -79,6 +79,8 @@ if (!class_exists('Bxcft_Plugin'))
             add_filter( 'bps_field_validation', array($this, 'bxcft_special_fields_search_validation' ), 10, 2);
             add_filter( 'bps_field_data_for_search_form', array($this, 'bxcft_special_fields_data_for_search_form' ) );
             add_filter( 'bps_field_query', array($this, 'bxcft_special_fields_query' ), 10, 4);
+            // Pre validate multiselect custom taxonomy.
+            add_filter( 'bp_xprofile_set_field_data_pre_validate', array( $this, 'bxcft_xprofile_set_field_data_pre_validate' ), 10, 3 );
         }
 
         public function init()
@@ -102,21 +104,23 @@ if (!class_exists('Bxcft_Plugin'))
             ));
 
             /** Includes **/
-            require_once( 'classes/Bxcft_Field_Type_Birthdate.php' );
-            require_once( 'classes/Bxcft_Field_Type_Email.php' );
-            require_once( 'classes/Bxcft_Field_Type_Web.php' );
-            require_once( 'classes/Bxcft_Field_Type_Datepicker.php' );
-            require_once( 'classes/Bxcft_Field_Type_SelectCustomPostType.php' );
-            require_once( 'classes/Bxcft_Field_Type_MultiSelectCustomPostType.php' );
-            require_once( 'classes/Bxcft_Field_Type_SelectCustomTaxonomy.php' );
-            require_once( 'classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php' );
-            require_once( 'classes/Bxcft_Field_Type_CheckboxAcceptance.php' );
-            require_once( 'classes/Bxcft_Field_Type_Image.php' );
-            require_once( 'classes/Bxcft_Field_Type_File.php' );
-            require_once( 'classes/Bxcft_Field_Type_Color.php' );
-            require_once( 'classes/Bxcft_Field_Type_DecimalNumber.php' );
-            require_once( 'classes/Bxcft_Field_Type_NumberMinMax.php' );
-            require_once( 'classes/Bxcft_Field_Type_Slider.php' );
+            if ( bp_is_active( 'xprofile' ) ) {
+                require_once( 'classes/Bxcft_Field_Type_Birthdate.php' );
+                require_once( 'classes/Bxcft_Field_Type_Email.php' );
+                require_once( 'classes/Bxcft_Field_Type_Web.php' );
+                require_once( 'classes/Bxcft_Field_Type_Datepicker.php' );
+                require_once( 'classes/Bxcft_Field_Type_SelectCustomPostType.php' );
+                require_once( 'classes/Bxcft_Field_Type_MultiSelectCustomPostType.php' );
+                require_once( 'classes/Bxcft_Field_Type_SelectCustomTaxonomy.php' );
+                require_once( 'classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php' );
+                require_once( 'classes/Bxcft_Field_Type_CheckboxAcceptance.php' );
+                require_once( 'classes/Bxcft_Field_Type_Image.php' );
+                require_once( 'classes/Bxcft_Field_Type_File.php' );
+                require_once( 'classes/Bxcft_Field_Type_Color.php' );
+                require_once( 'classes/Bxcft_Field_Type_DecimalNumber.php' );
+                require_once( 'classes/Bxcft_Field_Type_NumberMinMax.php' );
+                require_once( 'classes/Bxcft_Field_Type_Slider.php' );
+            }
 
             if (bp_is_user_profile_edit() || bp_is_register_page()) {
                 $this->load_js();
@@ -140,18 +144,21 @@ if (!class_exists('Bxcft_Plugin'))
         public function admin_init()
         {
             if (is_admin() && get_option('bxcft_activated') == 1) {
-                // Check if BuddyPress 2.0 is installed.
-                $version_bp = 0;
+                // Check if BuddyPress 2.5 is installed.
+                $version_bp = array( '0' );
                 if (function_exists('is_plugin_active') && is_plugin_active('buddypress/bp-loader.php')) {
                     // BuddyPress loaded.
-                    $data = get_file_data(WP_PLUGIN_DIR . '/buddypress/bp-loader.php', array('Version'));
-                    if (isset($data) && count($data) > 0 && $data[0] != '') {
-                        $version_bp = (float)$data[0];
-                    }
+                    $version_bp = get_file_data( WP_PLUGIN_DIR . '/buddypress/bp-loader.php', array( 'Version' ) );
                 }
-                if ($version_bp < 2.5) {
+                if ( ! $this->compare_versions( array_pop( $version_bp ), '2.5' ) ) {
                     $notices = get_option('bxcft_notices');
                     $notices[] = __('BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.5</b>, please install or upgrade BuddyPress.', 'bxcft');
+                    update_option('bxcft_notices', $notices);
+                    delete_option('bxcft_activated');
+                }
+                else if ( ! bp_is_active( 'xprofile' ) ) {
+                    $notices = get_option('bxcft_notices');
+                    $notices[] = __('BuddyPress Xprofile Custom Fields Type plugin needs Buddypress Xprofile Component. Please enable Xprofile first.', 'bxcft');
                     update_option('bxcft_notices', $notices);
                     delete_option('bxcft_activated');
                 }
@@ -164,6 +171,29 @@ if (!class_exists('Bxcft_Plugin'))
                     $this->load_js();
                 }
             }
+        }
+
+        /**
+         * Compare buddypress version with needed version.
+         *
+         * @since 2.6
+         *
+         * @param  Array $version_actual Actual version.
+         * @param  Array $version_needed Needed version.
+         * @return boolean
+         */
+        private function compare_versions( $version_actual, $version_needed ) {
+            $components_version_actual = explode( '.', $version_actual );
+            $components_version_needed = explode( '.', $version_needed );
+
+            foreach ( $components_version_needed as $key => $element ) {
+                if ( isset( $components_version_actual[ $key ] ) &&
+                (int) $components_version_actual[ $key ] < (int) $element ) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public function admin_notices()
@@ -547,6 +577,44 @@ if (!class_exists('Bxcft_Plugin'))
             }
         }
 
+        public function bxcft_xprofile_set_field_data_pre_validate( $value, $field, $field_type_obj ) {
+            if ($field->type === 'multiselect_custom_taxonomy') {
+                $options = $field->get_children();
+                $allow_new_tags = false;
+                $taxonomy_selected = '';
+                foreach ($options as $option) {
+                    if ( Bxcft_Field_Type_MultiSelectCustomTaxonomy::ALLOW_NEW_TAGS === $option->name) {
+                        $allow_new_tags = true;
+                    } else {
+                        $taxonomy_selected = $option->name;
+                    }
+                }
+
+                if ( $allow_new_tags && ! empty( $taxonomy_selected ) ) {
+                    // Add new tags if needed.
+                    $value_to_return = array();
+                    foreach ( $value as $tag ) {
+                        if ( ! term_exists( (int) $tag, $taxonomy_selected ) &&
+                            ! term_exists( $tag, $taxonomy_selected ) ) {
+                            // Create tag.
+                            $res = wp_insert_term( $tag, $taxonomy_selected );
+                            if (is_array($res)) {
+                                $value_to_return[] = "{$res['term_id']}";
+                            } else {
+                                $value_to_return[] = $tag;
+                            }
+                        } else {
+                            $value_to_return[] = $tag;
+                        }
+                    }
+                }
+            } else {
+                $value_to_return = $value;
+            }
+
+            return $value_to_return;
+        }
+
         public function bxcft_standard_fields_validation_type($field_type)
         {
             switch($field_type) {
@@ -806,6 +874,27 @@ if (!class_exists('Bxcft_Plugin'))
                 if (in_array($field->type, $this->fields_type_multiple)) {
                     $field_name_id .= '[]';
                 }
+
+                $allow_new_tags = false;
+                $options = $field->get_children();
+                foreach ($options as $option) {
+                    if (Bxcft_Field_Type_MultiSelectCustomTaxonomy::ALLOW_NEW_TAGS === $option->name) {
+                        $allow_new_tags = true;
+                    }
+                }
+
+                if ($allow_new_tags) {
+            ?>
+                <script>
+                    jQuery(function($) {
+                        $('select[name="<?php echo $field_name_id; ?>"]').select2({
+                            tags: true,
+                            tokenSeparators: [',']
+                        });
+                    });
+                </script>
+            <?php
+                } else {
             ?>
                 <script>
                     jQuery(function($) {
@@ -813,6 +902,7 @@ if (!class_exists('Bxcft_Plugin'))
                     });
                 </script>
             <?php
+                }
             }
         }
 
