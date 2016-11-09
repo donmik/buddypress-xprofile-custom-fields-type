@@ -33,6 +33,7 @@ if (!class_exists('Bxcft_Plugin'))
             'multiselect_custom_post_type'  => 'Bxcft_Field_Type_MultiSelectCustomPostType',
             'select_custom_taxonomy'        => 'Bxcft_Field_Type_SelectCustomTaxonomy',
             'multiselect_custom_taxonomy'   => 'Bxcft_Field_Type_MultiSelectCustomTaxonomy',
+            'select_country'                => 'Bxcft_Field_Type_SelectCountry',
             'checkbox_acceptance'           => 'Bxcft_Field_Type_CheckboxAcceptance',
             'image'                         => 'Bxcft_Field_Type_Image',
             'file'                          => 'Bxcft_Field_Type_File',
@@ -96,7 +97,7 @@ if (!class_exists('Bxcft_Plugin'))
             $this->fields_type_with_select2 = apply_filters('bxcft_field_types_with_select2', array(
                 'selectbox', 'multiselectbox', 'select_custom_post_type',
                 'multiselect_custom_post_type', 'select_custom_taxonomy',
-                'multiselect_custom_taxonomy'
+                'multiselect_custom_taxonomy', 'select_country'
             ));
             $this->fields_type_multiple = apply_filters('bxcft_field_types_multiple', array(
                 'multiselectbox', 'multiselect_custom_post_type',
@@ -113,6 +114,7 @@ if (!class_exists('Bxcft_Plugin'))
                 require_once( 'classes/Bxcft_Field_Type_MultiSelectCustomPostType.php' );
                 require_once( 'classes/Bxcft_Field_Type_SelectCustomTaxonomy.php' );
                 require_once( 'classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php' );
+                require_once( 'classes/Bxcft_Field_Type_SelectCountry.php' );
                 require_once( 'classes/Bxcft_Field_Type_CheckboxAcceptance.php' );
                 require_once( 'classes/Bxcft_Field_Type_Image.php' );
                 require_once( 'classes/Bxcft_Field_Type_File.php' );
@@ -659,6 +661,7 @@ if (!class_exists('Bxcft_Plugin'))
 
                 case 'select_custom_post_type':
                 case 'select_custom_taxonomy':
+                case 'select_country':
                     $field_type = 'selectbox';
                     break;
 
@@ -711,6 +714,7 @@ if (!class_exists('Bxcft_Plugin'))
                 case 'multiselect_custom_post_type':
                 case 'select_custom_taxonomy':
                 case 'multiselect_custom_taxonomy':
+                case 'select_country':
                 case 'checkbox_acceptance':
                 case 'image':
                 case 'file':
@@ -778,6 +782,29 @@ if (!class_exists('Bxcft_Plugin'))
                     }
                     $f->options = $array_options;
                     if ($f->type === 'select_custom_taxonomy') {
+                        $f->display = 'selectbox';
+                    } else {
+                        $f->display = 'multiselectbox';
+                    }
+                    break;
+
+                case 'select_country':
+                    $f->values = isset ($request[$f->code])? (array)$request[$f->code]: array ();
+                    $field = new BP_XProfile_Field($f->id);
+                    $array_options = array();
+                    if ($field) {
+                        $childs = $field->get_children();
+                        $display_type = 'name';
+                        if (isset($childs) && $childs && count($childs) > 0
+                                && is_object($childs[0])) {
+                            $display_type = $childs[0]->name;
+                        }
+                        foreach (Bxcft_Field_Type_SelectCountry::getCountries() as $cca2 => $country) {
+                            $array_options[cca2] = $country[$display_type];;
+                        }
+                    }
+                    $f->options = $array_options;
+                    if ($f->type === 'select_country') {
                         $f->display = 'selectbox';
                     } else {
                         $f->display = 'multiselectbox';

@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Buddypress Xprofile Custom Fields Type\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/buddypress-xprofile-custom-"
 "fields-type\n"
-"POT-Creation-Date: 2016-04-25 15:22+0200\n"
+"POT-Creation-Date: 2016-11-09 19:21+0100\n"
 "PO-Revision-Date: 2015-11-16 18:52+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,161 +14,168 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext;_n;__ngettext_noop;_n_noop;_x;_nx;"
 "_nx_noop;_ex;esc_attr__;esc_attr_e;esc_attr_x;esc_html__;esc_html_e;"
-"esc_html_x;_c;_nc\n"
+"esc_html_x;_c;_nc;ri:1,3c\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: bp-xprofile-custom-fields-type.php:132
+#: bp-xprofile-custom-fields-type.php:157
 msgid ""
-"BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.0</b>, "
+"BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.5</b>, "
 "please install or upgrade BuddyPress."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:323
-#: bp-xprofile-custom-fields-type.php:347
+#: bp-xprofile-custom-fields-type.php:163
+msgid ""
+"BuddyPress Xprofile Custom Fields Type plugin needs Buddypress Xprofile "
+"Component. Please enable Xprofile first."
+msgstr ""
+
+#: bp-xprofile-custom-fields-type.php:364
+#: bp-xprofile-custom-fields-type.php:388
 msgid "This is a required field"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:329
-#: bp-xprofile-custom-fields-type.php:399
+#: bp-xprofile-custom-fields-type.php:370
+#: bp-xprofile-custom-fields-type.php:440
 #, php-format
 msgid "Image type not allowed: (%s)."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:332
-#: bp-xprofile-custom-fields-type.php:403
+#: bp-xprofile-custom-fields-type.php:373
+#: bp-xprofile-custom-fields-type.php:444
 #, php-format
 msgid "Max image upload size: %s MB."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:336
-#: bp-xprofile-custom-fields-type.php:419
+#: bp-xprofile-custom-fields-type.php:377
+#: bp-xprofile-custom-fields-type.php:460
 #, php-format
 msgid "File type not allowed: (%s)."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:339
-#: bp-xprofile-custom-fields-type.php:423
+#: bp-xprofile-custom-fields-type.php:380
+#: bp-xprofile-custom-fields-type.php:464
 #, php-format
 msgid "Max file upload size: %s MB."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:370
-#: bp-xprofile-custom-fields-type.php:505
+#: bp-xprofile-custom-fields-type.php:411
+#: bp-xprofile-custom-fields-type.php:546
 #, php-format
 msgid "You have to be at least %s years old."
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:713
+#: bp-xprofile-custom-fields-type.php:817
 #: classes/Bxcft_Field_Type_CheckboxAcceptance.php:201
 msgid "no"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:714
+#: bp-xprofile-custom-fields-type.php:818
 #: classes/Bxcft_Field_Type_CheckboxAcceptance.php:201
 msgid "yes"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:723
+#: bp-xprofile-custom-fields-type.php:827
 msgid "Not empty"
 msgstr ""
 
-#: bp-xprofile-custom-fields-type.php:753
+#: bp-xprofile-custom-fields-type.php:857
 msgid "Select2"
 msgstr ""
 
-#: classes/Bxcft_Field_Type_Birthdate.php:14
+#: classes/Bxcft_Field_Type_Birthdate.php:17
 msgid "Birthdate Selector"
 msgstr ""
 
-#: classes/Bxcft_Field_Type_Birthdate.php:100
+#: classes/Bxcft_Field_Type_Birthdate.php:38
+msgid "January"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:39
+msgid "February"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:40
+msgid "March"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:41
+msgid "April"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:42
+msgid "May"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:43
+msgid "June"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:44
+msgid "July"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:45
+msgid "August"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:46
+msgid "September"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:47
+msgid "October"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:48
+msgid "November"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:49
+msgid "December"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_Birthdate.php:135
 msgid "Show age (hide birthdate):"
 msgstr ""
 
-#: classes/Bxcft_Field_Type_Birthdate.php:103
+#: classes/Bxcft_Field_Type_Birthdate.php:138
 msgid "Check this if you want to show age instead of birthdate:"
 msgstr ""
 
-#: classes/Bxcft_Field_Type_Birthdate.php:116
+#: classes/Bxcft_Field_Type_Birthdate.php:151
 msgid "Define a minimum age:"
 msgstr ""
 
-#: classes/Bxcft_Field_Type_Birthdate.php:119
+#: classes/Bxcft_Field_Type_Birthdate.php:154
 msgid "Minimum age:"
 msgstr ""
 
-#: classes/Bxcft_Field_Type_Birthdate.php:178
+#: classes/Bxcft_Field_Type_Birthdate.php:213
 #: classes/Bxcft_Field_Type_CheckboxAcceptance.php:60
 #: classes/Bxcft_Field_Type_Color.php:48
 #: classes/Bxcft_Field_Type_Datepicker.php:53
 #: classes/Bxcft_Field_Type_DecimalNumber.php:79
 #: classes/Bxcft_Field_Type_Email.php:53
 #: classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:129
-#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:129
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:137
 #: classes/Bxcft_Field_Type_NumberMinMax.php:85
+#: classes/Bxcft_Field_Type_SelectCountry.php:368
 #: classes/Bxcft_Field_Type_SelectCustomPostType.php:114
 #: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:114
 #: classes/Bxcft_Field_Type_Slider.php:87 classes/Bxcft_Field_Type_Web.php:53
 msgid "(required)"
 msgstr ""
 
-#: classes/Bxcft_Field_Type_Birthdate.php:245
-#: classes/Bxcft_Field_Type_Birthdate.php:270
-#: classes/Bxcft_Field_Type_Birthdate.php:278
+#: classes/Bxcft_Field_Type_Birthdate.php:291
+#: classes/Bxcft_Field_Type_Birthdate.php:302
+#: classes/Bxcft_Field_Type_Birthdate.php:310
 msgid "----"
-msgstr ""
-
-#: classes/Bxcft_Field_Type_Birthdate.php:256
-msgid "January"
-msgstr ""
-
-#: classes/Bxcft_Field_Type_Birthdate.php:257
-msgid "February"
-msgstr ""
-
-#: classes/Bxcft_Field_Type_Birthdate.php:258
-msgid "March"
-msgstr ""
-
-#: classes/Bxcft_Field_Type_Birthdate.php:259
-msgid "April"
-msgstr ""
-
-#: classes/Bxcft_Field_Type_Birthdate.php:260
-msgid "May"
-msgstr ""
-
-#: classes/Bxcft_Field_Type_Birthdate.php:261
-msgid "June"
-msgstr ""
-
-#: classes/Bxcft_Field_Type_Birthdate.php:262
-msgid "July"
-msgstr ""
-
-#: classes/Bxcft_Field_Type_Birthdate.php:263
-msgid "August"
-msgstr ""
-
-#: classes/Bxcft_Field_Type_Birthdate.php:264
-msgid "September"
-msgstr ""
-
-#: classes/Bxcft_Field_Type_Birthdate.php:265
-msgid "October"
-msgstr ""
-
-#: classes/Bxcft_Field_Type_Birthdate.php:266
-msgid "November"
-msgstr ""
-
-#: classes/Bxcft_Field_Type_Birthdate.php:267
-msgid "December"
 msgstr ""
 
 #: classes/Bxcft_Field_Type_CheckboxAcceptance.php:12
@@ -239,7 +246,8 @@ msgid "Select a custom post type:"
 msgstr ""
 
 #: classes/Bxcft_Field_Type_MultiSelectCustomPostType.php:94
-#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:94
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:96
+#: classes/Bxcft_Field_Type_SelectCountry.php:371
 #: classes/Bxcft_Field_Type_SelectCustomPostType.php:86
 #: classes/Bxcft_Field_Type_SelectCustomPostType.php:117
 #: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:86
@@ -247,22 +255,26 @@ msgstr ""
 msgid "Select..."
 msgstr ""
 
-#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:12
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:14
 msgid "Custom Taxonomy Multiselector"
 msgstr ""
 
-#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:87
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:89
 #: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:79
 msgid ""
 "There is no custom taxonomy. You need to create at least one to use this "
 "field."
 msgstr ""
 
-#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:89
-#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:92
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:91
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:94
 #: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:81
 #: classes/Bxcft_Field_Type_SelectCustomTaxonomy.php:84
 msgid "Select a custom taxonomy:"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_MultiSelectCustomTaxonomy.php:103
+msgid "Allow users to add new tags:"
 msgstr ""
 
 #: classes/Bxcft_Field_Type_NumberMinMax.php:12
@@ -290,6 +302,1030 @@ msgstr ""
 
 #: classes/Bxcft_Field_Type_NumberMinMax.php:162
 msgid "You have to fill at least one field."
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:14
+msgid "Afghanistan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:15
+msgid "Aland Islands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:16
+msgid "Albania"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:17
+msgid "Algeria"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:18
+msgid "American Samoa"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:19
+msgid "Andorra"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:20
+msgid "Angola"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:21
+msgid "Anguilla"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:22
+msgid "Antarctica"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:23
+msgid "Antigua and Barbuda"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:24
+msgid "Argentina"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:25
+msgid "Armenia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:26
+msgid "Aruba"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:27
+msgid "Australia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:28
+msgid "Austria"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:29
+msgid "Azerbaijan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:30
+msgid "Bahamas"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:31
+msgid "Bahrain"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:32
+msgid "Bangladesh"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:33
+msgid "Barbados"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:34
+msgid "Belarus"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:35
+msgid "Belgium"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:36
+msgid "Belize"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:37
+msgid "Benin"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:38
+msgid "Bermuda"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:39
+msgid "Bhutan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:40
+msgid "Bolivia (Plurinational State of)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:41
+msgid "Bonaire, Sint Eustatius and Saba"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:42
+msgid "Bosnia and Herzegovina"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:43
+msgid "Botswana"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:44
+msgid "Bouvet Island"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:45
+msgid "Brazil"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:46
+msgid "British Indian Ocean Territory"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:47
+msgid "Brunei Darussalam"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:48
+msgid "Bulgaria"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:49
+msgid "Burkina Faso"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:50
+msgid "Burundi"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:51
+msgid "Cabo Verde"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:52
+msgid "Cambodia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:53
+msgid "Cameroon"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:54
+msgid "Canada"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:55
+msgid "Cayman Islands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:56
+msgid "Central African Republic"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:57
+msgid "Chad"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:58
+msgid "Chile"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:59
+msgid "China"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:60
+msgid "Christmas Island"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:61
+msgid "Cocos (Keeling) Islands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:62
+msgid "Colombia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:63
+msgid "Comoros"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:64
+msgid "Congo"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:65
+msgid "Congo (Democratic Republic of the)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:66
+msgid "Cook Islands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:67
+msgid "Costa Rica"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:68
+msgid "Côte d'Ivoire"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:69
+msgid "Croatia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:70
+msgid "Cuba"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:71
+msgid "Curaçao"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:72
+msgid "Cyprus"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:73
+msgid "Czechia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:74
+msgid "Denmark"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:75
+msgid "Djibouti"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:76
+msgid "Dominica"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:77
+msgid "Dominican Republic"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:78
+msgid "Ecuador"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:79
+msgid "Egypt"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:80
+msgid "El Salvador"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:81
+msgid "Equatorial Guinea"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:82
+msgid "Eritrea"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:83
+msgid "Estonia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:84
+msgid "Ethiopia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:85
+msgid "Falkland Islands (Malvinas)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:86
+msgid "Faroe Islands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:87
+msgid "Fiji"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:88
+msgid "Finland"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:89
+msgid "France"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:90
+msgid "French Guiana"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:91
+msgid "French Polynesia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:92
+msgid "French Southern Territories"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:93
+msgid "Gabon"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:94
+msgid "Gambia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:95
+msgid "Georgia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:96
+msgid "Germany"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:97
+msgid "Ghana"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:98
+msgid "Gibraltar"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:99
+msgid "Greece"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:100
+msgid "Greenland"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:101
+msgid "Grenada"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:102
+msgid "Guadeloupe"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:103
+msgid "Guam"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:104
+msgid "Guatemala"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:105
+msgid "Guernsey"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:106
+msgid "Guinea"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:107
+msgid "Guinea-Bissau"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:108
+msgid "Guyana"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:109
+msgid "Haiti"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:110
+msgid "Heard Island and McDonald Islands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:111
+msgid "Holy See"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:112
+msgid "Honduras"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:113
+msgid "Hong Kong"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:114
+msgid "Hungary"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:115
+msgid "Iceland"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:116
+msgid "India"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:117
+msgid "Indonesia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:118
+msgid "Iran (Islamic Republic of)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:119
+msgid "Iraq"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:120
+msgid "Ireland"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:121
+msgid "Isle of Man"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:122
+msgid "Israel"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:123
+msgid "Italy"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:124
+msgid "Jamaica"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:125
+msgid "Japan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:126
+msgid "Jersey"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:127
+msgid "Jordan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:128
+msgid "Kazakhstan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:129
+msgid "Kenya"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:130
+msgid "Kiribati"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:131
+msgid "Korea (Democratic People's Republic of)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:132
+msgid "Korea (Republic of)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:133
+msgid "Kuwait"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:134
+msgid "Kyrgyzstan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:135
+msgid "Lao People's Democratic Republic"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:136
+msgid "Latvia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:137
+msgid "Lebanon"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:138
+msgid "Lesotho"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:139
+msgid "Liberia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:140
+msgid "Libya"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:141
+msgid "Liechtenstein"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:142
+msgid "Lithuania"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:143
+msgid "Luxembourg"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:144
+msgid "Macao"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:145
+msgid "Macedonia (the former Yugoslav Republic of)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:146
+msgid "Madagascar"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:147
+msgid "Malawi"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:148
+msgid "Malaysia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:149
+msgid "Maldives"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:150
+msgid "Mali"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:151
+msgid "Malta"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:152
+msgid "Marshall Islands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:153
+msgid "Martinique"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:154
+msgid "Mauritania"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:155
+msgid "Mauritius"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:156
+msgid "Mayotte"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:157
+msgid "Mexico"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:158
+msgid "Micronesia (Federated States of)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:159
+msgid "Moldova (Republic of)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:160
+msgid "Monaco"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:161
+msgid "Mongolia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:162
+msgid "Montenegro"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:163
+msgid "Montserrat"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:164
+msgid "Morocco"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:165
+msgid "Mozambique"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:166
+msgid "Myanmar"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:167
+msgid "Namibia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:168
+msgid "Nauru"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:169
+msgid "Nepal"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:170
+msgid "Netherlands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:171
+msgid "New Caledonia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:172
+msgid "New Zealand"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:173
+msgid "Nicaragua"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:174
+msgid "Niger"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:175
+msgid "Nigeria"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:176
+msgid "Niue"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:177
+msgid "Norfolk Island"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:178
+msgid "Northern Mariana Islands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:179
+msgid "Norway"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:180
+msgid "Oman"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:181
+msgid "Pakistan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:182
+msgid "Palau"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:183
+msgid "Palestine, State of"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:184
+msgid "Panama"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:185
+msgid "Papua New Guinea"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:186
+msgid "Paraguay"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:187
+msgid "Peru"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:188
+msgid "Philippines"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:189
+msgid "Pitcairn"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:190
+msgid "Poland"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:191
+msgid "Portugal"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:192
+msgid "Puerto Rico"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:193
+msgid "Qatar"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:194
+msgid "Réunion"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:195
+msgid "Romania"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:196
+msgid "Russian Federation"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:197
+msgid "Rwanda"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:198
+msgid "Saint Barthélemy"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:199
+msgid "Saint Helena, Ascension and Tristan da Cunha"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:200
+msgid "Saint Kitts and Nevis"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:201
+msgid "Saint Lucia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:202
+msgid "Saint Martin (French part)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:203
+msgid "Saint Pierre and Miquelon"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:204
+msgid "Saint Vincent and the Grenadines"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:205
+msgid "Samoa"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:206
+msgid "San Marino"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:207
+msgid "Sao Tome and Principe"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:208
+msgid "Saudi Arabia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:209
+msgid "Senegal"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:210
+msgid "Serbia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:211
+msgid "Seychelles"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:212
+msgid "Sierra Leone"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:213
+msgid "Singapore"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:214
+msgid "Sint Maarten (Dutch part)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:215
+msgid "Slovakia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:216
+msgid "Slovenia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:217
+msgid "Solomon Islands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:218
+msgid "Somalia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:219
+msgid "South Africa"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:220
+msgid "South Georgia and the South Sandwich Islands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:221
+msgid "South Sudan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:222
+msgid "Spain"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:223
+msgid "Sri Lanka"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:224
+msgid "Sudan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:225
+msgid "Suriname"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:226
+msgid "Svalbard and Jan Mayen"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:227
+msgid "Swaziland"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:228
+msgid "Sweden"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:229
+msgid "Switzerland"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:230
+msgid "Syrian Arab Republic"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:231
+msgid "Taiwan (Province of China)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:232
+msgid "Tajikistan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:233
+msgid "Tanzania, United Republic of"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:234
+msgid "Thailand"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:235
+msgid "Timor-Leste"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:236
+msgid "Togo"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:237
+msgid "Tokelau"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:238
+msgid "Tonga"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:239
+msgid "Trinidad and Tobago"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:240
+msgid "Tunisia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:241
+msgid "Turkey"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:242
+msgid "Turkmenistan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:243
+msgid "Turks and Caicos Islands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:244
+msgid "Tuvalu"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:245
+msgid "Uganda"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:246
+msgid "Ukraine"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:247
+msgid "United Arab Emirates"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:248
+msgid "United Kingdom of Great Britain and Northern Ireland"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:249
+msgid "United States of America"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:250
+msgid "United States Minor Outlying Islands"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:251
+msgid "Uruguay"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:252
+msgid "Uzbekistan"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:253
+msgid "Vanuatu"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:254
+msgid "Venezuela (Bolivarian Republic of)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:255
+msgid "Viet Nam"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:256
+msgid "Virgin Islands (British)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:257
+msgid "Virgin Islands (U.S.)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:258
+msgid "Wallis and Futuna"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:259
+msgid "Western Sahara"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:260
+msgid "Yemen"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:261
+msgid "Zambia"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:262
+msgid "Zimbabwe"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:272
+msgid "Country Selector"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:328
+msgid "Please enter options for this Field:"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:331
+msgid "Display type:"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:334
+msgid "Country name (e.g. United States)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:335
+msgid "Country code 2 (e.g. US)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:336
+msgid "Country code 3 (e.g. USA)"
+msgstr ""
+
+#: classes/Bxcft_Field_Type_SelectCountry.php:340
+msgid "Default country:"
 msgstr ""
 
 #: classes/Bxcft_Field_Type_SelectCustomPostType.php:12
