@@ -103,7 +103,7 @@ if (!class_exists('Bxcft_Field_Type_MultiSelectCustomTaxonomy'))
                         <?php _e('Allow users to add new tags:', 'bxcft'); ?>
                         <input type="checkbox" name="<?php echo esc_attr( "{$type}_option[2]" ); ?>"
                             id="<?php echo esc_attr( "{$type}_option[2]" ); ?>" value="<?php echo Bxcft_Field_Type_MultiSelectCustomTaxonomy::ALLOW_NEW_TAGS; ?>"
-                            <?php if ($options[1]->name === Bxcft_Field_Type_MultiSelectCustomTaxonomy::ALLOW_NEW_TAGS): ?> checked="checked"<?php endif; ?> />
+                            <?php if (is_array($options) && isset($options[1]) && $options[1]->name === Bxcft_Field_Type_MultiSelectCustomTaxonomy::ALLOW_NEW_TAGS): ?> checked="checked"<?php endif; ?> />
                     </p>
                 </div>
         <?php endif; ?>
