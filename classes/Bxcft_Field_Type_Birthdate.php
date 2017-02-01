@@ -281,7 +281,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
             }
 
             if ( ! empty( $_POST['field_' . $this->field_obj->id . '_year'] ) ) {
-                $new_year = date( 'j', (int) $_POST['field_' . $this->field_obj->id . '_year'] );
+                $new_year = (int) $_POST['field_' . $this->field_obj->id . '_year'];
                 $year     = ( $year != $new_year ) ? $new_year : $year;
             }
 

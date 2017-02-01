@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmi
 Tags: buddypress, xprofile, fields
 Requires at least: 3.0
 Tested up to: 4.4
-Stable tag: 2.6.1
+Stable tag: 2.6.2
 License: GLPv2 or later
 
 Buddypress 2.5 required! This plugin add custom field types to Buddypress Xprofile extension. Field types are: Birthdate, Email, Url, ...
@@ -52,11 +52,13 @@ custom taxonomy multiselector.
 
 == Changelog ==
 
-= 2.6.1 =
-* Quick fix for this [issue](https://github.com/donmik/buddypress-xprofile-custom-fields-type/issues/32).
+= 2.6.2 =
+* Quick fix for Custom taxonomy multiselector. [Link to the issue](https://github.com/donmik/buddypress-xprofile-custom-fields-type/pull/35). Thanks to [natrio](https://github.com/natrio)
+* Quick fix for birthdate field. [Link to the issue](https://wordpress.org/support/topic/date-of-birth-year-field-empty-after-reload-with-required-field-missing/)
 
 = Previous versions =
 * <http://donmik.com/en/buddypress-xprofile-custom-fields-type/#changelog>
 
 == Upgrade Notice ==
-* Quick fix for this [issue](https://github.com/donmik/buddypress-xprofile-custom-fields-type/issues/32).
+* Quick fix for this [issue](https://github.com/donmik/buddypress-xprofile-custom-fields-type/pull/35). Thanks to [natrio](https://github.com/natrio)
+* Quick fix for birthdate field. [Link to the issue](https://wordpress.org/support/topic/date-of-birth-year-field-empty-after-reload-with-required-field-missing/)
