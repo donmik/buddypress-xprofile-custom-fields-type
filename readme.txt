@@ -29,6 +29,7 @@ This plugin add more fields type to Buddypress extension: Xprofile. The fields t
 * Number within min/max values.
 * Custom taxonomy selector.
 * Custom taxonomy multiselector.
+* Country selector
 * Range input (slider)
 * [Select2 javascript plugin](https://select2.github.io/) for select boxes.
 
