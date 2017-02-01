@@ -607,6 +607,8 @@ if (!class_exists('Bxcft_Plugin'))
                             $value_to_return[] = $tag;
                         }
                     }
+                } else {
+	                $value_to_return = $value;
                 }
             } else {
                 $value_to_return = $value;
