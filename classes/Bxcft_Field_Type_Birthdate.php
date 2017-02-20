@@ -248,7 +248,7 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
             $date    = BP_XProfile_ProfileData::get_value_byid( $this->field_obj->id, $args['user_id'] );
 
             $day   = 0;
-            $month = 0;
+            $month = '';
             $year  = 0;
             $html  = '';
 
