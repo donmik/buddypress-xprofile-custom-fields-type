@@ -216,8 +216,14 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
             echo apply_filters('bxcft_field_label', $label, bp_get_the_profile_field_id(), bp_get_the_profile_field_type(), bp_get_the_profile_field_input_name(), bp_get_the_profile_field_name(), bp_get_the_profile_field_is_required());
             // Errors
             do_action( bp_get_the_profile_field_errors_action() );
-            // Input.
+            // Description
         ?>
+            <p class="description">
+                <?= bp_get_the_profile_field_description() ?>
+            </p>
+
+            <?php // Input. ?>
+
             <select <?php echo $day_html; ?>>
                 <?php bp_the_profile_field_options( array( 'type' => 'day', 'user_id' => $user_id ) ); ?>
             </select>
