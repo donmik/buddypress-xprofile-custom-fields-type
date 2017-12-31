@@ -54,7 +54,10 @@ if (!class_exists('Bxcft_Field_Type_Color'))
                     jQuery('input#<?php bp_the_profile_field_input_name() ?>').addClass('color');
                 }
             </script>
-       <?php
+            <?php // Description
+            if ( bp_get_the_profile_field_description() ) : ?>
+                <p class="description"><?php bp_the_profile_field_description(); ?></p>
+            <?php endif;
         }
 
         public function admin_new_field_html( BP_XProfile_Field $current_field, $control_type = '' ) {}
