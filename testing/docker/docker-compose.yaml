@@ -27,7 +27,7 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
     volumes:
       - "./synced-files/wp-content:/var/www/html/wp-content:rw"
-      - ".:/var/www/html/wp-content/plugins/buddypress-xprofile-custom-fields-type"
+      - "../..:/var/www/html/wp-content/plugins/buddypress-xprofile-custom-fields-type"
 
 volumes:
   db_data:
