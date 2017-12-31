@@ -28,7 +28,6 @@ services:
     volumes:
       - "./synced-files/wp-content:/var/www/html/wp-content:rw"
       - ".:/var/www/html/wp-content/plugins/buddypress-xprofile-custom-fields-type"
-      - "../design/twentyeleven-child:/var/www/html/wp-content/themes/twentyeleven-child"
 
 volumes:
   db_data:
