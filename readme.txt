@@ -1,3 +1,8 @@
+NOT MAINTAINED
+--------------
+This plugin is not maintained. Feel free to fork and have your own version.
+
+
 === Buddypress Xprofile Custom Fields Type ===
 Contributors: donmik, dabesa, briannaorg
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=donmik%40gmail%2ecom&lc=GB&item_name=donmik%20%2d%20Plugin%20Buddypress%20Xprofile%20Custom%20Fields%20Type&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest
