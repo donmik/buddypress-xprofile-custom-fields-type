@@ -1,0 +1,11 @@
+Instructions
+============
+
+1. Install Docker Compose.
+2. Run
+
+       docker-compose up
+
+3. Log in to localhost:8080.
+4. Install BuddyPress using the Plugins menu.
+5. Activate BuddyPress and this plugin manually.
