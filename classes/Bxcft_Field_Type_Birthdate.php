@@ -240,7 +240,11 @@ if (!class_exists('Bxcft_Field_Type_Birthdate'))
                     ?>
                 }
             </script>
-        <?php
+
+            <?php // Description
+            if ( bp_get_the_profile_field_description() ) : ?>
+                <p class="description"><?php bp_the_profile_field_description(); ?></p>
+            <?php endif;
         }
 
         public function edit_field_options_html( array $args = array() ) {

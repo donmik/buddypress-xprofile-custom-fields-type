@@ -85,7 +85,10 @@ if (!class_exists('Bxcft_Field_Type_DecimalNumber'))
             // Input.
         ?>
             <input <?php echo $html; ?> />
-        <?php
+            <?php // Description
+            if ( bp_get_the_profile_field_description() ) : ?>
+                <p class="description"><?php bp_the_profile_field_description(); ?></p>
+            <?php endif;
         }
 
         public function admin_new_field_html (\BP_XProfile_Field $current_field, $control_type = '')

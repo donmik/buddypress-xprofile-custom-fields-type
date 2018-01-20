@@ -60,7 +60,10 @@ if (!class_exists('Bxcft_Field_Type_CheckboxAcceptance'))
             <label for="<?php bp_the_profile_field_input_name(); ?>"><?php bp_the_profile_field_name(); ?> <?php if ( bp_get_the_profile_field_is_required() ) : ?><?php esc_html_e( '(required)', 'buddypress' ); ?><?php endif; ?></label>
             <?php do_action( bp_get_the_profile_field_errors_action() ); ?>
             <?php bp_the_profile_field_options( "user_id={$user_id}&required={$required}" ); ?>
-        <?php
+            <?php // Description
+            if ( bp_get_the_profile_field_description() ) : ?>
+                <p class="description"><?php bp_the_profile_field_description(); ?></p>
+            <?php endif;
         }
 
         public function admin_new_field_html (\BP_XProfile_Field $current_field, $control_type = '')
