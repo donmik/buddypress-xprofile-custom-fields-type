@@ -422,6 +422,8 @@ if (!class_exists('Bxcft_Plugin'))
 
             $field_id = $data->field_id;
             $field = new BP_XProfile_Field($field_id);
+	        $image_field_to_delete = str_replace( '..', '', $_POST[ 'field_' . $field_id . '_hiddenimg' ] );
+	        $file_field_to_delete  = str_replace( '..', '', $_POST[ 'field_' . $field_id . '_hiddenfile' ] );
 
             if ($field->type == 'image' || $field->type == 'file' && isset($_FILES['field_'.$field_id]))
             {
@@ -445,9 +447,9 @@ if (!class_exists('Bxcft_Plugin'))
                             // Delete previous image.
                             if (isset($_POST['field_'.$field_id.'_hiddenimg'])      &&
                                 !empty($_POST['field_'.$field_id.'_hiddenimg'])     &&
-                                file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg']))
+                                file_exists($uploads['basedir'] . $image_field_to_delete))
                             {
-                                unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg']);
+                                unlink($uploads['basedir'] . $image_field_to_delete);
                             }
                         }
                     }
@@ -465,9 +467,9 @@ if (!class_exists('Bxcft_Plugin'))
                             // Delete previous file.
                             if (isset($_POST['field_'.$field_id.'_hiddenfile'])     &&
                                 !empty($_POST['field_'.$field_id.'_hiddenfile'])    &&
-                                file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']))
+                                file_exists($uploads['basedir'] . $file_field_to_delete))
                             {
-                                unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']);
+                                unlink($uploads['basedir'] . $file_field_to_delete);
                             }
                         }
                     }
@@ -489,9 +491,9 @@ if (!class_exists('Bxcft_Plugin'))
                     {
                         if (isset($_POST['field_'.$field_id.'_hiddenimg'])      &&
                             !empty($_POST['field_'.$field_id.'_hiddenimg'])     &&
-                            file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg']))
+                            file_exists($uploads['basedir'] . $image_field_to_delete))
                         {
-                            unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg']);
+                            unlink($uploads['basedir'] . $image_field_to_delete);
                         }
                         $value = array();
                     }
@@ -506,9 +508,9 @@ if (!class_exists('Bxcft_Plugin'))
                     {
                         if (isset($_POST['field_'.$field_id.'_hiddenfile'])     &&
                             !empty($_POST['field_'.$field_id.'_hiddenfile'])    &&
-                            file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']))
+                            file_exists($uploads['basedir'] . $file_field_to_delete))
                         {
-                            unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']);
+                            unlink($uploads['basedir'] . $file_field_to_delete);
                         }
                         $value = array();
                     }
@@ -554,14 +556,16 @@ if (!class_exists('Bxcft_Plugin'))
             $field_id = $data->field_id;
             $field = new BP_XProfile_Field($field_id);
             $uploads = wp_upload_dir();
+	        $image_field_to_delete = str_replace( '..', '', $_POST[ 'field_' . $field_id . '_hiddenimg' ] );
+	        $file_field_to_delete  = str_replace( '..', '', $_POST[ 'field_' . $field_id . '_hiddenfile' ] );
             if ($field->type == 'image' && isset($_POST['field_'.$field_id.'_deleteimg']) &&
                 $_POST['field_'.$field_id.'_deleteimg'])
             {
                 if (isset($_POST['field_'.$field_id.'_hiddenimg']) &&
                         !empty($_POST['field_'.$field_id.'_hiddenimg']) &&
-                        file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg']))
+                        file_exists($uploads['basedir'] . $image_field_to_delete))
                 {
-                    unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenimg']);
+                    unlink($uploads['basedir'] . $image_field_to_delete);
                 }
             }
 
@@ -570,9 +574,9 @@ if (!class_exists('Bxcft_Plugin'))
             {
                 if (isset($_POST['field_'.$field_id.'_hiddenfile']) &&
                         !empty($_POST['field_'.$field_id.'_hiddenfile']) &&
-                        file_exists($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']))
+                        file_exists($uploads['basedir'] . $file_field_to_delete))
                 {
-                    unlink($uploads['basedir'] . $_POST['field_'.$field_id.'_hiddenfile']);
+                    unlink($uploads['basedir'] . $file_field_to_delete);
                 }
             }
         }
