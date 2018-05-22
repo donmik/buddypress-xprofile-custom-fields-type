@@ -178,22 +178,12 @@ if (!class_exists('Bxcft_Plugin'))
          *
          * @since 2.6
          *
-         * @param  Array $version_actual Actual version.
-         * @param  Array $version_needed Needed version.
+         * @param  string $version_actual Actual version.
+         * @param  string $version_needed Needed version.
          * @return boolean
          */
         private function compare_versions( $version_actual, $version_needed ) {
-            $components_version_actual = explode( '.', $version_actual );
-            $components_version_needed = explode( '.', $version_needed );
-
-            foreach ( $components_version_needed as $key => $element ) {
-                if ( isset( $components_version_actual[ $key ] ) &&
-                (int) $components_version_actual[ $key ] < (int) $element ) {
-                    return false;
-                }
-            }
-
-            return true;
+            return version_compare($version_actual, $version_needed, '>=');
         }
 
         public function admin_notices()
