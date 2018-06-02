@@ -427,7 +427,7 @@ if (!class_exists('Bxcft_Plugin'))
             {
                 $uploads = wp_upload_dir();
                 $filesize = round($_FILES['field_'.$field_id]['size'] / (1024 * 1024), 2);
-                if (isset($_FILES['field_'.$field_id]) && $filesize > 0)
+                if (isset($_FILES['field_'.$field_id]) && $_FILES['field_'.$field_id]['size'] > 0)
                 {
                     $ext = strtolower(substr($_FILES['field_'.$field_id]['name'], strrpos($_FILES['field_'.$field_id]['name'],'.')+1));
                     if ($field->type == 'image')
