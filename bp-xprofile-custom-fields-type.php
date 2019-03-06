@@ -152,7 +152,11 @@ if (!class_exists('Bxcft_Plugin'))
                 }
                 if ( ! $this->compare_versions( array_pop( $version_bp ), '2.5' ) ) {
                     $notices = get_option('bxcft_notices');
-                    $notices[] = __('BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.5</b>, please install or upgrade BuddyPress.', 'bxcft');
+
+                    if (is_array($notices)) {
+                        $notices[] = __('BuddyPress Xprofile Custom Fields Type plugin needs <b>BuddyPress 2.5</b>, please install or upgrade BuddyPress.', 'bxcft');
+                    }
+
                     update_option('bxcft_notices', $notices);
                     delete_option('bxcft_activated');
                 }
